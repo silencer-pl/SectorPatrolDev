@@ -1,10 +1,10 @@
 ## Sector Patrol
 
-This is the codebase for Sector Patrol, a fork of the CM-SS13 codebase.
+This is the codebase for Sector Patrol, a fork of the [CM-SS13 codebase](https://github.com/cmss13-devs/cmss13).
 
 Sector Patrol focuses on a Game Master-ran, persistent Roleplay focused environment in a modified Aliens setting, taking elements from both Space Station 13 and CM-SS13. It features NO player antagonists and requires a Game Master like presence to work. Rounds are meant to be persistent and slowly uncover an ongoing mystery and story.
 
-Sector Patrol features crafting, individualized private dorms, persistent environments, its own system of terminals and 'parsers' for those, an extended character generation system and plenty of other means to support and put Roleplay at the front. Feel free to ask any questions on the Neroid Sector discord, the home of Sector Patrol at https://discord.gg/vgr2RWZcXy
+Sector Patrol features crafting, individualized private dorms, persistent environments, its own system of terminals and 'parsers' for those, an extended character generation system and plenty of other means to support and put Roleplay at the front. Feel free to ask any questions on the [Neroid Sector discord](https://discord.gg/vgr2RWZcXy), the home of Sector Patrol 
 
 Sector Patrol could not have existed without its upstreams, their players, contributors, and administrative/system/coding staff. Thank you all!
 

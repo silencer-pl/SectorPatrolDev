@@ -1,0 +1,13 @@
+//default view distances
+//objects
+
+#define SERIAL_ITEM_SIZE_CLOSE 1
+#define SERIAL_ITEM_SIZE_MEDIUM 2
+#define SERIAL_ITEM_SIZE_FAR 4
+
+//structures
+
+#define SERIAL_STRUCTURE_SIZE_VERY_CLOSE 1
+#define SERIAL_STRUCTURE_SIZE_CLOSE 2
+#define SERIAL_STRUCTURE_SIZE_MEDIUM 4
+#define SERIAL_STRUCTURE_SIZE_FAR 6

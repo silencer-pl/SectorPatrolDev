@@ -4,33 +4,26 @@
 # In the event that people are to be informed of changes
 # to the same file or dir, add them to the end of under Multiple Owners
 
-# Fira
 
-/.dockerignore @Fira
-/code/controllers/subsystem/atoms.dm @Fira
-/code/controllers/subsystem/mapping.dm @Fira
-/code/controllers/subsystem/sound.dm @Fira
-/code/controllers/subsystem/predships.dm @Fira
-/code/controllers/subsystem/quadtrees.dm @Fira
-/code/datums/quadtree.dm @Fira
-/code/datums/soundOutput.dm @Fira
-/code/game/cas_manager/ @Fira
-/code/game/machinery/computer/dropship_weapons.dm @Fira
-/code/game/sound.dm @Fira
-/code/game/world.dm @Fira
-/code/modules/mapping/reader.dm @Fira
-/code/modules/mapping/map_template.dm @Fira
-/code/modules/nightmare/ @Fira
-/tools/docker/ @Fira
-/Dockerfile @Fira
-
-# Nanu
-
-/maps @Nanu308
-
-# Zonespace
-
-/code/datums/tutorial/ @Zonespace27
-/maps/tutorial/ @Zonespace27
+/.dockerignore @silencer-pl
+/code/controllers/subsystem/atoms.dm @silencer-pl
+/code/controllers/subsystem/mapping.dm @silencer-pl
+/code/controllers/subsystem/sound.dm @silencer-pl
+/code/controllers/subsystem/predships.dm @silencer-pl
+/code/controllers/subsystem/quadtrees.dm @silencer-pl
+/code/datums/quadtree.dm @silencer-pl
+/code/datums/soundOutput.dm @silencer-pl
+/code/game/cas_manager/ @silencer-pl
+/code/game/machinery/computer/dropship_weapons.dm @silencer-pl
+/code/game/sound.dm @silencer-pl
+/code/game/world.dm @silencer-pl
+/code/modules/mapping/reader.dm @silencer-pl
+/code/modules/mapping/map_template.dm @silencer-pl
+/code/modules/nightmare/ @silencer-pl
+/tools/docker/ @silencer-pl
+/Dockerfile @silencer-pl
+/maps @silencer-pl
+/code/datums/tutorial/ @silencer-pl
+/maps/tutorial/ @silencer-pl
 
 # MULTIPLE OWNERS

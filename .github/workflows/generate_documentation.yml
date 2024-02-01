@@ -1,7 +1,7 @@
 name: Generate documentation
 permissions:
-  contents: read
-  pages: write
+  contents: write
+  pull-requests: write
 on:
   push:
     branches:

@@ -16,4 +16,4 @@ The code for Sector Patrol is licensed under the [GNU Affero General Public Lice
 
 Assets including icons and sound are under the [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. Authorship for assets including art and sound under the CC BY-SA license is defined as the active development team of Sector Patrol unless stated otherwise (by author of the commit).
 
-All code is assumed to be licensed under AGPL v3 unless stated otherwise by file header. Commits before 9a001bf520f889b434acd295253a1052420860af are assumed to be licensed under GPLv3 and can be used in closed source repo.
+All code is assumed to be licensed under AGPL v3 unless stated otherwise by file header.

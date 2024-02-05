@@ -1,4 +1,5 @@
 name: CI Suite
+permissions: write-all
 on:
   pull_request:
     branches:

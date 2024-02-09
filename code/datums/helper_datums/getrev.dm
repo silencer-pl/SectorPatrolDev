@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(revdata, /datum/getrev, new)
 
 /datum/getrev/proc/get_log_message()
 	var/list/msg = list()
-	msg += "Running CMSS13 revision: [date]"
+	msg += "Running Sector Patrol revision: [date]"
 	if(originmastercommit)
 		msg += "origin/master: [originmastercommit]"
 

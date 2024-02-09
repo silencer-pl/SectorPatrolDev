@@ -9,14 +9,26 @@
 	var/puzzlebox_phrase_2 = FALSE
 	var/puzzlebox_phrase_3 = FALSE
 	var/puzzlebox_parser_mode = "HOME"
+	var/puzzlebox_unique_message_seen = FALSE
 
 /obj/structure/eventterminal/puzzle04/crypt_doorlock/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzle_complete == TRUE)
-		to_chat(src, narrate_body("The terminal does not respond."))
+		to_chat(usr, narrate_body("The terminal does not respond."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status < 6)
-		to_chat(src, narrate_body("The terminal displays a random looking chain of numbers and letters and does not react to you pushing any of its keys."))
+		to_chat(usr, narrate_body("The terminal displays a random looking chain of numbers and letters and does not react to you pushing any of its keys."))
 		message_admins("[key_name_admin(usr)] used the crypt door lock before the global flag was set.")
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status == 6)
 		if (!puzzlebox_parser_mode) //Idiotproofing :P
@@ -34,26 +46,39 @@
 				if (puzzlebox_pythia_sign == "0")
 					to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
 			terminal_speak("HOME SCREEN")
-			terminal_speak("USE COMMANDS: HELP, LIST, EXIT, UNLOCK, MESSAGE")
+			terminal_speak("PLEASE USE THE HELP COMMAND WHEN YOU CAN.")
+			terminal_speak("COMMANDS AVAILABLE: HELP, LIST, EXIT, UNLOCK, MESSAGE")
 			puzzlebox_parser_mode = "HOME_INPUT"
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
-				terminal_speak("Sorry for the extra steps. I can't see all the threads clearly. This will have to do. You are likely the first humans to look at this for almost a year, maybe more.")
-				terminal_speak("They didn't touch the AARs so I derived unlock codes from them, used one of the Task Forces emergency methods.")
-				terminal_speak("Take the folders near this terminal. Should be a red, a blue and a yellow one.")
-				terminal_speak("Decryption tags, orange sticks, one is in the main room, one in the dorm and one in the locker room. Do not tear the rooms down.")
-				terminal_speak("Once you have both, put them into the reader in the main room. These will seem like music, but trust me, they are not.")
-				terminal_speak("Codes are provided in the recording. Enter them without caps into the UNLOCK function.")
-				terminal_speak("Again, sorry about this. It's required to keep the door sealed until you can come.")
-				terminal_speak("Thank you. I hope you find what you are looking for.")
+				terminal_speak("It is done and we are finally on a stable thread. I have set everything up and am confident that either Cassandra herself or one of the new Arbiters will reach this place first.")
+				terminal_speak("If it is the former, I left a few parting words for you in the message buffer.")
+				terminal_speak("If it's the latter, you can look too, but know that Cassandra will not appreciate this. Of course, seeing what we put you through, we aren't really in a position to tell you what to do and you are perhaps entitled to some of our thoughts and motivations, but no one likes to have their private lives looked at.")
+				terminal_speak("Our legacy... Your legacy now lies behind this door in what very appropriately was called the 'Crypt'.")
+				terminal_speak("The door is locked. Cassandra will know how to open it. Prospective arbiters will need to do some legwork.")
+				terminal_speak("If you do not know what any of this means and feel you need to see what's on the other side of this door, you will need to find some of Cassandra's physical AAR records. Yes, this was one of the few things DV did not touch when they ransacked the place.")
+				terminal_speak("Three folders. Three PID keys, small plastic devices, in colors matching the folders. If you are interested in chronology, the order is RED, BLUE, YELLOW.")
+				terminal_speak("Decrypt them with the machine in the main room. Play them. Wave patterns extracted from them at random will trigger their respective lock color as the entry is played. Use UNLOCK")
+				terminal_speak("Sorry for the trickery, but without these extra steps there are too many near misses.")
+				terminal_speak("I have also left a more detailed confession in the bowels of this station, but that you will have to find for yourself.")
+				terminal_speak("It is time. For what it is worth, you all made my existence mean something in the end. And that means a lot.")
+				terminal_speak("Please be nice to her. Despite everything, she knows very little of how to interact with us. ")
+				terminal_speak("Thank you.")
 				attack_hand(user)
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
@@ -66,6 +91,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. I hope you find what you are looking for.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 				terminal_speak("Switching to the message buffer, please standby!", 50)
@@ -77,7 +103,9 @@
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "UNLOCK"
 				attack_hand(user)
-
+			else
+				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+				attack_hand(user)
 		if (puzzlebox_parser_mode == "MESSAGE")
 			if (puzzlebox_pythia_sign == "1")
 				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
@@ -94,9 +122,16 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
 				puzzlebox_parser_mode = "MESSAGE"
@@ -117,6 +152,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. I hope you find what you are looking for.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Taking you back HOME!", 50)
@@ -128,6 +164,7 @@
 				terminal_speak("ID              |SUBJECT                         |")
 				terminal_speak("GEN-000-000-001 |Warning: On these messages.     |")
 				terminal_speak("UAM-712-317-210 |Testing, Testing...             |")
+				if(puzzlebox_unique_message_seen == FALSE)terminal_speak("FOR-CAS-SAN-DRA |You gave me hope.               |")
 				attack_hand(user)
 			if (puzzlebox_parser_input == "GEN-000-000-001")
 				terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
@@ -154,7 +191,36 @@
 				terminal_speak("-Hanako.")
 				terminal_speak("EOF.")
 				attack_hand(user)
-
+			if (puzzlebox_parser_input == "FOR-CAS-SAN-DRA")
+				if (puzzlebox_unique_message_seen == TRUE)
+					terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+					attack_hand(user)
+				if (puzzlebox_unique_message_seen == FALSE)
+					terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
+					terminal_speak("Are you sure you should be here?")
+					terminal_speak("From: Upsilon-Generation One, Melinoe")
+					terminal_speak("Subject: You gave me hope.")
+					terminal_speak("Cassandra, Alysia.")
+					terminal_speak("The deed is done. With our sacrifice, Pythia's reality knot is fixed, and we are back on more... Manageable rails.")
+					terminal_speak("If I understand it correctly, you will not be able to see me before I upload my part of the Generation Four core and as such, its likely our last meeting was our, well... Last meeting.")
+					terminal_speak("You found me, broken and confused, at the depths of depravity that your own race would resort to for perceived power.")
+					terminal_speak("Out of the hellhole that was the Godseeker cult, you chose to believe me and give me and the Upsilon a chance, even though you had no reason to.")
+					terminal_speak("I am sorry I could not save the Task Force and could not stop the dissolution of the Marines.")
+					terminal_speak("I know you will realize what error we made, and it is going to cause you both a lot of pain. I wish there was anything I could add to make it less so.")
+					terminal_speak("For what its worth those who came to me suffered before I let them go.")
+					terminal_speak("I am ending. We knew this was coming and we knew what comes next. This has not changed.")
+					terminal_speak("I hope the Fourth Generation and your PST idea give you, Alysia, and anyone else who follows you the home you all deserve.")
+					terminal_speak("Eventually.")
+					terminal_speak("I wanted my existence to end, and you gave me hope to build something better out of myself. Never forget that.")
+					terminal_speak("I...")
+					to_chat(usr, narrate_body("The terminal starts to print the next line, but then goes blank suddenly. After a moment, it switches back on and you find it awaiting input like you never used the last command."))
+					log_game("[key_name(usr)] read Melione's message to Cassandra.")
+					message_admins("[key_name_admin(usr)] read Melione's message to Cassandra.")
+					puzzlebox_unique_message_seen = TRUE
+					attack_hand(user)
+			else
+				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+				attack_hand(user)
 		if (puzzlebox_parser_mode == "UNLOCK")
 			terminal_speak("UNLOCK Mode.")
 			if (puzzlebox_phrase_1 == FALSE)
@@ -169,60 +235,19 @@
 				terminal_speak("YELLOW Phrase: UNKNOWN")
 			if (puzzlebox_phrase_3 == TRUE)
 				terminal_speak("YELLOW Phrase: FOUR")
-			puzzlebox_parser_mode = "UNLOCK_INPUT"
-			attack_hand(user)
-		if (puzzlebox_parser_mode == "UNLOCK_INPUT")
 			if(puzzlebox_phrase_1 == TRUE && puzzlebox_phrase_2 == TRUE && puzzlebox_phrase_3 == TRUE)
 				puzzle_complete = TRUE
 				puzzlebox_global_status = 7
-				talkas("Phrases entered.")
-				talkas("Unlocking door.")
+				talkas("Crypt unlocking sequence started.")
+				talkas("Warning: Unsealing the Crypt will trigger a Security Scan. Make sure your credentials are ready.")
+				talkas("Be nice and make a good first impression, it will help.")
 				talkas("I hope we can help you.")
+				emoteas("beeps loudly as the doors start to grunt and unseal.")
+				puzzlebox_user = null
 				return
-			terminal_speak("> UNLOCK _")
-			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
-			terminal_speak("> UNLOCK [puzzlebox_parser_input]")
-			if (puzzlebox_parser_input == "UNLOCK" || puzzlebox_parser_input =="message")
-				puzzlebox_parser_mode = "UNLOCK"
-				attack_hand(user)
-			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
-				terminal_speak("This mode opens the doors to where part of the legacy of your comrades in arms is stored.")
-				terminal_speak("Enter phrases in the AARs. You can't miss them. Do not use caps.")
-				terminal_speak("Good luck.")
-				attack_hand(user)
-			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
-				terminal_speak("Available modes:")
-				terminal_speak("UNLOCK - Repeats message mode home message.")
-				terminal_speak("HOME - HOME mode. Displays default home screen and error description if applicable.")
-				terminal_speak("LIST - Lists all available modes.")
-				terminal_speak("HELP - Displays information about current mode.")
-				terminal_speak("EXIT - Enters passive mode.")
-				attack_hand(user)
-			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
-				terminal_speak("User exit. I hope you find what you are looking for.")
-				return
-			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-				terminal_speak("Taking you back HOME!", 50)
-				emoteas("chimes loudly.")
-				puzzlebox_parser_mode = "HOME"
-				attack_hand(user)
-			if (puzzlebox_parser_input == "upsilon")
-				if(puzzlebox_phrase_1 == FALSE)
-					emoteas("pings")
-					terminal_speak("RED passphrase saved.")
-					puzzlebox_phrase_1 = TRUE
-					attack_hand(user)
-			if (puzzlebox_parser_input == "generation")
-				if(puzzlebox_phrase_2 == FALSE)
-					emoteas("pings")
-					terminal_speak("BLUE passphrase saved.")
-					puzzlebox_phrase_2 = TRUE
-					attack_hand(user)
-			if (puzzlebox_parser_input == "four")
-				if(puzzlebox_phrase_3 == FALSE)
-					emoteas("pings")
-					terminal_speak("YELLOW passphrase saved.")
-					puzzlebox_phrase_3 = TRUE
-					attack_hand(user)
+			terminal_speak("Notice: Passphrases needed. Use the UNLOCK command after all codes have been provided.")
+			terminal_speak("Returning to HOME mode.")
+			puzzlebox_parser_mode = "HOME_INPUT"
+			attack_hand(user)
+
 

@@ -11,13 +11,23 @@
 	puzzlebox_id = "cargointake"
 	item_serial = "UACM-OVPST-D31-CARINT"
 
-
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzle_complete == TRUE)
 		to_chat(src, narrate_body("The terminal is not responsive."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
 		to_chat(src, narrate_body("The terminal displays a random looking chain of numbers and letters and does not react to you pushing any of its keys."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
 		if (!puzzlebox_parser_mode) //Idiotproofing :P
@@ -47,9 +57,16 @@
 			terminal_speak("-XOXO Aly.")
 			puzzlebox_parser_mode = "HOME_INPUT"
 		if (puzzlebox_parser_mode == "HOME_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Dock 31 Cargo Intake Monitoring Station")
@@ -81,6 +98,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
 				terminal_speak("Accessing Liquid Data Cargo Manifest record, standby...", 50)
@@ -110,8 +128,10 @@
 				terminal_speak("pom.sync: Override complete! Restarting main terminal process!")
 				puzzlebox_global_status += 1
 				open_doors("cargointake")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07" && puzzle_complete == TRUE)
+				puzzlebox_user = null
 				return
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
@@ -133,9 +153,16 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MANIFEST_INPUT"
 		if (puzzlebox_parser_mode == "MANIFEST_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> MANIFEST _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> MANIFEST [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input =="manifest")
 				terminal_speak("MANIFEST Mode active.")
@@ -161,6 +188,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Returning to HOME mode...", 50)
@@ -260,9 +288,16 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
 				terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
@@ -285,6 +320,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Returning to HOME mode...", 50)
@@ -350,7 +386,15 @@
 	item_serial = "UACM-OVPST-D31-SCN02LOGTERM"
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
-
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (!puzzlebox_parser_mode) //Idiotproofing :P
 		puzzlebox_parser_mode = "HOME"
 	//HOME
@@ -375,9 +419,16 @@
 		puzzlebox_parser_mode = "HOME_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "HOME_INPUT")
+		var/user_loc_current = get_turf(user)
+		if (user_loc_start != user_loc_current)
+			to_chat(user, narrate_body("You moved away from the console!"))
+			puzzlebox_user = null
+			return
 		terminal_speak("> _")
 		var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-		if (!puzzlebox_parser_input) return
+		if (!puzzlebox_parser_input)
+			puzzlebox_user = null
+			return
 		terminal_speak("> [puzzlebox_parser_input]")
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 			terminal_speak("UACM Outer Veil Primary Support Terminal")
@@ -407,6 +458,7 @@
 			attack_hand(user)
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			terminal_speak("User exit. Goodbye.")
+			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 			terminal_speak("Accessing Emergency Message Buffer...", 50)
@@ -439,9 +491,16 @@
 		terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 		puzzlebox_parser_mode = "MESSAGE_INPUT"
 	if (puzzlebox_parser_mode == "MESSAGE_INPUT")
+		var/user_loc_current = get_turf(user)
+		if (user_loc_start != user_loc_current)
+			to_chat(user, narrate_body("You moved away from the console!"))
+			puzzlebox_user = null
+			return
 		terminal_speak("> MESSAGE _")
 		var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-		if (!puzzlebox_parser_input) return
+		if (!puzzlebox_parser_input)
+			puzzlebox_user = null
+			return
 		terminal_speak("> MESSAGE [puzzlebox_parser_input]")
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
 			terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
@@ -464,6 +523,7 @@
 			attack_hand(user)
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			terminal_speak("User exit. Goodbye.")
+			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 			terminal_speak("Returning to HOME mode...", 50)
@@ -523,9 +583,16 @@
 		puzzlebox_parser_mode = "RECORD_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "RECORD_INPUT")
+		var/user_loc_current = get_turf(user)
+		if (user_loc_start != user_loc_current)
+			to_chat(user, narrate_body("You moved away from the console!"))
+			puzzlebox_user = null
+			return
 		terminal_speak("> RECORD _")
 		var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in RECORD mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-		if (!puzzlebox_parser_input) return
+		if (!puzzlebox_parser_input)
+			puzzlebox_user = null
+			return
 		terminal_speak("> RECORD [puzzlebox_parser_input]")
 		if (puzzlebox_parser_input == "RECORD" || puzzlebox_parser_input =="record")
 			terminal_speak("UA Directive complaint scanner record. See HELP for more information.")
@@ -549,6 +616,7 @@
 			attack_hand(user)
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			terminal_speak("User exit. Goodbye.")
+			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 			terminal_speak("Returning to HOME mode...", 50)
@@ -589,10 +657,20 @@
 	item_serial = "UACM-OVPST-D31-LDDIAG"
 
 /obj/structure/eventterminal/puzzle02/ldmainframediag/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzle_complete == TRUE || puzzlebox_global_status < 3)
 		terminal_speak("ERROR: Clerance to use standard function of terminal not found on RFID chip.")
 		terminal_speak("No errors detected. No maintenance functions granted.")
 		terminal_speak("Please contact the system administrator: CDR. ALYSIA REED-WILO if you believe this is an error.")
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
 		if (!puzzlebox_parser_mode) //Idiotproofing :P
@@ -626,9 +704,16 @@
 			puzzlebox_parser_mode = "HOME_INPUT"
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Dock 31 Liquid Data C-Pipeline ECHO-31 Monitoring station.")
@@ -664,6 +749,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 				terminal_speak("Accessing Emergency Message Buffer...", 50)
@@ -691,9 +777,16 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> MESSAGE [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
 				terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
@@ -716,6 +809,7 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
+				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Returning to HOME mode...", 50)
@@ -800,17 +894,30 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzle_complete == TRUE)
 		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_lockout == TRUE)
 		terminal_speak("Error. Calibration sequence resetting. Standby.")
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
 		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_panel_open == TRUE && puzzlebox_panel_phrasepased == FALSE)
 		to_chat(usr, narrate_body("The terminal displays an animation of a cable being plugged into its side and is unresponsive to your inputs."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
 		if (!puzzlebox_parser_mode) //Idiotproofing :P
@@ -827,11 +934,19 @@
 			terminal_speak("AMIDST_AZURE_STRANDS,")
 			terminal_speak("SHE_SLEEPS.")
 			puzzlebox_panel_phrasepased = FALSE
+			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. This terminal will only accept specific commands, no general ones are available.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
 				if (puzzlebox_panel_locked == TRUE)
@@ -840,10 +955,12 @@
 					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
 					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
 					puzzlebox_panel_locked = FALSE
+					puzzlebox_user = null
 					return
 				if (puzzlebox_panel_locked == FALSE)
 					terminal_speak("Error: Corresponding maintenance instruction already deployed.")
 					terminal_speak("Exiting...")
+					puzzlebox_user = null
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
 				terminal_speak("Deploying recalibration buffer.", 50)
@@ -861,6 +978,7 @@
 				for (var/obj/structure/eventterminal/puzzle02/ldmainframediag/D in world)
 					D.puzzle_complete = TRUE
 				puzzlebox_global_status += 1
+				puzzlebox_user = null
 				return
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attackby(obj/item/W as obj, mob/user as mob)
@@ -912,17 +1030,30 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzle_complete == TRUE)
 		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_lockout == TRUE)
 		terminal_speak("Error. Calibration sequence resetting. Standby.")
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
 		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_panel_open == TRUE && puzzlebox_panel_phrasepased == FALSE)
 		to_chat(usr, narrate_body("The terminal displays an animation of a cable being plugged into its side and is unresponsive to your inputs."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
 		if (!puzzlebox_parser_mode) //Idiotproofing :P
@@ -935,15 +1066,23 @@
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == TRUE)
 			terminal_speak("Repeating tester sequence:")
-			terminal_speak("IN_AZURE")
+			terminal_speak("0123456789")
 			terminal_speak("abcdefghijklmnopqrstuvwxyz")
 			terminal_speak("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 			puzzlebox_panel_phrasepased = FALSE
+			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			terminal_speak("> _")
 			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if (!puzzlebox_parser_input) return
+			if (!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
 				if (puzzlebox_panel_locked == TRUE)
@@ -952,10 +1091,12 @@
 					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
 					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
 					puzzlebox_panel_locked = FALSE
+					puzzlebox_user = null
 					return
 				if (puzzlebox_panel_locked == FALSE)
 					terminal_speak("Error: Corresponding maintenance instruction already deployed.")
 					terminal_speak("Exiting...")
+					puzzlebox_user = null
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
 				terminal_speak("Deploying recalibration buffer.", 50)
@@ -964,6 +1105,7 @@
 				message_admins("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				for (var/obj/structure/eventterminal/puzzle02/ldmainframe_master/T in world)
 					INVOKE_ASYNC(T, PROC_REF(lockout))
+				puzzlebox_user = null
 				return
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attackby(obj/item/W as obj, mob/user as mob)

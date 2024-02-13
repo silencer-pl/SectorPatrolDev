@@ -1,11 +1,6 @@
-import { classes } from 'common/react';
-import { useBackend } from '../backend';
-import { Component, Fragment } from 'react';
-import { Box, Button, Dropdown, Icon, Section, Stack, Table } from '../components';
+import { Component } from 'react';
+import { Section } from '../components';
 import { Window } from '../layouts';
-import { resolveAsset } from '../assets';
-import dateformat from 'dateformat';
-import yaml from 'js-yaml';
 
 const icons = {
   bugfix: { icon: 'bug', color: 'green' },
@@ -39,281 +34,146 @@ const icons = {
 export class Changelog extends Component {
   constructor() {
     super();
-    this.state = {
-      data: 'Loading changelog data...',
-      selectedDate: '',
-      selectedIndex: 0,
-    };
-    this.dateChoices = [];
-  }
-
-  setData(data) {
-    this.setState({ data });
-  }
-
-  setSelectedDate(selectedDate) {
-    this.setState({ selectedDate });
-  }
-
-  setSelectedIndex(selectedIndex) {
-    this.setState({ selectedIndex });
-  }
-
-  getData = (date, attemptNumber = 1) => {
-    const { act } = useBackend();
-    const self = this;
-    const maxAttempts = 6;
-
-    if (attemptNumber > maxAttempts) {
-      return this.setData(
-        'Failed to load data after ' + maxAttempts + ' attempts'
-      );
-    }
-
-    act('get_month', { date });
-
-    fetch(resolveAsset(date + '.yml')).then(async (changelogData) => {
-      const result = await changelogData.text();
-      const errorRegex = /^Cannot find/;
-
-      if (errorRegex.test(result)) {
-        const timeout = 50 + attemptNumber * 50;
-
-        self.setData('Loading changelog data' + '.'.repeat(attemptNumber + 3));
-        setTimeout(() => {
-          self.getData(date, attemptNumber + 1);
-        }, timeout);
-      } else {
-        self.setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }));
-      }
-    });
-  };
-
-  componentDidMount() {
-    const {
-      data: { dates = [] },
-    } = useBackend();
-
-    if (dates) {
-      dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true))
-      );
-      this.setSelectedDate(this.dateChoices[0]);
-      this.getData(dates[0]);
-    }
+    this.state = {};
   }
 
   render() {
-    const { data, selectedDate, selectedIndex } = this.state;
-    const {
-      data: { dates },
-    } = useBackend();
-    const { dateChoices } = this;
-
-    const dateDropdown = dateChoices.length > 0 && (
-      <Stack mb={1}>
-        <Stack.Item>
-          <Button
-            className="Changelog__Button"
-            disabled={selectedIndex === 0}
-            icon={'chevron-left'}
-            onClick={() => {
-              const index = selectedIndex - 1;
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(dateChoices[index]);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
-              );
-              return this.getData(dates[index]);
-            }}
-          />
-        </Stack.Item>
-        <Stack.Item>
-          <Dropdown
-            displayText={selectedDate}
-            options={dateChoices}
-            onSelected={(value) => {
-              const index = dateChoices.indexOf(value);
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(value);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
-              );
-              return this.getData(dates[index]);
-            }}
-            selected={selectedDate}
-            width={'150px'}
-          />
-        </Stack.Item>
-        <Stack.Item>
-          <Button
-            className="Changelog__Button"
-            disabled={selectedIndex === dateChoices.length - 1}
-            icon={'chevron-right'}
-            onClick={() => {
-              const index = selectedIndex + 1;
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(dateChoices[index]);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight
-              );
-              return this.getData(dates[index]);
-            }}
-          />
-        </Stack.Item>
-      </Stack>
-    );
-
     const header = (
       <Section>
-        <h1>Colonial Marines Space Station 13</h1>
         <p>
-          <b>Thanks to: </b>
-          Baystation 12, /tg/station, /vg/station, NTstation, CDK Station devs,
-          FacepunchStation, GoonStation devs, the original Space Station 13
-          developers, Invisty for the title image and the countless others who
-          have contributed to the game, issue tracker or wiki over the years.
+          Sector Patrol started as a downstream of CM-SS13 and could not have
+          existed without the players and the administrative, systems and coding
+          staff of CM and the SS13 servers that inspired it, including Bay and
+          TG, the code of both of which makes CM, and Sector Patrol, work.
         </p>
         <p>
-          {'Current project maintainers can be found '}
-          <a href="https://github.com/orgs/cmss13-devs/people">here</a>
-          {', recent GitHub contributors can be found '}
-          <a href="https://github.com/cmss13-devs/cmss13/pulse/monthly">here</a>
-          .
+          <b>Thank you all!</b>
         </p>
         <p>
-          {'You can also join our discord '}
-          <a href="https://discord.gg/cmss13">here</a>.
+          Sector Patrols initial incarnation was written and conceived by{' '}
+          <b>silencer_pl</b> which includes initial coding work. Sector Patrol,
+          like most of what I do, could not be possible without <b>Scarlet.</b>
         </p>
-        {dateDropdown}
+        <p>
+          The project would also never have started without the initial
+          commitment of <b>Ito</b>, <b>Moonshanks</b>, <b>4hands44</b> and all
+          the other misfits and CM refugees that were with us when we started{' '}
+          <b>Neroid Sector</b>. I&#39;m sorry I can&#39;t remember all of you by
+          name U.U
+        </p>
+        <p>
+          <b>Sector Patrol is part of the Neroid Sector Event Server.</b>
+        </p>
+        <p>
+          <a href={'https://discord.gg/vgr2RWZcXy'}>
+            <b>Join our Discord!</b>
+          </a>
+        </p>
       </Section>
     );
 
     const footer = (
       <Section>
-        {dateDropdown}
-        <h3>CM 13 Development Team</h3>
-        <h3>Colonial Marines Space Station 13 License</h3>
+        <h3>Licencisng information:</h3>
         <p>
-          {'All code after '}
-          <a
-            href={
-              'https://github.com/cmss13-devs/cmss13/commit/' +
-              '9a001bf520f889b434acd295253a1052420860af'
-            }>
-            commit 9a001bf520f889b434acd295253a1052420860af on 2020/14/9
-          </a>
-          {' is licensed under '}
-          <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>
-          {'. All code before that commit is licensed under '}
-          <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
-          {', including tools unless their readme specifies otherwise. See '}
-          <a href="https://github.com/cmss13-devs/cmss13/blob/master/LICENSE">
-            LICENSE
-          </a>
-          {' and '}
-          <a href="https://github.com/cmss13-devs/cmss13/blob/master/LICENSE-GPL3">
-            GPLv3.txt
-          </a>
-          {' for more details.'}
+          Sector Patrol is currently synced to the{' '}
+          <a href="https://github.com/cmss13-devs/cmss13">CM-SS13 codebase</a>,
+          with the last commit currently synced listed on top of the changelog
+          and under respective licensing.
         </p>
         <p>
-          The TGS DMAPI API is licensed as a subproject under the MIT license.
-          {' See the footer of '}
-          <a
-            href={
-              'https://github.com/tgstation/tgstation/blob/master' +
-              '/code/__DEFINES/tgs.dm'
-            }>
-            code/__DEFINES/tgs.dm
+          Sector Patrol is avaialbe under{' '}
+          <a href="https://github.com/Neroid-Sector/SectorPatrol/blob/master/LICENSE">
+            GNU AGPL v3
           </a>
-          {' and '}
-          <a
-            href={
-              'https://github.com/tgstation/tgstation/blob/master' +
-              '/code/modules/tgs/LICENSE'
-            }>
-            code/modules/tgs/LICENSE
-          </a>
-          {' for the MIT license.'}
         </p>
         <p>
-          {'All assets including icons and sound are under a '}
+          All assets including icons and sound are under{' '}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons 3.0 BY-SA license
+            {' '}
+            Creative Commons 3.0 BY-SA license{' '}
           </a>
-          {' unless otherwise indicated.'}
+          unless otherwise indicated.
         </p>
+        The TGS DMAPI API is licensed as a subproject under the MIT license.
+        {' See the footer of '}
+        <a
+          href={
+            'https://github.com/tgstation/tgstation/blob/master' +
+            '/code/__DEFINES/tgs.dm'
+          }>
+          code/__DEFINES/tgs.dm
+        </a>
+        {' and '}
+        <a
+          href={
+            'https://github.com/tgstation/tgstation/blob/master' +
+            '/code/modules/tgs/LICENSE'
+          }>
+          code/modules/tgs/LICENSE
+        </a>
+        {' for the MIT license.'}
       </Section>
     );
 
-    const changes =
-      typeof data === 'object' &&
-      Object.keys(data).length > 0 &&
-      Object.entries(data)
-        .reverse()
-        .map(([date, authors]) => (
-          <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
-            <Box ml={3}>
-              {Object.entries(authors).map(([name, changes]) => (
-                <Fragment key={name}>
-                  <h4>{name} changed:</h4>
-                  <Box ml={3}>
-                    <Table>
-                      {changes.map((change) => {
-                        const changeType = Object.keys(change)[0];
-                        return (
-                          <Table.Row key={changeType + change[changeType]}>
-                            <Table.Cell
-                              className={classes([
-                                'Changelog__Cell',
-                                'Changelog__Cell--Icon',
-                              ])}>
-                              <Icon
-                                color={
-                                  icons[changeType]
-                                    ? icons[changeType].color
-                                    : icons['unknown'].color
-                                }
-                                name={
-                                  icons[changeType]
-                                    ? icons[changeType].icon
-                                    : icons['unknown'].icon
-                                }
-                              />
-                            </Table.Cell>
-                            <Table.Cell className="Changelog__Cell">
-                              {change[changeType]}
-                            </Table.Cell>
-                          </Table.Row>
-                        );
-                      })}
-                    </Table>
-                  </Box>
-                </Fragment>
-              ))}
-            </Box>
-          </Section>
-        ));
-
+    const changes = (
+      <Section>
+        <h1>
+          <center>
+            <b>Sector Patrol</b>
+          </center>
+        </h1>
+        <h2>
+          <center>
+            <b>ALPHA</b>
+          </center>
+        </h2>
+        <h3>
+          <center>
+            <b>Patch 0</b>
+          </center>
+        </h3>
+        <p>Currently synced to the following comit on CM-SS13:</p>
+        <p>
+          <a href="https://github.com/cmss13-devs/cmss13/commit/57a70ca1b61d09c806797ca6f8edbf309ca181c5">
+            57a70ca1b61d09c806797ca6f8edbf309ca181c5
+          </a>
+        </p>
+        <p>
+          This patch contains the basic content for the &#39;soft launch&#39; of
+          Sector Patrol into an incremental Alpha or however you want to call
+          it. This involves a lot of backend changes, and:
+        </p>
+        <p>- Chargen, the character creation system.</p>
+        <p>
+          - Modular floors and basic crafting, a system that remembers colors
+          and textures of sub elements that come wrapped in various sized
+          packages.
+        </p>
+        <p>
+          - Terminals, terminal inputs. This also includes previews of the
+          remote briefings system and general &#39;cinematic&#39; sequences.
+        </p>
+        <p>
+          - Puzzle sequences involving terminals, object manipulation via tools,
+          environmental searching and terminal/npc prompts.
+        </p>
+        <p>
+          - Several first passes at multiple &#39;locations&#39;, effectively
+          scenes for roleplay, spread across the OV-PST.
+        </p>
+        <p>
+          - Lore entries, story hooks and first introductions to the world of
+          Sector Patrol and the style of narration/gameplay the game mode
+          includes.
+        </p>
+      </Section>
+    );
     return (
       <Window title="Changelog" width={675} height={650}>
         <Window.Content scrollable>
           {header}
           {changes}
-          {typeof data === 'string' && <p>{data}</p>}
           {footer}
         </Window.Content>
       </Window>

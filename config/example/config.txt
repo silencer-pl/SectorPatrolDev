@@ -128,17 +128,17 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL https://forum.cm-ss13.com/
+FORUMURL https://forum.neroid-sector.com/
 
 ## Wiki address
-WIKIURL https://cm-ss13.com/w
-WIKIARTICLEURL https://cm-ss13.com/wiki
+WIKIURL https://neroid-sector.com/w
+WIKIARTICLEURL https://neroid-sector.com/wiki
 
 ## Rules address
-RULESURL https://cm-ss13.com/viewtopic.php?f=57&t=5094
+RULESURL https://neroid-sector.com/viewtopic.php?f=57&t=5094
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://cm-ss13.com/viewforum.php?f=76
+BANAPPEALS https://neroid-sector.com/viewforum.php?f=76
 
 ## Discord URL - uncomment and add a valid Discord invite link (remember to make it a permanent one, since it does not default to it) to make the Discord button work properly.
 ## DISCORDURL

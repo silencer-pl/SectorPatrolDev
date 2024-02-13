@@ -11,6 +11,8 @@
 	var/puzzlebox_parser_mode = "HOME"
 	var/puzzlebox_unique_message_seen = FALSE
 
+//Crypt terminal
+
 /obj/structure/eventterminal/puzzle04/crypt_doorlock/attack_hand(mob/user as mob)
 	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
@@ -251,3 +253,52 @@
 			attack_hand(user)
 
 
+/obj/structure/eventterminal/puzzle04/crypt_doorlock/proc/puzzlebox_unlock_1()
+	if (puzzlebox_phrase_1 == FALSE)
+		emoteas("Beeps", 10)
+		talkas("RED Phrase 'UPSILON' detected and entered.")
+		puzzlebox_phrase_1 = TRUE
+		if(puzzlebox_phrase_1 == TRUE && puzzlebox_phrase_2 == TRUE && puzzlebox_phrase_3 == TRUE)
+			talkas("Phrase entry complete. Terminal UNLOCK function ready.")
+			return
+		return
+	return
+
+/obj/structure/eventterminal/puzzle04/crypt_doorlock/proc/puzzlebox_unlock_2()
+	if (puzzlebox_phrase_2 == FALSE)
+		emoteas("Beeps", 10)
+		talkas("BLUE Phrase 'GENERATION' detected and entered.")
+		puzzlebox_phrase_2 = TRUE
+		if(puzzlebox_phrase_1 == TRUE && puzzlebox_phrase_2 == TRUE && puzzlebox_phrase_3 == TRUE)
+			talkas("Phrase entry complete. Terminal UNLOCK function ready.")
+			return
+		return
+	return
+
+/obj/structure/eventterminal/puzzle04/crypt_doorlock/proc/puzzlebox_unlock_3()
+	if (puzzlebox_phrase_3 == FALSE)
+		emoteas("Beeps", 10)
+		talkas("YELLOW Phrase 'FOUR' detected and entered.")
+		puzzlebox_phrase_3 = TRUE
+		if(puzzlebox_phrase_1 == TRUE && puzzlebox_phrase_2 == TRUE && puzzlebox_phrase_3 == TRUE)
+			talkas("Phrase entry complete. Terminal UNLOCK function ready.")
+			return
+		return
+	return
+//Folders and PIDs
+
+//Log reader and logs
+
+/obj/structure/eventterminal/puzzle04/log_reader
+	name = "personal log viewer"
+	desc = "A small portable computer with a set of speakers. It opens and closes but does not seem to have any visible way of entering commands."
+	desc_lore = "Devices like these are normally simple password locked electronic logbooks, however this device seems to have been severely modified, particularly it seems to be able to function despite the PST's anomalous disruption field. The lack of a keyboard indicates that there must be some external way of triggering playback or authenticating the user to use this device, but one does not seem to be apparent by just looking at it."
+	icon = 'icons/obj/structures/machinery/computer.dmi'
+	item_serial = "PERSONAL LOG VIEWER<br>ADAPTED FOR USE USING LD FRIENDLY MACHINERY BY ALY REED-WILO<br>PRODUCED IN THE OV-PST<hr>MANUFACTURE CODE: COMFORT-ELECTRONICS-LOGVIEWER"
+	icon_state = "laptop_on"
+
+/obj/structure/eventterminal/puzzle04/log_reader/attack_hand(mob/user as mob)
+	terminal_speak("TF-14 AAR VIEWER")
+	terminal_speak("Awaiting AAR Folder.")
+	to_chat(user, narrate_body("The terminal clearly awaits input, but it is missing a keyboard or anything else to interact with it."))
+	return

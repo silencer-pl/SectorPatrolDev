@@ -17,7 +17,7 @@
 //Cutscene tools - speaking, doors, lights, etc
 //Emote and say moved to general objects and device defs
 
-/obj/structure/eventterminal/proc/open_doors(door_id = puzzlebox_id)
+/obj/structure/eventterminal/proc/open_doors(door_id = puzzlebox_id) //Sends a call to open doors with matching id string.
 	var/dooorid = door_id
 	if (!dooorid) return
 	for(var/obj/structure/machinery/door/D in world)
@@ -45,7 +45,7 @@
 #define TERMINAL_STANDARD_SLEEP 10
 #define TERMINAL_LOOKUP_SLEEP 20
 
-/obj/structure/eventterminal/proc/terminal_speak(str, delay = TERMINAL_STANDARD_SLEEP)
+/obj/structure/eventterminal/proc/terminal_speak(str, delay = TERMINAL_STANDARD_SLEEP) //Print string onto the console output format. Delay sets ammount until next line is printed/next command is sent.
 	var/puzzlebox_temp_say = str
 	var/puzzlebox_temp_delay = delay
 	if (!puzzlebox_temp_say) return

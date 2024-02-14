@@ -25,6 +25,7 @@
 			to_chat(usr, narrate_body("You slot the pid into the folder. The diodes flash once."))
 			var/obj/item/cargo/efolder/folder_pid/folder = new(get_turf(usr))
 			folder.efolder_folder_id = efolder_folder_id
+			if(item_serial) folder.item_serial = item_serial
 			qdel(pid)
 			usr.put_in_hands(folder)
 			qdel(src)
@@ -62,6 +63,9 @@
 		var/obj/item/cargo/efolder/pid/pid = new(get_turf(usr))
 		pid.efolder_pid_id = efolder_folder_id
 		folder.efolder_folder_id = efolder_folder_id
+		if(item_serial)
+			pid.item_serial = item_serial
+			folder.item_serial = item_serial
 		usr.drop_held_item(src)
 		usr.put_in_hands(folder)
 		usr.put_in_hands(pid)

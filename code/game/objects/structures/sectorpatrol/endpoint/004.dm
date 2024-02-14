@@ -287,6 +287,102 @@
 	return
 //Folders and PIDs
 
+/obj/item/cargo/efolder/folder/crypt_red
+	efolder_folder_id = "RED-33895-027-8032"
+	item_serial = "RED-33895-027-8032"
+
+/obj/item/cargo/efolder/folder/crypt_red/dud1
+	efolder_folder_id = "RED-96283-219-1020"
+	item_serial = "RED-96283-219-1020"
+
+/obj/item/cargo/efolder/folder/crypt_red/dud2
+	efolder_folder_id = "RED-40021-996-5930"
+	item_serial = "RED-40021-996-5930"
+
+/obj/item/cargo/efolder/folder/crypt_red/dud3
+	efolder_folder_id = "RED-87782-817-7737"
+	item_serial = "RED-87782-817-7737"
+
+/obj/item/cargo/efolder/folder/crypt_blue
+	efolder_folder_id = "BLUE-93565-912-6463"
+	item_serial = "BLUE-93565-912-6463"
+
+/obj/item/cargo/efolder/folder/crypt_blue/dud1
+	efolder_folder_id = "BLUE-52832-205-5793"
+	item_serial = "BLUE-52832-205-5793"
+
+/obj/item/cargo/efolder/folder/crypt_blue/dud2
+	efolder_folder_id = "BLUE-47182-462-7659"
+	item_serial = "BLUE-47182-462-7659"
+
+/obj/item/cargo/efolder/folder/crypt_blue/dud3
+	efolder_folder_id = "BLUE-52946-431-2133"
+	item_serial = "BLUE-52946-431-2133"
+
+/obj/item/cargo/efolder/folder/crypt_yellow
+	efolder_folder_id = "YELLOW-57665-681-6944"
+	item_serial = "YELLOW-57665-681-6944"
+
+/obj/item/cargo/efolder/folder/crypt_yellow/dud1
+	efolder_folder_id = "YELLOW-64950-297-7701"
+	item_serial = "YELLOW-64950-297-7701"
+
+/obj/item/cargo/efolder/folder/crypt_yellow/dud2
+	efolder_folder_id = "YELLOW-07588-555-3624"
+	item_serial = "YELLOW-07588-555-3624"
+
+/obj/item/cargo/efolder/folder/crypt_yellow/dud3
+	efolder_folder_id = "YELLOW-50624-118-7015"
+	item_serial = "YELLOW-50624-118-7015"
+
+/obj/item/cargo/efolder/pid/crypt_red
+	efolder_pid_id = "RED-33895-027-8032"
+	item_serial = "RED-33895-027-8032"
+
+/obj/item/cargo/efolder/pid/crypt_red/dud1
+	efolder_pid_id = "RED-06776-352-9198"
+	item_serial = "RED-06776-352-9198"
+
+/obj/item/cargo/efolder/pid/crypt_red/dud2
+	efolder_pid_id = "RED-36966-605-2640"
+	item_serial = "RED-36966-605-2640"
+
+/obj/item/cargo/efolder/pid/crypt_red/dud3
+	efolder_pid_id = "RED-41259-438-1307"
+	item_serial = "RED-41259-438-1307"
+
+/obj/item/cargo/efolder/pid/crypt_blue
+	efolder_pid_id = "BLUE-93565-912-6463"
+	item_serial = "BLUE-93565-912-6463"
+
+/obj/item/cargo/efolder/pid/crypt_blue/dud1
+	efolder_pid_id = "BLUE-37039-981-4799"
+	item_serial = "BLUE-37039-981-4799"
+
+/obj/item/cargo/efolder/pid/crypt_blue/dud2
+	efolder_pid_id = "BLUE-55009-377-3142"
+	item_serial = "BLUE-55009-377-3142"
+
+/obj/item/cargo/efolder/pid/crypt_blue/dud3
+	efolder_pid_id = "BLUE-43554-376-3474"
+	item_serial = "BLUE-43554-376-3474"
+
+/obj/item/cargo/efolder/pid/crypt_yellow
+	efolder_pid_id = "YELLOW-57665-681-6944"
+	item_serial = "YELLOW-57665-681-6944"
+
+/obj/item/cargo/efolder/pid/crypt_yellow/dud1
+	efolder_pid_id = "YELLOW-05432-534-6124"
+	item_serial = "YELLOW-05432-534-6124"
+
+/obj/item/cargo/efolder/pid/crypt_yellow/dud2
+	efolder_pid_id = "YELLOW-93984-326-3411"
+	item_serial = "YELLOW-93984-326-3411"
+
+/obj/item/cargo/efolder/pid/crypt_yellow/dud3
+	efolder_pid_id = "YELLOW-08858-834-6652"
+	item_serial = "YELLOW-08858-834-6652"
+
 //Log reader and logs
 
 /obj/structure/eventterminal/puzzle04/log_reader

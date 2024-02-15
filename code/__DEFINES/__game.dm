@@ -555,3 +555,9 @@ block( \
 #define PERF_TOGGLE_SHUTTLES (1<<3)
 /// Disables loading Techwebs and additional Z-Levels
 #define PERF_TOGGLE_TECHWEBS (1<<4)
+
+// Searchable items search times
+
+#define SEARCH_TIME_SHORT 50
+#define SEARCH_TIME_NORMAL 150
+#define SEARCH_TIME_LONG 250

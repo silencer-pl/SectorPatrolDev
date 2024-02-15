@@ -113,3 +113,18 @@
 			to_chat(user, narrate_body("The serial number is:"))
 			to_chat(user, narrate_serial_block(narrate_serial("[item_serial]")))
 
+/obj/item/cargo/book
+	name = "book"
+	desc = "Sheets of paper with text and images bound together with a soft cover material."
+	desc_lore = "The printed word industry was quite literally saved by the sudden explosion of intergalactic travel. For the longest time, the written word remained the most trusted way to transfer information, news, and entertainment among the colonies. The ascent of the Civ, Mil and Corp Nets following the Colony Wars meant that most colonists with a permanent home got all these directly from Earth via electronic devices. Physical books, however, are still collected, used, and cherished by Spacers, who often find themselves out of the range of Liquid Data uplinks and can't sync with any of the general networks. Most colonies maintain a small 'printing' facility for visiting spacers, often offering access to a shared galaxy spanning repository from which any book can be accessed and printed on-site for a fee. Most books found on spaceships are likely to have been created this way. Using the book while its in your active hand will let you scan it for information, if there is any to gain."
+	icon_state = "book"
+	flags_item = NOBLUDGEON
+	var/book_searched = 0
+
+/obj/item/cargo/book_handwritten
+	name = "bound notebook"
+	desc = "Handwritten notes printed on sheets of paper, bound together with a soft cover, much like a book."
+	desc_lore = "Notebook scanning is a relatively new service offered in the Neroid Sector for the past decade or so and pioneered by a small group of colonists calling themselves 'Bookworms'. The Bookworms formed a formal Corporation under the Corporate Standard and are the exclusive patent holders and distributors of scanner technology that seemingly seamlessly and without error scans even the most illegible of handwriting, parses and edits them into a standardized colony print format, uploads them to a shared, global, Liquid Data based repository and prints it out in the same way colony books are created, preserving the knowledge, musings, vulgar poetry and whatever else bored spacers write and doodle into their personal notebooks. Using the notebook while its in your active hand will let you scan it for information, if there is any to gain."
+	icon_state = "book_rough"
+	flags_item = NOBLUDGEON
+	var/book_searched = 0

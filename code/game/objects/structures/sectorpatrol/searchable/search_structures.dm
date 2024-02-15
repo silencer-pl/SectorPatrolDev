@@ -1,6 +1,3 @@
-#define SEARCH_TIME_SHORT 50
-#define SEARCH_TIME_NORMAL 150
-#define SEARCH_TIME_LONG 250
 /obj/structure/searchable
 	name = "Base item for searchable interactions."
 	desc = "Hello there! If you are in game then soemome f... Uh... You know."

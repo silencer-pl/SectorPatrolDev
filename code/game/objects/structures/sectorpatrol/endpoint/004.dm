@@ -416,7 +416,7 @@
 	desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. Loose books, debris and other items of notice litter the shelves."
 	desc_lore = "Due to the unreliability of most electronic based entertainment methods while mid-flight, most spacers sooner or later turn to the robust physical text aftermarket. It is mostly thanks to the proliferation of the spacer profession that printed books even remain a thing, as they are probably the mediums last loyal fanbase, but as things are, they likely aren't going anywhere... And neither are books."
 	icon_state = "bookcase"
-//Seeded: folder:ok,dud1,dud3 pid:ok,dud3,dud2
+
 /obj/structure/searchable/puzzle04/bookcase/full1
 
 /obj/structure/searchable/puzzle04/bookcase/full1/attack_hand(mob/user)
@@ -588,6 +588,64 @@
 				to_chat(user, narrate_body("You quickly page through the last few surviving books. Like the rest, they seem to have been printer technical manuals. Someone seems to have gone out of their way to collect even the tiniest of modifications to colony printer blueprint, programming, or electronics from the Neroid sector and secure or modify existing documentation to reflect those changes. This likely meant that someone personally visited each and single colony which likely took years. For a few seconds you really hope all this information was backed up somewhere electronically. You found all there is to find from this shelf."))
 				var/obj/item/cargo/efolder/folder/crypt_red/dud3/folder = new(get_turf(user))
 				user.put_in_active_hand(folder)
+				icon_state = "bookcase-5"
+				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
+				update_icon()
+				searchable_step += 1
+				return
+		if(5)
+			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+			return
+
+/obj/structure/searchable/puzzle04/bookcase/full4
+
+/obj/structure/searchable/puzzle04/bookcase/full4/attack_hand(mob/user)
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to look through your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Like the other bookshelf, this one was also ransacked - rather brutally at that - by someone already. After a closer inspection, you notice that unlike the other bookshelf, this one seemed to be used to store something other than printed materials. At first glance, you take note that most of the items here seem to have been taken, not destroyed on the spot. There is more to find here."))
+				icon_state = "bookcase-1"
+				update_icon()
+				searchable_step += 1
+				return
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to look through your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Debris and ashes from the neighboring bookcase litter the top shelf, but at first glance, not much else seems to be here. You make sure you didn't miss anything and it's a good thing you did, as you discover a plastic device at the back of the shelf, obscured by a ruined book. You pick it up. You are sure that there is more to find on this bookshelf."))
+				var/obj/item/cargo/efolder/pid/crypt_red/dud1/pid = new(get_turf(user))
+				user.put_in_active_hand(pid)
+				icon_state = "bookcase-2"
+				update_icon()
+				searchable_step += 1
+				return
+		if(2)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to look through your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Searching through the bottom shelf finally gives you a hint to what was stored here. You quickly discover two smashed PDAs of an unknown maker in the back and an electronic folder hidden right under them. Upon closer inspection, you notice that several components have been ripped out of both PDAs before they were dumped here. The folder seems to be undamaged, as if it was put here later than the other items. You take it with you. You should make sure you didn't miss anything; you feel like this shelf still has something to offer."))
+				var/obj/item/cargo/efolder/folder/crypt_red/dud2/folder = new(get_turf(user))
+				user.put_in_active_hand(folder)
+				icon_state = "bookcase-3"
+				update_icon()
+				searchable_step += 1
+				return
+		if(3)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to look through your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("After carefully examining the shelves again, you look at the back of the bookshelf and discover that this shelves' back board is loose, creating a gap. After a bit of stretching, you reach behind the bookshelf and feel around in the space between it and the wall. Among the dust and debris, you find what seems to be at least one deck of cards and one deck of tarot cards spread back there, likely fallen off the shelf and through the gap. While recovering them would likely take a lot of time, you at least seem to have found something that gives you an idea what was on this shelf. It still does not explain why the items here were spared their fate. You should take one final look to make sure you didn't miss anything."))
+				icon_state = "bookcase-4"
+				update_icon()
+				searchable_step += 1
+				return
+		if(4)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to look through your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("You check the bookshelf for anything that previous searches may have missed just to be sure. While you do not find anything new on the shelves themselves, you notice that the right side of the bookshelf has a small heart carved into it with 'A + C' etched inside.  There does not seem to be anything else to discover on this bookshelf."))
 				icon_state = "bookcase-5"
 				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
 				update_icon()

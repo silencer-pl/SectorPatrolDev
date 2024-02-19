@@ -694,7 +694,94 @@
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
 				to_chat(user, narrate_body("After carefully examining the shelves again, you look at the back of the bookshelf and discover that this shelves' back board is loose, creating a gap. After a bit of stretching, you reach behind the bookshelf and feel around in the space between it and the wall. Among the dust and debris, you find what seems to be at least one deck of cards and one deck of tarot cards spread back there, likely fallen off the shelf and through the gap. While recovering them would likely take a lot of time, you at least seem to have found something that gives you an idea what was on this shelf. It still does not explain why the items here were spared their fate. You should take one final look to make sure you didn't miss anything."))
+				desc = "Three drawers mounted in a frame that can be slid in and out. Looks like its seen better days. Does not appear to contain anything of note."
 				icon_state = "cabinetdrawer-3"
+				update_icon()
+				searchable_step += 1
+				return
+		if(3)
+			to_chat(user, narrate_body("All the drawers have been searched. There is nothing else to find here."))
+			return
+
+/obj/structure/searchable/puzzle04/drawers_misc/full2
+
+/obj/structure/searchable/puzzle04/drawers_misc/full2/attack_hand(mob/user)
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Someone has clearly searched these drawers before, but they didn't seem to spend much time looking through these. The bottom drawer is full of personal knicks knacks like sets of colored hairpins, assorted pens, and several sets of stickers. These seem to be mostly intact but there does not seem to be anything that could help right now. Two more drawers remain."))
+				icon_state = "cabinetdrawer-1"
+				update_icon()
+				searchable_step += 1
+				return
+	switch(searchable_step)
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The middle drawer seems to contain assorted personal items like lipstick, two hairbrushes, deodorant, and hand moisturizer. As evidenced by the dried-out globs of some of the substances in tubes, someone seems to have tested what was inside every one of them before moving on. There does not seem to be anything else of note here. You can still search one more drawer."))
+				icon_state = "cabinetdrawer-2"
+				update_icon()
+				searchable_step += 1
+				return
+	switch(searchable_step)
+		if(2)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The top drawer contains several clipboards that seem to have anything that was attached to them taken. Several of the clipboards have pens of various makes and colors attached to them. Someone seems to have gone to some effort to pick these when you think about it. You notice that one of the clipboards has a plastic electronic device attached to it, which obviously stands out. You detach the device and take it with you. "))
+				var/obj/item/cargo/efolder/folder/crypt_blue/pid = new(get_turf(user))
+				user.put_in_active_hand(pid)
+				icon_state = "cabinetdrawer-3"
+				desc = "Three drawers mounted in a frame that can be slid in and out. Looks like its seen better days. Does not appear to contain anything of note."
+				update_icon()
+				searchable_step += 1
+				return
+		if(3)
+			to_chat(user, narrate_body("All the drawers have been searched. There is nothing else to find here."))
+			return
+
+/obj/structure/searchable/puzzle04/drawers_files
+	name = "document storage drawers"
+	desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
+	desc_lore = "Personal storage lockers come in all shapes and sizes, but open drawers such as this one are some of the most common. From clothes to personal effects, the availability and versatility of drawers like these means they are very widely used."
+	icon_state = "filingcabinet"
+
+/obj/structure/searchable/puzzle04/drawers_files/full2
+
+/obj/structure/searchable/puzzle04/drawers_files/full2/attack_hand(mob/user)
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Looks like someone picked these drawers clean and was not gentle about it. It's clear that you are not the first person looking through these. There is very little left in the bottom drawer, but you find a few loose pieces of paper that seem to be parts of engineering reports about various parts of the station. There does not seem to be anything significant here, however. There are still two drawers to search."))
+				icon_state = "filingcabinet-1"
+				update_icon()
+				searchable_step += 1
+				return
+	switch(searchable_step)
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The middle drawer is empty, but while searching through the slots of the drawer, you find a small plastic device that clearly does not belong. It occurs to you that someone searching through these drawers would be very unlikely to miss this. You take the device with you. There is one more drawer to search."))
+				var/obj/item/cargo/efolder/pid/crypt_blue/dud2/pid = new(get_turf(user))
+				user.put_in_active_hand(pid)
+				icon_state = "filingcabinet-2"
+				update_icon()
+				searchable_step += 1
+				return
+	switch(searchable_step)
+		if(2)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The top drawer seems to be mostly full of records of poker games between codenames, presumably Task Force 14 members, that stopped at the PST while the USCMC was still active. While there isn't anything that is helpful right now, you note that just by the variety of the various codenames, the station saw a lot TF14 members come and go. There does not seem to be anything else to find here."))
+				icon_state = "filingcabinet-3"
+				desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
 				update_icon()
 				searchable_step += 1
 				return

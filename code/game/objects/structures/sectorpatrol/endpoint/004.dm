@@ -420,6 +420,10 @@
 /obj/structure/searchable/puzzle04/bookcase/full1
 
 /obj/structure/searchable/puzzle04/bookcase/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -429,6 +433,7 @@
 				icon_state = "bookcase-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -440,6 +445,7 @@
 				icon_state = "bookcase-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -451,6 +457,7 @@
 				icon_state = "bookcase-3"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -460,6 +467,7 @@
 				icon_state = "bookcase-4"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(4)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -470,14 +478,20 @@
 				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(5)
 			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+			searchable_used = FALSE
 			return
 
 /obj/structure/searchable/puzzle04/bookcase/full2
 
 /obj/structure/searchable/puzzle04/bookcase/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -489,6 +503,7 @@
 				icon_state = "bookcase-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -498,6 +513,7 @@
 				icon_state = "bookcase-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -507,6 +523,7 @@
 				icon_state = "bookcase-3"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -516,6 +533,7 @@
 				icon_state = "bookcase-4"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(4)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -528,14 +546,20 @@
 				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(5)
 			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+			searchable_used = FALSE
 			return
 
 /obj/structure/searchable/puzzle04/bookcase/full3
 
 /obj/structure/searchable/puzzle04/bookcase/full3/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -545,6 +569,7 @@
 				icon_state = "bookcase-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -556,6 +581,7 @@
 				icon_state = "bookcase-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -569,6 +595,7 @@
 				icon_state = "bookcase-3"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -580,6 +607,7 @@
 				icon_state = "bookcase-4"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(4)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -592,14 +620,20 @@
 				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(5)
 			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+			searchable_used = FALSE
 			return
 
 /obj/structure/searchable/puzzle04/bookcase/full4
 
 /obj/structure/searchable/puzzle04/bookcase/full4/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -609,6 +643,7 @@
 				icon_state = "bookcase-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -620,6 +655,7 @@
 				icon_state = "bookcase-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -631,6 +667,7 @@
 				icon_state = "bookcase-3"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -640,6 +677,7 @@
 				icon_state = "bookcase-4"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(4)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
@@ -650,9 +688,11 @@
 				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(5)
 			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+			searchable_used = FALSE
 			return
 
 //Office
@@ -666,6 +706,10 @@
 /obj/structure/searchable/puzzle04/drawers_misc/full1
 
 /obj/structure/searchable/puzzle04/drawers_misc/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
@@ -675,8 +719,8 @@
 				icon_state = "cabinetdrawer-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -687,8 +731,8 @@
 				icon_state = "cabinetdrawer-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -698,14 +742,20 @@
 				icon_state = "cabinetdrawer-3"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
-			to_chat(user, narrate_body("All the drawers have been searched. There is nothing else to find here."))
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
 			return
 
 /obj/structure/searchable/puzzle04/drawers_misc/full2
 
 /obj/structure/searchable/puzzle04/drawers_misc/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
@@ -715,8 +765,8 @@
 				icon_state = "cabinetdrawer-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -725,8 +775,8 @@
 				icon_state = "cabinetdrawer-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -738,9 +788,11 @@
 				desc = "Three drawers mounted in a frame that can be slid in and out. Looks like its seen better days. Does not appear to contain anything of note."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
-			to_chat(user, narrate_body("All the drawers have been searched. There is nothing else to find here."))
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
 			return
 
 /obj/structure/searchable/puzzle04/drawers_files
@@ -749,9 +801,59 @@
 	desc_lore = "Personal storage lockers come in all shapes and sizes, but open drawers such as this one are some of the most common. From clothes to personal effects, the availability and versatility of drawers like these means they are very widely used."
 	icon_state = "filingcabinet"
 
+/obj/structure/searchable/puzzle04/drawers_files/full1
+
+/obj/structure/searchable/puzzle04/drawers_files/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("Someone had already looked through these drawers and they were not gentle about it. The bottom drawer seems to be almost completely empty; a few clipboards and folders seem to indicate that whatever was inside was taken by whoever searched the drawers first. You spot a small plastic device in one of the slots that seems out of place, and you pick it up. It seems odd that whoever took everything else from this locker didn't take this device, perhaps it was placed here later. There is still more to search through in these drawers."))
+				icon_state = "filingcabinet-1"
+				var/obj/item/cargo/efolder/pid/crypt_blue/dud3/pid = new(get_turf(user))
+				user.put_in_active_hand(pid)
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The slots in the middle drawer seem to have been completely cleaned out. The tears on some of them seem to indicate that something was here and was rather violently removed, but you can only guess what the contents were. There is one more drawer left to search. "))
+				icon_state = "filingcabinet-2"
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(2)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The top drawer is labeled as 'Empties' and some of the slots contain empty folders and their plastic PID keys. The empty folders are of no use to you, but a quick count seems to indicate that twelve folder and PID key pairs were removed from here. You are done searching through these drawers, there is nothing more to find here."))
+				icon_state = "filingcabinet-3"
+				desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(3)
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
+			return
+
 /obj/structure/searchable/puzzle04/drawers_files/full2
 
 /obj/structure/searchable/puzzle04/drawers_files/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
 	switch(searchable_step)
 		if(0)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
@@ -761,8 +863,8 @@
 				icon_state = "filingcabinet-1"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(1)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -773,8 +875,8 @@
 				icon_state = "filingcabinet-2"
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
-	switch(searchable_step)
 		if(2)
 			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -784,11 +886,92 @@
 				desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
 				update_icon()
 				searchable_step += 1
+				searchable_used = FALSE
 				return
 		if(3)
-			to_chat(user, narrate_body("All the drawers have been searched. There is nothing else to find here."))
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
 			return
 
+/obj/structure/searchable/puzzle04/drawers_smol
+	name = "storage drawers"
+	desc = "Two drawers mounted in a frame that can be slid in and out. Looks like its seen better days."
+	desc_lore = "Personal storage lockers come in all shapes and sizes, but open drawers such as this one are some of the most common. From clothes to personal effects, the availability and versatility of drawers like these means they are very widely used."
+	icon_state = "chestdrawer"
+
+/obj/structure/searchable/puzzle04/drawers_smol/full1
+
+/obj/structure/searchable/puzzle04/drawers_smol/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("These drawers seem to have not been touched for quite a while and are a little hard to open at first. The bottom drawer is filled with what looks like Russian paperback novels all of which seem to feature the same character. You don't really have the time to take a closer look now, but you quickly spot an electronic folder among the books which clearly does not belong. You pick it up. There is one more drawer to search."))
+				icon_state = "chestdrawer-1"
+				var/obj/item/cargo/efolder/folder/crypt_blue/dud1/folder = new(get_turf(user))
+				user.put_in_active_hand(folder)
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The top drawer creaks open with some resistance and is filled with multiple books written in what looks like Chinese at first glance. Looks like someone was working on translating these into English and it seems to have been a series of pulp novels about spacers. There will be time to take a closer look at these later, for now you grab the electronic folder that is left on top of one of the stacks and clearly does not belong among the books and their rough translations."))
+				icon_state = "chestdrawer-2"
+				var/obj/item/cargo/efolder/folder/crypt_blue/folder = new(get_turf(user))
+				user.put_in_active_hand(folder)
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(2)
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
+			return
+
+/obj/structure/searchable/puzzle04/drawers_smol/full2
+
+/obj/structure/searchable/puzzle04/drawers_smol/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	switch(searchable_step)
+		if(0)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("These drawers were clearly not commonly used and were not disturbed for quite a while. The bottom drawer resists for a few seconds, but when you open it, you find that it is full of carefully arranged and stored genuine manga tomes. You aren't sure, but it looks like they may also be genuine Earth prints, which are not easy to get. Someone took great care in storing them as well. You find an electronic folder put on top of a few thicker tomes and pick it up. You can go back to looking through this collection later."))
+				icon_state = "chestdrawer-1"
+				var/obj/item/cargo/efolder/folder/crypt_blue/dud3/folder = new(get_turf(user))
+				user.put_in_active_hand(folder)
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(1)
+			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+				to_chat(user, narrate_body("The top drawer opens with ease, though it does not seem to have been used for a while. The drawer is full of UA pulp fiction novels, mostly centering on Spacers. A quick glance at the back covers reveals that these books are not colonial reprints from Liquid Data repositories, but rather books manufactured back on Earth. While individual tomes are likely not worth much, the whole collection likely took some time to assemble. You spot an electronic folder that clearly is not part of the collection and pick it up. You can explore these books in detail later."))
+				icon_state = "chestdrawer-2"
+				var/obj/item/cargo/efolder/folder/crypt_blue/dud2/folder = new(get_turf(user))
+				user.put_in_active_hand(folder)
+				update_icon()
+				searchable_step += 1
+				searchable_used = FALSE
+				return
+		if(2)
+			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+			searchable_used = FALSE
+			return
 //Lockers
 
 

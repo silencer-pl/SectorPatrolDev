@@ -311,6 +311,35 @@
 				book_searched += 1
 				return
 
+/obj/item/cargo/book_handwritten/twejournal
+	name = "journal"
+
+/obj/item/cargo/book_handwritten/twejournal/attack_self(mob/user)
+	..()
+	if(usr.a_intent != INTENT_GRAB)
+		to_chat(usr, SPAN_WARNING("You have no idea how to do that. If you want to read the book, use HELP intent."))
+		return
+	if(usr.a_intent == INTENT_GRAB)
+		if(book_searched == 1)
+			to_chat(usr, narrate_body("The journal appears to be written in Japanese, but someone seems to have already gone through it and scrambled it pages. There is no time at present to restore it, but it will be available for further examination later."))
+			return
+		if(book_searched == 0)
+			user.visible_message(SPAN_NOTICE("[user] pages through a journal."), SPAN_INFO("You start to loook through the journal..."), SPAN_DANGER("Someone is flipping paper pages."))
+			if(LANGUAGE_JAPANESE in usr.languages)
+				if(do_after(user, SEARCH_TIME_LONG, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes looking at the journal."), SPAN_INFO("You finish paging through the journal and take a moment to consider what you found..."), SPAN_DANGER("The paper page flipping noise stops."))
+					to_chat(usr, narrate_body("Your knowledge of Japanese comes in handy as you page through what turns out to be a journal of a Japanese born TWE navy office who has rather colorful things to say about their superiors. You do not have the time to examine this in full right now, but at a glance it seems like this officer was somehow involved with Task Force 14, which may explain the presence of this journal on the PST. You should keep this journal to fully examine it later."))
+					to_chat(usr, narrate_body("Multiple pages of the book have come loose during your investigation. This can likely be addressed if you have a free hour or two, but for now looking into this journal will have to wait."))
+					to_chat(usr, SPAN_WARNING("You may have time to fully analyze this journal later, during an Open Sector Patrol round. Your possession and studying of the journal has been logged and is considered IC. In future rounds, you will be able to find it in your dorm."))
+					log_game("[user] has studied the Crypt TWE journal.")
+					message_admins("[user] has studied the Crypt TWE journal. This should be noted as a Merit.")
+					book_searched += 1
+					return
+			else
+				if(do_after(user, SEARCH_TIME_SHORT, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					to_chat(usr, narrate_body("The journal appears to be written in Japanese. You can't make heads and tails off it. Someone else may be able to look into this though."))
+					return
+
 //Folders and PIDs
 
 /obj/item/cargo/efolder/folder/crypt_red
@@ -1187,10 +1216,459 @@
 	desc_lore = "Shorter chests like these are commonly used by crews of ships for bunk storage, hence their colloquial name since they are easy to stack and slide under one's bed. They are notoriously unsecure and no one typically stores anything they can't lose in those, usually opting to safeguard important items in the typically much more secure crew lockers."
 	icon_state = "chest"
 
+/obj/structure/searchable/puzzle04/bunk_chest/full1
+
+/obj/structure/searchable/puzzle04/bunk_chest/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("This chest seems to have not been used for quite a while and after opening it, it's easy to see why. The chest seems to have been cleaned almost completely out a while ago and there does not seem to be any trace left of what was stored here. It seems like there is nothing to find here, but you get the feeling that there is more to this chest than meets the eye."))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("While the chest itself is empty, you notice a few scratch marks on the floor panel below it as if it was moved. You move the chest and find a hidden compartment under the tile but are immediately disappointed when it too turns out to be empty. There is nothing else to find here."))
+					icon_state = "chest-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("As you move the chest back, you notice that there is a plastic PID key behind it. While it's unlikely it came from the chest, it seems out of place here. You pick it up."))
+						var/obj/item/cargo/efolder/pid/crypt_yellow/dud1/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
+/obj/structure/searchable/puzzle04/bunk_chest/full2
+
+/obj/structure/searchable/puzzle04/bunk_chest/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("This chest seems to not have been used very frequently and not for a while, but a few personal items inside seem to be neatly arranged and taken care of. The chest contains a collection of colored scrunchies, multiple shades of various brands of lipstick and a small collection of perfumes. You can take a closer look to see if you spot anything else."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You spot a plastic PID key standing next to some of the lipstick. You pick it up as it clearly does not belong here."))
+						var/obj/item/cargo/efolder/pid/crypt_yellow/dud2/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The chest was searched already, but a small collection of perfumes stands out. You note that not only are they hand mixed, but they also seem to come from artisanal shops back on Earth, which would make them exceptionally hard to get out in the Outer Veil. This says more about the owners' connections than wealth, as items like this are often more a matter of personal favors. There does not seem to be anything else to find here."))
+					icon_state = "chest-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+
+	return
+
+/obj/structure/searchable/puzzle04/bunk_chest/full3
+	var/searchable_bonus = TRUE
+
+/obj/structure/searchable/puzzle04/bunk_chest/full3/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("This chest does not seem to have been used for a while and clearly was someone's personal bunk. You find several pairs of what used to be fresh socks, two bottles of genuine Japanese sake, a small bottle of pills and a black folder. The pills and the folder seem to warrant further investigation."))
+					if (searchable_bonus == TRUE)
+						to_chat(user, narrate_body("You also spot what seems to be a bound notebook. Few people go through the trouble of having those scanned and bound unless they contain something of note, so you decide to take it with you."))
+						log_game("[key_name(usr)] found the TWE journal")
+						message_admins("[key_name(usr)] found the TWE journal")
+						var/obj/item/cargo/book_handwritten/twejournal/book = new(get_turf(user))
+						user.put_in_active_hand(book)
+						searchable_bonus = FALSE
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Most of this chest was already searched, but a bottle of pills catches your eye. The bottle is clearly one used for prescribed medicine, but no tag seems to be present, nor are the pills stamped in any way. The pills seem very brittle, they are likely way past their expiration date. It occurs to you that with the security protocols of the PST, getting unlicensed medicine would be extremely hard, just as keeping both it and its presence in one's bloodstream while on station. You can likely consult on these pills later, but its best to leave them here. There seems to be more to find from this chest."))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("A black folder remains undisturbed and the last thing to take a closer look at. The folder appears to be a mixture of scanner reports from across the system and handwritten calculations. At a glance it looks like someone was trying to calculate the path of something going through the sector. They do not seem to be immediately important. There does not seem to be anything else of note in this chest."))
+					icon_state = "chest-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("A plastic PID key falls out of the folder when you first open it. You take it with you."))
+						var/obj/item/cargo/efolder/pid/crypt_yellow/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
+/obj/structure/searchable/puzzle04/bunk_chest/full4
+
+/obj/structure/searchable/puzzle04/bunk_chest/full4/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Bunk chest narration"))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Bunk chest narration"))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("Found pid"))
+						var/obj/item/cargo/efolder/pid/crypt_yellow/dud3/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Bunk chest narration"))
+					icon_state = "chest-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
 /obj/structure/searchable/puzzle04/bunk_locker
 	name = "locker"
 	desc = "A personal locker without any visible locking mechanism. Looks like it has not been used for a while."
 	desc_lore = "Personal locks with no electronic lock are typically simple storage options like closets but adapted to limited space on board ships and stations. Sometimes, some spacers use traditional locks to secure those, but most do not go out of their way to secure these, nor do they store anything that they cannot afford to lose."
+
+/obj/structure/searchable/puzzle04/bunk_locker/full1
+
+/obj/structure/searchable/puzzle04/bunk_locker/full1/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("Found folder"))
+						var/obj/item/cargo/efolder/folder/crypt_yellow/dud1/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					icon_state = "locker-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
+/obj/structure/searchable/puzzle04/bunk_locker/full2
+
+/obj/structure/searchable/puzzle04/bunk_locker/full2/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					icon_state = "locker-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("Found folder"))
+						var/obj/item/cargo/efolder/folder/crypt_yellow/dud2/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
+/obj/structure/searchable/puzzle04/bunk_locker/full3
+
+/obj/structure/searchable/puzzle04/bunk_locker/full3/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					icon_state = "locker-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("Found folder"))
+						var/obj/item/cargo/efolder/folder/crypt_yellow/dud3/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
+
+/obj/structure/searchable/puzzle04/bunk_locker/full4
+
+/obj/structure/searchable/puzzle04/bunk_locker/full4/attack_hand(mob/user)
+	if(searchable_used == TRUE)
+		to_chat(usr, narrate_body("Someone is already searching this."))
+		return
+	searchable_used = TRUE
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place in the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
+			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
+				update_icon()
+				searchable_used = FALSE
+				return
+		else
+			searchable_used = FALSE
+			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("Found folder"))
+						var/obj/item/cargo/efolder/folder/crypt_yellow/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("locker narration"))
+					icon_state = "locker-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 //Log reader and logs
 /obj/structure/eventterminal/puzzle04/log_reader

@@ -418,282 +418,374 @@
 	icon_state = "bookcase"
 
 /obj/structure/searchable/puzzle04/bookcase/full1
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/bookcase/full1/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("At a glance, it's clear that this bookcase has already been searched by someone and it was not gentle. Most of the books seem to have been torn or set ablaze, the latter being an extremely hostile action considering the consequences a fire can have on closed air systems like space stations or starships. It looks like several books haven't been touched, so there is still more to find here."))
-				icon_state = "bookcase-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("One of the books that was left behind unscathed turns out to be a plastic electronic folder. You pick it up and take it with you. There are still several other things to think about here."))
-				var/obj/item/cargo/efolder/folder/crypt_red/dud1/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				icon_state = "bookcase-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You find a small pile of crumpled up and discarded burnt books. Twenty-First Century Science Fiction by the looks of it, what would certainly be considered a classic today. Among the ashes, a small plastic device stands out enough that you take it with you. There still seems to be more to find here."))
-				var/obj/item/cargo/efolder/pid/crypt_red/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "bookcase-3"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Several binders of what seem to be drafts for technical manuals are strewn around the bookcase. Curiously enough, it appears that these were not burnt, but rather just taken. What's left isn't enough to give any idea what these manuals were meant for, but they seem to be related to highly specialized systems software. You are almost done searching this bookcase."))
-				icon_state = "bookcase-4"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(4)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("There are some more burnt books and ashes on this bookcase, but nothing else of any significance. You are confident that fiction was stored here, which likely meant personal collections of whoever lived here, but not much else comes to mind. There does not appear to be anything else of notice on the bookshelf, the search is done."))
-				icon_state = "bookcase-5"
-				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(5)
-			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("At a glance, it's clear that this bookcase has already been searched by someone and it was not gentle. Most of the books seem to have been torn or set ablaze, the latter being an extremely hostile action considering the consequences a fire can have on closed air systems like space stations or starships. It looks like several books haven't been touched, so there is still more to find here."))
+					icon_state = "bookcase-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Some of the left-over books are carefully collected lists of items available for printing and purchase on various colonies across the Neroid sector. The lists are detailed, and certain items are underlined, but there isn't any time to properly analyze them at the moment. There are more books to look through."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("One of the books that was left behind unscathed turns out to be a plastic electronic folder. You pick it up and take it with you. There are still several other things to think about here."))
+						var/obj/item/cargo/efolder/folder/crypt_red/dud1/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					icon_state = "bookcase-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You find a small pile of crumpled up and discarded burnt books. Twenty-First Century Science Fiction by the looks of it, what would certainly be considered a classic today.  There still seems to be more to find here."))
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("Among the ashes, a small plastic device stands out enough that you take it with you."))
+						var/obj/item/cargo/efolder/pid/crypt_red/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item2 = FALSE
+					icon_state = "bookcase-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Several binders of what seem to be drafts for technical manuals are strewn around the bookcase. Curiously enough, it appears that these were not burnt, but rather just taken. What's left isn't enough to give any idea what these manuals were meant for, but they seem to be related to highly specialized systems software. You are almost done searching this bookcase."))
+					icon_state = "bookcase-4"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(4)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("There are some more burnt books and ashes on this bookcase, but nothing else of any significance. You are confident that fiction was stored here, which likely meant personal collections of whoever lived here, but not much else comes to mind. There does not appear to be anything else of notice on the bookshelf, the search is done."))
+					icon_state = "bookcase-5"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(5)
+				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/bookcase/full2
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/bookcase/full2/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Like the other bookshelves, someone has already searched through this one and they were not gentle. A small plastic device immediately stands out, discarded on the edge of the bottom shelf. You pick it up. Several books and other items seem to have survived the 'search' and you can examine each of them by searching the bookcase again."))
-				var/obj/item/cargo/efolder/pid/crypt_red/dud3/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "bookcase-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You find the remains of multiple print editions of local Neroid Sector colony publications. Most colonies maintain small inventories of printed materials with updates from their own corner of the galaxy because these tend to be very popular with spacers. These are all from early last year and for some reason were very clearly spared the fate of the other materials on this bookcase. That or they were brought in after the fact. You don’t have the time to think about them in detail for now. There is still more to discover on this bookshelf. "))
-				icon_state = "bookcase-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Looks like most of the books from this bookshelf were gathered in the center of the shelf and then rapidly set on fire with something. Considering how through of a job it seems to have been, it does not seem like the perpetrators left much to chance. This means that it's almost certain that they looked at anything that survived the inferno and decided it was not worth another fire. You searched the ashes thoroughly, but nothing seems to have survived to even hint what was burnt here. There are still a few items remaining to search for here."))
-				icon_state = "bookcase-3"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You discover that multiple books survived in the depths of the bottom shelf, all of them trashy paperback pulp novels at least a decade old. These all seem to have been part of some popular series, but several installments are missing. They don't seem to have been burned, it almost seems like someone picked through those. Considering the ashes on the top shelf, it seems likely that these were searched after the fire. The top shelf seems to be loose and can be searched further still. "))
-				icon_state = "bookcase-4"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(4)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You notice that the top shelf seems loose and can move it a bit. You hear something slide to the bottom shelf and discover that an electronic folder must have been struck between the two levels. You take the folder. There does not seem to be anything else left to search here."))
-				var/obj/item/cargo/efolder/folder/crypt_red/dud3/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				icon_state = "bookcase-5"
-				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(5)
-			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Like the other bookshelves, someone has already searched through this one and they were not gentle. Several books and other items seem to have survived the 'search' and you can examine each of them by searching the bookcase again."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("A small plastic device immediately stands out, discarded on the edge of the bottom shelf. You pick it up."))
+						var/obj/item/cargo/efolder/pid/crypt_red/dud3/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					icon_state = "bookcase-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You find the remains of multiple print editions of local Neroid Sector colony publications. Most colonies maintain small inventories of printed materials with updates from their own corner of the galaxy because these tend to be very popular with spacers. These are all from early last year and for some reason were very clearly spared the fate of the other materials on this bookcase. That or they were brought in after the fact. You don’t have the time to think about them in detail for now. There is still more to discover on this bookshelf. "))
+					icon_state = "bookcase-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Looks like most of the books from this bookshelf were gathered in the center of the shelf and then rapidly set on fire with something. Considering how through of a job it seems to have been, it does not seem like the perpetrators left much to chance. This means that it's almost certain that they looked at anything that survived the inferno and decided it was not worth another fire. You searched the ashes thoroughly, but nothing seems to have survived to even hint what was burnt here. There are still a few items remaining to search for here."))
+					icon_state = "bookcase-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You discover that multiple books survived in the depths of the bottom shelf, all of them trashy paperback pulp novels at least a decade old. These all seem to have been part of some popular series, but several installments are missing. They don't seem to have been burned, it almost seems like someone picked through those. Considering the ashes on the top shelf, it seems likely that these were searched after the fire. The top shelf seems to be loose and can be searched further still. "))
+					icon_state = "bookcase-4"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(4)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("You notice that the top shelf seems loose and can move it a bit. You hear something slide to the bottom shelf and discover that an electronic folder must have been struck between the two levels. You take the folder. There does not seem to be anything else left to search here."))
+						var/obj/item/cargo/efolder/folder/crypt_red/dud3/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item2 = FALSE
+						icon_state = "bookcase-5"
+						update_icon()
+						searchable_step += 1
+						searchable_used = FALSE
+						return
+					if(searchable_item2 == FALSE)
+						to_chat(user, narrate_body("You notice that the top shelf is loose and can move a bit, but upon further inspection this just seems to be a result of wear and there does not seem to be anything else to look for here."))
+						icon_state = "bookcase-5"
+						update_icon()
+						searchable_step += 1
+						searchable_used = FALSE
+						return
+			if(5)
+				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/bookcase/full3
+	var/searchable_bonus = TRUE
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/bookcase/full3/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("This bookshelf was already searched and looks like most of its contents were taken or burnt, just like the other bookshelves. It seems like this entire shelf was on fire like its neighboring one, but someone tried to put the fire out and save the books. A thorough search should help determine if they managed to save anything."))
-				icon_state = "bookcase-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Both the bottom and top shelf have multiple books that were clearly drenched with water, which has thoroughly ruined them. Most paper books in modern circulation are not built to last on a good day, let alone after both lit on fire and soaked with water. You spot an electronic folder that seems to be clear of damage along the remains and pick it up. There still seem to be a few intact books on both shelves and searching them is likely to yield more results. "))
-				var/obj/item/cargo/efolder/folder/crypt_red/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				icon_state = "bookcase-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You find a few books that survived, at least partially, both the fire and the drenching and are able to conclude that this shelf seems to have stored manufacturing manuals for manufacturing printers from various corners of the UA and the World. Some of them seem to be straight from the TWE. One catches your eye as it seems to be from the UPP and written in Russian and seems to be untouched by the fire to boot. It stands out enough that you pick it up. The bottom shelf still holds items of note."))
-				log_game("[key_name(usr)] found the UPP manual")
-				message_admins("[key_name(usr)] found the UPP manual")
-				var/obj/item/cargo/book/uppmanual/book = new(get_turf(user))
-				user.put_in_active_hand(book)
-				icon_state = "bookcase-3"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The bottom shelf also seems to have been printing manuals, a lot of them seem to have handwritten annotations and code noted down with various colored markers on its pages. Water damage prevents you from making out who and why made those notes, only that they are very prominent along multiple tomes that were eligible enough to make out anything. You find a small device among the manuals that seems to have been undamaged and pick it up. There still seems to be more you can find here."))
-				var/obj/item/cargo/efolder/pid/crypt_red/dud2/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "bookcase-4"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(4)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You quickly page through the last few surviving books. Like the rest, they seem to have been printer technical manuals. Someone seems to have gone out of their way to collect even the tiniest of modifications to colony printer blueprint, programming, or electronics from the Neroid sector and secure or modify existing documentation to reflect those changes. This likely meant that someone personally visited each and single colony which likely took years. For a few seconds you really hope all this information was backed up somewhere electronically. You found all there is to find from this shelf."))
-				var/obj/item/cargo/efolder/folder/crypt_red/dud3/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				icon_state = "bookcase-5"
-				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(5)
-			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("This bookshelf was already searched and looks like most of its contents were taken or burnt, just like the other bookshelves. It seems like this entire shelf was on fire like its neighboring one, but someone tried to put the fire out and save the books. A thorough search should help determine if they managed to save anything."))
+					icon_state = "bookcase-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Both the bottom and top shelf have multiple books that were clearly drenched with water, which has thoroughly ruined them. Most paper books in modern circulation are not built to last on a good day, let alone after both lit on fire and soaked with water. There still seem to be a few intact books on both shelves and searching them is likely to yield more results. "))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You spot an electronic folder that seems to be clear of damage along the remains and pick it up."))
+						var/obj/item/cargo/efolder/folder/crypt_red/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					icon_state = "bookcase-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You find a few books that survived, at least partially, both the fire and the drenching and are able to conclude that this shelf seems to have stored manufacturing manuals for manufacturing printers from various corners of the UA and the World. Some of them seem to be straight from the TWE. The bottom shelf still holds items of note."))
+					if (searchable_bonus == TRUE)
+						to_chat(user, narrate_body("One catches your eye as it seems to be from the UPP and written in Russian and seems to be untouched by the fire to boot. It stands out enough that you pick it up."))
+						log_game("[key_name(usr)] found the UPP manual")
+						message_admins("[key_name(usr)] found the UPP manual")
+						var/obj/item/cargo/book/uppmanual/book = new(get_turf(user))
+						user.put_in_active_hand(book)
+						searchable_bonus = FALSE
+					icon_state = "bookcase-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The bottom shelf also seems to have been printing manuals, a lot of them seem to have handwritten annotations and code noted down with various colored markers on its pages. Water damage prevents you from making out who and why made those notes, only that they are very prominent along multiple tomes that were eligible enough to make out anything. There still seems to be more you can find here."))
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("You find a small device among the manuals that seems to have been undamaged and pick it up."))
+						var/obj/item/cargo/efolder/pid/crypt_red/dud2/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item2 = FALSE
+					icon_state = "bookcase-4"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(4)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You quickly page through the last few surviving books. Like the rest, they seem to have been printer technical manuals. Someone seems to have gone out of their way to collect even the tiniest of modifications to colony printer blueprint, programming, or electronics from the Neroid sector and secure or modify existing documentation to reflect those changes. This likely meant that someone personally visited each and single colony which likely took years. For a few seconds you really hope all this information was backed up somewhere electronically. You found all there is to find from this shelf."))
+					icon_state = "bookcase-5"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(5)
+				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/bookcase/full4
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/bookcase/full4/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Like the other bookshelf, this one was also ransacked - rather brutally at that - by someone already. After a closer inspection, you notice that unlike the other bookshelf, this one seemed to be used to store something other than printed materials. At first glance, you take note that most of the items here seem to have been taken, not destroyed on the spot. There is more to find here."))
-				icon_state = "bookcase-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Debris and ashes from the neighboring bookcase litter the top shelf, but at first glance, not much else seems to be here. You make sure you didn't miss anything and it's a good thing you did, as you discover a plastic device at the back of the shelf, obscured by a ruined book. You pick it up. You are sure that there is more to find on this bookshelf."))
-				var/obj/item/cargo/efolder/pid/crypt_red/dud1/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "bookcase-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Searching through the bottom shelf finally gives you a hint to what was stored here. You quickly discover two smashed PDAs of an unknown maker in the back and an electronic folder hidden right under them. Upon closer inspection, you notice that several components have been ripped out of both PDAs before they were dumped here. The folder seems to be undamaged, as if it was put here later than the other items. You take it with you. You should make sure you didn't miss anything; you feel like this shelf still has something to offer."))
-				var/obj/item/cargo/efolder/folder/crypt_red/dud2/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				icon_state = "bookcase-3"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("After carefully examining the shelves again, you look at the back of the bookshelf and discover that this shelves' back board is loose, creating a gap. After a bit of stretching, you reach behind the bookshelf and feel around in the space between it and the wall. Among the dust and debris, you find what seems to be at least one deck of cards and one deck of tarot cards spread back there, likely fallen off the shelf and through the gap. While recovering them would likely take a lot of time, you at least seem to have found something that gives you an idea what was on this shelf. It still does not explain why the items here were spared their fate. You should take one final look to make sure you didn't miss anything."))
-				icon_state = "bookcase-4"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(4)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("You check the bookshelf for anything that previous searches may have missed just to be sure. While you do not find anything new on the shelves themselves, you notice that the right side of the bookshelf has a small heart carved into it with 'A + C' etched inside.  There does not seem to be anything else to discover on this bookshelf."))
-				icon_state = "bookcase-5"
-				desc = "Several shelves put together at just the right height to fit most written text, from reports to big print books. Has seen better days. There does not seem to be anything of note on the shelves."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(5)
-			to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Like the other bookshelf, this one was also ransacked - rather brutally at that - by someone already. After a closer inspection, you notice that unlike the other bookshelf, this one seemed to be used to store something other than printed materials. At first glance, you take note that most of the items here seem to have been taken, not destroyed on the spot. There is more to find here."))
+					icon_state = "bookcase-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Debris and ashes from the neighboring bookcase litter the top shelf, but at a glance, not much else seems to be here. Books were clearly stored here, but they were set on fire either on purpose or as colateral.  There is more to search through on this bookshelf."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You make sure you didn't miss anything and it's a good thing you did, as you discover a plastic device at the back of the shelf, obscured by a ruined book. You pick it up."))
+						var/obj/item/cargo/efolder/pid/crypt_red/dud1/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					icon_state = "bookcase-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Searching through the bottom shelf finally gives you a hint to what was stored here. You quickly discover two smashed PDAs of an unknown maker in the back but upon closer inspection, you notice that several components have been ripped out of both PDAs before they were dumped here. They are likely useless. You should make sure you didn't miss anything; you feel like this shelf still has something to offer."))
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("You find an electronic folder under the PDAs. The folder seems to be undamaged, as if it was put here later than the other items. You take it with you"))
+						var/obj/item/cargo/efolder/folder/crypt_red/dud2/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item2 = FALSE
+					icon_state = "bookcase-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("After carefully examining the shelves again, you look at the back of the bookshelf and discover that this shelves' back board is loose, creating a gap. After a bit of stretching, you reach behind the bookshelf and feel around in the space between it and the wall. Among the dust and debris, you find what seems to be at least one deck of cards and one deck of tarot cards spread back there, likely fallen off the shelf and through the gap. While recovering them would likely take a lot of time, you at least seem to have found something that gives you an idea what was on this shelf. It still does not explain why the items here were spared their fate. You should take one final look to make sure you didn't miss anything."))
+					icon_state = "bookcase-4"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(4)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You check the bookshelf for anything that previous searches may have missed just to be sure. While you do not find anything new on the shelves themselves, you notice that the right side of the bookshelf has a small heart carved into it with 'A + C' etched inside.  There does not seem to be anything else to discover on this bookshelf."))
+					icon_state = "bookcase-5"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(5)
+				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 //Office
 
@@ -710,44 +802,61 @@
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("It is obvious that someone searched these drawers before you and they were not gentle. The bottom drawer seemed to be used to store paper and notebooks, now clumped together in one unruly mess of crumpled, blank paper. There does not seem to be anything of note here. Two drawers remain."))
-				icon_state = "cabinetdrawer-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The middle drawer seems to have been used to store pens, highlighters and markers in surprisingly varied colors considering this is a space station. Someone went so far as to open and look inside some of the markers, destroying them in the process. A plastic PID device almost immediately catches your attention. It seems unlikely this was missed by whoever searched the drawers. You pick it up. There is one drawer left."))
-				var/obj/item/cargo/efolder/pid/crypt_blue/dud1/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "cabinetdrawer-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("After carefully examining the shelves again, you look at the back of the bookshelf and discover that this shelves' back board is loose, creating a gap. After a bit of stretching, you reach behind the bookshelf and feel around in the space between it and the wall. Among the dust and debris, you find what seems to be at least one deck of cards and one deck of tarot cards spread back there, likely fallen off the shelf and through the gap. While recovering them would likely take a lot of time, you at least seem to have found something that gives you an idea what was on this shelf. It still does not explain why the items here were spared their fate. You should take one final look to make sure you didn't miss anything."))
-				desc = "Three drawers mounted in a frame that can be slid in and out. Looks like its seen better days. Does not appear to contain anything of note."
-				icon_state = "cabinetdrawer-3"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("It is obvious that someone searched these drawers before you and they were not gentle. The bottom drawer seemed to be used to store paper and notebooks, now clumped together in one unruly mess of crumpled, blank paper. There does not seem to be anything of note here. Two drawers remain."))
+					icon_state = "cabinetdrawer-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The middle drawer seems to have been used to store pens, highlighters and markers in surprisingly varied colors considering this is a space station. Someone went so far as to open and look inside some of the markers, destroying them in the process. This likely means that there is nothing to find here. There is one drawer left."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("As you are about to move on, a plastic PID device almost immediately catches your attention. It seems unlikely this was missed by whoever searched the drawers. You pick it up."))
+						var/obj/item/cargo/efolder/pid/crypt_blue/dud1/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					icon_state = "cabinetdrawer-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer seemed to be used for storage of printing paper. Used to is the appropriate term because someone seems to have torn open, scattered, and searched through every package found in this drawer. It's a shame too, as someone seems to really have gone out of their way to stock all kinds of varied stationery. There does not seem to be anything else left to search here."))
+					icon_state = "cabinetdrawer-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/drawers_misc/full2
 
@@ -756,44 +865,61 @@
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Someone has clearly searched these drawers before, but they didn't seem to spend much time looking through these. The bottom drawer is full of personal knicks knacks like sets of colored hairpins, assorted pens, and several sets of stickers. These seem to be mostly intact but there does not seem to be anything that could help right now. Two more drawers remain."))
-				icon_state = "cabinetdrawer-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The middle drawer seems to contain assorted personal items like lipstick, two hairbrushes, deodorant, and hand moisturizer. As evidenced by the dried-out globs of some of the substances in tubes, someone seems to have tested what was inside every one of them before moving on. There does not seem to be anything else of note here. You can still search one more drawer."))
-				icon_state = "cabinetdrawer-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The top drawer contains several clipboards that seem to have anything that was attached to them taken. Several of the clipboards have pens of various makes and colors attached to them. Someone seems to have gone to some effort to pick these when you think about it. You notice that one of the clipboards has a plastic electronic device attached to it, which obviously stands out. You detach the device and take it with you. "))
-				var/obj/item/cargo/efolder/folder/crypt_blue/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "cabinetdrawer-3"
-				desc = "Three drawers mounted in a frame that can be slid in and out. Looks like its seen better days. Does not appear to contain anything of note."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Someone has clearly searched these drawers before, but they didn't seem to spend much time looking through these. The bottom drawer is full of personal knicks knacks like sets of colored hairpins, assorted pens, and several sets of stickers. These seem to be mostly intact but there does not seem to be anything that could help right now. Two more drawers remain."))
+					icon_state = "cabinetdrawer-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The middle drawer seems to contain assorted personal items like lipstick, two hairbrushes, deodorant, and hand moisturizer. As evidenced by the dried-out globs of some of the substances in tubes, someone seems to have tested what was inside every one of them before moving on. There does not seem to be anything else of note here. You can still search one more drawer."))
+					icon_state = "cabinetdrawer-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer contains several clipboards that seem to have anything that was attached to them taken. Several of the clipboards have pens of various makes and colors attached to them. Someone seems to have gone to some effort to pick these when you think about it."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You notice that one of the clipboards has a plastic electronic device attached to it, which obviously stands out. You detach the device and take it with you."))
+						var/obj/item/cargo/efolder/folder/crypt_blue/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					icon_state = "cabinetdrawer-3"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/drawers_files
 	name = "document storage drawers"
@@ -808,44 +934,62 @@
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Someone had already looked through these drawers and they were not gentle about it. The bottom drawer seems to be almost completely empty; a few clipboards and folders seem to indicate that whatever was inside was taken by whoever searched the drawers first. You spot a small plastic device in one of the slots that seems out of place, and you pick it up. It seems odd that whoever took everything else from this locker didn't take this device, perhaps it was placed here later. There is still more to search through in these drawers."))
-				icon_state = "filingcabinet-1"
-				var/obj/item/cargo/efolder/pid/crypt_blue/dud3/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The slots in the middle drawer seem to have been completely cleaned out. The tears on some of them seem to indicate that something was here and was rather violently removed, but you can only guess what the contents were. There is one more drawer left to search. "))
-				icon_state = "filingcabinet-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The top drawer is labeled as 'Empties' and some of the slots contain empty folders and their plastic PID keys. The empty folders are of no use to you, but a quick count seems to indicate that twelve folder and PID key pairs were removed from here. You are done searching through these drawers, there is nothing more to find here."))
-				icon_state = "filingcabinet-3"
-				desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Someone had already looked through these drawers and they were not gentle about it. The bottom drawer seems to be almost completely empty; a few clipboards and folders seem to indicate that whatever was inside was taken by whoever searched the drawers first. There is still more to search through in these drawers."))
+					icon_state = "filingcabinet-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You spot a small plastic device in one of the slots that seems out of place, and you pick it up. It seems odd that whoever took everything else from this locker didn't take this device, perhaps it was placed here later."))
+						var/obj/item/cargo/efolder/pid/crypt_blue/dud3/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The slots in the middle drawer seem to have been completely cleaned out. The tears on some of them seem to indicate that something was here and was rather violently removed, but you can only guess what the contents were. There is one more drawer left to search. "))
+					icon_state = "filingcabinet-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer is labeled as 'Empties' and some of the slots contain empty folders and their plastic PID keys. The empty folders are of no use to you, but a quick count seems to indicate that twelve folder and PID key pairs were removed from here. You are done searching through these drawers, there is nothing more to find here."))
+					icon_state = "filingcabinet-3"
+					desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/drawers_files/full2
 
@@ -854,44 +998,62 @@
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("Looks like someone picked these drawers clean and was not gentle about it. It's clear that you are not the first person looking through these. There is very little left in the bottom drawer, but you find a few loose pieces of paper that seem to be parts of engineering reports about various parts of the station. There does not seem to be anything significant here, however. There are still two drawers to search."))
-				icon_state = "filingcabinet-1"
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The middle drawer is empty, but while searching through the slots of the drawer, you find a small plastic device that clearly does not belong. It occurs to you that someone searching through these drawers would be very unlikely to miss this. You take the device with you. There is one more drawer to search."))
-				var/obj/item/cargo/efolder/pid/crypt_blue/dud2/pid = new(get_turf(user))
-				user.put_in_active_hand(pid)
-				icon_state = "filingcabinet-2"
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The top drawer seems to be mostly full of records of poker games between codenames, presumably Task Force 14 members, that stopped at the PST while the USCMC was still active. While there isn't anything that is helpful right now, you note that just by the variety of the various codenames, the station saw a lot TF14 members come and go. There does not seem to be anything else to find here."))
-				icon_state = "filingcabinet-3"
-				desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(3)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("Looks like someone picked these drawers clean and was not gentle about it. It's clear that you are not the first person looking through these. There is very little left in the bottom drawer, but you find a few loose pieces of paper that seem to be parts of engineering reports about various parts of the station. There does not seem to be anything significant here, however. There are still two drawers to search."))
+					icon_state = "filingcabinet-1"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("You don't find anything that would even hint at what was stored in this drawer in its slots. They were clearly used before, but for what, you can only guess. There is one more drawer to search."))
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You find a small plastic device that clearly does not belong. It occurs to you that someone searching through these drawers would be very unlikely to miss this. You take the device with you."))
+						var/obj/item/cargo/efolder/pid/crypt_blue/dud2/pid = new(get_turf(user))
+						user.put_in_active_hand(pid)
+						searchable_item = FALSE
+					icon_state = "filingcabinet-2"
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer seems to be mostly full of records of poker games between codenames, presumably Task Force 14 members, that stopped at the PST while the USCMC was still active. While there isn't anything that is helpful right now, you note that just by the variety of the various codenames, the station saw a lot TF14 members come and go. There does not seem to be anything else to find here."))
+					icon_state = "filingcabinet-3"
+					desc = "Three drawers mounted in a frame that can be slid in and out. The drawers have narrow slots that are meant to store paper documents. Looks like its seen better days."
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(3)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/drawers_smol
 	name = "storage drawers"
@@ -900,78 +1062,122 @@
 	icon_state = "chestdrawer"
 
 /obj/structure/searchable/puzzle04/drawers_smol/full1
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/drawers_smol/full1/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("These drawers seem to have not been touched for quite a while and are a little hard to open at first. The bottom drawer is filled with what looks like Russian paperback novels all of which seem to feature the same character. You don't really have the time to take a closer look now, but you quickly spot an electronic folder among the books which clearly does not belong. You pick it up. There is one more drawer to search."))
-				icon_state = "chestdrawer-1"
-				var/obj/item/cargo/efolder/folder/crypt_blue/dud1/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The top drawer creaks open with some resistance and is filled with multiple books written in what looks like Chinese at first glance. Looks like someone was working on translating these into English and it seems to have been a series of pulp novels about spacers. There will be time to take a closer look at these later, for now you grab the electronic folder that is left on top of one of the stacks and clearly does not belong among the books and their rough translations."))
-				icon_state = "chestdrawer-2"
-				var/obj/item/cargo/efolder/folder/crypt_blue/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("These drawers seem to have not been touched for quite a while and are a little hard to open at first. The bottom drawer is filled with what looks like Russian paperback novels all of which seem to feature the same character. You don't really have the time to take a closer look now. There is one more drawer to search."))
+					icon_state = "chestdrawer-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You spot an electronic folder among the books which clearly does not belong. You pick it up."))
+						var/obj/item/cargo/efolder/folder/crypt_blue/dud1/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer creaks open with some resistance and is filled with multiple books written in what looks like Chinese at first glance. Looks like someone was working on translating these into English and it seems to have been a series of pulp novels about spacers. You don't really have time to go through these in detail right now."))
+					icon_state = "chestdrawer-2"
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("You see an electronic folder that is left on top of one of the stacks of books and pick it up as it clearly does not belong here."))
+						var/obj/item/cargo/efolder/folder/crypt_blue/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item2 = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 
 /obj/structure/searchable/puzzle04/drawers_smol/full2
+	var/searchable_item2 = TRUE
 
 /obj/structure/searchable/puzzle04/drawers_smol/full2/attack_hand(mob/user)
 	if(searchable_used == TRUE)
 		to_chat(usr, narrate_body("Someone is already searching this."))
 		return
 	searchable_used = TRUE
-	switch(searchable_step)
-		if(0)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+	if(user.a_intent == INTENT_GRAB)
+		if(tgui_alert(user, "Do you want to start the search over? The object will be restored to its original state. Use HELP intent to search it. ", "Reset Confirmation", list("Yes", "No"), 0) == "Yes")
+			user.visible_message(SPAN_NOTICE("[user] starts shuffling items back into their place on the [src.name]."), SPAN_INFO("You start shuffling items back into their place."), SPAN_DANGER("You hear shuffling."))
 			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("These drawers were clearly not commonly used and were not disturbed for quite a while. The bottom drawer resists for a few seconds, but when you open it, you find that it is full of carefully arranged and stored genuine manga tomes. You aren't sure, but it looks like they may also be genuine Earth prints, which are not easy to get. Someone took great care in storing them as well. You find an electronic folder put on top of a few thicker tomes and pick it up. You can go back to looking through this collection later."))
-				icon_state = "chestdrawer-1"
-				var/obj/item/cargo/efolder/folder/crypt_blue/dud3/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
+				user.visible_message(SPAN_NOTICE("[user] finishes rearanging the [src.name]. Its like it was never touched."), SPAN_INFO("You are finished. You can now search the [src.name] again."), SPAN_DANGER("The shuffling noise stops."))
+				searchable_step = 0
+				icon_state = initial(icon_state)
 				update_icon()
-				searchable_step += 1
 				searchable_used = FALSE
 				return
-		if(1)
-			user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
-			if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
-				user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-				to_chat(user, narrate_body("The top drawer opens with ease, though it does not seem to have been used for a while. The drawer is full of UA pulp fiction novels, mostly centering on Spacers. A quick glance at the back covers reveals that these books are not colonial reprints from Liquid Data repositories, but rather books manufactured back on Earth. While individual tomes are likely not worth much, the whole collection likely took some time to assemble. You spot an electronic folder that clearly is not part of the collection and pick it up. You can explore these books in detail later."))
-				icon_state = "chestdrawer-2"
-				var/obj/item/cargo/efolder/folder/crypt_blue/dud2/folder = new(get_turf(user))
-				user.put_in_active_hand(folder)
-				update_icon()
-				searchable_step += 1
-				searchable_used = FALSE
-				return
-		if(2)
-			to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here."))
+		else
 			searchable_used = FALSE
 			return
+	if(user.a_intent == INTENT_HELP)
+		switch(searchable_step)
+			if(0)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("These drawers were clearly not commonly used and were not disturbed for quite a while. The bottom drawer resists for a few seconds, but when you open it, you find that it is full of carefully arranged and stored genuine manga tomes. You aren't sure, but it looks like they may also be genuine Earth prints, which are not easy to get. Someone took great care in storing them as well. You can go back to looking through this collection later."))
+					icon_state = "chestdrawer-1"
+					if(searchable_item == TRUE)
+						to_chat(user, narrate_body("You find an electronic folder put on top of a few thicker tomes and pick it up."))
+						var/obj/item/cargo/efolder/folder/crypt_blue/dud3/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(1)
+				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
+				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
+					user.visible_message(SPAN_NOTICE("[user] finishes searching the storage drawers."), SPAN_INFO("You finish searching through one of the drawers and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
+					to_chat(user, narrate_body("The top drawer opens with ease, though it does not seem to have been used for a while. The drawer is full of UA pulp fiction novels, mostly centering on Spacers. A quick glance at the back covers reveals that these books are not colonial reprints from Liquid Data repositories, but rather books manufactured back on Earth. While individual tomes are likely not worth much, the whole collection likely took some time to assemble. You can explore these books in detail later."))
+					icon_state = "chestdrawer-2"
+					if(searchable_item2 == TRUE)
+						to_chat(user, narrate_body("You spot an electronic folder that clearly is not part of the collection and pick it up."))
+						var/obj/item/cargo/efolder/folder/crypt_blue/dud2/folder = new(get_turf(user))
+						user.put_in_active_hand(folder)
+						searchable_item2 = FALSE
+					update_icon()
+					searchable_step += 1
+					searchable_used = FALSE
+					return
+			if(2)
+				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
+				searchable_used = FALSE
+				return
+	return
 //Lockers
 
 
@@ -981,6 +1187,10 @@
 	desc_lore = "Shorter chests like these are commonly used by crews of ships for bunk storage, hence their colloquial name since they are easy to stack and slide under one's bed. They are notoriously unsecure and no one typically stores anything they can't lose in those, usually opting to safeguard important items in the typically much more secure crew lockers."
 	icon_state = "chest"
 
+/obj/structure/searchable/puzzle04/bunk_locker
+	name = "locker"
+	desc = "A personal locker without any visible locking mechanism. Looks like it has not been used for a while."
+	desc_lore = "Personal locks with no electronic lock are typically simple storage options like closets but adapted to limited space on board ships and stations. Sometimes, some spacers use traditional locks to secure those, but most do not go out of their way to secure these, nor do they store anything that they cannot afford to lose."
 
 //Log reader and logs
 /obj/structure/eventterminal/puzzle04/log_reader

@@ -1369,7 +1369,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("A black folder remains undisturbed and the last thing to take a closer look at. The folder appears to be a mixture of scanner reports from across the system and handwritten calculations. At a glance it looks like someone was trying to calculate the path of something going through the sector. They do not seem to be immediately important. There does not seem to be anything else of note in this chest."))
+					to_chat(user, narrate_body("A black folder remains undisturbed and the last thing to take a closer look at. The folder appears to be a mixture of scanner reports from across the system and handwritten calculations. At a glance it looks like someone was trying to calculate the path of something going through the sector. They do not seem to be particularly important right now. There does not seem to be anything else of note in this chest."))
 					icon_state = "chest-1"
 					if(searchable_item == TRUE)
 						to_chat(user, narrate_body("A plastic PID key falls out of the folder when you first open it. You take it with you."))
@@ -1412,7 +1412,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("Bunk chest narration"))
+					to_chat(user, narrate_body("This chest seems to have been used recently and that alone makes it stand out from most of the things left in these rooms. The first thing that catches your attention when you open the chest is a small collection of destination tags from all over the Neroid Sector and beyond.  They seem to be stringed together with several colored string and someone clearly pays a lot of attention to this collection. It seems personal enough that you decide against taking it with you. There is more to find in this chest."))
 					searchable_step += 1
 					searchable_used = FALSE
 					return
@@ -1420,9 +1420,9 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("Bunk chest narration"))
+					to_chat(user, narrate_body("There are several donut boxes inside the bunk, but upon closer inspection you discover that all but one is empty. One box has a very stale donut inside, it looks like it's been here for at least a month. There is more to find in this chest."))
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("Found pid"))
+						to_chat(user, narrate_body("You also find a plastic PID key in the same box, which clearly does not belong there. You take it with you."))
 						var/obj/item/cargo/efolder/pid/crypt_yellow/dud3/pid = new(get_turf(user))
 						user.put_in_active_hand(pid)
 						searchable_item = FALSE
@@ -1433,7 +1433,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the bunk chest."), SPAN_INFO("You finish searching through part of the bunk chest and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("Bunk chest narration"))
+					to_chat(user, narrate_body("Hidden behind the donut boxes is a small, shiny sphere with a red LED indicator. It takes you a moment to realize that what you are looking at is an UAAC-TIS data transfer sphere, Liquid Data devices the agency uses to synchronize intelligence across UA ships. It does not seem to be active, but taking one with you is likely a bad idea, as they are bound to be tracked. You take note of its location and decide to move on. This chest has been thoroughly searched, there is nothing else to find here."))
 					icon_state = "chest-1"
 					update_icon()
 					searchable_step += 1
@@ -1476,9 +1476,9 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("The locker seems not to have been used for a while, though the inside seems to be regularly cleaned. There are several light, colorful dresses that seem to have been here for a while inside. You get the impression that they are above the quality that is typically used by spacers, even in their off hours. You can still find more in this locker."))
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("Found folder"))
+						to_chat(user, narrate_body("You spot an electronic folder on the bottom of the locker and pick it up."))
 						var/obj/item/cargo/efolder/folder/crypt_yellow/dud1/folder = new(get_turf(user))
 						user.put_in_active_hand(folder)
 						searchable_item = FALSE
@@ -1489,7 +1489,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("You don't seem to find any shoes in the shoe compartment of the locker, but you find what looks like an old box of hair dye stashed in the back. It does not seem to have been used, but it is two years old at this point and likely no longer viable. There does not seem to be anything else left to search in this locker."))
 					icon_state = "locker-1"
 					update_icon()
 					searchable_step += 1
@@ -1527,7 +1527,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("Unlike most of the other items found in this section of the station, the locker seems to be frequently used and kept clean, however there does not seem to be much in here now. The only thing you see after opening it is a vacuum sealed formal white USCMC uniform, with its insignia and identifying features removed. You get the feeling that you shouldn't be disturbing this. There is still more to search in this locker."))
 					searchable_step += 1
 					searchable_used = FALSE
 					return
@@ -1535,10 +1535,10 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("You check the shoe compartment and discover a box that contains a pair of dress shoes. If you had to guess, those go together with the uniform stored in this locker and probably should be left alone. There is nothing else to find here."))
 					icon_state = "locker-1"
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("Found folder"))
+						to_chat(user, narrate_body("You spot an electronic folder tucked away in the back of the locker while putting the shoes back. You take it with you as it clearly does not belong."))
 						var/obj/item/cargo/efolder/folder/crypt_yellow/dud2/folder = new(get_turf(user))
 						user.put_in_active_hand(folder)
 						searchable_item = FALSE
@@ -1578,7 +1578,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("This locker clearly hasn't been used in a while and seemed to have been in worse shape than others you've seen around here to start with. You don't find any clothing inside, instead you find several carboard boxes containing empty bottles of various brands of sake. A quick look indicates that these include both distillations made on various colonies across known space, as well as those coming from Japan. There also seem to be a few UA copycat brands present. Someone clearly knows their sake. There is more to find here."))
 					searchable_step += 1
 					searchable_used = FALSE
 					return
@@ -1586,7 +1586,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("You find a box in the shoe compartment of the locker and open it to find a series of photographs of what looks like traditional Shinto shrines built on space stations, ships, and colonies around the known galaxy. What's particularly interesting is that some of these shots seem to be made inside of TWE ships and out in the open, something that is rarely allowed for anyone who is not an officer of the TWE Navy or Royal Commandos. These are interesting, but not of particular use to you right now. You make a note of them and move on. There still seems like there is more to find in this locker."))
 					searchable_step += 1
 					searchable_used = FALSE
 					return
@@ -1594,10 +1594,10 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("You take one final look at the locker, making sure you didn't miss anything and spot a small box in the far corner of the locker that seems different that the others stored here. You open it and see a collection of pins from an establishment called the Black Cat somewhere in Tokyo. You seem to remember that some entertainment venues use RFID chips hidden in such pins for their VIP members or regulars. They aren't of any particular use to you right now, however. There does not seem to be anything else to find in this locker."))
 					icon_state = "locker-1"
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("Found folder"))
+						to_chat(user, narrate_body("As you put the box back, you notice that it was resting on top of an electronic folder that seemed out of place in the locker. You take it with you."))
 						var/obj/item/cargo/efolder/folder/crypt_yellow/dud3/folder = new(get_turf(user))
 						user.put_in_active_hand(folder)
 						searchable_item = FALSE
@@ -1637,7 +1637,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("This locker has clearly not been used for quite a while, even when compared to the others found in this part of the station. The locker is full of bright, colorful Hawaiian style shirts, a total of twenty after counting. Upon closer inspection, you quickly realize that each shirt has been ruined in some fashion, typically by what looks like bullet or knife damage. One seems to have been on fire for a while, while another lost a whole sleeve. These don't seem to be particularly useful. There is more to find in this locker."))
 					searchable_step += 1
 					searchable_used = FALSE
 					return
@@ -1645,9 +1645,9 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("Several pairs of shoes line the shoe compartment of the locker, each pair has either been worn or damaged by what seems to be a mixture of both the elements and physical damage. None of these are usable anymore and don't seem to be particularly useful otherwise. There is more to find in this locker."))
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("Found folder"))
+						to_chat(user, narrate_body("You easily spot an electronic folder among the shoes that clearly does not belong here. You pick it up."))
 						var/obj/item/cargo/efolder/folder/crypt_yellow/folder = new(get_turf(user))
 						user.put_in_active_hand(folder)
 						searchable_item = FALSE
@@ -1658,7 +1658,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the locker."), SPAN_INFO("You finish searching through part of the locker and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
-					to_chat(user, narrate_body("locker narration"))
+					to_chat(user, narrate_body("You take one last look at the locker and spot what looks to be a curious-looking empty cigarette pack. Upon taking a closer look, you see that the pack has a black, bold label that says <strong>'Mocne'</strong> on a white background and is otherwise colored red with no other text or labels. This seems out of place, even for UPP products which tend to be laxer on their labeling than TWE and UA are. There is nothing else to find here."))
 					icon_state = "locker-1"
 					update_icon()
 					searchable_step += 1

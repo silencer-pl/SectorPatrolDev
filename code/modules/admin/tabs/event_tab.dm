@@ -1055,3 +1055,20 @@
 		return FALSE
 	show_blurb(GLOB.player_list, duration, message, TRUE, "center", "center", "#bd2020", "ADMIN")
 	message_admins("[key_name(usr)] sent an admin blurb alert to all players. Alert reads: '[message]' and lasts [(duration / 10)] seconds.")
+
+/client/proc/cmd_admin_pythia_say() // Checks for a Pythia reciever and talks as it and any of its voices.
+	set name = "Speak As Pythia"
+	set category = "Admin.Events"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	for (var/obj/structure/eventterminal/puzzle05/testament_of_sacrifice/T in world)
+		if(!T)
+			to_chat(usr, SPAN_WARNING("Error: Pythia reciever not spawned. Cannot pass say."))
+			return
+		var/pythia_say = tgui_input_text(src, "What to say as Pythia and its voices.", "Pythia Say Text", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, encode = FALSE, timeout = 0)
+		if(!pythia_say) return
+		T.pythiasay(pythia_say)
+		return

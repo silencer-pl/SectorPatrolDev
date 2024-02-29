@@ -53,3 +53,28 @@
 				open_doors()
 			else
 				to_chat(user, narrate_body("Puzzlebox state below 5."))
+	if(puzzlebox_id == "crypt_airlock")
+		if(puzzlebox_global_status != 8)
+			to_chat(usr, narrate_body("Error: Global status not 8. It's not time."))
+			return
+		var/puzzlebox_admin_option = tgui_input_list(usr, "Select a function", "Admin Terminal", list("Annouce Crypt Security Scan", "Adjust Crypt Secuirty Scan", "Begin final stage"), 0)
+		if (!puzzlebox_admin_option) return
+		if (puzzlebox_admin_option == "Annouce Crypt Security Scan")
+			var/puzzlebox_admin_option_number = tgui_input_number(usr, "How many PCs?", "PC Input", timeout = 0)
+			if(!puzzlebox_admin_option_number) return
+			to_chat(world, narrate_head("The loudspeaker system on the dorm level and inside the crypt comes alive and announces with a male, robotic voice:"))
+			to_chat(world, narrate_body("Attention. Class S Security Scan Triggered. Location: Crypt Entrance Chamber."))
+			to_chat(world, narrate_body("To resolve: [puzzlebox_admin_option_number] RFID confirmed personnel matching condition 'ARBITER' must report for stationary scan in scan location."))
+			to_chat(world, narrate_body("Awaiting appropriate personnel quota."))
+			return
+		if (puzzlebox_admin_option == "Adjust Crypt Secuirty Scan")
+			var/puzzlebox_admin_option_number = tgui_input_number(usr, "How many PCs?", "PC Input", timeout = 0)
+			to_chat(world, narrate_head("The loudspeaker system on the dorm level and inside the crypt comes alive and announces with a male, robotic voice:"))
+			to_chat(world, narrate_body("Attention: Crypt Security Scan Adjustment Detected. Current quota: [puzzlebox_admin_option_number]"))
+			to_chat(world, narrate_body("Awaiting appropriate personnel quota."))
+			return
+		if (puzzlebox_admin_option == "Begin final stage")
+			puzzlebox_global_status = 9
+			for (var/obj/structure/eventterminal/puzzle04/final_log/T in world)
+				INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle04/final_log, play_final_log))
+			return

@@ -1370,6 +1370,7 @@
 #include "code\game\objects\structures\sectorpatrol\endpoint\002.dm"
 #include "code\game\objects\structures\sectorpatrol\endpoint\003.dm"
 #include "code\game\objects\structures\sectorpatrol\endpoint\004.dm"
+#include "code\game\objects\structures\sectorpatrol\endpoint\005.dm"
 #include "code\game\objects\structures\sectorpatrol\searchable\search_structures.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\bed.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\chairs.dm"

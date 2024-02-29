@@ -338,15 +338,26 @@
 				return
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
+	var/user_loc_start = get_turf(user)
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
 	if (puzzlebox_complete == TRUE)
 		to_chat(usr, narrate_body("The terminal displays:"))
 		terminal_speak("Orientation complete. Please proceed to your quarters, elevator B.")
 		to_chat(usr, narrate_body("There is no response to any inputs."))
+		puzzlebox_user = null
 		return
 	if (puzzlebox_playing == TRUE)
 		to_chat(usr, narrate_body("The terminal displays:"))
 		terminal_speak("Error: Presentation already in progress. ")
 		to_chat(usr, narrate_body("There is no response to any inputs."))
+		puzzlebox_user = null
 		return
 	if (!puzzlebox_parser_mode) puzzlebox_parser_mode = "HOME"
 	if (puzzlebox_parser_mode == "HOME")
@@ -393,9 +404,16 @@
 				puzzlebox_parser_mode = "HOME_INPUT"
 				attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
+			var/user_loc_current = get_turf(user)
+			if (user_loc_start != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				return
 			to_chat(usr, narrate_body("The terminal awaits your input. There is only a number pad and an enter key available."))
 			var/puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave. Typing in 0 should replay the introduction message. ", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			if(!puzzlebox_parser_input) return
+			if(!puzzlebox_parser_input)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_parser_input == "0")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)
@@ -405,16 +423,20 @@
 					for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 						INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson1))
 					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
 					return
 				if (puzzlebox_saw_lesson1 == TRUE)
 					terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
 					puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-					if(!puzzlebox_parser_input) return
+					if(!puzzlebox_parser_input)
+						puzzlebox_user = null
+						return
 					if(puzzlebox_parser_input == "1")
 						terminal_speak("Replaying presentation 1.")
 						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson1))
 						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
 						return
 					terminal_speak("Returning to presentation selection.")
 					puzzlebox_parser_mode = "HOME"
@@ -430,16 +452,20 @@
 						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson2))
 						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
 						return
 					if (puzzlebox_saw_lesson2 == TRUE)
 						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
 						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-						if(!puzzlebox_parser_input) return
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							return
 						if(puzzlebox_parser_input == "2")
 							terminal_speak("Replaying presentation 2.")
 							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson2))
 							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
@@ -455,16 +481,20 @@
 						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson3))
 						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
 						return
 					if (puzzlebox_saw_lesson3 == TRUE)
 						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
 						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-						if(!puzzlebox_parser_input) return
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							return
 						if(puzzlebox_parser_input == "3")
 							terminal_speak("Replaying presentation 3.")
 							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson3))
 							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
@@ -476,16 +506,20 @@
 						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson4))
 						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
 						return
 					if (puzzlebox_saw_lesson4 == TRUE)
 						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
 						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-						if(!puzzlebox_parser_input) return
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							return
 						if(puzzlebox_parser_input == "4")
 							terminal_speak("Replaying presentation 4.")
 							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson4))
 							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
@@ -503,5 +537,6 @@
 					for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
 						INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson5))
 					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
 					return
 

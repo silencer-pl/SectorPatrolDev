@@ -22,6 +22,8 @@
 	desc_lore = "Computer displays on most ships tend to be adjusted for single colored text, initially due to lack of technology that allowed for better quality displays to survive out in space. Over time this became more a habit than anything else, as evidenced by PDAs which do not limit themselves in terms of display capabilities. Large scale displays such as this one have resisted over a hundred years' worth of technological progress and still reign supreme across human space ships. Truly, you are looking at a classic. For better or worse."
 	icon_state = "off"
 	puzzlebox_id = "theatherscreen"
+	layer = OBJ_LAYER
+	plane = GAME_PLANE
 
 /obj/structure/eventterminal/puzzle03/historycrt/attack_hand(mob/user as mob)
 	to_chat(usr, narrate_body("There does not seem to be any way of controlling the monitor, it only has status indicators. Perhaps there is a console somewhere around here."))

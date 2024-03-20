@@ -180,7 +180,7 @@
 				emoteas("shows a simplified diagram of the PST, with text mirroring what the voice says printing on the left.", 5)
 				icon_state = "pst1"
 				update_icon()
-				A.talkas("In a nutshell, the PST is a gigantic space station with a total of 123 decs of various heights.")
+				A.talkas("In a nutshell, the PST is a gigantic space station with a total of 123 decks of various heights.")
 				A.talkas("It features a central strut and three 'wings' that can open and close.")
 				A.talkas("A central elevator, the one you took to get up to the Spire, links hangars and docking bays, which leads to the public and Memorial sectors and the specialized elevators.")
 				A.talkas("Each shaft goes to a different section of the PST, those are in sequence:")

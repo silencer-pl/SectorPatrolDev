@@ -82,11 +82,11 @@
 				T.puzzlebox_playing = TRUE
 				icon_state = "blank"
 				update_icon()
-				emoteas("turns on with an audible pop.", 5)
+				emoteas("turns on with an audible pop.")
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
 				A.talkas("This part of orientation means to remind you all how we got here through our rocky history.")
-				emoteas("prints the Admiral's speech as the admiral speaks.", 5)
+				emoteas("prints the Admiral's speech as the admiral speaks.")
 				icon_state = "text"
 				update_icon()
 				A.talkas("While the UACM seeks to unify and improve the model, it itself is not a revolution. The USCMC however, the formation preceding it, was.")
@@ -129,7 +129,7 @@
 				A.talkas("Unfortunately, as I mentioned at the start, I do not get the feeling we are expected to succeed. Not only because this station's core functions depend on technology that does not exist. Believe it or not, UAAC-TIS claims they have that one covered.")
 				A.talkas("I had made it clear from the start that I intended to reach out to USCMC personnel that were cleared of any involvement with the traitors, and yet still were sent home and blacklisted. Personnel like you.")
 				A.talkas("Not only will this place serve as a starting point for your second chance in the Marines and a place among the stars, where I feel like most of you belong.")
-				emoteas("switches to the UACM logo.", 5)
+				emoteas("switches to the UACM logo.")
 				icon_state = "uacm"
 				update_icon()
 				A.talkas("Here, we will also recover old USCMC vessels, which like you have been left to rot or worse and either adapt them to service in the UACM or claim them as our own.")
@@ -138,7 +138,7 @@
 				A.talkas("For now, your focus should be on getting as comfortable as you can in your new dorms. You will likely be called to help as systems across the station are completed and tested.")
 				A.talkas("You will also receive briefings on SOP and Maritime Law as our CMISRS office establishes itself. I'm sure some of you have already met LT. Foster.")
 				A.talkas("This concludes this presentation. Thank you for your attention.")
-				emoteas("flickers and shuts down.", 5)
+				emoteas("flickers and shuts down.")
 				icon_state = "off"
 				update_icon()
 				T.puzzlebox_playing = FALSE
@@ -152,7 +152,7 @@
 				T.puzzlebox_playing = TRUE
 				icon_state = "blank"
 				update_icon()
-				emoteas("turns on with an audible pop.", 5)
+				emoteas("turns on with an audible pop.")
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
 				A.talkas("This section talks in detail about the Outer Veil Primary Supply Terminal, our new home. Before I step aside and let someone with a decisively more attractive voice take over...")
@@ -163,7 +163,7 @@
 				A.name = "Voice of RDML. Boulette"
 				icon_state = "text"
 				update_icon()
-				emoteas("begins to display a transcript of the recording.",5)
+				emoteas("begins to display a transcript of the recording.")
 				A.talkas("...Let me briefly explain how this structure fits into the greater unified logistics principle I'm trying to implement.")
 				A.talkas("Unified logistics in general theorizes that much more than just simple commodities can be marked, transported, tracked, and delivered where they need to be.")
 				A.talkas("With this system anything - personnel, information, technology, and yes, cargo has a source and a destination.")
@@ -210,7 +210,7 @@
 				A.talkas("If they recognize the design, have the raw materials, and are properly powered, the drones on this station can repair and refit any ship within days if not hours.")
 				icon_state = "blank"
 				update_icon()
-				emoteas("goes blank again.",5)
+				emoteas("goes blank again.")
 				A.talkas("You can imagine how this all ties together. Prototype technology from every corner of the world being tested here, by you, proliferated back to everyone who asks.")
 				A.talkas("Or a Hub as the Admiral calls it.")
 				A.talkas("And that is your new home. I've been stopping here on and off for years now. It grows on you.")
@@ -219,7 +219,7 @@
 				A.talkas("Seeya!")
 				icon_state = "off"
 				update_icon()
-				emoteas("pops and goes dark.",5)
+				emoteas("pops and goes dark.")
 				T.puzzlebox_playing = FALSE
 				if(T.puzzlebox_saw_lesson3 == FALSE) T.puzzlebox_saw_lesson3 = TRUE
 				return
@@ -231,13 +231,13 @@
 				T.puzzlebox_playing = TRUE
 				icon_state = "blank"
 				update_icon()
-				emoteas("turns on with an audible pop.",5)
+				emoteas("turns on with an audible pop.")
 				A.name = "Voice of CDR. Cassandra Reed-Wilo"
 				A.langchat_color = "#b3183e"
 				A.talkas("Hello, Ensigns.")
 				icon_state = "text"
 				update_icon()
-				emoteas("starts to print a transcript of the presentation.",5)
+				emoteas("starts to print a transcript of the presentation.")
 				A.talkas("The Admiral and Aly explained the technical and theoretical background of your new mission. I need you to be one more thing.")
 				A.talkas("I need you to be the inheritors to Task Force 14's legacy.")
 				A.talkas("Let me explain.")
@@ -250,7 +250,7 @@
 				A.talkas("As it turns out, someone in DV really liked Admiral Boulette's Unified Logistics Theory. So much in fact, they stole them and were trying to apply them. ")
 				A.talkas("The plan seemed to purge the cultists after their project was finished. And those were not just normal crazies, but Wey-Yu washouts. Actually skilled people, some of them at least.")
 				icon_state = "uacm"
-				emoteas("flashes, then displays the UACM logo.",5)
+				emoteas("flashes, then displays the UACM logo.")
 				A.talkas("At the tail end of the operation, with the cult… Out of the way, the crew of my ship and I did what we always do. We started to scour the PST for information.")
 				A.langchat_color = COLOR_WHITE
 				A.name = "Cassandra"
@@ -279,7 +279,7 @@
 				A.talkas("And that is what the Test Crews of the PST are. Apart from your duties putting Boulie's theories into practice.")
 				icon_state = "pythia"
 				update_icon()
-				emoteas("blinks and goes dark for a second, then displays an unidentified symbol.",5)
+				emoteas("blinks and goes dark for a second, then displays an unidentified symbol.")
 				A.talkas("You are inheritors to the legacy and mission of Task Force 14. You hold the torch for a group of people that, at least for me, were nothing short of an extended family for the few years we worked on the same thing.")
 				A.talkas("I don't expect you to hold me in similar regards. Most of you I've likely never met and yet it was my decisions that stole over a year of your life and burned your world down.")
 				A.talkas("Were the positions reversed, you would have to do a lot for me to trust you, let alone like you.")

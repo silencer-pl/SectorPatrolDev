@@ -246,6 +246,7 @@
 				talkas("Be nice and make a good first impression, it will help.")
 				talkas("I hope we can help you.")
 				emoteas("beeps loudly as the doors start to grunt and unseal.")
+				open_doors("crypt_airlock_front")
 				puzzlebox_user = null
 				return
 			terminal_speak("Notice: Passphrases needed. Use the UNLOCK command after all codes have been provided.")

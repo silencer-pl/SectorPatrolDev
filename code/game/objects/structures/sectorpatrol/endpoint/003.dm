@@ -336,6 +336,7 @@
 				T.emoteas("beeps loudly, then plays a message out loud.")
 				T.talkas("Notice: Data corruption detected in message buffer. Resyncing. Restarting.")
 				T.talkas("Notice: Orientation complete.")
+				open_doors("brief_doors")
 				T.puzzlebox_complete = TRUE
 				return
 

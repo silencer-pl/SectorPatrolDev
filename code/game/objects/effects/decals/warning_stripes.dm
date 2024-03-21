@@ -186,13 +186,6 @@
 	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- CPU -</big><br>"
 	desc_lore = "The label CPU indicates doors and areas related to the operation of ship AIs, which typically are also directly tied to the ships Twilight FTL drives and Liquid Data FTL communication systems. These areas are typically sealed to all but the highest-ranking command personnel on board a ship or station but may be sometimes unlocked by the AIs themselves if maintenance is required."
 	icon_state = "pst_cpu"
-
-/obj/effect/decal/info_tag/pst/ele
-	name = "EL-E orientation label"
-	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-E -</big><br>"
-	desc_lore = "The label EL-E indicates the Central Elevator shaft on board the PST, technically known as the 'Primary Access Elevator - E'"
-	icon_state = "pst_el.e"
-
 /obj/effect/decal/info_tag/pst/obs
 	name = "OBS orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- OBS -</big><br>"
@@ -204,3 +197,75 @@
 	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- SAN -</big><br>"
 	desc_lore = "The label SAN indicates areas related to sanitation like toilets and showers. These are very commonly general access areas for obvious reasons. Some extra cleaning equipment may also be stored in these areas should the area they are located in be prone to certain types of grime."
 	icon_state = "pst_san"
+
+/obj/effect/decal/info_tag/pst/ela
+	name = "EL-A orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-A -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_el.a"
+
+/obj/effect/decal/info_tag/pst/elb
+	name = "EL-B orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-B -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_el.b"
+
+/obj/effect/decal/info_tag/pst/elc
+	name = "EL-C orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-C -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_el.c"
+
+/obj/effect/decal/info_tag/pst/eld
+	name = "EL-D orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-D -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_el.d"
+
+/obj/effect/decal/info_tag/pst/ele
+	name = "EL-E orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-E -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_el.e"
+
+/obj/effect/decal/info_tag/pst/ofc
+	name = "OFC orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- OFC -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_ofc"
+
+/obj/effect/decal/info_tag/pst/mem
+	name = "MEM orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- MEM -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_mem"
+
+/obj/effect/decal/info_tag/pst/lby
+	name = "LBY orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- LBY -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_lby"
+
+/obj/effect/decal/info_tag/pst/drm
+	name = "DRM orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- DRM -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_drm"
+
+/obj/effect/decal/info_tag/pst/rec
+	name = "REC orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- REC -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_rec"
+
+/obj/effect/decal/info_tag/pst/t14
+	name = "T-14 orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- T-14 -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_t14"
+
+/obj/effect/decal/info_tag/pst/mup
+	name = "MUP orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal <br><big>- MUP -</big><br>"
+	desc_lore = ""
+	icon_state = "pst_mup"

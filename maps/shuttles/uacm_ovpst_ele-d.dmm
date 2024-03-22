@@ -1,0 +1,15 @@
+"a" = (/obj/structure/machinery/door/poddoor/almayer,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/space)
+"s" = (/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/space)
+"J" = (/turf/closed/wall/almayer/outer,/area/space)
+
+(1,1,1) = {"
+JaaaaaaaJ
+JsssssssJ
+JsssssssJ
+JsssssssJ
+JsssssssJ
+JsssssssJ
+JsssssssJ
+JsssssssJ
+JaaaaaaaJ
+"}

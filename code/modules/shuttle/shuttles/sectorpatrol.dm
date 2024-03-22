@@ -12,6 +12,8 @@
 	id = "ovpst_d31"
 	width = 27
 	height = 9
+	airlock_id = "d31-entrance"
+	airlock_area = /area/ovpst/airlock/d31
 
 /obj/docking_port/mobile/emergency_response/l533
 	name = "Shuttle L-533"
@@ -54,20 +56,24 @@
 
 //Elevator placeholders
 
-/obj/docking_port/stationary/emergency_response/pst_elevator_e_d31
+/obj/docking_port/stationary/emergency_response/external/pst_elevator_e_d31
 	name = "Outer Veil PST Elevator Shaft E, Dock 31"
 	dir = NORTH
 	id = "ovpst_el-e_d31"
 	roundstart_template = /datum/map_template/shuttle/pst_elevator_e
 	width = 11
 	height = 11
+	airlock_id = "e-d31"
+	airlock_area = /area/ovpst/airlock/ele_e_d31
 
-/obj/docking_port/stationary/emergency_response/pst_elevator_e_pinnacle
+/obj/docking_port/stationary/emergency_response/external/pst_elevator_e_pinnacle
 	name = "Outer Veil PST Elevator Shaft E, Pinnacle"
 	dir = NORTH
-	id = "ovpst_el-e_d31"
+	id = "ovpst_el-e_pin"
 	width = 11
 	height = 11
+	airlock_id = "e-pin"
+	airlock_area = /area/ovpst/airlock/ele_e_pin
 
 /obj/docking_port/mobile/emergency_response/pst_elevator_e
 	name = "Outer Veil PST Elevator E"
@@ -125,3 +131,29 @@
 
 /area/shuttle/pst_elevator_e
 	name = "Outer Veil PST Elevator E"
+
+/obj/docking_port/stationary/emergency_response/external/pst_elevator_d_drm
+	name = "Outer Veil PST Elevator Shaft D, Dormitories level 37"
+	dir = NORTH
+	id = "ovpst_el-d_drm"
+	width = 9
+	height = 9
+	airlock_id = "e-drm"
+	airlock_area = /area/ovpst/airlock/ele_d_drm
+
+/obj/docking_port/stationary/emergency_response/external/pst_elevator_d_pin
+	name = "Outer Veil PST Elevator Shaft D, Pinnacle"
+	dir = NORTH
+	id = "ovpst_el-d_pin"
+	width = 9
+	height = 9
+	airlock_id = "e-pin"
+	airlock_area = /area/ovpst/airlock/ele_d_pin
+
+
+/datum/map_template/shuttle/pst_elevator_e
+	name = "Outer Veil PST Elevator d"
+	shuttle_id = "uacm_ovpst_ele-d"
+
+/area/shuttle/pst_elevator_e
+	name = "Outer Veil PST Elevator D"

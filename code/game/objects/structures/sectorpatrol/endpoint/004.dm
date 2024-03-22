@@ -1,4 +1,5 @@
 /obj/structure/eventterminal/puzzle04/crypt_doorlock
+	icon = 'icons/obj/structures/machinery/clio_term.dmi'
 	name = "customized computer terminal"
 	desc = "A standard computer terminal without any visible imprints. One of its sides is open and several cables are dangling out. Activated by standing in its proximity. It appears to be in standby mode."
 	desc_lore = "Unlike the typical LNT, customized terminals are exceedingly rare on spaceships, partially due to the cost of the parts needed to maintain them and high chance of Crystalline contamination during Hyperspace jumps and partially because unrestricted software and hardware modifications can be a genuine threat to the lives of everyone on board a ship or installation. Getting found with one of those is typically at least grounds for an immediate and unpleasant CMISRS investigation."
@@ -245,6 +246,7 @@
 				talkas("Be nice and make a good first impression, it will help.")
 				talkas("I hope we can help you.")
 				emoteas("beeps loudly as the doors start to grunt and unseal.")
+				open_doors("crypt_airlock_front")
 				puzzlebox_user = null
 				return
 			terminal_speak("Notice: Passphrases needed. Use the UNLOCK command after all codes have been provided.")
@@ -1446,6 +1448,8 @@
 	return
 
 /obj/structure/searchable/puzzle04/bunk_locker
+	icon = 'icons/obj/structures/sp_searchable.dmi'
+	icon_state = "locker"
 	name = "locker"
 	desc = "A personal locker without any visible locking mechanism. Looks like it has not been used for a while."
 	desc_lore = "Personal locks with no electronic lock are typically simple storage options like closets but adapted to limited space on board ships and stations. Sometimes, some spacers use traditional locks to secure those, but most do not go out of their way to secure these, nor do they store anything that they cannot afford to lose."
@@ -1678,6 +1682,7 @@
 	icon = 'icons/obj/structures/machinery/computer.dmi'
 	item_serial = "PERSONAL LOG VIEWER<br>ADAPTED FOR USE USING LD FRIENDLY MACHINERY BY ALY REED-WILO<br>PRODUCED IN THE OV-PST<hr>MANUFACTURE CODE: COMFORT-ELECTRONICS-LOGVIEWER"
 	icon_state = "laptop_on"
+	plane = GAME_PLANE
 	var/playing_log = FALSE
 
 /obj/structure/eventterminal/puzzle04/log_reader/attack_hand(mob/user as mob)
@@ -1840,6 +1845,8 @@
 	desc_lore = "Unlike the typical LNT, customized terminals are exceedingly rare on spaceships, partially due to the cost of the parts needed to maintain them and high chance of Crystalline contamination during Hyperspace jumps and partially because unrestricted software and hardware modifications can be a genuine threat to the lives of everyone on board a ship or installation. Getting found with one of those is typically at least grounds for an immediate and unpleasant CMISRS investigation."
 	icon_state = "open_off"
 	puzzlebox_id = "crypt_final_log"
+	icon = 'icons/obj/structures/machinery/clio_term.dmi'
+	plane = GAME_PLANE
 
 /obj/structure/eventterminal/puzzle04/final_log/attack_hand(mob/user)
 	to_chat(usr, narrate_body("This terminal is inactive and there does not seem to be any way to turn it on."))

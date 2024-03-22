@@ -188,6 +188,8 @@
 //office chair
 
 /obj/structure/bed/chair/modular/office
+	icon = 'icons/obj/items/sp_crafting.dmi'
+	icon_state = "chair"
 	name = "office chair"
 	desc = "A somewhat comfortable looking seat and backrest attached to a metal frame with four legs. A small wheel is attached to each of the legs."
 	desc_lore = "Chairs on wheels tend to be preferred by spaceship personnel on account of there being a lot of back-and-forth movement even within a single work area. These chairs also handle turbulence better and don’t fall over as much during regular spaceship operation, something that becomes very noticeable for someone that spends weeks on the same station."

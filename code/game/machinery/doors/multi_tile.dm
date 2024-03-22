@@ -570,3 +570,16 @@
 	opacity = FALSE
 	glass = TRUE
 
+// SECTOR PATROL
+
+/obj/structure/machinery/door/airlock/multi_tile/uacm/general
+	name = "standard airlock"
+	desc = "A standard airlock wihtout any specific color coding or anything else that would set it apart from the many others."
+	desc_lore = "The so called 'general access' airlock is probably the most commonly used one in the galaxy, which is also why airlocks with this access level typically are the ones in their factory default colors, like this one."
+	req_access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
+	icon = 'icons/obj/structures/doors/2x1comdoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin
+	req_access = list(ACCESS_SP_ADMIN)

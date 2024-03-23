@@ -15,9 +15,14 @@
 //Crypt terminal
 
 /obj/structure/eventterminal/puzzle04/crypt_doorlock/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -54,8 +59,8 @@
 			puzzlebox_parser_mode = "HOME_INPUT"
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -125,8 +130,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -294,10 +299,10 @@
 
 /obj/item/cargo/book/uppmanual/attack_self(mob/user)
 	..()
-	if(usr.a_intent != INTENT_GRAB)
+	if(usr.a_intent != INTENT_HELP)
 		to_chat(usr, SPAN_WARNING("You have no idea how to do that. If you want to read the book, use HELP intent."))
 		return
-	if(usr.a_intent == INTENT_GRAB)
+	if(usr.a_intent == INTENT_HELP)
 		if(book_searched == 1)
 			to_chat(usr, narrate_body("It looks like multiple pages of this manual were scrambled during a previous search. If you were to make heads and tails of it, you're going to need an hour or two in relative peace to rearrange the pages in sequence again."))
 			return
@@ -318,16 +323,16 @@
 
 /obj/item/cargo/book_handwritten/twejournal/attack_self(mob/user)
 	..()
-	if(usr.a_intent != INTENT_GRAB)
+	if(usr.a_intent != INTENT_HELP)
 		to_chat(usr, SPAN_WARNING("You have no idea how to do that. If you want to read the book, use HELP intent."))
 		return
-	if(usr.a_intent == INTENT_GRAB)
+	if(usr.a_intent == INTENT_HELP)
 		if(book_searched == 1)
 			to_chat(usr, narrate_body("The journal appears to be written in Japanese, but someone seems to have already gone through it and scrambled it pages. There is no time at present to restore it, but it will be available for further examination later."))
 			return
 		if(book_searched == 0)
 			user.visible_message(SPAN_NOTICE("[user] pages through a journal."), SPAN_INFO("You start to loook through the journal..."), SPAN_DANGER("Someone is flipping paper pages."))
-			if(LANGUAGE_JAPANESE in usr.languages)
+			if(/datum/language/generated/japanese in usr.languages)
 				if(do_after(user, SEARCH_TIME_LONG, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
 					user.visible_message(SPAN_NOTICE("[user] finishes looking at the journal."), SPAN_INFO("You finish paging through the journal and take a moment to consider what you found..."), SPAN_DANGER("The paper page flipping noise stops."))
 					to_chat(usr, narrate_body("Your knowledge of Japanese comes in handy as you page through what turns out to be a journal of a Japanese born TWE navy office who has rather colorful things to say about their superiors. You do not have the time to examine this in full right now, but at a glance it seems like this officer was somehow involved with Task Force 14, which may explain the presence of this journal on the PST. You should keep this journal to fully examine it later."))
@@ -493,7 +498,7 @@
 					user.visible_message(SPAN_NOTICE("[user] finishes searching the bookcase."), SPAN_INFO("You finish searching through part of the bookcase and take a moment to think about your findings..."), SPAN_DANGER("The shuffling noise stops."))
 					to_chat(user, narrate_body("Some of the left-over books are carefully collected lists of items available for printing and purchase on various colonies across the Neroid sector. The lists are detailed, and certain items are underlined, but there isn't any time to properly analyze them at the moment. There are more books to look through."))
 					if(searchable_item == TRUE)
-						to_chat(user, narrate_body("One of the books that was left behind unscathed turns out to be a plastic electronic folder. You pick it up and take it with you. There are still several other things to think about here."))
+						to_chat(user, narrate_body("One of the books that was left behind unscathed turns out to be a plastic electronic folder. You pick it up and take it with you."))
 						var/obj/item/cargo/efolder/folder/crypt_red/dud1/folder = new(get_turf(user))
 						user.put_in_active_hand(folder)
 						searchable_item = FALSE

@@ -12,9 +12,14 @@
 	item_serial = "UACM-OVPST-D31-CARINT"
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -57,8 +62,8 @@
 			terminal_speak("-XOXO Aly.")
 			puzzlebox_parser_mode = "HOME_INPUT"
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -153,8 +158,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MANIFEST_INPUT"
 		if (puzzlebox_parser_mode == "MANIFEST_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -288,8 +293,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -386,9 +391,14 @@
 	item_serial = "UACM-OVPST-D31-SCN02LOGTERM"
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -419,8 +429,8 @@
 		puzzlebox_parser_mode = "HOME_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "HOME_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -491,8 +501,8 @@
 		terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 		puzzlebox_parser_mode = "MESSAGE_INPUT"
 	if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -583,8 +593,8 @@
 		puzzlebox_parser_mode = "RECORD_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "RECORD_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -657,9 +667,14 @@
 	item_serial = "UACM-OVPST-D31-LDDIAG"
 
 /obj/structure/eventterminal/puzzle02/ldmainframediag/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -704,8 +719,8 @@
 			puzzlebox_parser_mode = "HOME_INPUT"
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -777,8 +792,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -894,9 +909,14 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -937,8 +957,8 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -1030,9 +1050,14 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -1073,8 +1098,8 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return

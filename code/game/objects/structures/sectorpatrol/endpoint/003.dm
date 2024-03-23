@@ -341,9 +341,14 @@
 				return
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(usr)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -407,8 +412,8 @@
 				puzzlebox_parser_mode = "HOME_INPUT"
 				attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return

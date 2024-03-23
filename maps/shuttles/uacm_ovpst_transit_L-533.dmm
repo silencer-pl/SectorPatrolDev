@@ -95,15 +95,6 @@
 	},
 /turf/template_noop,
 /area/shuttle/ert)
-"ig" = (
-/obj/structure/prop/invuln/dropship_parts/lifeboat{
-	name = "Shuttle L-533";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "26,5"
-	},
-/turf/template_noop,
-/area/template_noop)
 "iP" = (
 /turf/closed/shuttle/lifeboat/transparent,
 /area/shuttle/ert)
@@ -237,7 +228,7 @@
 	icon_state = "24,02"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/ert)
 "su" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
@@ -971,7 +962,7 @@ nn
 WK
 "}
 (23,1,1) = {"
-ig
+gS
 Fd
 kC
 ke

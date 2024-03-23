@@ -9,7 +9,7 @@
 	// soundscape_playlist = list('sound/effects/xylophone1.ogg', 'sound/effects/xylophone2.ogg', 'sound/effects/xylophone3.ogg')
 	ambience_exterior = AMBIENCE_ALMAYER
 	ceiling_muffle = FALSE
-	requires_power = TRUE
+	requires_power = FALSE
 	unlimited_power = TRUE
 
 /area/ovpst/airlock

@@ -466,6 +466,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -481,6 +484,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -496,6 +502,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -511,6 +520,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -521,6 +533,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(4)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -531,6 +546,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(5)
 				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
 				searchable_used = FALSE
@@ -555,6 +573,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -575,6 +596,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -585,6 +609,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -595,6 +622,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -605,6 +635,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(4)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -626,6 +659,9 @@
 						searchable_step += 1
 						searchable_used = FALSE
 						return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(5)
 				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
 				searchable_used = FALSE
@@ -651,6 +687,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -666,6 +705,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -681,6 +723,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -698,6 +743,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -713,6 +761,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(4)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -723,6 +774,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(5)
 				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
 				searchable_used = FALSE
@@ -747,6 +801,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -762,6 +819,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -777,6 +837,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -792,6 +855,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -802,6 +868,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(4)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bookcase."), SPAN_INFO("You search through the bookcase..."), SPAN_DANGER("You hear shuffling and the sound of rustling paper."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -812,6 +881,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(5)
 				to_chat(user, narrate_body("There does not seem to be anything of note left on the bookshelf. If you want to start the search over, use the bookshelf in GRAB mode."))
 				searchable_used = FALSE
@@ -843,6 +915,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -858,6 +933,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -873,6 +951,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -883,6 +964,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -906,6 +990,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -921,6 +1008,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -931,6 +1021,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -946,6 +1039,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -975,6 +1071,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -995,6 +1094,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1005,6 +1107,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1016,6 +1121,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -1039,6 +1147,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1054,6 +1165,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1069,6 +1183,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1080,6 +1197,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -1110,6 +1230,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1130,6 +1253,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1145,6 +1271,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -1169,6 +1298,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1189,6 +1321,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the storage drawers."), SPAN_INFO("You search through the storage drawers..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1204,6 +1339,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("These drawers have been throughly searched. There is nothing else to find here. If you want to start the search over, use the drawers in GRAB mode."))
 				searchable_used = FALSE
@@ -1235,6 +1373,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1248,6 +1389,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1263,6 +1407,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1286,6 +1433,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1304,6 +1454,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1314,6 +1467,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1339,6 +1495,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1359,6 +1518,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1367,6 +1529,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1382,6 +1547,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1405,6 +1573,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1418,6 +1589,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1431,6 +1605,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the bunk chest."), SPAN_INFO("You search through the bunk chest..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1441,6 +1618,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("This chest has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1471,6 +1651,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1489,6 +1672,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1499,6 +1685,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1522,6 +1711,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1535,6 +1727,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1550,6 +1745,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1573,6 +1771,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1586,6 +1787,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1594,6 +1798,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1609,6 +1816,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1632,6 +1842,9 @@
 				update_icon()
 				searchable_used = FALSE
 				return
+			to_chat(usr,SPAN_WARNING("You moved too far away."))
+			searchable_used = FALSE
+			return
 		else
 			searchable_used = FALSE
 			return
@@ -1645,6 +1858,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(1)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1658,6 +1874,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(2)
 				user.visible_message(SPAN_NOTICE("[user] starts to search the locker."), SPAN_INFO("You search through the locker..."), SPAN_DANGER("You hear shuffling and the rustle of small objects."))
 				if(do_after(user, SEARCH_TIME_NORMAL, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_GENERIC))
@@ -1668,6 +1887,9 @@
 					searchable_step += 1
 					searchable_used = FALSE
 					return
+				to_chat(usr,SPAN_WARNING("You moved too far away."))
+				searchable_used = FALSE
+				return
 			if(3)
 				to_chat(user, narrate_body("This locker has been throughly searched. There is nothing else to find here. If you want to start the search over, use it in GRAB mode."))
 				searchable_used = FALSE
@@ -1700,7 +1922,7 @@
 		to_chat(usr, narrate_body("The reader does not react. It seems to be already playing something back."))
 		return
 	if(istype(W, /obj/item/cargo/efolder/folder_pid))
-		var/obj/item/cargo/efolder/folder_pid/F
+		var/obj/item/cargo/efolder/folder_pid/F = W
 		switch(F.efolder_folder_id)
 			if("RED-33895-027-8032")
 				playing_log = TRUE

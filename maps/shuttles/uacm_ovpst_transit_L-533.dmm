@@ -149,7 +149,7 @@
 /area/shuttle/ert)
 "lS" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/lifeboat{
-	id = "starboard_door";
+	id = "port_door";
 	throw_dir = 2
 	},
 /turf/open/shuttle/lifeboat,
@@ -285,7 +285,7 @@
 /area/shuttle/ert)
 "uX" = (
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/lifeboat{
-	id = "Boat2-D2";
+	id = "starboard_door";
 	throw_dir = 1
 	},
 /turf/open/shuttle/lifeboat{

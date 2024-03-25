@@ -583,3 +583,25 @@
 
 /obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin
 	req_access = list(ACCESS_SP_ADMIN)
+
+/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_inner
+	name = "elevator door"
+	desc = "A heavy looking metal door."
+	desc_lore = "Since time immemorial, people have taken great effort not to fall out of elevators in transit. These doors are one such method. Simple, yet effective. Spaceship freight elevators have not changed the game - people still hate falling down elevator shafts."
+	icon = 'icons/obj/structures/doors/4x1_elevator.dmi'
+	icon_state = "door_closed"
+	width = 4
+	openspeed = 22
+	opacity = TRUE
+	glass = FALSE
+
+/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_outer
+	name = "elevator door"
+	desc = "A heavy looking metal door with an equally heavy looking glass panel that lets you peek inside."
+	desc_lore = "Since time immemorial, people have taken great effort not to fall out of elevators in transit. These doors are one such method. Simple, yet effective. Spaceship freight elevators have not changed the game - people still hate falling down elevator shafts."
+	icon = 'icons/obj/structures/doors/4x1_elevator_access.dmi'
+	icon_state = "door_closed"
+	width = 4
+	openspeed = 22
+	opacity = FALSE
+	glass = TRUE

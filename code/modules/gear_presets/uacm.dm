@@ -74,3 +74,29 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/uacm/cmisrs(new_human), WEAR_HEAD)
 	new_human.equip_to_slot_or_del(new back_item(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/taperecorder(new_human), WEAR_L_STORE)
+
+/datum/equipment_preset/uacm/psteng
+	name = "UACM PST Station Engineer"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	idtype = /obj/item/card/id/dogtag
+	assignment = JOB_UACM_PSTENG
+	rank = JOB_UACM_PSTENG
+	paygrade = "NO3"
+	role_comm_title = "PST-ENG"
+	skills = /datum/skills/CE
+	flags = EQUIPMENT_PRESET_EXTRA
+	languages = ALL_HUMAN_LANGUAGES
+
+	access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT, ACCESS_SP_OVPST_SECURITY_DEFAULT, ACCESS_SP_OVPST_ENGINEERING_DEFAULT, ACCESS_SP_ADMIN)
+
+	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
+	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
+
+/datum/equipment_preset/uacm/psteng/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/uacm/jumpsuit_engie(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/beret/uacm/engie(new_human), WEAR_HEAD)

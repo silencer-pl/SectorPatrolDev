@@ -741,8 +741,9 @@
 				terminal_speak("In each chamber, first use the processor's terminal and run command 'pom.sync global_override' followed by a space and the serial number of THIS very terminal, which you should probably note down somewhere.")
 				terminal_speak("This should let you access the calibration port, or rather the hatch covering the port which you will need a screwdriver to open.")
 				terminal_speak("Once you can access the port, plug in your multitool and send a standard testing phrase to the terminal.")
+				terminal_speak("When the multitool is done and beeps, you need to remember to close the port or the terminal will not know you are done.")
 				terminal_speak("Check the terminals output. What you should see is digits going from zero to nine, followed by the 26 basic alphabet letters, lowercase then uppercase.")
-				terminal_speak("You see ANYTHING else, close the port, use the processor's terminal and use command 'pom.calibrate' and again, the serial number of THIS terminal.")
+				terminal_speak("You see ANYTHING else, use the processor's terminal and use command 'pom.calibrate' and again, the serial number of THIS terminal.")
 				terminal_speak("Keep in mind that if you do it on the wrong terminal, it's going to be a while until you can use the command again, so don't just try and guess it. Or do, see if you're lucky. ")
 				terminal_speak("- XOXO, Aly.")
 				attack_hand(user)
@@ -889,8 +890,10 @@
 	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
 	puzzlebox_id = "LD_Mainframe"
-	bound_x = 32
+	bound_x = 64
 	bound_y = 32
+	density = TRUE
+	opacity = TRUE
 	var/puzzlebox_panel_open = FALSE
 	var/puzzlebox_panel_locked = TRUE
 	var/puzzlebox_panel_phrasepased = FALSE

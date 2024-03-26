@@ -119,6 +119,7 @@
 "qg" = (/turf/closed/wall/almayer/outer,/area/space)
 "qn" = (/obj/structure/machinery/light/small,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "qK" = (/turf/open/floor/almayer{icon_state = "purple"; dir = 1},/area/ovpst)
+"qL" = (/obj/structure/plasticflaps,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "qM" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "qP" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general/admin{icon = 'icons/obj/structures/doors/engidoor2.dmi'; dir = 2; locked = TRUE; icon_state = "door_closed"; id = "scn1_exit"; id_tag = "scn1_exit"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "qR" = (/obj/structure/machinery/door/poddoor/railing{dir = 8; id = "supply_elevator_railing"},/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -218,7 +219,7 @@
 "Ey" = (/obj/structure/eventterminal/puzzle05/pythia/right,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "EB" = (/turf/open/floor/almayer{icon_state = "blue2silver1"},/area/ovpst)
 "EE" = (/obj/effect/decal/info_tag/pst/eng{desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- ENG -</big></b><br>Dock 31 Cargo Processing Subsystems Diagnostics and Maintenance Room"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance. G01 indicates that this area is open to anyone who is quartered on the station. Engineering doors with general access usually suggest that general maintenance equipment is available somewhere behind this door. The room past this door should have everything one needs to properly diagnose and possibly fix issues with the Dock 31 cargo processing system."; pixel_y = 16},/turf/open/floor/almayer{dir = 4; icon_state = "orangecorner"},/area/ovpst)
-"EF" = (/obj/structure/eventterminal/puzzle02/ldmainframe_master/correct{puzzlebox_id = "LD_Mainframe_1"; item_serial = "UACM-OVPST-D31-LDCPU-01"},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
+"EF" = (/obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect{puzzlebox_id = "LD_Mainframe_1"; item_serial = "UACM-OVPST-D31-LDCPU-01"},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "EL" = (/obj/structure/surface/modular/table,/turf/open/floor/almayer,/area/ovpst)
 "EM" = (/obj/structure/machinery/door/airlock/multi_tile/almayer/marine/delta{dir = 8},/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst)
 "ER" = (/obj/structure/bed/sofa/south/grey,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -405,7 +406,7 @@ qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOGJUvAjAjAjAjAjAjAjAjAjAjAjAjAjAjjLVjNPAjAjAj
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSrPuDuDUYUYuDuDuDuDTSTSoQTSoQoQoQTSoQoQoQTSFzpOpOLBLBXnLBXnblyGLBpOQkTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSpeuvsDsDuvlxTSIATSsDlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhsDlhlhpOpOpOpOpOpOkcgoBupOpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSTSjsjsjsjslhjsjsjsjsTSTSIAIAIAIAIAIAIAIAIATSpOpOpOLBLBXnLBLBpOLBLBpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSuvuvsDsDuvuvTSIATSsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDlhlhpOpOpOpOpOpOGJBvOtpOpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOpOpOPOhZblblPOblblblpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSOKOKmjsDOKOKTSIATSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSpOpOpOpOpOpOBFlhlhemememTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOXnLBLBLBpOpOXnLBXnblUBblTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSuvuvsDsDuvuvTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOogpOpOFeogFeogpOpOpOpOTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOXnLBLBLBpOpOXnLBXnblUBblTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSuvuvsDsDuvuvTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOogpOpOFeogFeogpOqLqLpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOLBLBLBLBPOblXnblPOLBaMpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIATSTSTSTSTSTSTSTSTSTSTSuvuvsDsDuvuvTSIATSTSTSTSTSTSTSTSTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOgtgtogFeZVpOhEpOlhlhpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSfvPOblHapOpOpOblpOPOhZHaCBTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIATSllZEiolhllDWiolhlhlhlhlhjgCOlhlhTSTSTSioioOslhioiomeTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOPzGNpOFeZVpOgtpOlhlhpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIATSioioiolhioioiolhlhuvuvWxCOCODPuvuvlhlhioioISlhioioyWTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSWAogogogogogogogoglhlhpOTSIAIAIAIAqg

@@ -32,11 +32,39 @@
 	name = "repressed echo"
 	langchat_color = "#b17e0f"
 
+/obj/structure/eventterminal/puzzle05/pythia
+
+	name = "modified LD mainframe"
+	desc = "A Liquid Data mainframe with clear signs of tampering and customization."
+	desc_lore = "Due to the unpredictability of Liquid Data, modifying or tampering with already working LD devices is typically discouraged and official research into the matter has been in a virtual standstill. Regardless, someone seems to have been not only able to open and modify this console, the did so without covering everything around it with toxic crystalline which is the typical outcome of such endeavors."
+	icon = 'icons/obj/structures/machinery/pythia.dmi'
+	icon_state = "center_off"
+	puzzlebox_id = "pythia_center"
+	density = TRUE
+	opacity = FALSE
+	plane = FLOOR_PLANE
+	bound_x = 32
+	bound_y = 32
+
+/obj/structure/eventterminal/puzzle05/pythia/left
+	icon_state = "left_off"
+	puzzlebox_id = "pythia_left"
+
+/obj/structure/eventterminal/puzzle05/pythia/right
+	icon_state = "right_off"
+	puzzlebox_id = "pythia_right"
+
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice
+	icon = 'icons/obj/structures/machinery/tos.dmi'
+	icon_state = "tos"
 	name = "synthetic frame"
 	desc = "A female looking synthetic frame in what seems to be a white toga, sitting motionless on a chair. You see several wires protruding from its arms linked to the computers around it. Black crystals form out of its eyes and run down its cheeks. It looks offline. A purple upsilon letter is tattooed on the frame's forehead."
 	desc_lore = "While the frame itself is an unknown, the purple upsilon logo is reminiscent of the Upsilon Research Center, a Weyland-Yutani group specializing in artificial intelligence research. Its hard to recall much about them beyond that fact that supposedly they vanished from the Neroid Sector right as Weyland-Yutani was starting their Mercy initiative."
 	langchat_color = "#b10f5a"
+	bound_x = 160
+	opacity = FALSE
+	density = TRUE
+	plane = GAME_PLANE
 	var/pythia_talk
 
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythiadelay()

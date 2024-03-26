@@ -69,7 +69,7 @@
 "kp" = (/turf/open/floor/almayer{dir = 9; icon_state = "emerald"},/area/ovpst)
 "kt" = (/turf/open/floor/almayer{dir = 4; icon_state = "silver"},/area/ovpst)
 "ku" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/personaldoor.dmi'; dir = 1},/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
-"kw" = (/obj/structure/machinery/light/marker/admin/pythia/jubilant,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
+"kw" = (/obj/structure/machinery/light/marker/admin/pythia/jubilant,/obj/structure/eventterminal/puzzle05/testament_of_sacrifice{pixel_y = 27; pixel_x = 1},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "kx" = (/obj/structure/searchable/puzzle04/bookcase/full4,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "kC" = (/turf/open/floor/almayer{icon_state = "black"; dir = 1},/area/ovpst)
 "kE" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/securedoor.dmi'; dir = 1},/turf/open/floor/almayer,/area/ovpst)
@@ -214,6 +214,8 @@
 "DW" = (/obj/structure/searchable/puzzle04/bunk_chest/full2,/turf/open/floor/almayer,/area/ovpst)
 "Eb" = (/obj/effect/decal/info_tag/pst/drm{dir = 4; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- DRM -</big><br> Dorms, Deck 37, Sector B"},/turf/open/floor/almayer{dir = 4; icon_state = "bluecorner"},/area/ovpst)
 "Ep" = (/obj/structure/surface/modular/table/gray{icon_state = "table_metal_black"},/obj/structure/eventterminal/puzzle03/historyterm{dir = 4},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
+"Et" = (/obj/structure/eventterminal/puzzle05/pythia,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
+"Ey" = (/obj/structure/eventterminal/puzzle05/pythia/right,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "EB" = (/turf/open/floor/almayer{icon_state = "blue2silver1"},/area/ovpst)
 "EE" = (/obj/effect/decal/info_tag/pst/eng{desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- ENG -</big></b><br>Dock 31 Cargo Processing Subsystems Diagnostics and Maintenance Room"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance. G01 indicates that this area is open to anyone who is quartered on the station. Engineering doors with general access usually suggest that general maintenance equipment is available somewhere behind this door. The room past this door should have everything one needs to properly diagnose and possibly fix issues with the Dock 31 cargo processing system."; pixel_y = 16},/turf/open/floor/almayer{dir = 4; icon_state = "orangecorner"},/area/ovpst)
 "EF" = (/obj/structure/eventterminal/puzzle02/ldmainframe_master/correct{puzzlebox_id = "LD_Mainframe_1"; item_serial = "UACM-OVPST-D31-LDCPU-01"},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
@@ -239,7 +241,6 @@
 "Hp" = (/turf/open/floor/almayer{dir = 1; icon_state = "emerald"},/area/ovpst)
 "Hs" = (/turf/open/floor/almayer/uscm/directional{dir = 6; icon_state = "logo_directional1"},/area/ovpst)
 "HC" = (/obj/structure/machinery/door/poddoor/railing{id = "supply_elevator_railing"},/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
-"HJ" = (/obj/structure/eventterminal/puzzle05/testament_of_sacrifice,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "Il" = (/obj/structure/foamed_metal,/obj/structure/foamed_metal,/turf/open/floor/plating,/area/ovpst)
 "Is" = (/obj/structure/bed/chair/comfy/black,/turf/open/floor/almayer{dir = 4; icon_state = "silvercorner"},/area/ovpst)
 "Iz" = (/obj/structure/machinery/light/marker/admin/pythia/main{pixel_x = -8},/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
@@ -270,6 +271,7 @@
 "Mt" = (/turf/open/floor/almayer{icon_state = "orangecorner"; dir = 8},/area/ovpst)
 "ME" = (/obj/effect/decal/info_tag/pst/eng{pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big><br><b><big>- ENG -</big></b><br>G01 -</big></b><br>Dock 31 Security Sub Processors Diagnostics and Maintenance Room"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. G01 indicates that this area is open to anyone who is quartered on the station. Engineering doors with general access usually suggest that general maintenance equipment is available somewhere behind this door. According to the label, the room behind this door should contain everything you need to diagnose and begin servicing issues with the security scanners."},/turf/open/floor/almayer{dir = 1; icon_state = "orangecorner"},/area/ovpst)
 "MG" = (/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_d_pin)
+"MH" = (/obj/structure/eventterminal/puzzle05/pythia/left,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "MJ" = (/obj/structure/bed/sofa/south/grey/right,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "MY" = (/obj/structure/searchable/puzzle04/drawers_misc/full2,/turf/open/floor/almayer,/area/ovpst)
 "Nh" = (/turf/open/floor/almayer{icon_state = "blackcorner"; dir = 4},/area/ovpst)
@@ -315,7 +317,6 @@
 "Tg" = (/turf/open/floor/almayer{dir = 4; icon_state = "orange"},/area/ovpst)
 "Tm" = (/obj/structure/machinery/door/poddoor/almayer/locked,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "TA" = (/obj/effect/decal/info_tag/pst/eng{dir = 1; pixel_y = 0; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- ENG -</big><br>Dorms Deck 37, Sector A, Maintenance Shaft"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance. These doors lead to maintenance shafts used to service issues with the dorms should ones arrive. Some of these passages may have other exits, but since no centralized map system exists for the PST, finding those is a matter of luck. "},/turf/open/floor/almayer{icon_state = "orange"},/area/ovpst)
-"TB" = (/obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect{item_serial = "UACM-OVPST-D31-LDCPU-03"; puzzlebox_id = "LD_Mainframe_3"},/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "TK" = (/obj/structure/foamed_metal,/turf/open/floor/plating,/area/ovpst)
 "TQ" = (/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/ovpst)
 "TS" = (/turf/closed/wall/almayer/outer,/area/ovpst)
@@ -398,8 +399,8 @@ qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOygTQkppOpOpOrIERMJJMrIERMJJMrIERLAlhBRGMGMGM
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOTQogogogogogogogogogogogogogkVmZpOLBpOoCpOpOlhpOpOlhZhZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhCSlhlhNshdhdhdhdPePehdhdhdhdEbTSTSIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOWFogPzSINISoLBvJaZwzpOlhpOpOlhZhZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhEMlhlhlhlhlhlhlhlhlhlhcOpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTVTVTVTVTVTVTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOBiHpkpqUFelhitpOpOpOpOHaPOXnvapOpOpOvJTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSmRTVTBTVTBuvTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhiopOpOpOXEuDuDDFuDBuioioTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOPzogZVpOPzogogogogogogEBaZaZaZaZrRREIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSkwuvHJIzuvwpTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhlhlhlhlhlhUPpOlhIKlhlhlhTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOBiHpkpqUFelhitpOpOpOpOHaPOXnvapOpOpOvJTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSMHTVEtTVEyuvTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhiopOpOpOXEuDuDDFuDBuioioTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOPzogZVpOPzogogogogogogEBaZaZaZaZrRREIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSkwuvTVIzuvwpTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhlhlhlhlhlhUPpOlhIKlhlhlhTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOGJUvAjAjAjAjAjAjAjAjAjAjAjAjAjAjjLVjNPAjAjAjAjAjAjzulFlFlFlFXMQGIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSsDsDsDsDsDsDTSIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhpOpOpOpOUmAjdPemAjFzpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSrPuDuDUYUYuDuDuDuDTSTSoQTSoQoQoQTSoQoQoQTSFzpOpOLBLBXnLBXnblyGLBpOQkTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSpeuvsDsDuvlxTSIATSsDlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhsDlhlhpOpOpOpOpOpOkcgoBupOpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSTSjsjsjsjslhjsjsjsjsTSTSIAIAIAIAIAIAIAIAIATSpOpOpOLBLBXnLBLBpOLBLBpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSuvuvsDsDuvuvTSIATSsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDsDlhlhpOpOpOpOpOpOGJBvOtpOpOpOTSIAIAIAIAqg

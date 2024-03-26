@@ -889,6 +889,8 @@
 	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
 	puzzlebox_id = "LD_Mainframe"
+	bound_x = 32
+	bound_y = 32
 	var/puzzlebox_panel_open = FALSE
 	var/puzzlebox_panel_locked = TRUE
 	var/puzzlebox_panel_phrasepased = FALSE
@@ -898,7 +900,7 @@
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/proc/lockout()
 	puzzlebox_lockout = TRUE
-	sleep(5 MINUTES)
+	sleep(2 MINUTES)
 	puzzlebox_lockout = FALSE
 	if(!puzzlebox_id) puzzlebox_id = "I forgot to set an ID. Oops."
 	log_game("[puzzlebox_id] has lifted its lockdown!")
@@ -1125,7 +1127,7 @@
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
 				terminal_speak("Deploying recalibration buffer.", 50)
-				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 5 minutes.")
+				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 2 minutes.")
 				log_game("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				message_admins("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				for (var/obj/structure/eventterminal/puzzle02/ldmainframe_master/T in world)

@@ -152,4 +152,13 @@
 		puzzlebox_user = null
 		return
 
-
+/obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythia_terminal_icons(str)
+	for(var/obj/structure/eventterminal/puzzle05/pythia/center in world)
+		center.icon_state = "[str]"
+		center.update_icon()
+	for(var/obj/structure/eventterminal/puzzle05/pythia/left/left in world)
+		left.icon_state = "[str]"
+		left.update_icon()
+	for(var/obj/structure/eventterminal/puzzle05/pythia/right/right in world)
+		right.icon_state = "[str]"
+		right.update_icon()

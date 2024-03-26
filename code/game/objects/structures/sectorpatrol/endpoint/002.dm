@@ -12,9 +12,14 @@
 	item_serial = "UACM-OVPST-D31-CARINT"
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -57,8 +62,8 @@
 			terminal_speak("-XOXO Aly.")
 			puzzlebox_parser_mode = "HOME_INPUT"
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -153,8 +158,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MANIFEST_INPUT"
 		if (puzzlebox_parser_mode == "MANIFEST_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -288,8 +293,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -386,9 +391,14 @@
 	item_serial = "UACM-OVPST-D31-SCN02LOGTERM"
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -419,8 +429,8 @@
 		puzzlebox_parser_mode = "HOME_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "HOME_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -491,8 +501,8 @@
 		terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 		puzzlebox_parser_mode = "MESSAGE_INPUT"
 	if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -583,8 +593,8 @@
 		puzzlebox_parser_mode = "RECORD_INPUT"
 		attack_hand(user)
 	if (puzzlebox_parser_mode == "RECORD_INPUT")
-		var/user_loc_current = get_turf(user)
-		if (user_loc_start != user_loc_current)
+		user_loc_current = get_turf(user)
+		if (puzzlebox_user_loc != user_loc_current)
 			to_chat(user, narrate_body("You moved away from the console!"))
 			puzzlebox_user = null
 			return
@@ -657,9 +667,14 @@
 	item_serial = "UACM-OVPST-D31-LDDIAG"
 
 /obj/structure/eventterminal/puzzle02/ldmainframediag/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -704,8 +719,8 @@
 			puzzlebox_parser_mode = "HOME_INPUT"
 			attack_hand(user)
 		if (puzzlebox_parser_mode == "HOME_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -726,8 +741,9 @@
 				terminal_speak("In each chamber, first use the processor's terminal and run command 'pom.sync global_override' followed by a space and the serial number of THIS very terminal, which you should probably note down somewhere.")
 				terminal_speak("This should let you access the calibration port, or rather the hatch covering the port which you will need a screwdriver to open.")
 				terminal_speak("Once you can access the port, plug in your multitool and send a standard testing phrase to the terminal.")
+				terminal_speak("When the multitool is done and beeps, you need to remember to close the port or the terminal will not know you are done.")
 				terminal_speak("Check the terminals output. What you should see is digits going from zero to nine, followed by the 26 basic alphabet letters, lowercase then uppercase.")
-				terminal_speak("You see ANYTHING else, close the port, use the processor's terminal and use command 'pom.calibrate' and again, the serial number of THIS terminal.")
+				terminal_speak("You see ANYTHING else, use the processor's terminal and use command 'pom.calibrate' and again, the serial number of THIS terminal.")
 				terminal_speak("Keep in mind that if you do it on the wrong terminal, it's going to be a while until you can use the command again, so don't just try and guess it. Or do, see if you're lucky. ")
 				terminal_speak("- XOXO, Aly.")
 				attack_hand(user)
@@ -777,8 +793,8 @@
 			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
 			puzzlebox_parser_mode = "MESSAGE_INPUT"
 		if (puzzlebox_parser_mode == "MESSAGE_INPUT")
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -874,6 +890,10 @@
 	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
 	puzzlebox_id = "LD_Mainframe"
+	bound_x = 64
+	bound_y = 32
+	density = TRUE
+	opacity = TRUE
 	var/puzzlebox_panel_open = FALSE
 	var/puzzlebox_panel_locked = TRUE
 	var/puzzlebox_panel_phrasepased = FALSE
@@ -883,7 +903,7 @@
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/proc/lockout()
 	puzzlebox_lockout = TRUE
-	sleep(5 MINUTES)
+	sleep(2 MINUTES)
 	puzzlebox_lockout = FALSE
 	if(!puzzlebox_id) puzzlebox_id = "I forgot to set an ID. Oops."
 	log_game("[puzzlebox_id] has lifted its lockdown!")
@@ -894,9 +914,14 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -937,8 +962,8 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -1030,9 +1055,14 @@
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attack_hand(mob/user as mob)
-	var/user_loc_start = get_turf(user)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(user)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		return
 	if(puzzlebox_user != usr.real_name)
 		for (var/mob/living/carbon/human/h in range(2, src))
 			if (h.real_name == puzzlebox_user)
@@ -1073,8 +1103,8 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
-			var/user_loc_current = get_turf(user)
-			if (user_loc_start != user_loc_current)
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
 				to_chat(user, narrate_body("You moved away from the console!"))
 				puzzlebox_user = null
 				return
@@ -1100,7 +1130,7 @@
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
 				terminal_speak("Deploying recalibration buffer.", 50)
-				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 5 minutes.")
+				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 2 minutes.")
 				log_game("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				message_admins("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				for (var/obj/structure/eventterminal/puzzle02/ldmainframe_master/T in world)

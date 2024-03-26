@@ -1,7 +1,10 @@
 /obj/structure/eventterminal/admin_event_terminal
+	name = "local network terminal"
+	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. Activated by standing in its proximity. It appears to be in standby mode."
+	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
-	plane = GAME_PLANE //These likely can be split since they arent complicated
-//	req_access = list(ACCESS_SP_ADMIN)
+	plane = GAME_PLANE
+	req_access = list(ACCESS_SP_ADMIN)
 
 /obj/structure/eventterminal/admin_event_terminal/attack_hand(mob/user as mob)
 

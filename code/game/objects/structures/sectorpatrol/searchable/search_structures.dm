@@ -3,6 +3,7 @@
 	desc = "Hello there! If you are in game then soemome f... Uh... You know."
 	icon = 'icons/obj/structures/sp_searchable.dmi'
 	icon_state = "default"
+	density = TRUE
 	var/searchable_step = 0
 	var/searchable_used = FALSE
 	var/searchable_item = TRUE

@@ -13,7 +13,7 @@
 	var/puzzlebox_pythia_sign = "0"// For determining if this terminal had a Pythia episode
 	var/puzzlebox_id //for doors and lights etc
 	var/puzzlebox_user //Determines who can type if multiple users
-
+	var/puzzlebox_user_loc // Moving away check
 //Cutscene tools - speaking, doors, lights, etc
 //Emote and say moved to general objects and device defs
 

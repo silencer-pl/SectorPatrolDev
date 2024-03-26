@@ -1,34 +1,33 @@
-"a" = (/obj/structure/catwalk,/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"b" = (/obj/effect/decal/cargo_stripes{icon_state = "ne"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"e" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"h" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"j" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"r" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"v" = (/obj/structure/catwalk,/obj/structure/machinery/door/poddoor/almayer{id = "south_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"w" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"x" = (/obj/structure/catwalk,/obj/structure/bed/chair/dropship/passenger{dir = 1},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"y" = (/turf/closed/wall/almayer/outer,/area/shuttle/pst_elevator_e)
-"C" = (/obj/structure/machinery/computer/shuttle/ert/big{dir = 1; icon_state = "retro"},/obj/structure/catwalk,/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"E" = (/obj/structure/catwalk,/obj/structure/machinery/door/poddoor/almayer{dir = 4; id = "west_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"G" = (/obj/structure/catwalk,/obj/structure/machinery/door/poddoor/almayer{id = "east_door"; dir = 8},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"J" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"K" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"L" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"Q" = (/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"V" = (/obj/structure/bed/chair/dropship/passenger{dir = 1},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
-"W" = (/obj/structure/catwalk,/obj/structure/machinery/door/poddoor/almayer{id = "north_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/pst_elevator_e)
-"Z" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/pst_elevator_e)
+"a" = (/obj/structure/catwalk,/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
+"b" = (/obj/effect/decal/cargo_stripes{icon_state = "ne"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"e" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"h" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"j" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"r" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"v" = (/obj/structure/catwalk,/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_inner{id = "port_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
+"w" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"y" = (/turf/closed/wall/almayer/outer,/area/shuttle/ert)
+"C" = (/obj/structure/catwalk,/obj/structure/machinery/computer/shuttle/ert/big{dir = 8; icon_state = "retro"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
+"E" = (/obj/structure/catwalk,/obj/structure/bed/chair/dropship/passenger{dir = 4},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
+"J" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"K" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"L" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"Q" = (/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"V" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"W" = (/obj/structure/catwalk,/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_inner{id = "starboard_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
+"Y" = (/obj/docking_port/mobile/emergency_response/pst_elevator_e,/turf/closed/wall/almayer/outer,/area/shuttle/ert)
+"Z" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
 
 (1,1,1) = {"
-yWWWWWWWWWy
-EJKKbaJKKbG
-ErZZwarZZwG
-ErZZwarZZwG
-ELeejaLeejG
-EaaaaCaaaaG
-EhhhhxhhhhG
-EQQQQaQQQQG
-EQQQQaQQQQG
-EVVVVaVVVVG
-yvvvvvvvvvy
+yWaaayWaaay
+yVQJKKKbQhy
+yVQrZZZwQhy
+yVQrZZZwQhy
+yVQLeeejQhy
+yaaaaaaaECy
+yVQJKKKbQhy
+yVQrZZZwQhy
+yVQrZZZwQhy
+yVQLeeejQhy
+Yvaaayvaaay
 "}

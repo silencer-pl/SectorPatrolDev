@@ -13,7 +13,7 @@
 	var/voteweight = 1
 
 	// Config actually from the JSON - default values
-	var/map_name = "LV624"
+	var/map_name = "The Outer Veil PST"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
 

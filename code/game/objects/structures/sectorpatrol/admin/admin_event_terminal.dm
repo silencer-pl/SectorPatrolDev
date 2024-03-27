@@ -78,6 +78,8 @@
 			return
 		if (puzzlebox_admin_option == "Begin final stage")
 			puzzlebox_global_status = 9
+			to_chat(world, narrate_head("The loudspeaker system on the dorm level and inside the crypt comes alive and announces with a male, robotic voice:"))
+			to_chat(world, narrate_body("Security Scan Cleared. Unsealing Crypt."))
 			for (var/obj/structure/eventterminal/puzzle04/final_log/T in world)
 				INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle04/final_log, play_final_log))
 			return

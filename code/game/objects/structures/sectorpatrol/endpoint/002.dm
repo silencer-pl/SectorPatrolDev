@@ -390,7 +390,7 @@
 	puzzlebox_id = "scn2obs"
 	item_serial = "UACM-OVPST-D31-SCN02LOGTERM"
 
-/obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
+/obj/structure/eventterminal/puzzle02/scanerterm/attack_hand(mob/user as mob)
 	if(!puzzlebox_user)
 		puzzlebox_user = usr.real_name
 		puzzlebox_user_loc = get_turf(usr)
@@ -890,10 +890,10 @@
 	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
 	puzzlebox_id = "LD_Mainframe"
-	bound_x = 64
-	bound_y = 32
 	density = TRUE
 	opacity = TRUE
+	bound_height = 64
+	bound_width = 64
 	var/puzzlebox_panel_open = FALSE
 	var/puzzlebox_panel_locked = TRUE
 	var/puzzlebox_panel_phrasepased = FALSE

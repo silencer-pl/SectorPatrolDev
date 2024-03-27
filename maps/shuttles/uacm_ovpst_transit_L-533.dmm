@@ -51,10 +51,6 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nws"
 	},
-/obj/structure/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "ex" = (
@@ -149,7 +145,9 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nes"
 	},
-/obj/structure/machinery/light,
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "lS" = (
@@ -229,7 +227,9 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nws"
 	},
-/obj/structure/machinery/light,
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "rM" = (
@@ -322,7 +322,9 @@
 	buckling_x = -5
 	},
 /obj/effect/landmark/start/basepc,
-/obj/structure/machinery/light,
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "wA" = (
@@ -478,6 +480,9 @@
 	pixel_x = -3;
 	pixel_y = 9
 	},
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "GA" = (
@@ -505,9 +510,8 @@
 	buckling_y = 16
 	},
 /obj/effect/landmark/start/basepc,
-/obj/structure/machinery/light{
-	dir = 1;
-	pixel_y = 22
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -530,10 +534,6 @@
 	icon_state = "23,6ru"
 	},
 /area/shuttle/ert)
-"Lf" = (
-/obj/structure/machinery/light,
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
 "Lk" = (
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair{
 	dir = 4;
@@ -554,26 +554,18 @@
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "LJ" = (
-/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
-	dir = 4;
-	pixel_y = 15;
-	pixel_x = -3;
-	buckling_x = -5;
-	buckling_y = 16
-	},
-/obj/effect/landmark/start/basepc,
-/obj/structure/machinery/light{
-	dir = 1;
-	pixel_y = 21
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "LV" = (
-/obj/structure/machinery/light{
-	dir = 1;
-	pixel_y = 20
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
 	},
-/turf/open/shuttle/lifeboat,
+/turf/open/shuttle/escapepod{
+	icon_state = "floor8"
+	},
 /area/shuttle/ert)
 "Nj" = (
 /turf/closed/shuttle/lifeboat{
@@ -597,6 +589,9 @@
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair{
 	dir = 4;
 	name = "pilot seat"
+	},
+/obj/structure/machinery/light/marker/admin{
+	brightness = 12
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -779,10 +774,6 @@
 	pixel_y = 6;
 	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIDGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
 	},
-/obj/structure/machinery/light{
-	dir = 1;
-	pixel_y = 20
-	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 
@@ -857,7 +848,7 @@ ce
 Io
 OO
 cA
-VZ
+LV
 aq
 OO
 Io
@@ -888,7 +879,7 @@ SW
 (10,1,1) = {"
 ce
 ep
-OO
+LJ
 OO
 VZ
 OO
@@ -932,11 +923,11 @@ lS
 (14,1,1) = {"
 Qj
 SA
-OO
+LJ
 OO
 VZ
 OO
-OO
+LJ
 AF
 OO
 "}
@@ -1000,7 +991,7 @@ Bf
 Lo
 Lo
 BA
-VZ
+LV
 nn
 Lk
 Lk
@@ -1019,7 +1010,7 @@ iP
 "}
 (22,1,1) = {"
 IG
-LJ
+HB
 Lo
 BA
 VZ
@@ -1054,9 +1045,9 @@ wA
 wA
 wA
 ce
-LV
+OO
 NE
-Lf
+OO
 An
 wA
 wA

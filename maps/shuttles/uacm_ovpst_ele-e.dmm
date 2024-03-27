@@ -3,6 +3,8 @@
 "e" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
 "h" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
 "j" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"l" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/structure/machinery/light{dir = 4},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
+"o" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/structure/machinery/light{dir = 8},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
 "r" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
 "v" = (/obj/structure/catwalk,/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_inner{id = "port_door"},/turf/open/floor/almayer{icon_state = "outerhull"},/area/shuttle/ert)
 "w" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/shuttle/ert)
@@ -21,13 +23,13 @@
 (1,1,1) = {"
 yWaaayWaaay
 yVQJKKKbQhy
-yVQrZZZwQhy
+yoQrZZZwQly
 yVQrZZZwQhy
 yVQLeeejQhy
 yaaaaaaaECy
 yVQJKKKbQhy
 yVQrZZZwQhy
-yVQrZZZwQhy
+yoQrZZZwQly
 yVQLeeejQhy
 Yvaaayvaaay
 "}

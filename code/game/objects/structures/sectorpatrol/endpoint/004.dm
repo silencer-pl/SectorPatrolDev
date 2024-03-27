@@ -102,12 +102,12 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
-				terminal_speak("Switching to the message buffer, please standby!", 50)
+				terminal_speak("Switching to the message buffer, please standby!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
 				attack_hand(user)
 			if (puzzlebox_parser_input == "UNLOCK" || puzzlebox_parser_input == "unlock")
-				terminal_speak("Going to unlock mode. Remember, no capital letters!", 50)
+				terminal_speak("Going to unlock mode. Remember, no capital letters!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "UNLOCK"
 				attack_hand(user)
@@ -163,7 +163,7 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-				terminal_speak("Taking you back HOME!", 50)
+				terminal_speak("Taking you back HOME!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)

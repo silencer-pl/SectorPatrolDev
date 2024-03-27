@@ -106,12 +106,12 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
-				terminal_speak("Accessing Liquid Data Cargo Manifest record, standby...", 50)
+				terminal_speak("Accessing Liquid Data Cargo Manifest record, standby...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MANIFEST"
 				attack_hand(user)
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
-				terminal_speak("Accessing Emergency Message Buffer...", 50)
+				terminal_speak("Accessing Emergency Message Buffer...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
 				attack_hand(user)
@@ -196,7 +196,7 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-				terminal_speak("Returning to HOME mode...", 50)
+				terminal_speak("Returning to HOME mode...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)
@@ -328,7 +328,7 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-				terminal_speak("Returning to HOME mode...", 50)
+				terminal_speak("Returning to HOME mode...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)
@@ -471,7 +471,7 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
-			terminal_speak("Accessing Emergency Message Buffer...", 50)
+			terminal_speak("Accessing Emergency Message Buffer...", 20)
 			emoteas("pings loudly.")
 			puzzlebox_parser_mode = "MESSAGE"
 			attack_hand(user)
@@ -536,7 +536,7 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-			terminal_speak("Returning to HOME mode...", 50)
+			terminal_speak("Returning to HOME mode...", 20)
 			emoteas("pings loudly.")
 			puzzlebox_parser_mode = "HOME"
 			attack_hand(user)
@@ -629,7 +629,7 @@
 			puzzlebox_user = null
 			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-			terminal_speak("Returning to HOME mode...", 50)
+			terminal_speak("Returning to HOME mode...", 20)
 			emoteas("pings loudly.")
 			puzzlebox_parser_mode = "HOME"
 			attack_hand(user)
@@ -768,7 +768,7 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
-				terminal_speak("Accessing Emergency Message Buffer...", 50)
+				terminal_speak("Accessing Emergency Message Buffer...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
 				attack_hand(user)
@@ -828,7 +828,7 @@
 				puzzlebox_user = null
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
-				terminal_speak("Returning to HOME mode...", 50)
+				terminal_speak("Returning to HOME mode...", 20)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
 				attack_hand(user)
@@ -975,7 +975,7 @@
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
 				if (puzzlebox_panel_locked == TRUE)
-					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 40)
+					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 20)
 					emoteas("beeps loudly and a side panel opens, revealing a small port covered by a metal cover.")
 					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
 					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
@@ -988,7 +988,7 @@
 					puzzlebox_user = null
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
-				terminal_speak("Deploying recalibration buffer.", 50)
+				terminal_speak("Deploying recalibration buffer.", 20)
 				terminal_speak("Recalibration successful!")
 				log_game("[key_name(usr)] used the debug phrase on the correct terminal and solved the LD calibration puzzle.")
 				message_admins("[key_name(usr)] used the debug phrase on the correct terminal and solved the LD calibration puzzle.")
@@ -1116,7 +1116,7 @@
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
 				if (puzzlebox_panel_locked == TRUE)
-					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 40)
+					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 20)
 					emoteas("beeps loudly and a side panel opens, revealing a small port covered by a metal cover.")
 					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
 					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
@@ -1129,7 +1129,7 @@
 					puzzlebox_user = null
 					return
 			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
-				terminal_speak("Deploying recalibration buffer.", 50)
+				terminal_speak("Deploying recalibration buffer.", 20)
 				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 2 minutes.")
 				log_game("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
 				message_admins("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")

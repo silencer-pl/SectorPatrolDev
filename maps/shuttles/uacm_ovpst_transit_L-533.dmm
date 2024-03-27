@@ -51,6 +51,10 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nws"
 	},
+/obj/structure/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "ex" = (
@@ -145,6 +149,7 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nes"
 	},
+/obj/structure/machinery/light,
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "lS" = (
@@ -219,6 +224,13 @@
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "3,1"
 	},
+/area/shuttle/ert)
+"rj" = (
+/obj/effect/decal/cargo_stripes{
+	icon_state = "nws"
+	},
+/obj/structure/machinery/light,
+/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "rM" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
@@ -302,6 +314,16 @@
 	},
 /obj/docking_port/mobile/emergency_response/l533,
 /turf/template_noop,
+/area/shuttle/ert)
+"vT" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_x = -3;
+	buckling_x = -5
+	},
+/obj/effect/landmark/start/basepc,
+/obj/structure/machinery/light,
+/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "wA" = (
 /turf/template_noop,
@@ -474,6 +496,21 @@
 	icon_state = "3,1r"
 	},
 /area/shuttle/ert)
+"HB" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_y = 15;
+	pixel_x = -3;
+	buckling_x = -5;
+	buckling_y = 16
+	},
+/obj/effect/landmark/start/basepc,
+/obj/structure/machinery/light{
+	dir = 1;
+	pixel_y = 22
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "Io" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
@@ -493,6 +530,10 @@
 	icon_state = "23,6ru"
 	},
 /area/shuttle/ert)
+"Lf" = (
+/obj/structure/machinery/light,
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "Lk" = (
 /obj/structure/bed/chair/dropship/passenger/shuttle_chair{
 	dir = 4;
@@ -510,6 +551,28 @@
 	buckling_y = 16
 	},
 /obj/effect/landmark/start/basepc,
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
+"LJ" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_y = 15;
+	pixel_x = -3;
+	buckling_x = -5;
+	buckling_y = 16
+	},
+/obj/effect/landmark/start/basepc,
+/obj/structure/machinery/light{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
+"LV" = (
+/obj/structure/machinery/light{
+	dir = 1;
+	pixel_y = 20
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "Nj" = (
@@ -716,6 +779,10 @@
 	pixel_y = 6;
 	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIDGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
 	},
+/obj/structure/machinery/light{
+	dir = 1;
+	pixel_y = 20
+	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 
@@ -826,7 +893,7 @@ OO
 VZ
 OO
 OO
-ep
+rj
 SW
 "}
 (11,1,1) = {"
@@ -908,13 +975,13 @@ ho
 "}
 (18,1,1) = {"
 nt
-Lo
+HB
 BA
 BA
 VZ
 nn
 Lk
-nn
+vT
 RW
 "}
 (19,1,1) = {"
@@ -952,13 +1019,13 @@ iP
 "}
 (22,1,1) = {"
 IG
-Lo
+LJ
 Lo
 BA
 VZ
 Lk
 nn
-nn
+vT
 WK
 "}
 (23,1,1) = {"
@@ -987,9 +1054,9 @@ wA
 wA
 wA
 ce
-OO
+LV
 NE
-OO
+Lf
 An
 wA
 wA

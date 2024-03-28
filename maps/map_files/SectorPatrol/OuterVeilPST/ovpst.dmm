@@ -3,6 +3,7 @@
 "ao" = (/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/ovpst)
 "ap" = (/obj/effect/decal/info_tag/pst/sec{pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- SEC - D01 -</big></b><br>Dock 31 Front Security Office."; desc_lore = "The label SEC indicates doors and areas that require an elevated security clearance, typically restricted for MPs and CMISRS agents who are assigned the security class D on the PST. D01 indicates this area requires general security clearance, available to anyone with proper certification but not requiring any formal rank. This door leads to a small office overseeing the intake of cargo and personnel via Dock 31."},/turf/open/floor/almayer{dir = 1; icon_state = "redcorner"},/area/ovpst)
 "ar" = (/turf/open/floor/almayer{dir = 6; icon_state = "orange"},/area/ovpst)
+"aA" = (/obj/item/crafting/packages/drawer{pixel_x = 9; pixel_y = -2},/obj/item/crafting/packages/drawer{pixel_x = -8; pixel_y = -3},/obj/item/crafting/packages/drawer{pixel_x = -9; pixel_y = 10},/obj/item/crafting/packages/drawer{pixel_x = 9; pixel_y = 12},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "aM" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 4},/area/ovpst)
 "aX" = (/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_e_d31)
 "aZ" = (/turf/open/floor/almayer{icon_state = "blue"},/area/ovpst)
@@ -20,6 +21,7 @@
 "cT" = (/obj/structure/machinery/light/small{dir = 4; light_color = "#d3a7d4"},/obj/effect/step_trigger/message/seeonce/D31Scn2,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "cW" = (/obj/structure/surface/table/reinforced/black,/obj/item/reagent_container/food/snacks/packaged_burger{pixel_y = 9},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -11},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -14; pixel_y = 4},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -6},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -5; pixel_y = 14},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -15; pixel_y = 12},/obj/item/reagent_container/food/snacks/packaged_burger{pixel_x = -8; pixel_y = 18},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 9; pixel_y = 10},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 12},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 5; pixel_y = -2},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 10},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 15; pixel_y = 3},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 10; pixel_y = 7},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 12; pixel_y = 12},/obj/item/reagent_container/food/snacks/packaged_burrito{pixel_x = 10; pixel_y = 17},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "db" = (/obj/structure/surface/table/reinforced/almayer_blend/north,/obj/structure/machinery/door/poddoor/shutters/almayer{id = "scn1_shutter"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
+"de" = (/obj/structure/crafting/packages/bed,/turf/open/floor/plating/modular,/area/ovpst)
 "dK" = (/obj/docking_port/stationary/emergency_response/external/pst_dock31,/turf/open/space/basic,/area/space)
 "dP" = (/obj/effect/decal/info_tag/pst/lby{pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- LBY - R37 -</big><br> Dorms Deck 37 entrance lobby"},/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
 "ef" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
@@ -59,6 +61,7 @@
 "hY" = (/obj/structure/bed/chair/modular/office,/turf/open/floor/almayer,/area/ovpst)
 "hZ" = (/turf/open/floor/almayer{dir = 1; icon_state = "silvercorner"},/area/ovpst)
 "ia" = (/obj/structure/surface/table/reinforced/black,/obj/structure/machinery/light/small{dir = 8; light_id = "cargointake"},/obj/structure/eventterminal/puzzle02/cargoparse{dir = 4; pixel_x = 7; pixel_y = 3},/turf/open/floor/almayer{dir = 8; icon_state = "orange"},/area/ovpst)
+"ih" = (/obj/item/crafting/packages/chair{pixel_x = -8; pixel_y = -4},/obj/item/crafting/packages/chair{pixel_x = -7; pixel_y = 8},/obj/item/crafting/packages/chair{pixel_x = 9; pixel_y = -4},/obj/item/crafting/packages/chair{pixel_x = 10; pixel_y = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "io" = (/turf/open/floor/almayer,/area/ovpst)
 "it" = (/obj/effect/decal/info_tag/pst/eld{pixel_y = 0; dir = 8; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-C - G01 - Elevator Shaft D</big><br>"},/turf/open/floor/almayer{dir = 8; icon_state = "emeraldcorner"},/area/ovpst)
 "iG" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1generic.dmi'; dir = 1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -75,9 +78,7 @@
 "js" = (/obj/structure/machinery/door/poddoor/almayer,/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst)
 "jL" = (/obj/effect/decal/info_tag/pst/ele{dir = 4; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-C - Elevator Shaft C</big><br>"},/turf/open/floor/almayer{dir = 5; icon_state = "red"},/area/ovpst)
 "jV" = (/obj/structure/surface/table/reinforced,/obj/item/storage/donut_box{pixel_x = -2; pixel_y = 3},/obj/item/storage/donut_box{pixel_x = 6; pixel_y = -6},/turf/open/floor/almayer,/area/ovpst)
-"jZ" = (/obj/structure/machinery/light/small,/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "kc" = (/turf/open/floor/almayer{dir = 2; icon_state = "redcorner"},/area/ovpst)
-"ke" = (/obj/structure/crafting/packages/table,/turf/open/floor/plating/modular,/area/ovpst)
 "kj" = (/obj/docking_port/stationary/emergency_response/external/pst_elevator_d_pin,/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_d_pin)
 "kp" = (/turf/open/floor/almayer{dir = 9; icon_state = "emerald"},/area/ovpst)
 "kt" = (/turf/open/floor/almayer{dir = 4; icon_state = "silver"},/area/ovpst)
@@ -127,12 +128,14 @@
 "oR" = (/obj/structure/machinery/light{dir = 1},/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "oT" = (/obj/effect/decal/info_tag/pst/eng{pixel_y = 16; pixel_x = -16; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance Liquid data channels are wired all though the station and this door seems to lead to one of them. There is likely nothing but dusty, humming computers inside."; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- ENG -</big><br> LD Block T14 Access"},/turf/open/floor/almayer{dir = 1; icon_state = "orangecorner"},/area/ovpst)
 "pe" = (/obj/structure/machinery/light/marker/admin/pythia/repressed,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
+"pj" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/bed,/turf/open/floor/plating/modular,/area/ovpst)
 "po" = (/turf/open/floor/almayer{dir = 9; icon_state = "orange"},/area/ovpst)
 "ps" = (/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_e_d31)
 "pt" = (/obj/structure/machinery/conveyor{dir = 8; id = "d31-entrance"; drag_delay = 1},/obj/structure/machinery/door/poddoor/almayer{id = "cargointake"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "pu" = (/obj/docking_port/stationary/emergency_response/pst_shaft_d,/turf/open/floor/almayer/empty,/area/ovpst)
 "pD" = (/obj/structure/machinery/light/small,/obj/item/crafting/packages/drawer{pixel_x = 10; pixel_y = -1},/obj/item/crafting/packages/drawer{pixel_x = -6; pixel_y = -1},/obj/item/crafting/packages/drawer{pixel_x = 11; pixel_y = 14},/obj/item/crafting/packages/drawer{pixel_x = -6; pixel_y = 14},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "pH" = (/obj/structure/machinery/light{dir = 2},/turf/open/floor/almayer{icon_state = "blue"},/area/ovpst)
+"pL" = (/obj/item/crafting/packages/drawer{pixel_x = 6; pixel_y = 3},/obj/item/crafting/packages/drawer{pixel_x = -9; pixel_y = -1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "pO" = (/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "pZ" = (/obj/structure/eventterminal/puzzle04/crypt_doorlock{pixel_y = 25},/turf/open/floor/almayer{icon_state = "purplecorner"; dir = 4},/area/ovpst)
 "qe" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/engidoor2.dmi'; dir = 2},/turf/open/floor/almayer{icon_state = "orangefull"},/area/ovpst)
@@ -146,7 +149,6 @@
 "qU" = (/obj/effect/decal/info_tag/pst/eld{pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-C - Elevator Shaft D</big><br>"},/turf/open/floor/almayer{dir = 1; icon_state = "emeraldcorner"},/area/ovpst)
 "qW" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/Door2x1_secure2.dmi'; dir = 1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "qZ" = (/obj/effect/decal/info_tag/pst/eng{pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- ENG -</big><br>Dorms Deck 37, Sector A, Maintenance Shaft"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance. These doors lead to maintenance shafts used to service issues with the dorms should ones arrive. Some of these passages may have other exits, but since no centralized map system exists for the PST, finding those is a matter of luck. "},/turf/open/floor/almayer{icon_state = "orange-silver"; dir = 1},/area/ovpst)
-"rc" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/bed,/turf/open/floor/plating/modular,/area/ovpst)
 "rf" = (/obj/structure/machinery/conveyor{dir = 6; id = "d31-entrance"; drag_delay = 1},/obj/structure/plasticflaps,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "rj" = (/obj/docking_port/stationary/emergency_response/external/pst_elevator_e_pinnacle,/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_e_pin)
 "rB" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_outer{id = "d-drm"},/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_d_pin)
@@ -158,8 +160,6 @@
 "rW" = (/obj/structure/machinery/door/poddoor/almayer/locked{dir = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "rY" = (/obj/structure/surface/table/reinforced/black,/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_y = -5},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = -3},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = -6; pixel_y = 11},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_y = 7},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_y = -1; pixel_x = -8},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 8; pixel_y = 6},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_y = 16},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 5; pixel_y = 18},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 9; pixel_y = 15},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 6; pixel_y = -2},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 13; pixel_y = 3},/obj/item/reagent_container/food/drinks/cans/waterbottle{pixel_x = 13; pixel_y = -1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "se" = (/obj/docking_port/stationary/emergency_response/pst_shaft_e,/turf/open/floor/almayer/empty,/area/ovpst)
-"sj" = (/obj/item/crafting/packages/lamp{pixel_x = -3; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = 11; pixel_y = -5},/obj/item/crafting/packages/lamp{pixel_x = -12; pixel_y = -1},/obj/item/crafting/packages/lamp{pixel_x = -9; pixel_y = 10},/obj/item/crafting/packages/lamp{pixel_y = 8; pixel_x = 7},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
-"sk" = (/obj/item/crafting/packages/lamp{pixel_x = -2; pixel_y = -1},/obj/item/crafting/packages/lamp{pixel_x = 10; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = -12; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = 9; pixel_y = 8},/obj/item/crafting/packages/lamp{pixel_x = -7; pixel_y = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "sq" = (/turf/closed/wall/almayer,/area/ovpst/airlock/ele_e_d31)
 "sD" = (/turf/open/floor/plating/plating_catwalk,/area/ovpst)
 "sM" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_outer{id = "e-pin"},/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_e_pin)
@@ -187,7 +187,6 @@
 "vW" = (/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "wn" = (/obj/structure/machinery/door/poddoor/almayer{id = "scn2"},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/ovpst)
 "wp" = (/obj/structure/machinery/light/marker/admin/pythia/malcontent,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
-"ww" = (/obj/item/crafting/packages/chair{pixel_x = -9; pixel_y = -3},/obj/item/crafting/packages/chair{pixel_x = 8; pixel_y = -3},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "wz" = (/turf/open/floor/almayer{icon_state = "bluecorner"; dir = 8},/area/ovpst)
 "wR" = (/obj/structure/machinery/light,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "wV" = (/obj/structure/machinery/light{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/ovpst)
@@ -243,17 +242,18 @@
 "CH" = (/turf/open/floor/almayer/uscm/directional{dir = 5; icon_state = "logo_directional1"},/area/ovpst)
 "CO" = (/turf/open/floor/almayer{icon_state = "purplefull"; dir = 8},/area/ovpst)
 "CS" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/engidoor2.dmi'; dir = 2},/turf/open/floor/plating/plating_catwalk,/area/ovpst)
-"CW" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "CY" = (/obj/structure/machinery/light,/obj/effect/decal/info_tag/pst/san{dir = 4; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- SAN -</big><br>Dock 31 Personnel Sanitation"},/turf/open/floor/almayer{dir = 8; icon_state = "emerald-silver"},/area/ovpst)
 "Du" = (/obj/structure/machinery/conveyor{dir = 8; id = "d31-entrance"; drag_delay = 1; backwards = SOUTH; forwards = WEST},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "DF" = (/obj/effect/decal/info_tag/pst/sec{dir = 1; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- SEC - D01 - R37 -</big><br>Dorms Deck 37 Entrance Guest Clearance and Cargo Reception Station"; desc_lore = "The label SEC indicates doors and areas that require an elevated security clearance, typically restricted for MPs and CMISRS agents. This door leads to the cargo and guest reception area, which can be accessed by anyone who also is registered in a dorm on this level. From this station, residents can authorize guest visits and receive cargo."},/turf/open/floor/almayer{icon_state = "red"},/area/ovpst)
 "DM" = (/obj/structure/closet/secure_closet/sp/red/d01{icon_state = "red_class_d_locked"},/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
+"DO" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "DP" = (/obj/structure/eventterminal/admin_event_terminal{icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'; pixel_y = 8; name = "closed maintenance terminal hatch"; desc = "A sliding hatch concealing a terminal used to perform local diagnostic tasks"; desc_lore = "Most space ships ultilize secondary terminals like these on a room-by-room basis as a failsafe meant to cover for the ship's central, AI-assisted maitenance system."; puzzlebox_id = "crypt_airlock"},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "DW" = (/obj/structure/searchable/puzzle04/bunk_chest/full2,/turf/open/floor/almayer,/area/ovpst)
 "Ea" = (/obj/structure/machinery/light{dir = 8},/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "Eb" = (/obj/effect/decal/info_tag/pst/drm{dir = 4; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- DRM -</big><br> Dorms, Deck 37, Sector B"},/turf/open/floor/almayer{dir = 4; icon_state = "bluecorner"},/area/ovpst)
 "Ep" = (/obj/structure/surface/modular/table/gray{icon_state = "table_metal_black"},/obj/structure/eventterminal/puzzle03/historyterm{dir = 4},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Et" = (/obj/structure/eventterminal/puzzle05/pythia,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
+"Ev" = (/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "Ey" = (/obj/structure/eventterminal/puzzle05/pythia/right,/turf/open/floor/kutjevo/colors/blue/tile,/area/ovpst)
 "EB" = (/turf/open/floor/almayer{icon_state = "blue2silver1"},/area/ovpst)
 "EE" = (/obj/effect/decal/info_tag/pst/eng{desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- ENG -</big></b><br>Dock 31 Cargo Processing Subsystems Diagnostics and Maintenance Room"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance. G01 indicates that this area is open to anyone who is quartered on the station. Engineering doors with general access usually suggest that general maintenance equipment is available somewhere behind this door. The room past this door should have everything one needs to properly diagnose and possibly fix issues with the Dock 31 cargo processing system."; pixel_y = 16},/turf/open/floor/almayer{dir = 4; icon_state = "orangecorner"},/area/ovpst)
@@ -302,16 +302,15 @@
 "Kf" = (/obj/structure/surface/table/reinforced,/obj/item/storage/donut_box{pixel_x = 1},/turf/open/floor/almayer,/area/ovpst)
 "Kk" = (/obj/structure/searchable/puzzle04/bunk_locker/full4,/turf/open/floor/almayer,/area/ovpst)
 "Kp" = (/turf/closed/wall/almayer/outer,/area/ovpst/airlock/ele_e_d31)
-"Kq" = (/obj/structure/crafting/packages/bed,/turf/open/floor/plating/modular,/area/ovpst)
 "Kx" = (/obj/structure/bed/chair/modular/office,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "KB" = (/turf/open/floor/almayer{icon_state = "whitecorner"; dir = 4},/area/ovpst)
 "KH" = (/obj/structure/surface/table/reinforced,/obj/item/pizzabox/margherita,/obj/item/pizzabox/margherita{pixel_y = 5},/obj/item/pizzabox/margherita{pixel_y = 10},/turf/open/floor/almayer,/area/ovpst)
 "KK" = (/turf/open/floor/almayer{dir = 8; icon_state = "orangecorner"},/area/ovpst)
-"KP" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/table,/turf/open/floor/plating/modular,/area/ovpst)
 "KX" = (/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
 "La" = (/obj/structure/machinery/door/poddoor/almayer{id = "d31-entrance"; name = "\improper Umbillical Airlock"; unacidable = 1},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/ovpst/airlock/d31)
 "Lc" = (/obj/structure/closet/secure_closet/sp/yellow/g01/engiebasics{pixel_x = -8; pixel_y = 16},/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/ovpst)
 "Lj" = (/obj/structure/machinery/light,/turf/open/floor/almayer,/area/ovpst)
+"Lq" = (/obj/item/crafting/packages/lamp{pixel_x = -3; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = 11; pixel_y = -5},/obj/item/crafting/packages/lamp{pixel_x = -12; pixel_y = -1},/obj/item/crafting/packages/lamp{pixel_x = -9; pixel_y = 10},/obj/item/crafting/packages/lamp{pixel_y = 8; pixel_x = 7},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "LA" = (/obj/structure/bed/sofa/south/grey/right,/turf/open/floor/almayer{icon_state = "silvercorner"},/area/ovpst)
 "LB" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 8},/area/ovpst)
 "LG" = (/obj/structure/machinery/light{dir = 4; brightness = 12},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -321,9 +320,9 @@
 "LU" = (/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst)
 "LV" = (/turf/open/floor/almayer{icon_state = "orangecorner"},/area/ovpst)
 "Md" = (/turf/open/floor/almayer{icon_state = "whitecorner"; dir = 8},/area/ovpst)
-"Mp" = (/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "Mt" = (/turf/open/floor/almayer{icon_state = "orangecorner"; dir = 8},/area/ovpst)
 "ME" = (/obj/effect/decal/info_tag/pst/eng{pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big><br><b><big>- ENG -</big></b><br>G01 -</big></b><br>Dock 31 Security Sub Processors Diagnostics and Maintenance Room"; desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. G01 indicates that this area is open to anyone who is quartered on the station. Engineering doors with general access usually suggest that general maintenance equipment is available somewhere behind this door. According to the label, the room behind this door should contain everything you need to diagnose and begin servicing issues with the security scanners."},/turf/open/floor/almayer{dir = 1; icon_state = "orangecorner"},/area/ovpst)
+"MF" = (/obj/structure/machinery/light/small{dir = 1},/obj/structure/crafting/packages/table,/turf/open/floor/plating/modular,/area/ovpst)
 "MG" = (/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_d_pin)
 "MH" = (/obj/structure/eventterminal/puzzle05/pythia/left,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "MJ" = (/obj/structure/bed/sofa/south/grey/right,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -348,8 +347,10 @@
 "OP" = (/obj/structure/machinery/light/small{dir = 8; light_color = "#d3a7d4"},/obj/effect/step_trigger/message/seeonce/D31Scn2,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "OX" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/open/floor/almayer{icon_state = "silvercorner"},/area/ovpst)
 "Pe" = (/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
+"Pl" = (/obj/structure/machinery/light/small,/obj/structure/crafting/packages/dormstruts,/turf/open/floor/plating/modular,/area/ovpst)
 "Pn" = (/obj/structure/bed/chair/modular/office{dir = 8},/turf/open/floor/almayer,/area/ovpst)
 "Pz" = (/turf/open/floor/almayer{dir = 10; icon_state = "emerald"},/area/ovpst)
+"PF" = (/obj/structure/crafting/packages/table,/turf/open/floor/plating/modular,/area/ovpst)
 "PO" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 1},/area/ovpst)
 "PR" = (/turf/open/floor/almayer{dir = 10; icon_state = "orange"},/area/ovpst)
 "PV" = (/obj/structure/ladder{id = "crypt2"; icon_state = "ladder01"; height = 2},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -358,7 +359,6 @@
 "QI" = (/turf/closed/wall/almayer,/area/ovpst/airlock/ele_d_pin)
 "QM" = (/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{dir = 9; icon_state = "orange"},/area/ovpst)
 "Ra" = (/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_e_pin)
-"Re" = (/obj/item/crafting/packages/drawer{pixel_x = 6; pixel_y = 3},/obj/item/crafting/packages/drawer{pixel_x = -9; pixel_y = -1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Rl" = (/obj/item/light_bulb/marker/admin{name = "voicebox - log viewer"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Rz" = (/obj/structure/machinery/light/small{dir = 8},/turf/open/floor/almayer{icon_state = "silvercorner"; dir = 1},/area/ovpst)
 "RB" = (/turf/open/floor/almayer{icon_state = "white"; dir = 1},/area/ovpst)
@@ -389,7 +389,6 @@
 "Um" = (/turf/open/floor/almayer{dir = 4; icon_state = "redcorner"},/area/ovpst)
 "Uv" = (/turf/open/floor/almayer{dir = 9; icon_state = "red"},/area/ovpst)
 "UB" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 5},/area/ovpst)
-"UF" = (/obj/item/crafting/packages/chair{pixel_x = -8; pixel_y = -4},/obj/item/crafting/packages/chair{pixel_x = -7; pixel_y = 8},/obj/item/crafting/packages/chair{pixel_x = 9; pixel_y = -4},/obj/item/crafting/packages/chair{pixel_x = 10; pixel_y = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "UI" = (/obj/effect/decal/info_tag/pst/t14{dir = 8; pixel_y = 16; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- T-14 -</big><br> Hideaway O37"},/turf/open/floor/almayer{icon_state = "black"; dir = 8},/area/ovpst)
 "UL" = (/obj/structure/bed/chair/modular/office{dir = 4},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "UM" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/maintdoor.dmi'},/turf/open/floor/almayer{icon_state = "orangefull"},/area/ovpst)
@@ -398,6 +397,7 @@
 "UY" = (/turf/open/floor/almayer{icon_state = "redfull"},/area/ovpst)
 "Va" = (/turf/open/floor/almayer{icon_state = "white"},/area/ovpst)
 "Vf" = (/obj/effect/decal/info_tag/pst/mup{pixel_y = 16; pixel_x = -16},/turf/closed/wall/almayer,/area/ovpst)
+"Vg" = (/obj/item/crafting/packages/chair{pixel_x = -9; pixel_y = -3},/obj/item/crafting/packages/chair{pixel_x = 8; pixel_y = -3},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Vj" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin{dir = 1; opacity = 0},/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
 "Vl" = (/obj/docking_port/stationary/emergency_response/external/pst_elevator_d_drm,/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_d_pin)
 "Vp" = (/obj/structure/bed/chair/modular/office{dir = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -416,7 +416,7 @@
 "XF" = (/obj/structure/searchable/puzzle04/drawers_misc/full1,/turf/open/floor/almayer,/area/ovpst)
 "XM" = (/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/ovpst)
 "XU" = (/obj/structure/machinery/light{brightness = 12},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
-"XV" = (/obj/item/crafting/packages/drawer{pixel_x = 9; pixel_y = -2},/obj/item/crafting/packages/drawer{pixel_x = -8; pixel_y = -3},/obj/item/crafting/packages/drawer{pixel_x = -9; pixel_y = 10},/obj/item/crafting/packages/drawer{pixel_x = 9; pixel_y = 12},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
+"XV" = (/obj/item/crafting/packages/lamp{pixel_x = -2; pixel_y = -1},/obj/item/crafting/packages/lamp{pixel_x = 10; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = -12; pixel_y = -2},/obj/item/crafting/packages/lamp{pixel_x = 9; pixel_y = 8},/obj/item/crafting/packages/lamp{pixel_x = -7; pixel_y = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "XZ" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Yo" = (/turf/open/floor/almayer{icon_state = "plate"},/area/ovpst/airlock/d31)
 "YL" = (/obj/structure/machinery/conveyor_switch{id = "d31-entrance"; pixel_x = 7; pixel_y = -6},/turf/open/floor/almayer{dir = 10; icon_state = "red"},/area/ovpst)
@@ -452,27 +452,27 @@ qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSxvxvTSTSxvxvxvxvxvTSTSxvxvTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSPVBcTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSrIMJpOLNrIERERERMJpOLNrIMJTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOhdhdhdhdhdhdhdhdhdpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTmTmTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSaSaSaSaSaSaSaSaSaSaSaSaIAIAIAIAIAIAIAIAIATSfvpOhdybhdybhdybybhdhdpOCBTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSUFJBwwNoAIkClVTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSaSaSaSaSaSaSaSaSaSaSaSaIAIAIAIAIAIAIAIAIATSfvpOhdybhdybhdybybhdhdpOCBTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSihJBVgNoAIkClVTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvcepOhdhdhdhdhdhdhdhdhdpOcexvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSRepOpOpOpOpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSXVpDLVcoMtsksjTSIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSTSIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpLpOpOpOpOpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSaApDLVcoMtXVLqTSIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSTSIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvbopOpOpOpOpOpOpOpOpOpOpOboxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlhlhlhqPlhlhlhTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTmTSTSioioioioTSIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOwRpOhWVaVaMdpOwRpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDsDBmlFoTsDsDsDFZsDsDsDsDsDFZsDsDsDsDFZsDsDsDlhTSiojVZnKfTSIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhyXpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhsDlhTSioioioioTSIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOAqFizFpOlhRBZWlhZhZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhkeKPvjlhKqrcKqlhvjfsMplhvjrcKqlhvjfskelhsDlhTSioioioioTSTSTSTSIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSEppOpOpOpOlhfvCBlhnbZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhkevjvjlhKqvjvjlhvjvjMplhvjvjKqlhvjvjvjlhsDlhTSWmZRXCKHTSTmTmTSTSTSTSTSTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOAqFizFpOlhRBZWlhZhZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhPFMFvjlhdepjdelhvjfsEvlhvjpjdelhvjfsPFlhsDlhTSioioioioTSTSTSTSIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSEppOpOpOpOlhfvCBlhnbZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhPFvjvjlhdevjvjlhvjvjEvlhvjvjdelhvjvjvjlhsDlhTSWmZRXCKHTSTmTmTSTSTSTSTSTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSJgnkqMqMvslhpOpOlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhioioioionCyLyLBXioioioioTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSqMqMqMqMOXlhBVSclhzxpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjKqlhnalhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASakjSESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMpOLBaMpOLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNKqlhvjiNKqlhsDlhlhFdhdhdhdhdPePehdhdhdhdNBTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSqMqMqMqMOXlhBVSclhzxpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjdelhnalhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASakjSESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMpOLBaMpOLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNdelhvjiNdelhsDlhlhFdhdhdhdhdPePehdhdhdhdNBTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaQIFWMGMGMGQIFWMGMGMGQISaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMeqLBaMXyLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSlhlhhrhdhdhdhdPePehdhdhdhdvJTSTSIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSHpHpygTQTQTQkpHpCETSTSoQTSoQvMoQTSoQxvoQTSGMGMGMGMIslhhZgYlhRzpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlFqZRBYYionVRBYYioKBRBYYionVRBYYioKBRBYYZLNblFCwpOhMPePePePePePePePePePeLKxLTSIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOygTQkppOpOpOrIERMJJMrIERMJJMrIERLAlhBRGMGMGMHrlhfvCBlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSTALjiohWVaMdiohWVajliohWVaMdiohWVajliohWVaFAcoyFiGhMPePePePePePePePePePeLKrWTSIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSfvpOpOpOTQogogogogogogogogogogogogogkVmZpOLBpOoCpOpOlhpOpOlhnbZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhCSlhlhNshdhdhdhdPePehdhdhdhdEbTSTSIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOwRpOpOpOpOpOWFogPzSINISoLBvJaZwzpOlhpOpOlhZhZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSIATSsDlhkefsvjlhvjfsvjlhkefsvjlhMpfsvjlhMpCWvjlhsDlhlhFdhdhdhdhdPePehdhdhdhdNBTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhEMLUlhlhlhlhlhlhlhlhlhcOpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTVoRTVTVoRTVTSIATSsDlhvjvjvjlhvjvjvjlhkevjvjlhMpvjvjlhMpvjvjlhsDlhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOwRpOpOpOpOpOWFogPzSINISoLBvJaZwzpOlhpOpOlhZhZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSIATSsDlhPFfsvjlhvjfsvjlhPFfsvjlhEvfsvjlhEvDOvjlhsDlhlhFdhdhdhdhdPePehdhdhdhdNBTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhEMLUlhlhlhlhlhlhlhlhlhcOpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTVoRTVTVoRTVTSIATSsDlhvjvjvjlhvjvjvjlhPFvjvjlhEvvjvjlhEvvjvjlhsDlhlhiohdhdhdhdPePehdhdhdhdioTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOLNpOpOpOpOpOBiHpkpqUFelhitpOpOpOLNHaPOXnvaLNpOpOvJTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSMHTVEtTVEyuvTSIATSSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhiopOXUpOXEuDuDDFuDteioioTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSfvpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOPzogZVpOPzogogogogogogEBaZaZaZaZrRREIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSkwuvTVIzuvwpTSIATSsDlhvjvjvjlhvjvjkelhvjvjvjlhvjvjMplhvjvjvjlhsDlhlhlhlhlhlhlhUPpOlhIKlhlhlhTSIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOGJUvAjAjAjAjAjAjAjffAjAjAjffAjAjjLVjNPAjAjAjAjAjAjzulFlFlFlFXMQGIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSFwsDsDsDsDwVTSIATSsDlhvjiNvjlhvjiNkelhvjiNvjlhvjjZMplhvjiNkelhnalhlhpOpOpOpOUmAjdPemAjFzpOpOTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSfvpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOpOPzogZVpOPzogogogogogogEBaZaZaZaZrRREIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSkwuvTVIzuvwpTSIATSsDlhvjvjvjlhvjvjPFlhvjvjvjlhvjvjEvlhvjvjvjlhsDlhlhlhlhlhlhlhUPpOlhIKlhlhlhTSIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOGJUvAjAjAjAjAjAjAjffAjAjAjffAjAjjLVjNPAjAjAjAjAjAjzulFlFlFlFXMQGIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSFwsDsDsDsDwVTSIATSsDlhvjiNvjlhvjiNPFlhvjiNvjlhvjPlEvlhvjiNPFlhnalhlhpOpOpOpOUmAjdPemAjFzpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSrPuDuDUYUYuDuDuDuDTSTSoQTSoQoQoQTSoQoQoQTSFzpOpOLBLBXnLBXnblyGLBpOQkTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSpeuvsDsDuvlxTSIATSsDlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhsDlhlhtrpOpOpOpOpOkcgoBupOpOxwTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSTSjsjsjsjslhjsjsjsjsTSTSIAIAIAIAIAIAIAIAIATSJspOpOLBLBXnLBLBpOLBLBpOrCTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSuvuvsDsDuvuvTSIATSsDsDsDOOsDsDsDsDsDsDOOsDsDsDsDsDOOsDsDsDsDsDsDlhlhpOpOpOpOpOpOGJBvOtpOpOpOTSIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIATSsVsVsVsVsVsVsVsVsVsVsVTSIAIAIAIAIAIAIAIAIATSpOpOpOPOhZblblPOblblblpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSOKOKmjsDOKOKTSIATSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSTSpOpOpOpOpOpOBFlhlhemememTSIAIAIAIAqg

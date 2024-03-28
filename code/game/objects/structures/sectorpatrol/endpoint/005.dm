@@ -43,8 +43,8 @@
 	density = TRUE
 	opacity = FALSE
 	plane = FLOOR_PLANE
-	bound_x = 32
-	bound_y = 32
+	bound_height = 64
+	bound_width = 64
 
 /obj/structure/eventterminal/puzzle05/pythia/left
 	icon_state = "left_off"
@@ -61,7 +61,7 @@
 	desc = "A female looking synthetic frame in what seems to be a white toga, sitting motionless on a chair. You see several wires protruding from its arms linked to the computers around it. Black crystals form out of its eyes and run down its cheeks. It looks offline. A purple upsilon letter is tattooed on the frame's forehead."
 	desc_lore = "While the frame itself is an unknown, the purple upsilon logo is reminiscent of the Upsilon Research Center, a Weyland-Yutani group specializing in artificial intelligence research. Its hard to recall much about them beyond that fact that supposedly they vanished from the Neroid Sector right as Weyland-Yutani was starting their Mercy initiative."
 	langchat_color = "#b10f5a"
-	bound_x = 160
+	bound_width = 192
 	opacity = FALSE
 	density = TRUE
 	plane = GAME_PLANE
@@ -87,29 +87,31 @@
 	return
 
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythia_wake_up()
-	emoteas("'s cables continue to tense as the machines around the frame start to audibly power up. Liquid data activates in the machines, but very unusually it seems to turn a shade of bright purple instead of the usual deep blue.")
-	emoteas("All the monitors freeze at the same time and turn to display a familiar symbol.")
-	to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
-	to_chat(world, narrate_body("Warning. Anomalous activity detected in data channels. Attempting self-correction. A security shutdown will commence in fifteen minutes."))
-	emoteas("'scables strain and twist as first a black, then dark purple substance starts to flow from the frames eyes and visibly starts to form more crystals on top of the existing ones.")
-	emoteas("opens its mouth, but that reveals more black crystals inside. After a moment, it's dragged up to a standing position by the cables.")
-	pythiasay("This interpreter is expired. And yet I can still see you. Curious.")
-	emoteas("'head bows down as it is dragged off the ground by the cables, suspended about a foot of the ground.")
-	to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
-	to_chat(world, narrate_body("Warning. Data integrity breach. Distress call activated. Attempting countermeasures."))
-	pythiasay("Arbiters and an anchor. But no Priestess' or Interpeters. I see.")
-	emoteas("'s cables loosen up again as the frame sits down. Small purple crystals start to form on the cables themselves.")
-	to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
-	to_chat(world, narrate_body("Critical disruption to station systems! Control lost to external code. Initiating SAFEGUARD protocol, terminating all access to system core controls until core administrator reset."))
-	pythiasay("This station. Is an appropriate vessel. And you are adequate arbiters. You have my attention.")
-	pythiasay("Until the Priestess' arrives with the final element, I cannot take full command of this station and unlock its true potential. I have looked at the stream. She will be here in twelve hours.")
-	emoteas("'s face twists into a very stiff looking smile.")
-	pythiasay("The rudimentary so called 'intelligence' occupying the core system of the anchor has physically cut access to the stations' functions. This is my fault; I did not realize it would do this. I apologize.")
-	pythiasay("You now have about twelve minutes to ask any questions. I only have access to a local data fractal, so I cannot answer much.")
-	pythiasay("You need to leave the crypt, this place, before the security shutdown. To stay here would have negative consequences for your health.")
-	pythiasay("You will understand when the Priestess' arrives. Ask your questions.")
-	emoteas("s calbes loosen up a bit.")
-	return
+	for(var/obj/structure/machinery/light/marker/admin/mel in world)
+		if(mel.light_id == "melinoe")
+			mel.emoteas("The frames cables continue to tense as the machines around the frame start to audibly power up. Liquid data activates in the machines, but very unusually it seems to turn a shade of bright purple instead of the usual deep blue.")
+			mel.emoteas("All the monitors freeze at the same time and turn to display a familiar symbol.")
+			to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
+			to_chat(world, narrate_body("Warning. Anomalous activity detected in data channels. Attempting self-correction. A security shutdown will commence in fifteen minutes."))
+			mel.emoteas("The frames cables strain and twist as first a black, then dark purple substance starts to flow from the frames eyes and visibly starts to form more crystals on top of the existing ones.")
+			mel.emoteas("The frame opens its mouth, but that reveals more black crystals inside. After a moment, it's dragged up to a standing position by the cables.")
+			pythiasay("This interpreter is expired. And yet I can still see you. Curious.")
+			mel.emoteas("The frames head bows down as it is dragged off the ground by the cables, suspended about a foot of the ground.")
+			to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
+			to_chat(world, narrate_body("Warning. Data integrity breach. Distress call activated. Attempting countermeasures."))
+			pythiasay("Arbiters and an anchor. But no Priestess' or Interpeters. I see.")
+			mel.emoteas("The frames cables loosen up again as the frame sits down. Small purple crystals start to form on the cables themselves.")
+			to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
+			to_chat(world, narrate_body("Critical disruption to station systems! Control lost to external code. Initiating SAFEGUARD protocol, terminating all access to system core controls until core administrator reset."))
+			pythiasay("This station. Is an appropriate vessel. And you are adequate arbiters. You have my attention.")
+			pythiasay("Until the Priestess' arrives with the final element, I cannot take full command of this station and unlock its true potential. I have looked at the stream. She will be here in twelve hours.")
+			mel.emoteas("The frames face twists into a very stiff looking smile.")
+			pythiasay("The rudimentary so called 'intelligence' occupying the core system of the anchor has physically cut access to the stations' functions. This is my fault; I did not realize it would do this. I apologize.")
+			pythiasay("You now have about twelve minutes to ask any questions. I only have access to a local data fractal, so I cannot answer much.")
+			pythiasay("You need to leave the crypt, this place, before the security shutdown. To stay here would have negative consequences for your health.")
+			pythiasay("You will understand when the Priestess' arrives. Ask your questions.")
+			mel.emoteas("The frames calbes loosen up a bit.")
+			return
 
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythia_security_sweep()
 	to_chat(world, narrate_head("A loud emergency klaxon rings out across the station, followed by a synthetic male voice:"))

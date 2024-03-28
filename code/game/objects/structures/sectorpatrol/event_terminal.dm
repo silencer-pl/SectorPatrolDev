@@ -22,7 +22,16 @@
 	if (!dooorid) return
 	for(var/obj/structure/machinery/door/D in world)
 		if(D.id == dooorid)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/structure/machinery/door/airlock, unlock))
 			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/structure/machinery/door, open))
+
+/obj/structure/eventterminal/proc/close_doors(door_id = puzzlebox_id) //Sends a call to open doors with matching id string.
+	var/dooorid = door_id
+	if (!dooorid) return
+	for(var/obj/structure/machinery/door/D in world)
+		if(D.id == dooorid)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/structure/machinery/door, close))
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/structure/machinery/door/airlock, lock))
 
 /obj/structure/eventterminal/proc/change_lights(lights_id = puzzlebox_id, light_state = 1, lights_color, light_brightness = null, light_flicker = 0) // Changees and updates lights on working light fixtures. Lights_id corresponds to var on the fixtures to determine which lights to affect; light_state 0 for off, 1 for on; lights_color accepts color values; light_brightness self explanatory, light_flicker when non 0 will pass flicker for number of ticks)
 	var/bulbid = "[lights_id]"

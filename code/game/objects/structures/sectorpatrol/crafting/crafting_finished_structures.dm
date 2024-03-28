@@ -8,6 +8,8 @@
 	desc_lore = "Tables are, well, tables. Any time a human and sometimes non-human needs a place to put things, point at things, nap, sleep, drink, eat on, eat off, hit in anger, throw at enemies, play cards on and many, many, MANY other uses, tables are the devices of choice. Out in space, tables are used as often and in as many applications as they are back on Earth and will likely continue doing so in the foreseeable future. "
 	var/variant_id = "default"
 	anchored = 1
+	opacity = FALSE
+	density = TRUE
 
 /obj/structure/surface/modular/table/attackby(obj/item/C, mob/user)
 
@@ -38,6 +40,8 @@
 	var/crafting_bed_bedsheet_id = "default"
 	var/variant_id = "default"
 	anchored = 1
+	opacity = FALSE
+	density = TRUE
 
 /obj/structure/bed/modular/attackby(obj/item/C, mob/user)
 
@@ -156,6 +160,8 @@
 	storage_capacity = 15
 	store_mobs = FALSE
 	anchored = 1
+	opacity = FALSE
+	density = TRUE
 	var/variant_id = "default"
 	var/crafting_drawer_color = "default"
 
@@ -198,6 +204,8 @@
 	var/crafting_chair_wheel_id
 	propelled = FALSE
 	can_rotate = TRUE
+	opacity = FALSE
+	density = FALSE
 
 
 

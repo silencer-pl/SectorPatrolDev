@@ -74,6 +74,8 @@
 
 /obj/structure/cargo/crate/
 	name = "generic cargo crate"
+	density = TRUE
+	opacity = FALSE
 	var/cargo_manifest
 
 /obj/structure/cargo/crate/examine(mob/user)

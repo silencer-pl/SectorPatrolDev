@@ -1,4 +1,5 @@
 /area/ovpst
+	name = "The Outer Veil Primary Supply Terminal - Interiors"
 	icon = 'icons/turf/area_almayer.dmi'
 	// ambience = list('sound/ambience/shipambience.ogg')
 	icon_state = "almayer"

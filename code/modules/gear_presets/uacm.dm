@@ -24,6 +24,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/uacm/uniform_standard(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight/on(new_human), WEAR_L_STORE)
 
 /datum/equipment_preset/uacm/rdml
 	name = "UACM Rear Admiral (lower half)"
@@ -100,3 +101,4 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/beret/uacm/engie(new_human), WEAR_HEAD)
+	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight/on(new_human), WEAR_L_STORE)

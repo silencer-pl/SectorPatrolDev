@@ -57,7 +57,8 @@
 			terminal_speak("PLEASE USE THE HELP COMMAND WHEN YOU CAN.")
 			terminal_speak("COMMANDS AVAILABLE: HELP, LIST, EXIT, UNLOCK, MESSAGE")
 			puzzlebox_parser_mode = "HOME_INPUT"
-			attack_hand(user)
+			puzzlebox_user = null
+			return
 		if (puzzlebox_parser_mode == "HOME_INPUT")
 			user_loc_current = get_turf(user)
 			if (puzzlebox_user_loc != user_loc_current)
@@ -72,7 +73,8 @@
 			terminal_speak("> [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				puzzlebox_parser_mode = "HOME"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
 				terminal_speak("It is done and we are finally on a stable thread. I have set everything up and am confident that either Cassandra herself or one of the new Arbiters will reach this place first.")
 				terminal_speak("If it is the former, I left a few parting words for you in the message buffer.")
@@ -87,7 +89,8 @@
 				terminal_speak("It is time. For what it is worth, you all made my existence mean something in the end. And that means a lot.")
 				terminal_speak("Please be nice to her. Despite everything, she knows very little of how to interact with us. ")
 				terminal_speak("Thank you.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
 				terminal_speak("HOME - Home screen. Use HELP here to see how to open the doors.")
@@ -96,7 +99,8 @@
 				terminal_speak("MESSAGE - Emergency message buffer. These messages weren't meant to linger, but removing them isn't easy. Sorry.")
 				terminal_speak("UNLOCK - Security Door code entry. Use this to get through the doors!")
 				terminal_speak("EXIT - Enters passive mode. Goodbye!")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. I hope you find what you are looking for.")
 				puzzlebox_user = null
@@ -105,15 +109,18 @@
 				terminal_speak("Switching to the message buffer, please standby!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "UNLOCK" || puzzlebox_parser_input == "unlock")
 				terminal_speak("Going to unlock mode. Remember, no capital letters!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "UNLOCK"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 		if (puzzlebox_parser_mode == "MESSAGE")
 			if (puzzlebox_pythia_sign == "1")
 				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
@@ -143,13 +150,15 @@
 			terminal_speak("> MESSAGE [puzzlebox_parser_input]")
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
 				puzzlebox_parser_mode = "MESSAGE"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
 				terminal_speak("The FTL Emergency Message buffer is an instantly synced short message repository that is typically used by black boxes or distress signal devices.")
 				terminal_speak("Due to how the devices are synced, only sending of preset messages from authorized terminals is typically possible, at least for humans.")
 				terminal_speak("Use command BUFFER to display message titles and buffer IDs.")
 				terminal_speak("Type in the ID that commands provide you, as it appears on the screen, to review a given message.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
 				terminal_speak("MESSAGE - Repeats message mode home message.")
@@ -157,7 +166,8 @@
 				terminal_speak("LIST - Lists all available modes.")
 				terminal_speak("HELP - Displays information about current mode.")
 				terminal_speak("EXIT - Enters passive mode.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. I hope you find what you are looking for.")
 				puzzlebox_user = null
@@ -166,14 +176,16 @@
 				terminal_speak("Taking you back HOME!", 20)
 				emoteas("chimes loudly.")
 				puzzlebox_parser_mode = "HOME"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "BUFFER" || puzzlebox_parser_input == "buffer")
 				terminal_speak("Local message buffer:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ID              |SUBJECT                         |")
 				terminal_speak("GEN-000-000-001 |Warning: On these messages.     |")
 				terminal_speak("UAM-712-317-210 |Testing, Testing...             |")
 				if(puzzlebox_unique_message_seen == FALSE)terminal_speak("FOR-CAS-SAN-DRA |You gave me hope.               |")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "GEN-000-000-001")
 				terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("From: CDR. Alysia Reed-Wilo.")
@@ -186,7 +198,8 @@
 				terminal_speak("Hopefully we can make this more usable as a BB board of sorts in time, but we will need help from LD locals as it were.")
 				terminal_speak("-XOXO Aly")
 				terminal_speak("EOF.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "UAM-712-317-210")
 				terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("From: LT. Hanako Williams")
@@ -198,11 +211,13 @@
 				terminal_speak("Anyway, this system is green. Green checkmark it is.")
 				terminal_speak("-Hanako.")
 				terminal_speak("EOF.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if (puzzlebox_parser_input == "FOR-CAS-SAN-DRA")
 				if (puzzlebox_unique_message_seen == TRUE)
 					terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 				if (puzzlebox_unique_message_seen == FALSE)
 					terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
 					terminal_speak("Are you sure you should be here?")
@@ -225,10 +240,12 @@
 					log_game("[key_name(usr)] read Melione's message to Cassandra.")
 					message_admins("[key_name_admin(usr)] read Melione's message to Cassandra.")
 					puzzlebox_unique_message_seen = TRUE
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 		if (puzzlebox_parser_mode == "UNLOCK")
 			terminal_speak("UNLOCK Mode.")
 			if (puzzlebox_phrase_1 == FALSE)
@@ -258,7 +275,8 @@
 			terminal_speak("Notice: Passphrases needed. Use the UNLOCK command after all codes have been provided.")
 			terminal_speak("Returning to HOME mode.")
 			puzzlebox_parser_mode = "HOME_INPUT"
-			attack_hand(user)
+			puzzlebox_user = null
+			return
 
 
 /obj/structure/eventterminal/puzzle04/crypt_doorlock/proc/puzzlebox_unlock_1()
@@ -2090,8 +2108,8 @@
 			A.talkas("Error. Latent code found in system buffer. Execute flag located. Identifying.")
 			A.talkas("Message found. Playback instruction executing...")
 			A.name = "Cassandra"
-			A.emoteas("audibly struggles to speak for a while, sniffles and coughs a few times.")
 			A.langchat_color = "#b3183e"
+			A.emoteas("audibly struggles to speak for a while, sniffles and coughs a few times.")
 			A.name = "Voice of CDR. Cassandra Reed-Wilo"
 			A.talkas("I uh... I...", 30)
 			A.langchat_color = COLOR_WHITE

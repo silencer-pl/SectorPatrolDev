@@ -379,7 +379,8 @@
 		if (puzzlebox_saw_lesson1 == FALSE)
 			terminal_speak("1. A welcome message from Admiral Boulette")
 			puzzlebox_parser_mode = "HOME_INPUT"
-			attack_hand(user)
+			puzzlebox_user = null
+			return
 		if (puzzlebox_saw_lesson1 == TRUE)
 			if (puzzlebox_saw_lesson4 == TRUE)
 				terminal_speak("1. A welcome message from Admiral Boulette - COMPLETE")
@@ -390,29 +391,34 @@
 				terminal_speak("?#!#")
 				terminal_speak("5 - Our Mission and the Truth.")
 				puzzlebox_parser_mode = "HOME_INPUT"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			terminal_speak("1. A welcome message from Admiral Boulette - COMPLETE")
 			if(puzzlebox_saw_lesson2 == FALSE && puzzlebox_saw_lesson3 == FALSE)
 				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette")
 				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo.")
 				puzzlebox_parser_mode = "HOME_INPUT"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == FALSE)
 				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette - COMPLETE")
 				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo.")
 				puzzlebox_parser_mode = "HOME_INPUT"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_saw_lesson2 == FALSE && puzzlebox_saw_lesson3 == TRUE)
 				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette")
 				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo. - COMPLETE")
 				puzzlebox_parser_mode = "HOME_INPUT"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == TRUE)
 				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette. - COMPLETE")
 				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo. - COMPLETE")
 				terminal_speak("4. Task Force 14 and your legacy - CDR. Reed-Wilo.")
 				puzzlebox_parser_mode = "HOME_INPUT"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 		if (puzzlebox_parser_mode == "HOME_INPUT")
 			user_loc_current = get_turf(user)
 			if (puzzlebox_user_loc != user_loc_current)
@@ -426,7 +432,8 @@
 				return
 			if(puzzlebox_parser_input == "0")
 				puzzlebox_parser_mode = "HOME"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_parser_input == "1")
 				if (puzzlebox_saw_lesson1 == FALSE)
 					terminal_speak("Playing presentation 1.")
@@ -450,12 +457,14 @@
 						return
 					terminal_speak("Returning to presentation selection.")
 					puzzlebox_parser_mode = "HOME"
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 			if(puzzlebox_parser_input == "2")
 				if(puzzlebox_saw_lesson1 == FALSE)
 					terminal_speak("Presentation unavailable.")
 					puzzlebox_parser_mode = "HOME"
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 				if(puzzlebox_saw_lesson1 == TRUE)
 					if (puzzlebox_saw_lesson2 == FALSE)
 						terminal_speak("Playing presentation 2.")
@@ -479,12 +488,14 @@
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
-						attack_hand(user)
+						puzzlebox_user = null
+						return
 			if(puzzlebox_parser_input == "3")
 				if(puzzlebox_saw_lesson1 == FALSE)
 					terminal_speak("Presentation unavailable.")
 					puzzlebox_parser_mode = "HOME"
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 				if(puzzlebox_saw_lesson1 == TRUE)
 					if (puzzlebox_saw_lesson3 == FALSE)
 						terminal_speak("Playing presentation 3.")
@@ -508,7 +519,8 @@
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
-						attack_hand(user)
+						puzzlebox_user = null
+						return
 			if(puzzlebox_parser_input == "4")
 				if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == TRUE)
 					if (puzzlebox_saw_lesson4 == FALSE)
@@ -533,15 +545,18 @@
 							return
 						terminal_speak("Returning to presentation selection.")
 						puzzlebox_parser_mode = "HOME"
-						attack_hand(user)
+						puzzlebox_user = null
+						return
 				terminal_speak("Presentation unavailable.")
 				puzzlebox_parser_mode = "HOME"
-				attack_hand(user)
+				puzzlebox_user = null
+				return
 			if(puzzlebox_parser_input == "5")
 				if(puzzlebox_saw_lesson4 == FALSE)
 					terminal_speak("Presentation unavailable.")
 					puzzlebox_parser_mode = "HOME"
-					attack_hand(user)
+					puzzlebox_user = null
+					return
 				if(puzzlebox_saw_lesson4 == TRUE)
 					terminal_speak("Playing presentation 5.")
 					for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)

@@ -1081,7 +1081,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/puzzlebox_admin_option = tgui_input_list(usr, "Select a Sequence", "Start Sequence", list("None - Leave", "Dock 31 Landing", "Dock 31 Elevator Up", "Dorms - Going Down", "Resolution"), 0)
+	var/puzzlebox_admin_option = tgui_input_list(usr, "Select a Sequence", "Start Sequence", list("None - Leave", "Dock 31 Landing", "Dock 31 Elevator Up", "Dorms - Going Down","Pythia Statistic Icons","Resolution"), 0)
 	if (!puzzlebox_admin_option) return
 	switch(puzzlebox_admin_option)
 		if("None - Leave")
@@ -1111,6 +1111,14 @@
 			sleep(150)
 			to_chat(world, narrate_body("The elevator slows and stops as it arrives at its destination. As its doors start to unseal, you feel a breeze on your cheeks."))
 			return
+		if("Pythia Statistic Icons")
+			for(var/obj/structure/eventterminal/puzzle05/testament_of_sacrifice/pythia in world)
+				for(var/obj/structure/machinery/light/marker/admin/mel in world)
+					if(mel.light_id == "melinoe")
+						pythia.pythia_terminal_icons("data")
+						mel.emoteas("The terminal monitors fizzle for a moment, then each begin to display its own, unsynchronized stream of data. For a while, the data seems random.")
+						mel.emoteas("You then start to see patterns. The terminal seems to be displaying security records, conversation records, mission reports and other official data about each and every one of you present in the room, switching between person to person at random intervals.")
+						mel.emoteas("It takes you a moment to realize that not all the data is correct. Some of it seems to mention events that have not taken place but all, somewhat disturbingly, seem to end with your demise in some accident or combat deployment, some time in the last year.")
 		if("Resolution")
 			to_chat(world, narrate_head("A warning klaxon rings out across the station as airlocks start to seal and clamp shut. The familiar robotic voice speaks:"))
 			to_chat(world, narrate_body("Attention. Security Lockout. Unauthorized attempt to overwrite proprietary UACM technology. All personnel are to remain locked down in their assigned dorms until an All-Clear signal is sent. Expected time until resolution: 70 hours."))

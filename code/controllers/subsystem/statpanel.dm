@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(statpanels)
 		num_fires++
 		global_data = list(
 			"Sector Patrol ALPHA",
-			"UACM Outer Void Primary Supply Terminal, Neroid Sector",
+			"UACM Outer Veil Primary Supply Terminal, Neroid Sector",
 			"August 21st, 2185",
 			"---------",
 //   "Round Time: [ROUND_TIME]",

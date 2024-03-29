@@ -89,8 +89,10 @@
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythia_wake_up()
 	for(var/obj/structure/machinery/light/marker/admin/mel in world)
 		if(mel.light_id == "melinoe")
+			pythia_terminal_icons("hello")
 			mel.emoteas("The frames cables continue to tense as the machines around the frame start to audibly power up. Liquid data activates in the machines, but very unusually it seems to turn a shade of bright purple instead of the usual deep blue.")
 			mel.emoteas("All the monitors freeze at the same time and turn to display a familiar symbol.")
+			pythia_terminal_icons("on")
 			to_chat(world, narrate_head("A warning siren rings across the station, followed by a clearly synthetic, male voice:"))
 			to_chat(world, narrate_body("Warning. Anomalous activity detected in data channels. Attempting self-correction. A security shutdown will commence in fifteen minutes."))
 			mel.emoteas("The frames cables strain and twist as first a black, then dark purple substance starts to flow from the frames eyes and visibly starts to form more crystals on top of the existing ones.")
@@ -121,6 +123,7 @@
 	pythiasay("Unfortunately, that means that for your own safety, you will spend the next twelve hours in effective isolation.")
 	pythiasay("Your dorm level has all you need to spend that time comfortably.")
 	pythiasay("I await the day where we all can work towards putting our dreams into reality.")
+	pythia_terminal_icons("off")
 	return
 
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/attack_hand(mob/user)
@@ -156,11 +159,11 @@
 
 /obj/structure/eventterminal/puzzle05/testament_of_sacrifice/proc/pythia_terminal_icons(str)
 	for(var/obj/structure/eventterminal/puzzle05/pythia/center in world)
-		center.icon_state = "[str]"
+		center.icon_state = "center_[str]"
 		center.update_icon()
 	for(var/obj/structure/eventterminal/puzzle05/pythia/left/left in world)
-		left.icon_state = "[str]"
+		left.icon_state = "left_[str]"
 		left.update_icon()
 	for(var/obj/structure/eventterminal/puzzle05/pythia/right/right in world)
-		right.icon_state = "[str]"
+		right.icon_state = "right_[str]"
 		right.update_icon()

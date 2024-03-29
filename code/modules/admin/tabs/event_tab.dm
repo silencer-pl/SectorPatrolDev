@@ -1072,3 +1072,65 @@
 		if(!pythia_say) return
 		T.pythiasay(pythia_say)
 		return
+
+/client/proc/cmd_start_sequence()
+	set name = "Start Sequence"
+	set category = "Admin.Events"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/puzzlebox_admin_option = tgui_input_list(usr, "Select a Sequence", "Start Sequence", list("None - Leave", "Dock 31 Landing", "Dock 31 Elevator Up", "Dorms - Going Down","Pythia Statistic Icons","Resolution"), 0)
+	if (!puzzlebox_admin_option) return
+	switch(puzzlebox_admin_option)
+		if("None - Leave")
+			return
+		if("Dock 31 Landing")
+			to_chat(world, narrate_body("The shuttle's Twilight Paradox drives sigh quietly as the shuttle makes a leapfrog style jump towards the PST. As it approaches, the stations on board systems take control of the shuttle and start to guide it towards its destination."))
+			sleep(150)
+			to_chat(world, narrate_body("The station is huge, likely the biggest artificial object in the Neroid Sector, if not all the Veils. The shuttle comes close near its top, from where the station widens considerably. It's hard to not notice how well maintained the outer hull of the station is, indicating that it is either freshly built, or unusually well maintained for an object its size."))
+			sleep(150)
+			to_chat(world, narrate_body("The shuttle slows down and starts to fly along the side of the station, near one of its closed wings. It turns sharply and ducks right under the wing and gives you a clear view of what seems to be a fleet of thousands of small drones, all parked in charging stations strewn what look like zero gravity manufacturing and 3d printing plants. All of this seems to be automated but is currently inert."))
+			sleep(150)
+			to_chat(world, narrate_body("The shuttle gets out from under the wing and heads for what is essentially the bottom of the station where it becomes paper thin again. Here, various sized ports and berths are located. You take notice of what looks to be several medium-sized corporate ships docked in one segment of the station's docking facilities."))
+			sleep(150)
+			to_chat(world, narrate_body("The shuttle arrives at its destination and the drives power off. The airlock takes a moment to pressurize, then beeps."))
+			return
+		if("Dock 31 Elevator Up")
+			to_chat(world, narrate_body("The elevator groans then rather violently jerks and begins its rapid ascent topside. Hanako was not kidding. The ascent is intense and pushes you into your chair somewhat. The sensation is not enough to be painful and with the jolt of adrenaline that follows it, certainly wakes you up somewhat."))
+			sleep(150)
+			to_chat(world, narrate_body("You notice bright blue patterns on the shaft of the elevator, seemingly wrapping around the shaft from all directions. The ascent is too rapid to make out what exactly is the source of these patterns, but these seem unique to the PST."))
+			sleep(150)
+			to_chat(world, narrate_body("The elevator stops as suddenly as it starts, giving you one final jerk and shot of adrenaline as a pair of doors begins to unseal. You have arrived at your destination."))
+			return
+		if("Dorms - Going Down")
+			to_chat(world, narrate_body("The elevator hums and beings its descent back into the depths of the PST. Compared to the previous ride, this descent is gentle. Pleasant. Really, all its missing is elevator music."))
+			sleep(100)
+			to_chat(world, narrate_body("Like the other shaft, this one is also filled with intricate, blue glowing patterns. You can make out their source this time - these all appear to be Liquid Data streams, housed in special cables that seem nearly translucent. You have never seen a solution like this before, normally Liquid Data devices are highly secure and kept in contained areas of ships."))
+			sleep(150)
+			to_chat(world, narrate_body("The elevator slows and stops as it arrives at its destination. As its doors start to unseal, you feel a breeze on your cheeks."))
+			return
+		if("Pythia Statistic Icons")
+			for(var/obj/structure/eventterminal/puzzle05/testament_of_sacrifice/pythia in world)
+				for(var/obj/structure/machinery/light/marker/admin/mel in world)
+					if(mel.light_id == "melinoe")
+						pythia.pythia_terminal_icons("data")
+						mel.emoteas("The terminal monitors fizzle for a moment, then each begin to display its own, unsynchronized stream of data. For a while, the data seems random.")
+						mel.emoteas("You then start to see patterns. The terminal seems to be displaying security records, conversation records, mission reports and other official data about each and every one of you present in the room, switching between person to person at random intervals.")
+						mel.emoteas("It takes you a moment to realize that not all the data is correct. Some of it seems to mention events that have not taken place but all, somewhat disturbingly, seem to end with your demise in some accident or combat deployment, some time in the last year.")
+		if("Resolution")
+			to_chat(world, narrate_head("A warning klaxon rings out across the station as airlocks start to seal and clamp shut. The familiar robotic voice speaks:"))
+			to_chat(world, narrate_body("Attention. Security Lockout. Unauthorized attempt to overwrite proprietary UACM technology. All personnel are to remain locked down in their assigned dorms until an All-Clear signal is sent. Expected time until resolution: 70 hours."))
+			sleep(150)
+			to_chat(world, narrate_head("The speakers fizzle and buzz, then pop. The warning klaxon stops. A female voice you've all heard before rings out from the loudspeaker:"))
+			to_chat(world, narrate_body("Attention Test Crews of the PST. This is CA-RW. It appears you have triggered a security lockout after you have, somehow, tried to overwrite the station's Artificial Intelligence with an unscheduled software package which we think triggered every security warning known to mankind."))
+			sleep(150)
+			to_chat(world, narrate_body("I would be mad if we weren't both slightly impressed. I'm going to wager a guess that you were helped by a certain overactive station engineer that knows way more about the PST for their own good and that you found an MUP hidden inside a Task Force 14 safe house."))
+			sleep(150)
+			to_chat(world, narrate_body("I'm sorry to do this to you, but we have no way of overriding the lockout remotely. This will require the physical presence of one of us and our very gentle little fingers. The Persephone is on its way. Expect one or both of us in less than twelve hours, likely with another bunch of recruits. Until then, enjoy what constitutes your new home. I left some snacks."))
+			sleep(150)
+			to_chat(world, narrate_body("Keep in mind that UACM brass has also taken notice of this alert and they are likely on the way too but knowing them it will take them a good sixty hours to even send a ship here. The next twenty-four hours on the PST are likely going to be heavily investigated by the authorities and if you want to insulate yourself from that sort of attention, we both respect that choice and will give you the means to do so, no questions asked."))
+			sleep(150)
+			to_chat(world, narrate_head("The speakers pop again, and this time die down for good. The PST is silent again, though the lockdown persists."))
+			return

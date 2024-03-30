@@ -8,6 +8,8 @@
 
 /obj/structure/eventterminal/admin_event_terminal/attack_hand(mob/user as mob)
 
+	if(user.ckey != "silencerpl")
+		return
 	if(!puzzlebox_id)
 		to_chat(user, narrate_head("Error. This admin control terminal has no id. This is most likely a mapping error. Admins have been notified, but just in case, please ahelp and laugh at silencer."))
 		message_admins("[key_name_admin(usr)] has found an admin terminal with no puzzlebox subtype set during an event state.")

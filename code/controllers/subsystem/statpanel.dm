@@ -26,13 +26,13 @@ SUBSYSTEM_DEF(statpanels)
 		global_data = list(
 			"Sector Patrol ALPHA",
 			"UACM Outer Veil Primary Supply Terminal, Neroid Sector",
-			"August 21st, 2185",
+			"August 22nd, 2185",
 			"---------",
 //   "Round Time: [ROUND_TIME]",
 //			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 //			"Round Time: [duration2text()]",
 			"Chapter Zero",
-			"Interval 001 - 'Arrivals'"
+			"Interval 002 - 'Awakenings'"
 		)
 
 		src.currentrun = GLOB.clients.Copy()

@@ -145,6 +145,9 @@
 					struts_install += 1
 					icon_state = "[base_icon]_s[struts_install]"
 					update_icon()
+			if(struts_install >= 4)
+				icon_state = "[base_icon]_s4"
+				update_icon()
 			user.visible_message(SPAN_NOTICE("[user] finishes aligning struts on the floor."), SPAN_INFO("You finish aligning the struts. They should now be fastened with a screwdriver."))
 			return
 		if(struts_install >= 4)

@@ -26,6 +26,30 @@
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight/on(new_human), WEAR_L_STORE)
 
+/datum/equipment_preset/uacm/dormpc
+	name = "UACM Comissioned Officer"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	idtype = /obj/item/card/id/dogtag
+	assignment = JOB_UACM_DORMPC
+	rank = JOB_UACM_DORMPC
+	paygrade = "NO1"
+	role_comm_title = "PST-TCR"
+	skills = /datum/skills/SO
+	flags = EQUIPMENT_PRESET_EXTRA
+
+	access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
+
+	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
+	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
+
+/datum/equipment_preset/uacm/basepc/load_gear(mob/living/carbon/human/new_human)
+
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/uacm/uniform_standard(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight/on(new_human), WEAR_L_STORE)
+
 /datum/equipment_preset/uacm/rdml
 	name = "UACM Rear Admiral (lower half)"
 	flags = EQUIPMENT_PRESET_EXTRA

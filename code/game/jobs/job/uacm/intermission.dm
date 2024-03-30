@@ -6,7 +6,7 @@
 	gear_preset = /datum/equipment_preset/uacm/basepc
 	entry_message_intro = "You are an UACM Comissioned Officer, currently assigned to the 2nd Logistics Division, under RDML Thomas Boulette."
 	entry_message_body = "You have spent the last two weeks travelling on various UACM spaceships or waiting on UACM transfer stations to get to the Outer Veil Primary Supply Terminal, where you will be stationed for the duration of your assignment."
-	entry_message_end = "For the last leg of your journey, you are rather last minute loaded onto a transit shuttle headed for the PST that was picking up cargo intended for the station. The officer operating the shuttle seemed somewhat surprised by your presence but nonetheless seemed happy to help. After about 20 minutes of flight, the shuttle abruptly stops and your pilot looks in frustration at her pilot console."
+	entry_message_end = "As you are rather urgently loaded onto a transit shuttle for the last leg of your journey, the ship you are on is intercepted by the UAS Persephone. After some commotion, some extra cargo is loaded onto your shuttle and the crafts pilot is replaced with what looks like an UAAC-TIS Commander that some of you may recognize. The shuttle seems to have been adrift in space for a good ten minutes now as the Commander just glares at her pilot's console."
 /obj/effect/landmark/start/basepc
 	name = JOB_UACM_BASEPC
 	icon_state = "so_spawn"

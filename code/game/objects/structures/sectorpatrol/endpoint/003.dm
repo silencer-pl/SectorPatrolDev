@@ -343,5 +343,258 @@
 				return
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
-	to_chat(usr, narrate_body("The terminal does not seem to be displaying anything and seems to be remote controlled."))
+	if(!puzzlebox_user)
+		puzzlebox_user = usr.real_name
+		puzzlebox_user_loc = get_turf(usr)
+	var/user_loc_current = get_turf(usr)
+	if (puzzlebox_user_loc != user_loc_current)
+		to_chat(user, narrate_body("You moved away from the console!"))
+		puzzlebox_user = null
+		emoteas("beeps and its monitor goes dark.")
+		return
+	if(puzzlebox_user != usr.real_name)
+		for (var/mob/living/carbon/human/h in range(2, src))
+			if (h.real_name == puzzlebox_user)
+				to_chat(usr, narrate_body("Someone is already using this terminal."))
+				return
+		puzzlebox_user = usr.real_name
+	if (puzzlebox_complete == TRUE)
+		to_chat(usr, narrate_body("The terminal displays:"))
+		terminal_speak("Orientation complete. Please proceed to your quarters, elevator D.")
+		to_chat(usr, narrate_body("There is no response to any inputs."))
+		puzzlebox_user = null
+		emoteas("beeps and its monitor goes dark.")
+		return
+	if (puzzlebox_playing == TRUE)
+		to_chat(usr, narrate_body("The terminal displays:"))
+		terminal_speak("Error: Presentation already in progress. ")
+		to_chat(usr, narrate_body("There is no response to any inputs."))
+		puzzlebox_user = null
+		emoteas("beeps and its monitor goes dark.")
+		return
+	if (!puzzlebox_parser_mode) puzzlebox_parser_mode = "HOME"
+	if (puzzlebox_parser_mode == "HOME")
+		to_chat(usr, narrate_body("The terminal displays:"))
+		terminal_speak("Outer Veil Primary Support Terminal Memorial and Orientation.")
+		terminal_speak("Welcome, first members UACM Second Logistics Test Crews!")
+		terminal_speak("The following presentations are currently available:")
+		terminal_speak("NOTE: Completion of orientation may require viewing of additional presentations that will be made available in order. Please make sure you check this terminal for any new entries.")
+		if (puzzlebox_saw_lesson1 == FALSE)
+			terminal_speak("1. A welcome message from Admiral Boulette")
+			puzzlebox_parser_mode = "HOME_INPUT"
+			puzzlebox_user = null
+			emoteas("beeps and its monitor goes dark.")
+			return
+		if (puzzlebox_saw_lesson1 == TRUE)
+			if (puzzlebox_saw_lesson4 == TRUE)
+				terminal_speak("1. A welcome message from Admiral Boulette - COMPLETE")
+				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette. - COMPLETE")
+				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo. - COMPLETE")
+				terminal_speak("4. Task Force 14 and your legacy - CDR. Reed-Wilo. - COMPLETE")
+				terminal_speak("Error: Buffer mismatch. The following presentation is likely not part of intended course, exists on course list anyway. Ca")
+				terminal_speak("?#!#")
+				terminal_speak("5 - Our Mission and the Truth.")
+				puzzlebox_parser_mode = "HOME_INPUT"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			terminal_speak("1. A welcome message from Admiral Boulette - COMPLETE")
+			if(puzzlebox_saw_lesson2 == FALSE && puzzlebox_saw_lesson3 == FALSE)
+				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette")
+				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo.")
+				puzzlebox_parser_mode = "HOME_INPUT"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == FALSE)
+				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette - COMPLETE")
+				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo.")
+				puzzlebox_parser_mode = "HOME_INPUT"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_saw_lesson2 == FALSE && puzzlebox_saw_lesson3 == TRUE)
+				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette")
+				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo. - COMPLETE")
+				puzzlebox_parser_mode = "HOME_INPUT"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == TRUE)
+				terminal_speak("2. Our Legacy - The Colony Wars, The USCMC, The Sweep - RDML. Boulette. - COMPLETE")
+				terminal_speak("3. Our Home - The Outer Veil PST - RDML. Boulette and CDR. Reed-Wilo. - COMPLETE")
+				terminal_speak("4. Task Force 14 and your legacy - CDR. Reed-Wilo.")
+				puzzlebox_parser_mode = "HOME_INPUT"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+		if (puzzlebox_parser_mode == "HOME_INPUT")
+			user_loc_current = get_turf(user)
+			if (puzzlebox_user_loc != user_loc_current)
+				to_chat(user, narrate_body("You moved away from the console!"))
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			to_chat(usr, narrate_body("The terminal awaits your input. There is only a number pad and an enter key available."))
+			var/puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave. Typing in 0 should replay the introduction message. ", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+			if(!puzzlebox_parser_input)
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_parser_input == "0")
+				puzzlebox_parser_mode = "HOME"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_parser_input == "1")
+				if (puzzlebox_saw_lesson1 == FALSE)
+					terminal_speak("Playing presentation 1.")
+					for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+						INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson1))
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
+				if (puzzlebox_saw_lesson1 == TRUE)
+					terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
+					puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+					if(!puzzlebox_parser_input)
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+					if(puzzlebox_parser_input == "1")
+						terminal_speak("Replaying presentation 1.")
+						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson1))
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+					terminal_speak("Returning to presentation selection.")
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
+			if(puzzlebox_parser_input == "2")
+				if(puzzlebox_saw_lesson1 == FALSE)
+					terminal_speak("Presentation unavailable.")
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
+				if(puzzlebox_saw_lesson1 == TRUE)
+					if (puzzlebox_saw_lesson2 == FALSE)
+						terminal_speak("Playing presentation 2.")
+						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson2))
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+					if (puzzlebox_saw_lesson2 == TRUE)
+						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
+						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						if(puzzlebox_parser_input == "2")
+							terminal_speak("Replaying presentation 2.")
+							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson2))
+							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						terminal_speak("Returning to presentation selection.")
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+			if(puzzlebox_parser_input == "3")
+				if(puzzlebox_saw_lesson1 == FALSE)
+					terminal_speak("Presentation unavailable.")
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
+				if(puzzlebox_saw_lesson1 == TRUE)
+					if (puzzlebox_saw_lesson3 == FALSE)
+						terminal_speak("Playing presentation 3.")
+						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson3))
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+					if (puzzlebox_saw_lesson3 == TRUE)
+						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
+						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						if(puzzlebox_parser_input == "3")
+							terminal_speak("Replaying presentation 3.")
+							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson3))
+							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						terminal_speak("Returning to presentation selection.")
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+			if(puzzlebox_parser_input == "4")
+				if(puzzlebox_saw_lesson2 == TRUE && puzzlebox_saw_lesson3 == TRUE)
+					if (puzzlebox_saw_lesson4 == FALSE)
+						terminal_speak("Playing presentation 4.")
+						for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+							INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson4))
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+					if (puzzlebox_saw_lesson4 == TRUE)
+						terminal_speak("The presentation was already played. Repeat number to confirm replaying.")
+						puzzlebox_parser_input = tgui_input_text(usr, "Pick a number corresponding to a presentation or cancel to leave.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+						if(!puzzlebox_parser_input)
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						if(puzzlebox_parser_input == "4")
+							terminal_speak("Replaying presentation 4.")
+							for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+								INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson4))
+							puzzlebox_parser_mode = "HOME"
+							puzzlebox_user = null
+							emoteas("beeps and its monitor goes dark.")
+							return
+						terminal_speak("Returning to presentation selection.")
+						puzzlebox_parser_mode = "HOME"
+						puzzlebox_user = null
+						emoteas("beeps and its monitor goes dark.")
+						return
+				terminal_speak("Presentation unavailable.")
+				puzzlebox_parser_mode = "HOME"
+				puzzlebox_user = null
+				emoteas("beeps and its monitor goes dark.")
+				return
+			if(puzzlebox_parser_input == "5")
+				if(puzzlebox_saw_lesson4 == FALSE)
+					terminal_speak("Presentation unavailable.")
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
+				if(puzzlebox_saw_lesson4 == TRUE)
+					terminal_speak("Playing presentation 5.")
+					for (var/obj/structure/eventterminal/puzzle03/historycrt/T in world)
+						INVOKE_ASYNC(T, TYPE_PROC_REF(/obj/structure/eventterminal/puzzle03/historycrt, lesson5))
+					puzzlebox_parser_mode = "HOME"
+					puzzlebox_user = null
+					emoteas("beeps and its monitor goes dark.")
+					return
 

@@ -2,14 +2,14 @@
 	name = "UACM"
 
 /datum/equipment_preset/uacm/basepc
-	name = "UACM Comissioned Officer"
+	name = "UACM OV-PST Test Crew Officer"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
 	idtype = /obj/item/card/id/dogtag
 	assignment = JOB_UACM_BASEPC
 	rank = JOB_UACM_BASEPC
 	paygrade = "NO1"
-	role_comm_title = "Officer"
+	role_comm_title = "PST-TCR"
 	skills = /datum/skills/SO
 	flags = EQUIPMENT_PRESET_EXTRA
 
@@ -21,6 +21,30 @@
 /datum/equipment_preset/uacm/basepc/load_gear(mob/living/carbon/human/new_human)
 
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(new_human), WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/uacm/uniform_standard(new_human), WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/flashlight/on(new_human), WEAR_L_STORE)
+
+/datum/equipment_preset/uacm/newpc
+	name = "UACM Comissioned Officer"
+	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
+
+	idtype = /obj/item/card/id/dogtag
+	assignment = JOB_UACM_NEWPC
+	rank = JOB_UACM_NEWPC
+	paygrade = "NO1"
+	role_comm_title = "Officer"
+	skills = /datum/skills/SO
+	flags = EQUIPMENT_PRESET_EXTRA
+
+	access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
+
+	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
+	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
+
+/datum/equipment_preset/uacm/newpc/load_gear(mob/living/carbon/human/new_human)
+
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/marine/uacm/uniform_standard(new_human), WEAR_BODY)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/knife(new_human), WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(new_human), WEAR_BACK)

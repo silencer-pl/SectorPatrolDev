@@ -16,7 +16,7 @@
 		return
 	if(!("buffer_welcome" in usr.saw_narrations))
 		terminal_welcome()
-	terminal_input()
+	terminal_cmd()
 	return
 
 /obj/structure/eventterminal/logbuffer/proc/terminal_welcome()
@@ -31,7 +31,7 @@
 	if(!("buffer_welcome" in usr.saw_narrations))
 		usr.saw_narrations.Add("buffer_welcome")
 
-/obj/structure/eventterminal/logbuffer/proc/terminal_input()
+/obj/structure/eventterminal/logbuffer/proc/terminal_cmd()
 	terminal_speak("Awaiting Command.")
 	terminal_speak("General commands: HELP, LIST, EXIT")
 	var/puzzlebox_parser_input = uppertext(tgui_input_text(usr, "Please enter a command. Terminal commands are typically case sensitive.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0))
@@ -71,10 +71,10 @@
 			return
 		if("HELP")
 			terminal_welcome()
-			terminal_input()
+			terminal_cmd()
 		if("LIST")
 			terminal_list()
-			terminal_input()
+			terminal_cmd()
 		else
 			terminal_message(puzzlebox_parser_input)
-			terminal_input()
+			terminal_cmd()

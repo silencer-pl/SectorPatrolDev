@@ -159,7 +159,8 @@ GLOBAL_LIST_INIT(admin_verbs_major_event, list(
 	/client/proc/change_weather,
 	/client/proc/admin_blurb,
 	/client/proc/cmd_admin_pythia_say,
-	/client/proc/cmd_start_sequence
+	/client/proc/cmd_start_sequence,
+	/client/proc/cmd_answer_civnet
 ))
 
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(

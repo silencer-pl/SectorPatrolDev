@@ -16,14 +16,29 @@
 		return
 	terminal_speak("Welcome to the Outer Veil PST CivNet Access Terminal!")
 	terminal_speak("User verified! Welcome, [usr.name]!")
-	terminal_speak("Please submit a CivNet query!")
-	var/puzzlebox_civnet_query = tgui_input_text(usr, "Please enter a query for the terminal. Notice that more complex queries may take several hours to complete and may not be available as an answer this round.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE, timeout = 0)
-	if (!puzzlebox_civnet_query)
+	if(usr.civnet_answer != null)
+		terminal_speak("CivNet query fulfilled. Printing answer:")
+		terminal_speak("[usr.civnet_answer]")
+		terminal_speak("Answer complete. Have a nice day!")
+		usr.civnet_answer = null
+		usr.civnet_query = null
 		puzzlebox_user = null
-		emoteas("beeps and its monitor goes dark.")
 		return
-	terminal_speak("> [puzzlebox_civnet_query]")
-	log_game("[key_name(usr)] submitted the Civnet query: [puzzlebox_civnet_query]")
-	message_admins("[key_name(usr)] submitted the Civnet query: [puzzlebox_civnet_query]")
-	terminal_speak("Query accepted. You will be notified when results are available!")
-	return
+	terminal_speak("Please submit a CivNet query!")
+	if(usr.civnet_query == null)
+		var/puzzlebox_civnet_query = tgui_input_text(usr, "Please enter a query for the terminal. Notice that more complex queries may take several hours to complete and may not be available as an answer this round.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_civnet_query)
+			puzzlebox_user = null
+			return
+		terminal_speak("> [puzzlebox_civnet_query]")
+		usr.civnet_query = "[puzzlebox_civnet_query]"
+		log_game("[key_name(usr)] submitted the Civnet query: [puzzlebox_civnet_query]")
+		message_admins("[key_name(usr)] submitted the Civnet query: [puzzlebox_civnet_query]")
+		terminal_speak("Query accepted. You will be notified when results are available!")
+		puzzlebox_user = null
+		return
+	if(usr.civnet_query != null)
+		if(tgui_alert(usr,"You have already submitted a query, which reads: '[usr.civnet_query]'. Do you wish to cancel this query?", "Query Found", list("Yes", "No"), timeout = 0) == "No") return
+		usr.civnet_query = null
+		puzzlebox_user = null
+		return

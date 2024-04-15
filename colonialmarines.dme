@@ -1469,6 +1469,7 @@
 #include "code\modules\admin\verbs\mob_verbs.dm"
 #include "code\modules\admin\verbs\mooc.dm"
 #include "code\modules\admin\verbs\noclip.dm"
+#include "code\modules\admin\verbs\icquery.dm"
 #include "code\modules\admin\verbs\playsound.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\randomverbs.dm"

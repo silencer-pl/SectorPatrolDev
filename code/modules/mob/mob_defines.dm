@@ -266,6 +266,10 @@
 	//Atmospheric narration list
 	var/list/saw_narrations = list()
 
+	//Queries: CivNet
+	var/civnet_query
+	var/civnet_answer
+
 /mob/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION(VV_HK_EXPLODE, "Trigger Explosion")

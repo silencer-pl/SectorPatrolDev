@@ -2,7 +2,7 @@
 /obj/structure/eventterminal
 	icon = 'icons/obj/structures/machinery/clio_maint.dmi'
 	icon_state = "closed"
-	name = "manipulator - placeholder"
+	name = "terminal - placeholder"
 	desc = "An admin or placeholder version of interaction terminals."
 	desc_lore = "Use event specifc terminals you dunce."
 	anchored = TRUE

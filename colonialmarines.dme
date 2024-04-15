@@ -1608,6 +1608,7 @@
 #include "code\modules\clothing\under\miscellaneous.dm"
 #include "code\modules\clothing\under\rank_pins.dm"
 #include "code\modules\clothing\under\shorts.dm"
+#include "code\modules\clothing\under\sp_under.dm"
 #include "code\modules\clothing\under\ties.dm"
 #include "code\modules\clothing\under\under.dm"
 #include "code\modules\clothing\under\jobs\civilian.dm"

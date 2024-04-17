@@ -48,31 +48,6 @@
 		qdel(src)
 		return
 
-
-/obj/structure/crafting/packages/dormstruts
-	icon_state = "package_long"
-	item_serial = "NRPS COMPLIANT<hr>MODULAR FLOOR STRUT x60<br>MODULAR FLOOR TILE x60<hr>UACM OUTER VEIL PST"
-	item_serial_distance = SERIAL_STRUCTURE_SIZE_FAR
-	variant_id = "default"
-
-/obj/structure/crafting/packages/dormstruts/attack_hand(mob/user)
-	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
-	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
-		var/obj/item/stack/rods/floorstrut/strut1 = new(get_turf(src))
-		var/obj/item/stack/rods/floorstrut/strut2 = new(get_turf(src))
-		var/obj/item/stack/modulartiles/tile1 = new(get_turf(src))
-		var/obj/item/stack/modulartiles/tile2 = new(get_turf(src))
-		strut1.amount = 30
-		strut1.update_icon()
-		strut2.amount = 30
-		strut2.update_icon()
-		tile1.amount = 30
-		tile1.update_icon()
-		tile2.amount = 30
-		tile2.update_icon()
-		qdel(src)
-		return
 //frames
 
 /obj/structure/crafting/frame/

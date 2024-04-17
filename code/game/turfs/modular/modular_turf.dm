@@ -9,8 +9,8 @@
 	icon_state = "plating"
 	intact_tile = FALSE
 	tool_flags = NO_FLAGS
-	mouse_opacity = FALSE
-	var/tile_top_left
+	mouse_opacity = TRUE
+	var/tile_top_left // Determine clors of individual tiles and the sealant. For these use only color names, rest of the icon name is appended. See either finished tile definitons or the DMI for avaialble options.
 	var/tile_bot_left
 	var/tile_top_rght
 	var/tile_bot_rght
@@ -62,17 +62,25 @@
 	overlays = null
 	overlays += image('icons/turf/modular_nrps.dmi', src, "[initial(icon_state)]")
 	if (tile_top_left != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_left]")
+		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_left]_top_left")
 	if (tile_bot_left != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_left]")
+		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_left]_bot_left")
 	if (tile_top_rght != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_rght]")
+		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_rght]_top_rght")
 	if (tile_bot_rght != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_rght]")
+		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_rght]_bot_rght")
 	if (tile_seal != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_seal]")
+		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_seal]_seal")
 
 /turf/open/floor/plating/modular/Initialize(mapload, ...)
 	. = ..()
 	if(tile_top_left != null || tile_bot_left != null || tile_top_rght != null || tile_bot_rght != null || tile_seal != null)
 		update_icon()
+
+//Completed floors start here.
+/turf/open/floor/plating/modular/gray
+	tile_top_left = "gray"
+	tile_top_rght = "gray"
+	tile_bot_left = "gray"
+	tile_bot_rght = "gray"
+	tile_seal = "black"

@@ -192,7 +192,6 @@ GLOBAL_LIST_INIT (player_chargen_service, CHARGEN_SERVICE)
 GLOBAL_REFERENCE_LIST_INDEXED(chargen_destiny, /datum/chargen/destiny, name)
 GLOBAL_LIST_INIT (player_chargen_destiny, CHARGEN_DESTINY)
 
-//Xeno mutators
 //Xeno hives
 GLOBAL_LIST_INIT_TYPED(hive_datum, /datum/hive_status, list(
 	XENO_HIVE_NORMAL = new /datum/hive_status(),

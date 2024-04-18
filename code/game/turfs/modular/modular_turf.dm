@@ -80,7 +80,6 @@
 					return
 		usr.put_in_inactive_hand(tiles)
 
-
 /turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
 	if (!(istype (C, /obj/item/stack/modulartiles) || istype(C, /obj/item/cargo/sealanttube) ||HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER)))
 		to_chat(usr, SPAN_NOTICE("These two things don't seem to go together."))

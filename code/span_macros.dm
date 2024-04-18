@@ -32,6 +32,8 @@
 // Round and roles
 #define SPAN_ROUNDHEADER(X) "<span class='round_header'>[X]</span>"
 #define SPAN_ROUNDBODY(X) "<span class='round_body'>[X]</span>"
+#define SPAN_ROLE_HEADER(X) "<span class='role_header'>[X]</span>"
+#define SPAN_ROLE_BODY(X) "<span class='role_body'>[X]</span>"
 
 
 // OOC
@@ -48,6 +50,7 @@
 #define SPAN_MENTORHELP(X) ("<span class='mentorhelp'>" + X + "</span>")
 #define SPAN_MENTORSAY(X) ("<span class='mentorsay'>" + X + "</span>")
 #define SPAN_MENTORBODY(X) ("<span class='mentorbody'>" + X + "</span>")
+#define SPAN_NICHE(X) "<span class='niche'>[X]</span>"
 
 #define SPAN_PM(X) "<span class='pm'>[X]</span>"
 

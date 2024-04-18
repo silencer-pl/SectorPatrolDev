@@ -108,6 +108,9 @@
 	icon_state = "passage"
 	layer = FULLSCREEN_CRIT_LAYER
 
+/atom/movable/screen/fullscreen/crit/dark
+	color = COLOR_GRAY
+
 /atom/movable/screen/fullscreen/blind
 	icon_state = "blackimageoverlay"
 	layer = FULLSCREEN_BLIND_LAYER
@@ -126,6 +129,9 @@
 	icon = 'icons/mob/hud/screen1.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "noise"
+
+/atom/movable/screen/fullscreen/flash/dark
+	icon_state = "black"
 
 /atom/movable/screen/fullscreen/high
 	icon = 'icons/mob/hud/screen1.dmi'
@@ -212,13 +218,13 @@
 /atom/movable/screen/fullscreen/lighting_backdrop/lit_secondary
 	invisibility = INVISIBILITY_LIGHTING
 	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_DIMMER_LAYER
-	color = COLOR_BLACK
+	color = "#000"
 	alpha = 60
 
 /atom/movable/screen/fullscreen/lighting_backdrop/backplane
 	invisibility = INVISIBILITY_LIGHTING
 	layer = LIGHTING_BACKPLANE_LAYER
-	color = COLOR_BLACK
+	color = "#000"
 	blend_mode = BLEND_ADD
 
 /atom/movable/screen/fullscreen/see_through_darkness
@@ -226,15 +232,4 @@
 	plane = LIGHTING_PLANE
 	layer = LIGHTING_PRIMARY_LAYER
 	blend_mode = BLEND_ADD
-	show_when_dead = TRUE
-
-//spess
-
-/atom/movable/screen/fullscreen/space
-	icon = 'icons/effects/backdrop.dmi'
-	icon_state = "pst"
-	appearance_flags = NONE
-	plane = SPACE_BACKDROP_PLANE
-	layer = SPACE_UNDERLAY_LAYER
-	blend_mode = BLEND_OVERLAY
 	show_when_dead = TRUE

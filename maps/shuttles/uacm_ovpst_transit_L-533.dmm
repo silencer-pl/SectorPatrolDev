@@ -163,17 +163,6 @@
 	icon_state = "24,2d"
 	},
 /area/shuttle/ert)
-"mA" = (
-/obj/structure/machinery/power/fusion_engine{
-	pixel_x = -18;
-	pixel_y = 13
-	},
-/obj/structure/machinery/power/fusion_engine{
-	pixel_x = -18;
-	pixel_y = -19
-	},
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
 "mK" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nws"
@@ -342,9 +331,8 @@
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "zs" = (
-/obj/structure/machinery/power/fusion_engine{
-	pixel_x = -18;
-	pixel_y = 13
+/obj/structure/prop/invuln/fusion_reactor{
+	pixel_x = -18
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -565,7 +553,8 @@
 	brightness = 12
 	},
 /turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+	icon_state = "floor1";
+	dir = 4
 	},
 /area/shuttle/ert)
 "Nj" = (
@@ -741,7 +730,8 @@
 /area/shuttle/ert)
 "VZ" = (
 /turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+	icon_state = "floor1";
+	dir = 4
 	},
 /area/shuttle/ert)
 "WK" = (
@@ -806,7 +796,7 @@ Qi
 OO
 zs
 zs
-mA
+zs
 OO
 re
 SW

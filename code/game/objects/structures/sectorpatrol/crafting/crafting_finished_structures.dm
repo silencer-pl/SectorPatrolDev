@@ -97,10 +97,10 @@
 	icon_state = "lamp"
 	light_range = 5
 	light_power = 1
-	light_color = LIGHT_COLOR_WHITE
+	light_color = COLOR_WHITE
 	w_class = SIZE_LARGE
 	var/variant_id = "default"
-	var/crafting_lamp_bulb_color = LIGHT_COLOR_WHITE
+	var/crafting_lamp_bulb_color = COLOR_WHITE
 	var/crafting_lamp_top_color = "default"
 	var/on = FALSE
 

@@ -33,7 +33,7 @@
 			change_lights(lights_id = "sec-1", lights_color = "#9300b8" )
 			usr.visible_message(narrate_body("[usr] pushes a few buttons on the console and the scanner activates. The whole area seems unnaturally silent for a moment. You can almost feel something watching through the security bulb for a split second, but it must just be the long hours spent travelling in space. The console beeps after a few seconds and the light changes back to normal."), narrate_console("> PROCESSING..."))
 			sleep (3 SECONDS)
-			change_lights(lights_id = "sec-1", lights_color = LIGHT_COLOR_WHITE)
+			change_lights(lights_id = "sec-1", lights_color = COLOR_WHITE)
 			return
 	if(puzzlebox_id == "scn2")
 		var/puzzlebox_admin_option = tgui_input_list(usr, "Select a function", "Admin Terminal", list("Start Second Puzzle Sequence", "Open Scanner Doors"), 0)

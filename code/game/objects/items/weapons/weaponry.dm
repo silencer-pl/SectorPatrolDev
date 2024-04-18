@@ -169,7 +169,7 @@
 
 /obj/item/weapon/sword/katana/sharp
 	name = "absurdly sharp katana"
-	desc = "<p>That's it. I'm sick of all this \"Masterwork Bastard Sword\" bullshit that's going on in Space Station 13 right now. Katanas deserve much better than that. Much, much better than that.</p>\
+	desc = "<p>That's it. I'm sick of all this \"Masterwork Bastard Sword\" bullshit that's going on in CM-SS13 right now. Katanas deserve much better than that. Much, much better than that.</p>\
 <p>I should know what I'm talking about. I myself commissioned a genuine katana in Japan for 2,400,000 Yen (that's about $20,000) and have been practicing with it for almost 2 years now. I can even cut slabs of solid steel with my katana.</p>\
 <p>Japanese smiths spend years working on a single katana and fold it up to a million times to produce the finest blades known to mankind.</p>\
 <p>Katanas are thrice as sharp as European swords and thrice as hard for that matter too. Anything a longsword can cut through, a katana can cut through better. I'm pretty sure a katana could easily bisect a knight wearing full plate with a simple vertical slash.</p>\

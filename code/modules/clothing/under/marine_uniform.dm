@@ -692,6 +692,40 @@
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_COLONIST
 
+/obj/item/clothing/under/colonist/workwear
+	name = "grey workwear"
+	desc = "A pair of black slacks and a short-sleeve grey workshirt. Standard uniform for Weyland Yutani employees working in colony operations and administration."
+	icon_state = "workwear_grey"
+	worn_state = "workwear_grey"
+
+/obj/item/clothing/under/colonist/workwear/khaki
+	name = "khaki workwear"
+	desc = "A pair of jeans paired with a khaki workshirt. A common pairing among blue-collar workers due to its drab look."
+	icon_state = "workwear_khaki"
+	worn_state = "workwear_khaki"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
+
+/obj/item/clothing/under/colonist/workwear/pink
+	name = "pink workwear"
+	desc = "A pair of jeans paired with a pink workshirt. Pink? Your wife might not think so, but such outlandish attire deserves questioning by corporate security. What are you, some kind of free-thinking anarchist?"
+	icon_state = "workwear_pink"
+	worn_state = "workwear_pink"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
+
+/obj/item/clothing/under/colonist/workwear/blue
+	name = "blue workwear"
+	desc = "A pair of brown canvas workpants paired with a dark blue workshirt. A common pairing among blue-collar workers."
+	icon_state = "workwear_blue"
+	worn_state = "workwear_blue"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
+
+/obj/item/clothing/under/colonist/workwear/green
+	name = "green workwear"
+	desc = "A pair of brown canvas workpants paired with a green workshirt. An common pairing among blue-collar workers."
+	icon_state = "workwear_green"
+	worn_state = "workwear_green"
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
+
 /obj/item/clothing/under/colonist/clf
 	name = "\improper Colonial Liberation Front uniform"
 	desc = "A stylish grey-green jumpsuit - standard issue for colonists. This version appears to have the symbol of the Colonial Liberation Front emblazoned in select areas."
@@ -715,6 +749,14 @@
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
 
+/obj/item/clothing/under/colonist/white_service
+	name = "white service uniform"
+	desc = "A white dress shirt and tie with sleek pants. Standard clothing for anyone on professional business."
+	icon_state = "CO_service"
+	worn_state = "CO_service"
+	has_sensor = UNIFORM_HAS_SENSORS
+	sensor_faction = FACTION_MARINE
+
 /obj/item/clothing/under/colonist/wy_joliet_shopsteward
 	name = "steward utilities"
 	desc = "A stylish brown vest and shorts - uniforms like this are often worn by clerks and shop stewards."
@@ -735,6 +777,7 @@
 	displays_id = FALSE
 	has_sensor = UNIFORM_HAS_SENSORS
 	sensor_faction = FACTION_MARINE
+
 /obj/item/clothing/under/tshirt/gray_blu
 	name = "gray T-shirt and jeans"
 	desc = "A comfortable gray T-shirt and blue jeans."
@@ -755,7 +798,7 @@
 
 /obj/item/clothing/under/CM_uniform
 	name = "\improper Colonial Marshal uniform"
-	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
+	desc = "A pair of off-white slacks and a blue button-down shirt with a dark brown tie; the standard uniform of the Colonial Marshals."
 	icon_state = "marshal"
 	worn_state = "marshal"
 	armor_melee = CLOTHING_ARMOR_LOW
@@ -766,7 +809,7 @@
 	armor_bio = CLOTHING_ARMOR_NONE
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
-
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE|UNIFORM_JACKET_REMOVABLE
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
@@ -847,11 +890,24 @@
 /obj/item/clothing/under/marine/reporter
 	name = "combat correspondent uniform"
 	desc = "A relaxed and robust uniform fit for any potential reporting needs."
-	icon = 'icons/mob/humans/onmob/contained/war_correspondent.dmi'
-	icon_state = "wc_uniform"
-	worn_state = "wc_uniform"
-	contained_sprite = TRUE
-	flags_atom = NO_NAME_OVERRIDE
+	icon_state = "cc_white"
+	worn_state = "cc_white"
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/uniform_1.dmi',
+	)
+
+/obj/item/clothing/under/marine/reporter/black
+	icon_state = "cc_black"
+	worn_state = "cc_black"
+
+/obj/item/clothing/under/marine/reporter/orange
+	icon_state = "cc_orange"
+	worn_state = "cc_orange"
+
+/obj/item/clothing/under/marine/reporter/red
+	icon_state = "cc_red"
+	worn_state = "cc_red"
 
 /obj/item/clothing/under/twe_suit
 	name = "representative's fine suit"
@@ -986,10 +1042,9 @@
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
 
-
 /obj/item/clothing/under/marine/cbrn //CBRN MOPP suit
 	name = "\improper M3 MOPP suit"
-	desc = "M3 MOPP suits are specially designed and engineered to protect the wearer from unshielded exposure to any Chemical, Biological, Radiological, or Nuclear (CBRN) threats in the field. Despite somewhat resembling commonplace synthetic rubber HAZMAT suits, the Venlar composition provides a significantly more dense and durable baseline material, allowing for modifications without the loss of its air-tight nature. The wearer’s comfort has been significantly taken into consideration, with the suit providing sufficient freedom of movement for even delicate maneuvers and movements once it is donned. As the sealed environment retains many issues from the past, measures have been taken to significantly reduce the suit's passive heat absorption and increase internal absorbance through linings, as well as the capability to fully integrate with external cooling, air cycling, and other life support systems. Strips of M11 detector paper are included with each suit, designed to be slotted into the dominant arm of the wearer’s protective suit, the non-dominant wrist, and then back to the knee, providing at-a-glance warning signs across alternating sides of the body while working. The arm and knee markers are intended to be on the user's dominant The papers change color upon contact with harmful chemical agents, displaying a clear white initially and turning red when activated. The suit has a recommended lifespan of twenty-four hours once contact with a toxic environment is made, but depending on the severity this can be shortened to eight hours or less. Beyond that point, the accuracy of the detector papers deteriorates significantly, as does the protection of the suit itself."
+	desc = "M3 MOPP suits are specially designed and engineered to protect the wearer from unshielded exposure to any Chemical, Biological, Radiological, or Nuclear (CBRN) threats in the field. The suit has a recommended lifespan of twenty-four hours once contact with a toxic environment is made, but depending on the severity this can be shortened to eight hours or less."
 	desc_lore = "Since the outbreak of the New Earth Plague in 2157 and the subsequent Interstellar Commerce Commission (ICC) sanctioned decontamination of the colony and its 40 million inhabitants, the abandoned colony has been left under a strict quarantine blockade to prevent any potential scavengers from spreading what’s left of the highly-durable airborne flesh-eating bacteria. Following those events, the three major superpowers have been investing heavily in the development and procurement of CBRN equipment, in no small part due to the extensive damage that the plague and other similar bioweapons could do. The \"Marine 70\" upgrade package and the launch of the M3 pattern armor series saw the first M3-M prototypes approved for CBRN usage."
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
 	icon_state = "cbrn"
@@ -1143,38 +1198,3 @@
 	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
 	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
 	hood_type = /obj/item/clothing/head/helmet/marine/cbrn_hood/advanced
-
-//UACM/Sector Patrol
-
-/obj/item/clothing/under/marine/uacm/uniform_standard
-	name = "\improper UACM comissioned officer uniform"
-	desc = "A standard issue formal uniform meant for everyday use. An instantly recognizable classic, bound to turn heads for better or worse."
-	desc_lore = "While the UACM is stepping up efforts to encourage all ship crews to adapt the color-coded jumpsuit style uniforms, many UACM personnel prefer these more formal feeling wear that matches their previous uniforms closer. Some go as far as to claim that they both feel and perform better in these, but it's hard to imagine why. If anything, it's the jumpsuits that are designed to improve their users long term fatigue levels."
-	icon_state = "formal_jumpsuit"
-	worn_state = "formal_jumpsuit"
-	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
-	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
-
-
-/obj/item/clothing/under/marine/uacm/jumpsuit_engie
-	name = "\improper UACM comissioned officer jumpsuit style uniform - engineering variant"
-	desc = "A snug and warm looking jumpsuit style uniform in dark blue. A sign of trouble in the old days and of grit and determination in the new. "
-	desc_lore = "Color coded, jumpsuit style uniforms are the UACM preferred choice and in a pinch of irony that is unsettlingly present across the new formation, the only UA formation that used anything close to a compatible system were the defunct Marines. Blue jumpsuits were associated with some of the most undisciplined and troublesome personnel, but also with some of the smartest people in the stars. The UACM is still hoping on retaining mostly the latter in the recruitment efforts, and while like most colonies and ships prefers the yellow color for Engineering objects, UACM engineering staff has almost uniformly opted for the dark blue shade of the current design. "
-	icon_state = "mt_jumpsuit"
-	worn_state = "mt_jumpsuit"
-	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
-	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
-
-/obj/item/clothing/under/marine/uacm/cmisrs_inspector
-	name = "\improper CMISRS office uniform"
-	desc = "The 'office' variant of the CMISRS uniform, used by officers who work out of CMISRS capital ships and installations. Smoother and shinier than its field counterpart."
-	desc_lore = "These black uniforms were originally used by the upper echelons of the USCMC law enforcement circles, infamous for both their zeal and tendency for gross overreach. While on paper, the CMISRS has inherited those duties, a lot of talented officers were recruited into the UAAC-TIS instead and it is that agency that currently is known more for its zeal and unforgiveness. Whether this is enough to counter the reputation the black and crimson has among UACM personel remains to be seen."
-	icon_state = "tis"
-	worn_state = "tis"
-	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
-	suit_restricted = list(
-		/obj/item/clothing/suit/storage/marine/MP,
-		/obj/item/clothing/suit/armor/riot/marine,
-		/obj/item/clothing/suit/storage/jacket/marine/provost,
-	)
-

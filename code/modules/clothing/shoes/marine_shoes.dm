@@ -27,7 +27,6 @@
 		/obj/item/tool/surgery/scalpel,
 		/obj/item/weapon/straight_razor,
 	)
-
 	drop_sound = "armorequip"
 
 /obj/item/clothing/shoes/marine/update_icon()
@@ -41,7 +40,6 @@
 
 /obj/item/clothing/shoes/marine/jungle
 	icon_state = "marine_jungle"
-	item_state = "marine_jungle"
 	desc = "Don't go walkin' slow, the devil's on the loose."
 
 /obj/item/clothing/shoes/marine/jungle/knife
@@ -49,7 +47,6 @@
 
 /obj/item/clothing/shoes/marine/brown
 	icon_state = "marine_brown"
-	item_state = "marine_brown"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time. These are brown."
 
 /obj/item/clothing/shoes/marine/brown/knife
@@ -65,7 +62,6 @@
 /obj/item/clothing/shoes/marine/upp
 	name = "military combat boots"
 	icon_state = "marine_brown"
-	item_state = "marine_brown"
 	armor_melee = CLOTHING_ARMOR_MEDIUMLOW
 	armor_bullet = CLOTHING_ARMOR_HIGHPLUS
 	armor_bomb = CLOTHING_ARMOR_MEDIUM
@@ -224,7 +220,6 @@
 	name = "\improper L10 pattern combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. Used by the three world empires royal marines commando units."
 	icon_state = "rmc_boots"
-	item_state = "rmc_boots"
 	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_laser = CLOTHING_ARMOR_LOW
@@ -247,68 +242,5 @@
 	)
 	flags_atom = NO_NAME_OVERRIDE
 
-/obj/item/clothing/shoes/royal_marine/update_icon()
-	if(stored_item)
-		icon_state = "[initial(icon_state)]-1"
-	else
-		icon_state = initial(icon_state)
-
 /obj/item/clothing/shoes/royal_marine/knife
-
 	spawn_item_type = /obj/item/attachable/bayonet/rmc
-
-
-
-/obj/item/clothing/shoes/socks
-	name = "grey compression socks"
-	desc = "A pair of grey compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	desc_lore = "Compression socks became a favorite for those who spend prolonged amount of time on spaceships or installations almost as soon as mankind reached for the stars. The reasoning is simple, the increased pressure on thighs and legs improves blood pressure and circulation, which is particularly useful in zero-g environments which spaceship crews often find themselves spending prolonged amounts of time in. Socks like these meant to be use in space are also typically insulated and quite warm, another very useful aspect in the relative cold of most space faring vessels."
-	icon = 'icons/obj/items/clothing/socks.dmi'
-	icon_state = "grey_thigh"
-	armor_melee = CLOTHING_ARMOR_LOW
-	armor_bullet = CLOTHING_ARMOR_NONE
-	armor_laser = CLOTHING_ARMOR_NONE
-	armor_energy = CLOTHING_ARMOR_NONE
-	armor_bomb = CLOTHING_ARMOR_NONE
-	armor_bio = CLOTHING_ARMOR_NONE
-	armor_rad = CLOTHING_ARMOR_NONE
-	armor_internaldamage = CLOTHING_ARMOR_LOW
-	flags_cold_protection = BODY_FLAG_FEET
-	flags_heat_protection = BODY_FLAG_FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROT
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROT
-	siemens_coefficient = 0.7
-	item_icons = list(
-        WEAR_FEET = 'icons/mob/humans/onmob/socks.dmi'
-    )
-
-/obj/item/clothing/shoes/socks/black
-	name = "black compression socks"
-	desc = "A pair of black compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	icon_state = "black_thigh"
-	layer = SUIT_GARB_LAYER
-
-/obj/item/clothing/shoes/socks/white
-	name = "white compression socks"
-	desc = "A pair of white compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	icon_state = "white_thigh"
-
-/obj/item/clothing/shoes/socks/striped
-	name = "black and white striped compression socks"
-	desc = "A pair of black and white striped compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	icon_state = "striped_thigh"
-
-/obj/item/clothing/shoes/socks/striped_pink
-	name = "pink and white striped compression socks"
-	desc = "A pair of pink and white striped compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	icon_state = "striped_pink_thigh"
-
-/obj/item/clothing/shoes/socks/striped_blue
-	name = "blue and white striped compression socks"
-	desc = "A pair of blue and white striped compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. A spacer favorite."
-	icon_state = "striped_blue_thigh"
-
-/obj/item/clothing/shoes/socks/striped_trans
-	name = "multicolor striped compression socks"
-	desc = "A pair of multicolor striped compression socks, guaranteed to keep your feet comfy and your legs warm while improving your blood circulation. The stripe colors used are commonly used pattern among transgender personnel and has been also used to express support. A spacer favorite."
-	icon_state = "striped_trans_thigh"

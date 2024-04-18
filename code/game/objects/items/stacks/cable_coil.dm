@@ -335,20 +335,3 @@
 
 	else
 		return ..()
-
-//Sector Patrol
-/obj/item/stack/cable_coil/uacm
-	name = "UACM standard issue cable segment stack"
-	desc = "A segment of cable precut to a set length. The cable casing is blue, a standard set for the UACM. There seems to be a small imprint on the housing."
-	desc_lore = "While the UACM may be trying to enforce a blue housing standard, cables across the galaxy come in an assortment of colors and it will likely take decades to make any real progress in terms of uniformity. Cables fail and are replaced way to often for any inscription system to be viable, but the ones on the PST seem to be applied by some of the stations drones during regular maintenance, so these inscriptions are as much maintenance drone logs as anything else."
-	color = COLOR_BLUE
-	item_serial_distance = SERIAL_ITEM_SIZE_CLOSE
-
-/obj/item/stack/cable_coil/uacm/get_examine_text(mob/user)
-	. = list()
-	if(amount == 1)
-		. += "This is the last segment."
-	else if(amount == 2)
-		. += "Two segments are left."
-	else
-		. += "There are [amount] segments left in this stack."

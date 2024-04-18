@@ -241,10 +241,43 @@
 	no_panel = 1
 	not_weldable = 1
 	var/queen_pryable = TRUE
+	var/obj/docking_port/mobile/marine_dropship/linked_dropship
+
 
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
 
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/attackby(obj/item/item, mob/user)
+	if(HAS_TRAIT(item, TRAIT_TOOL_MULTITOOL))
+		var/direction
+		switch(id)
+			if("starboard_door")
+				direction = "starboard"
+			if("port_door")
+				direction = "port"
+			if("aft_door")
+				direction = "aft"
+		if(!linked_dropship || !linked_dropship.door_control.door_controllers[direction])
+			return ..()
+		var/datum/door_controller/single/control = linked_dropship.door_control.door_controllers[direction]
+		if (control.status != SHUTTLE_DOOR_BROKEN)
+			return ..()
+		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI) && !skillcheck(user, SKILL_PILOT, SKILL_PILOT_TRAINED))
+			to_chat(user, SPAN_WARNING("You don't seem to understand how to restore a remote connection to [src]."))
+			return
+		if(user.action_busy)
+			return
+
+		to_chat(user, SPAN_WARNING("You begin to restore the remote connection to [src]."))
+		if(!do_after(user, (skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI) ? 5 SECONDS : 8 SECONDS), INTERRUPT_ALL, BUSY_ICON_BUILD))
+			to_chat(user, SPAN_WARNING("You fail to restore a remote connection to [src]."))
+			return
+		unlock(TRUE)
+		close(FALSE)
+		control.status = SHUTTLE_DOOR_UNLOCKED
+		to_chat(user, SPAN_WARNING("You successfully restored the remote connection to [src]."))
+		return
+	..()
 
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
 	if(is_reserved_level(z))
@@ -258,13 +291,31 @@
 	if(!queen_pryable)
 		return ..()
 
-	if(!locked)
-		return ..()
+	if(xeno.action_busy)
+		return
 
-	to_chat(xeno, SPAN_NOTICE("You try and force the doors open"))
+	var/direction
+	switch(id)
+		if("starboard_door")
+			direction = "starboard"
+		if("port_door")
+			direction = "port"
+		if("aft_door")
+			direction = "aft"
+	var/datum/door_controller/single/control
+	if(linked_dropship && linked_dropship.door_control.door_controllers[direction])
+		control = linked_dropship.door_control.door_controllers[direction]
+
+	if(control && control.status == SHUTTLE_DOOR_BROKEN)
+		to_chat(xeno, SPAN_NOTICE("The door is already disabled."))
+		return
+
+	to_chat(xeno, SPAN_WARNING("You try and force the doors open!"))
 	if(do_after(xeno, 3 SECONDS, INTERRUPT_ALL, BUSY_ICON_HOSTILE))
+		if(control)
+			control.status = SHUTTLE_DOOR_BROKEN
 		unlock(TRUE)
-		open(1)
+		open(TRUE)
 		lock(TRUE)
 
 /obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
@@ -336,7 +387,7 @@
 				continue
 			INVOKE_ASYNC(atom_movable, TYPE_PROC_REF(/atom/movable, throw_atom), projected, 1, SPEED_FAST, null, FALSE)
 
-/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/lifeboat/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/lifeboat/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	. = ..()
 	if(istype(port, /obj/docking_port/mobile/crashable/lifeboat))
 		var/obj/docking_port/mobile/crashable/lifeboat/lifeboat = port
@@ -567,43 +618,5 @@
 
 /obj/structure/machinery/door/airlock/multi_tile/almayer/almayer/glass
 	icon = 'icons/obj/structures/doors/2x1almayerdoor_glass.dmi'
-	opacity = FALSE
-	glass = TRUE
-
-// SECTOR PATROL
-
-/obj/structure/machinery/door/airlock/multi_tile/uacm/general
-	name = "standard airlock"
-	desc = "A standard airlock wihtout any specific color coding or anything else that would set it apart from the many others."
-	desc_lore = "The so called 'general access' airlock is probably the most commonly used one in the galaxy, which is also why airlocks with this access level typically are the ones in their factory default colors, like this one."
-	req_access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
-	icon = 'icons/obj/structures/doors/2x1comdoor.dmi'
-	opacity = TRUE
-	glass = FALSE
-
-/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin
-	req_access = list(ACCESS_SP_ADMIN)
-
-/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_inner
-	name = "elevator door"
-	desc = "A heavy looking metal door."
-	desc_lore = "Since time immemorial, people have taken great effort not to fall out of elevators in transit. These doors are one such method. Simple, yet effective. Spaceship freight elevators have not changed the game - people still hate falling down elevator shafts."
-	req_access = list()
-	icon = 'icons/obj/structures/doors/4x1_elevator.dmi'
-	icon_state = "door_closed"
-	width = 4
-	openspeed = 22
-	opacity = TRUE
-	glass = FALSE
-
-/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_outer
-	name = "elevator door"
-	desc = "A heavy looking metal door with an equally heavy looking glass panel that lets you peek inside."
-	desc_lore = "Since time immemorial, people have taken great effort not to fall out of elevators in transit. These doors are one such method. Simple, yet effective. Spaceship freight elevators have not changed the game - people still hate falling down elevator shafts."
-	req_access = list()
-	icon = 'icons/obj/structures/doors/4x1_elevator_access.dmi'
-	icon_state = "door_closed"
-	width = 4
-	openspeed = 22
 	opacity = FALSE
 	glass = TRUE

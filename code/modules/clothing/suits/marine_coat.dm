@@ -278,15 +278,30 @@
 	icon_state = "o_jacket"
 	item_state = "o_jacket"
 
-//==================War Correspondent==================\\
+//==================Combat Correspondent==================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/reporter
 	name = "combat correspondent jacket"
 	desc = "A jacket for the most fashionable war correspondents."
-	icon = 'icons/mob/humans/onmob/contained/war_correspondent.dmi'
-	icon_state = "wc_suit"
-	item_state = "wc_suit"
-	contained_sprite = TRUE
+	icon_state = "cc_brown"
+	item_state = "cc_brown"
+	flags_atom = NO_SNOW_TYPE
+	has_buttons = FALSE
+
+/obj/item/clothing/suit/storage/jacket/marine/reporter/green
+	icon_state = "cc_green"
+	item_state = "cc_green"
+
+
+/obj/item/clothing/suit/storage/jacket/marine/reporter/black
+	icon_state = "cc_black"
+	item_state = "cc_black"
+
+/obj/item/clothing/suit/storage/jacket/marine/reporter/blue
+	icon_state = "cc_blue"
+	item_state = "cc_blue"
+
+
 //==================Corporate Liaison==================\\
 
 /obj/item/clothing/suit/storage/jacket/marine/vest
@@ -294,6 +309,7 @@
 	desc = "A casual brown vest."
 	icon_state = "vest_brown"
 	item_state = "vest_brown"
+	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/vest/tan
@@ -315,6 +331,7 @@
 	desc = "A khaki suit jacket."
 	icon_state = "corporate_ivy"
 	item_state = "corporate_ivy"
+	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/corporate/formal
@@ -350,6 +367,7 @@
 	desc = "A khaki bomber jacket popular among stationeers and blue-collar workers everywhere."
 	icon_state = "jacket_khaki"
 	item_state = "jacket_khaki"
+	flags_atom = NO_SNOW_TYPE
 	has_buttons = FALSE
 
 /obj/item/clothing/suit/storage/jacket/marine/bomber/red
@@ -365,14 +383,3 @@
 	icon_state = "jacket_grey"
 	item_state = "jacket_grey"
 	has_buttons = FALSE
-
-//Sector Patrol/UACM
-
-/obj/item/clothing/suit/storage/jacket/marine/service/uacm
-
-	name = "\improper UACM officer service jacket"
-	desc = "A tough, canvas service jacket meant to be used along with the formal service uniforms. A well-known, trusted design and look even in the civilian sector. Guaranteed to last for decades if treated right."
-	desc_lore = "The production method of the near iconic canvas service jackets may have changed a lot across the decades and humanity's exodus to space, but their legendary hardiness and reliability certainly has not. The tough jacket of choice for both Marine veterans and the Hippies who protest them. Looks killer with some patches."
-	icon_state = "coat_officer"
-	item_state = "coat_officer"
-	has_buttons = TRUE

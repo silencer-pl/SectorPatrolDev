@@ -133,10 +133,10 @@ export class Changelog extends Component {
             <b>Patch 0</b>
           </center>
         </h3>
-        <p>Currently synced to the following comit on CM-SS13:</p>
+        <p>Currently synced up to the following comit on CM-SS13:</p>
         <p>
-          <a href="https://github.com/cmss13-devs/cmss13/commit/57a70ca1b61d09c806797ca6f8edbf309ca181c5">
-            57a70ca1b61d09c806797ca6f8edbf309ca181c5
+          <a href="https://github.com/silencer-pl/cmss13/commit/b6f89f3c29301301f4a90ead75746d16ffab26d2">
+            b6f89f3
           </a>
         </p>
         <p>

@@ -40,8 +40,7 @@ export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
-export const MESSAGE_TYPE_TERMINAL = 'terminal';
-export const MESSAGE_TYPE_LABELS = 'labels';
+export const MESSAGE_TYPE_NICHE = 'niche';
 
 // Metadata for each message type
 export const MESSAGE_TYPES = [
@@ -78,7 +77,7 @@ export const MESSAGE_TYPES = [
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
     selector:
-      '.notice:not(.pm), .adminnotice, .info, .role_body, .role_header, .event_announcement, .announce_header, .announce_header_blue, .announce_body, .sinister, .cult, .xenonotice, .xenoannounce, .yautjabold, .yautjaboldbig, .narrate_head, .narrate_body, .chargen_header, .chargen_body',
+      '.notice:not(.pm), .adminnotice, .info, .role_body, .role_header, .event_announcement, .announce_header, .announce_header_blue, .announce_body, .sinister, .cult, .xenonotice, .xenoannounce, .yautjabold, .yautjaboldbig',
   },
   {
     type: MESSAGE_TYPE_WARNING,
@@ -129,20 +128,6 @@ export const MESSAGE_TYPES = [
     description: 'IC interaction with staff',
     selector: '.staff_ic',
   },
-  {
-    type: MESSAGE_TYPE_TERMINAL,
-    name: 'Terminal Outputs',
-    description: 'Text from terminals and atmospheric narration.',
-    selector: '.narrate_console, .narrate_body, .narrate_head',
-  },
-  {
-    type: MESSAGE_TYPE_LABELS,
-    name: 'Labels and Serial Numbers',
-    description:
-      'Text from labels and serial numbers found on items in the world.',
-    selector:
-      '.narrate_serial_block, .narrate_serial, .narrate_manifest_block, .narrate_manifest',
-  },
   // Admin stuff
   {
     type: MESSAGE_TYPE_ADMINCHAT,
@@ -178,6 +163,13 @@ export const MESSAGE_TYPES = [
     name: 'Debug Log',
     description: 'DEBUG: SSPlanets subsystem Recover().',
     selector: '.debuginfo',
+    admin: true,
+  },
+  {
+    type: MESSAGE_TYPE_NICHE,
+    name: 'Niche Log',
+    description: 'ADMIN NICHE LOG: Urist McTraitor stuttered while saying: Boo',
+    selector: '.niche',
     admin: true,
   },
 ];

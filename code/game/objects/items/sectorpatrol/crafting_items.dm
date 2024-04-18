@@ -249,7 +249,7 @@
 	name = "desk lamp bulb"
 	desc = "A small light bulb, too small for any wall or floor fixture."
 	icon_state = "lamp_bulb"
-	var/crafting_lamp_bulb_color = LIGHT_COLOR_WHITE
+	var/crafting_lamp_bulb_color = COLOR_WHITE
 
 /obj/item/crafting/top/bed
 	name = "compressed white mattress"

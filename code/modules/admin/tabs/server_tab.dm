@@ -46,13 +46,12 @@
 	set desc = "Globally Toggles OOC"
 	set category = "Server"
 
-
 	GLOB.ooc_allowed = !GLOB.ooc_allowed
 	if(GLOB.ooc_allowed)
-		to_world("<B>OOC mode. PLease stop IC interactions. OOC is global. Avoid spoilers/metagaming.</B>")
+		to_world("<B>The OOC channel has been globally enabled!</B>")
 	else
-		to_world("<B>IC mode. All interactions should be IC. Global OOC is disabled.</B>")
-	message_admins("[key_name_admin(usr)] toggled OOC Mode.")
+		to_world("<B>The OOC channel has been globally disabled!</B>")
+	message_admins("[key_name_admin(usr)] toggled OOC.")
 
 /datum/admins/proc/togglelooc()
 	set name = "Toggle LOOC"

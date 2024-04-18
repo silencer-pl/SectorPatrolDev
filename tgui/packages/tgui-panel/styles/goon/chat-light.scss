@@ -246,6 +246,7 @@ a.popt {
 .looc,
 .adminooc,
 .admin,
+.niche,
 .medal,
 .yell {
   font-weight: bold;
@@ -304,6 +305,11 @@ em {
 }
 
 .admin {
+  color: #4473ff;
+  font-weight: bold;
+}
+
+.niche {
   color: #4473ff;
   font-weight: bold;
 }
@@ -1237,17 +1243,18 @@ h2.alert {
 
 .role_header {
   color: #db0000;
+  display: block;
   text-align: center;
   font-weight: bold;
-  font-size: 140%;
-  padding: 0em 1em;
+  font-family: trebuchet-ms;
+  font-size: 150%;
 }
 
 .role_body {
   color: #000099;
-  text-align: justify;
-  font-size: 110%;
-  padding: 0em 1em;
+  display: block;
+  text-align: center;
+  font-size: 125%;
 }
 
 .round_header {
@@ -1467,67 +1474,4 @@ h2.alert {
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed #000;
-}
-//Sector Patrol
-//Chargen
-.chargen_header {
-  font-size: 140%;
-  color: #3d103d;
-  text-align: center;
-  padding: 0em 1em;
-}
-
-.chargen_body {
-  font-size: 110%;
-  color: #020002;
-  text-align: justify;
-  padding: 0em 1em;
-}
-//narration
-.narrate_head {
-  font-size: 125%;
-  color: #3d103d;
-  text-align: center;
-  padding: 0em 1em;
-}
-
-.narrate_body {
-  font-size: 100%;
-  color: #020002;
-  text-align: justify;
-  padding: 0em 1em;
-}
-//console green narration
-.narrate_console {
-  font-family: 'Courier New', cursive, sans-serif;
-  color: #084116;
-  text-align: left;
-  padding: 0em 1em;
-}
-
-.narrate_serial {
-  font-family: 'Lucida Grande', monospace;
-  color: #3b3b3b;
-  text-align: center;
-  padding: 0em 1em;
-}
-
-.narrate_serial_block {
-  background: #f2f7fa;
-  border: 1px solid #111a27;
-  margin: 0.5em 15%;
-  padding: 0.5em 0.75em;
-}
-
-.narrate_manifest {
-  font-family: 'Lucida Grande', monospace;
-  color: #3b3b3b;
-  text-align: left;
-}
-
-.narrate_manifest_block {
-  background: #f2f7fa;
-  border: 1px solid #111a27;
-  margin: 0.5em 55% 0.5em 5%;
-  padding: 0.5em;
 }

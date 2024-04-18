@@ -148,7 +148,7 @@
 				sleep(5)
 				talkas("Arbiters, welcome.")
 				langchat_color = "#ffffff"
-				change_lights("cargointake", 1, LIGHT_COLOR_WHITE, 5,0)
+				change_lights("cargointake", 1, COLOR_WHITE, 5,0)
 				terminal_speak("pom.sync: Override complete! Restarting main terminal process!")
 				puzzlebox_global_status += 1
 				open_doors("cargointake")

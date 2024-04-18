@@ -42,17 +42,6 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 
 	if(!amount_sprites)
 		return
-	if(stack_id == "modular tile" || stack_id == "floor strut")
-		if(amount < max_amount * 0.25)
-			icon_state = initial(icon_state) // Sub 1/4
-		else if(amount >= max_amount * 0.25 && amount < max_amount * 0.5)
-			icon_state = "[initial(icon_state)]-2" // 1/4 - 1/2
-		else if(amount >= max_amount * 0.5 && amount < max_amount * 0.75)
-			icon_state = "[initial(icon_state)]-3" // 1/2 - 3/4
-		else
-			icon_state = "[initial(icon_state)]-4" // 3/4 - 1
-		return
-
 	if(amount == 1)
 		icon_state = initial(icon_state) //if it has only one sheet, it is the singular sprite
 	else if(amount < max_amount * 0.5)
@@ -155,7 +144,9 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 		list_recipes(usr, text2num(href_list["sublist"]))
 
 	if(href_list["make"])
-		if(amount < 1) qdel(src) //Never should happen
+		if(amount < 1)
+			qdel(src) //Never should happen
+			return
 
 		var/list/recipes_list = recipes
 		if(href_list["sublist"])
@@ -163,7 +154,11 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if(!isnum(multiplier))
+		if(multiplier != multiplier) // isnan
+			message_admins("[key_name_admin(usr)] has attempted to multiply [src] with NaN")
+			return
+		if(!isnum(multiplier)) // this used to block nan...
+			message_admins("[key_name_admin(usr)] has attempted to multiply [src] with !isnum")
 			return
 		multiplier = round(multiplier)
 		if(multiplier < 1)
@@ -312,7 +307,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 /obj/item/stack/proc/add_to_stacks(mob/user)
 	var/obj/item/stack/oldsrc = src
 	src = null
-	for (var/obj/item/stack/item in oldsrc.loc)
+	for (var/obj/item/stack/item in user.loc)
 		if (item==oldsrc)
 			continue
 		if (!istype(item, oldsrc.type))

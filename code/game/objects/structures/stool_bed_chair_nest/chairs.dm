@@ -389,21 +389,13 @@
 	chairbar.layer = ABOVE_MOB_LAYER
 
 
-/obj/structure/bed/chair/dropship/passenger/afterbuckle(mob/M)
+/obj/structure/bed/chair/dropship/passenger/afterbuckle()
 	if(buckled_mob)
 		icon_state = initial(icon_state) + "_buckled"
 		overlays += chairbar
-		M.pixel_y = buckling_y
-		M.old_y = buckling_y
-		M.pixel_x = buckling_x
-		M.old_x = buckling_x
 	else
 		icon_state = initial(icon_state)
 		overlays -= chairbar
-		M.pixel_y = initial(buckled_mob.pixel_y)
-		M.old_y = initial(buckled_mob.pixel_y)
-		M.pixel_x = initial(buckled_mob.pixel_x)
-		M.old_x = initial(buckled_mob.pixel_x)
 
 
 /obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/M, mob/user)

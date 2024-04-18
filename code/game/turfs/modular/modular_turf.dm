@@ -33,11 +33,6 @@
 				if (struts_install == 0)
 					icon_state = "[base_icon]"
 					update_icon()
-				var/obj/item/stack/rods/floorstrut/fs = new(get_turf(user))
-				var/replace = (user.get_inactive_hand()==src)
-				if(QDELETED(src) && replace)
-					user.put_in_hands(fs)
-					sleep(2)
 			return
 
 /turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
@@ -119,36 +114,6 @@
 					update_icon()
 					sleep(3)
 			user.visible_message(SPAN_NOTICE("[user] finishes attaching floor tiles to struts."), SPAN_INFO("You finish snapping the pannels to the struts."),SPAN_INFO("The clicks stop."))
-			return
-		to_chat(user, SPAN_NOTICE("There does not seem to be a way to put these two together at the moment."))
-		return
-
-	if(istype(C, /obj/item/stack/rods/floorstrut))
-		if(broken)
-			to_chat(user, SPAN_NOTICE("There is too much damage to continue installing the struts. Use a welder to fix the damage."))
-			return
-		if(burnt)
-			to_chat(user, SPAN_NOTICE("There is too much damage to continue installing the struts. Use a screwdriver to start cleaning it."))
-			return
-		if(struts_install < 4)
-			var/obj/item/stack/rods/floorstrut/F = C
-			if(F.get_amount() < 1)
-				return
-			user.visible_message(SPAN_NOTICE("[user] starts laying out and aligning struts on the floor."), SPAN_INFO("You start putting the struts down and aligning them with the holes in the plating." ), SPAN_DANGER("You hear a shuffling."))
-			if(struts_install == 0)
-				name = "[initial(name)] and modular struts"
-				desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform."
-				desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence."
-			while(struts_install < 4)
-				if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-					F.use(1)
-					struts_install += 1
-					icon_state = "[base_icon]_s[struts_install]"
-					update_icon()
-			user.visible_message(SPAN_NOTICE("[user] finishes aligning struts on the floor."), SPAN_INFO("You finish aligning the struts. They should now be fastened with a screwdriver."))
-			return
-		if(struts_install >= 4)
-			to_chat(usr, SPAN_WARNING("All predrilled openings already have a strut on them."))
 			return
 		to_chat(user, SPAN_NOTICE("There does not seem to be a way to put these two together at the moment."))
 		return

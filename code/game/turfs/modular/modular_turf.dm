@@ -16,6 +16,129 @@
 	var/tile_bot_rght
 	var/tile_seal
 
+/turf/open/floor/plating/modular/proc/check_tile(reverse = FALSE)
+	switch(usr.a_intent)
+		if(INTENT_HELP)
+			if(tile_top_left == null)
+				return TRUE
+		if(INTENT_DISARM)
+			if(tile_top_rght == null)
+				return TRUE
+		if(INTENT_HARM)
+			if(tile_bot_left == null)
+				return TRUE
+		if(INTENT_GRAB)
+			if(tile_bot_rght == null)
+				return TRUE
+		else
+			return FALSE
+
+
+
+/turf/open/floor/plating/modular/proc/set_tile(str)
+	var/clr = str
+	to_chat(usr, SPAN_NOTICE("You start attaching a tile to the floor."))
+	if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		playsound(src, 'sound/effects/thud.ogg', 30)
+		visible_message(SPAN_NOTICE("[usr] sets a floor tile with a satisfying click."), SPAN_NOTICE("You set a floor tile with a satisfying click."), SPAN_WARNING("You hear a quiet click."))
+		switch(usr.a_intent)
+			if(INTENT_HELP)
+				tile_top_left = clr
+			if(INTENT_DISARM)
+				tile_top_rght = clr
+			if(INTENT_HARM)
+				tile_bot_left = clr
+			if(INTENT_GRAB)
+				tile_bot_rght = clr
+		update_icon()
+
+/turf/open/floor/plating/modular/proc/rem_tile()
+	to_chat(usr, SPAN_NOTICE("You start detaching a tile from the floor."))
+	if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		playsound(src, 'sound/effects/thud.ogg', 30)
+		visible_message(SPAN_NOTICE("[usr] detaches a tile from the floor."), SPAN_NOTICE("You detach a tile form the floor."), SPAN_WARNING("You hear a quiet click."))
+		var/obj/item/stack/modulartiles/tiles = new(get_turf(usr))
+		switch (usr.a_intent)
+			if(INTENT_HELP)
+				tiles.tiles_color = tile_top_left
+				tile_top_left = null
+			if(INTENT_DISARM)
+				tiles.tiles_color = tile_top_rght
+				tile_top_rght = null
+			if(INTENT_HARM)
+				tiles.tiles_color = tile_bot_left
+				tile_bot_left = null
+			if(INTENT_GRAB)
+				tiles.tiles_color = tile_bot_rght
+				tile_bot_rght = null
+		update_icon()
+		if(usr.get_inactive_hand() == /obj/item/stack/modulartiles)
+			var/obj/item/stack/modulartiles/othertiles = usr.get_inactive_hand()
+			if(othertiles.tiles_color == tiles.tiles_color)
+				if(othertiles.add(1) == TRUE)
+					qdel(tiles)
+					return
+		usr.put_in_inactive_hand(tiles)
+
+
+/turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
+	if (!(istype (C, /obj/item/stack/modulartiles) || istype(C, /obj/item/cargo/sealanttube) ||HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER)))
+		to_chat(usr, SPAN_NOTICE("These two things don't seem to go together."))
+		return
+	if(istype(C, /obj/item/cargo/sealanttube))
+		if(tile_bot_left == null || tile_bot_rght == null || tile_top_left == null || tile_top_rght == null)
+			to_chat(usr, SPAN_NOTICE("The sealant will not work properly unless all four tiles are installed."))
+			return
+		if(tile_bot_left != null || tile_bot_rght != null || tile_top_left != null || tile_top_rght != null) //Excessive, but making sure all 4 are present
+			usr.visible_message(SPAN_NOTICE("[usr] starts applying sealant to the [src]"), SPAN_NOTICE("You start applying sealant to the [src]"))
+			playsound(src, 'sound/effects/squelch1.ogg', 30)
+			if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				var/obj/item/cargo/sealanttube/sealant = C
+				sealant.sealant_color = tile_seal
+				update_icon()
+				return
+			to_chat(usr, SPAN_WARNING("You moved away."))
+	if(istype(C, /obj/item/stack/modulartiles))
+		if(tile_seal != null)
+			to_chat(usr, SPAN_NOTICE("The tiles have been locked in place by a hardened sealant. You will need to scrape it away with a screwdriver, used in GRAB mode, before you can alter the tiling in any way."))
+			return
+		if (check_tile() == FALSE)
+			to_chat(usr, SPAN_NOTICE("A tile is already in that spot. You can remove it by clicking on it with an active empty hand."))
+			return
+		var/obj/item/stack/modulartiles/tile = C
+		if (tile.use(1) == FALSE)
+			to_chat(usr, SPAN_WARNING("Somehow, you are holding less than one tile. This really shount't be happening."))
+			return
+		if (tile.use(1) == TRUE)
+			set_tile(tile.tiles_color)
+			return
+	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
+		if(tile_seal == null)
+			to_chat(usr, SPAN_NOTICE("There is no sealant applied to the tiles, so there is no need for that."))
+			return
+		if(usr.a_intent == INTENT_GRAB)
+			if(tile_seal != null)
+				usr.visible_message(SPAN_NOTICE("[user] starts to scrape tile sealant from the [src]"), SPAN_NOTICE("You start to scrape tile sealant from the [src]"), SPAN_WARNING("You hear metalic scraping."))
+				playsound(src, 'sound/items/Screwdriver.ogg', 30)
+				if(do_after(usr, 40, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					tile_seal = null
+					update_icon()
+					return
+				else
+					to_chat(usr, SPAN_WARNING("You moved away from the plating."))
+					return
+		else
+			to_chat(usr, SPAN_WARNING("That does not seem to work. If you are trying to scrape off the tile sealent, please remember to use GRAB intent."))
+			return
+
+/turf/open/floor/plating/modular/attack_hand(mob/user)
+	if(tile_seal != null)
+		if(check_tile() == TRUE)
+			to_chat(usr,SPAN_NOTICE("There is no tile to pick up in this slot. Please make sure you are using the right intent."))
+			return
+		if(check_tile() == FALSE)
+			rem_tile()
+
 /turf/open/floor/plating/modular/break_tile_to_plating()
 	if (!broken)
 		tile_top_left = null
@@ -60,17 +183,17 @@
 
 /turf/open/floor/plating/modular/update_icon()
 	overlays = null
-	overlays += image('icons/turf/modular_nrps.dmi', src, "[initial(icon_state)]")
+	overlays += image(icon, src, "[icon_state]")
 	if (tile_top_left != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_left]_top_left")
+		overlays += image(icon, src, "[tile_top_left]_top_left")
 	if (tile_bot_left != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_left]_bot_left")
+		overlays += image(icon, src, "[tile_bot_left]_bot_left")
 	if (tile_top_rght != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_top_rght]_top_rght")
+		overlays += image(icon, src, "[tile_top_rght]_top_rght")
 	if (tile_bot_rght != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_bot_rght]_bot_rght")
+		overlays += image(icon, src, "[tile_bot_rght]_bot_rght")
 	if (tile_seal != null)
-		overlays += image('icons/turf/modular_nrps.dmi', src, "[tile_seal]_seal")
+		overlays += image(icon, src, "[tile_seal]_seal")
 
 /turf/open/floor/plating/modular/Initialize(mapload, ...)
 	. = ..()

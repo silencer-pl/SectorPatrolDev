@@ -132,3 +132,23 @@
 	icon_state = "book_rough"
 	flags_item = NOBLUDGEON
 	var/book_searched = 0
+
+/obj/item/cargo/sealanttube
+	name = "NRPS sealant applicator tube"
+	desc = "A metallic gray blue tube with a distinct applicator."
+	desc_lore = "NRPS Compliant sealant is effectively a colored fast trying glue that exits the tube as a liquid rapidly filling the grooves between installed modular tiles and then immediately hardens, holding the tiles together. Thanks to a unique, proprietary blend developed in the Northern Republic, piercing the hardened sealant, and allowing more oxygenation makes the glue retract and detach from the tiles, at which point it can just be removed from the grooves and discarded."
+	icon = 'icons/obj/items/sp_cargo.dmi'
+	icon_state = "sealanttube_base"
+	var/sealant_color = "default"
+	flags_item = NOBLUDGEON
+
+/obj/item/cargo/sealanttube/update_icon()
+	overlays = null
+	overlays += image(icon, src, "[icon_state]")
+	if (sealant_color != "default" && sealant_color != null)
+		overlays += image(icon, src, "sealanttube_[sealant_color]")
+
+/obj/item/cargo/sealanttube/Initialize(mapload, ...)
+	. = ..()
+	if (sealant_color != "default" && sealant_color != null)
+		update_icon()

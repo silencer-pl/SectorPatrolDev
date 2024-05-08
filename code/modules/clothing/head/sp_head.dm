@@ -1,5 +1,3 @@
-
-
 // UACM
 
 /obj/item/clothing/head/beret/uacm/
@@ -113,3 +111,41 @@
 	desc_lore = "Initially the UACM was going to scrap the trusty beanie during its transition from the UMCMC as it was the only piece of headgear that turned out to be exclusive to the now defunct formation. After an unexpected amount of Italian strikes, surprisingly well coordinated gestures of civilian disobedience and maybe ONE dishonorable discharge after an ill thought out bomb threat, the beanie was returned to the service in all its glory. USCMC engineering had such a bad reputation and low hiring standard that the formations High Command never saw fit to give them anything other than the blue jumpsuits. UACM engineering colored headwear is therefore new and these are guaranteed to be fresh off the 3d printer. A running joke among the newly minted UACM engineers is that this particular combination of headwear and color is enough to get you on a CMISRS watchlist alone."
 	icon_state = "engi_beanie"
 	item_state = "engi_beanie"
+
+//Civilian and Off duty head covers
+
+/obj/item/clothing/head/sp_personal/
+	name = "Civilian head cover master item"
+	desc = "If you can see this, someone messed up"
+	desc_lore = "Contact staff or report this as an issue please."
+	icon = 'icons/obj/sp_clothes/hats/icon/hats.dmi'
+	icon_state = ""
+	item_icons = list(
+		WEAR_HEAD = 'icons/obj/sp_clothes/hats/onmob/hats.dmi'
+	)
+
+//flippable caps, add icon with _flipped to both sets
+
+/obj/item/clothing/head/sp_personal/cap
+	name = "flippable cap master item"
+	var/flipped = FALSE
+
+/obj/item/clothing/head/sp_personal/cap/dropped()
+	if (flipped != 0)
+		icon_state = "[initial(icon_state)]"
+		flipped=0
+	..()
+
+/obj/item/clothing/head/sp_personal/cap/verb/flip()
+	set category = "Object"
+	set name = "Flip cap"
+	set src in usr
+	if(!usr.is_mob_incapacitated())
+		src.flipped = !src.flipped
+		if(src.flipped)
+			icon_state = "[initial(icon_state)]_flipped"
+			to_chat(usr, SPAN_INFO("You flip the hat backwards. If you were still a teenager, you'd be about 50% cooler right now."))
+		else
+			icon_state = "[initial(icon_state)]"
+			to_chat(usr, "You flip the hat back in normal position.")
+		update_clothing_icon() //so our mob-overlays update

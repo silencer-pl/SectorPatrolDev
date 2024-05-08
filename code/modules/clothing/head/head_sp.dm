@@ -149,3 +149,21 @@
 			icon_state = "[initial(icon_state)]"
 			to_chat(usr, "You flip the hat back in normal position.")
 		update_clothing_icon() //so our mob-overlays update
+
+/obj/item/clothing/head/sp_personal/boonie
+	name = "boonie hat master item"
+	var/flipped = FALSE
+
+/obj/item/clothing/head/sp_personal/boonie/verb/flip()
+	set category = "Object"
+	set name = "Toggle chinstrap"
+	set src in usr
+	if(!usr.is_mob_incapacitated())
+		src.flipped = !src.flipped
+		if(src.flipped)
+			icon_state = "[initial(icon_state)]_b"
+			to_chat(usr, SPAN_INFO("You unbutton and tuck away the chinstrap. The hat now rests loosely on your head."))
+		else
+			icon_state = "[initial(icon_state)]"
+			to_chat(usr, SPAN_INFO("You button the hat's chinstrap. It now fits snugly around your head."))
+		update_clothing_icon() //so our mob-overlays update

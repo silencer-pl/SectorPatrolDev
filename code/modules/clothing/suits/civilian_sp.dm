@@ -2,11 +2,13 @@
 	name = "civilian jacket master item"
 	desc = "If you see this, something is wrong."
 	desc_lore = "This is an item that should not be acessible for mere mortals. Fear it."
+	customizable = 1
 	icon = 'icons/obj/sp_clothes/coats/icon/suit.dmi'
 	icon_state = ""
 	item_icons = list(
 		WEAR_JACKET = 'icons/obj/sp_clothes/coats/onmob/suit.dmi'
 	)
+
 
 /obj/item/clothing/suit/sp_personal/openable
 	name = "openable jacket master item"

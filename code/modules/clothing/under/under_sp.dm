@@ -2,6 +2,7 @@
 	name = "civilian clothing master item"
 	desc = "If you see this, something is wrong."
 	desc_lore = "This is an item that should not be acessible for mere mortals. Fear it."
+	customizable = 1
 	icon = 'icons/obj/sp_clothes/under/icon/under.dmi'
 	icon_state = ""
 	item_icons = list(

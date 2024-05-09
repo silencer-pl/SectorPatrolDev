@@ -118,11 +118,13 @@
 	name = "Civilian head cover master item"
 	desc = "If you can see this, someone messed up"
 	desc_lore = "Contact staff or report this as an issue please."
+	customizable = 1
 	icon = 'icons/obj/sp_clothes/hats/icon/hats.dmi'
 	icon_state = ""
 	item_icons = list(
 		WEAR_HEAD = 'icons/obj/sp_clothes/hats/onmob/hats.dmi'
 	)
+
 
 //flippable caps, add icon with _flipped to both sets
 

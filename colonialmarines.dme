@@ -1392,6 +1392,7 @@
 #include "code\game\objects\structures\props\research.dm"
 #include "code\game\objects\structures\sectorpatrol\event_terminal.dm"
 #include "code\game\objects\structures\sectorpatrol\admin\admin_event_terminal.dm"
+#include "code\game\objects\structures\sectorpatrol\crafting\crafting_customizers.dm"
 #include "code\game\objects\structures\sectorpatrol\crafting\crafting_finished_structures.dm"
 #include "code\game\objects\structures\sectorpatrol\crafting\crafting_structures.dm"
 #include "code\game\objects\structures\sectorpatrol\endpoint\001.dm"

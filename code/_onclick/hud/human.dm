@@ -17,6 +17,7 @@
 		"wear_r_ear" =   list("loc" = ui_datum.ui_wear_r_ear,  "slot" = WEAR_R_EAR, "state" = "ears",   "toggle" = 1),
 		"head" =  list("loc" = ui_datum.ui_head,   "slot" = WEAR_HEAD, "state" = "hair",   "toggle" = 1),
 		"shoes" = list("loc" = ui_datum.ui_shoes,  "slot" = WEAR_FEET, "state" = "shoes",  "toggle" = 1),
+		"socks" = list("loc" = ui_datum.ui_shoes,  "slot" = WEAR_SOCKS, "state" = "socks",  "toggle" = 1),
 		"suit storage" = list("loc" = ui_datum.ui_sstore1,   "slot" = WEAR_J_STORE, "state" = "suit_storage"),
 		"back" =  list("loc" = ui_datum.ui_back,   "slot" = WEAR_BACK, "state" = "back"),
 		"id" =    list("loc" = ui_datum.ui_id, "slot" = WEAR_ID, "state" = "id"),
@@ -64,6 +65,9 @@
 
 	if(WEAR_FEET in equip_slots)
 		equip_slots |= WEAR_IN_SHOES
+
+	if (WEAR_SOCKS in equip_slots)
+		equip_slots |= WEAR_IN_SOCKS
 
 	// Draw the various inventory equipment slots.
 	draw_inventory_slots(gear, ui_datum, ui_alpha, ui_color)

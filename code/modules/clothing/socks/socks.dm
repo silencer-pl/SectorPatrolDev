@@ -4,6 +4,7 @@
 	desc_lore = "Compression socks became a favorite for those who spend prolonged amount of time on spaceships or installations almost as soon as mankind reached for the stars. The reasoning is simple, the increased pressure on thighs and legs improves blood pressure and circulation, which is particularly useful in zero-g environments which spaceship crews often find themselves spending prolonged amounts of time in. Socks like these meant to be use in space are also typically insulated and quite warm, another very useful aspect in the relative cold of most space faring vessels."
 	icon = 'icons/obj/items/clothing/socks.dmi'
 	icon_state = "grey_thigh"
+	flags_equip_slot = SLOT_SOCKS
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -18,9 +19,14 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROT
 	siemens_coefficient = 0.7
 	item_icons = list(
-        WEAR_FEET = 'icons/mob/humans/onmob/socks.dmi'
+        WEAR_SOCKS = 'icons/mob/humans/onmob/socks.dmi'
     )
-	layer = SUIT_GARB_LAYER
+	layer = SOCKS_LAYER
+
+/obj/item/clothing/socks/update_clothing_icon()
+	if(ismob(loc))
+		var/mob/user = loc
+		user.update_inv_socks()
 
 /obj/item/clothing/socks/gray
 	name = "gray compression socks"

@@ -40,6 +40,7 @@
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
 	var/skipshoes = 0
+	var/skipsocks = 0
 	var/skipmask = 0
 	var/skipears = 0
 	var/skipeyes = 0
@@ -51,6 +52,7 @@
 		skipsuitstorage = wear_suit.flags_inv_hide & HIDESUITSTORAGE
 		skipjumpsuit = wear_suit.flags_inv_hide & HIDEJUMPSUIT
 		skipshoes = wear_suit.flags_inv_hide & HIDESHOES
+		skipsocks = wear_suit.flags_inv_hide & HIDESHOES
 
 	if(head)
 		skipmask = head.flags_inv_hide & HIDEMASK
@@ -140,6 +142,10 @@
 		msg += "[t_He] [t_is] wearing <a HREF=?src=\ref[src];descitem=\ref[shoes]>[shoes.get_examine_line(user)]</a> [shoes.get_examine_location(src, user, WEAR_FEET, t_He, t_his, t_him, t_has, t_is)].\n"
 	else if(feet_blood_color)
 		msg += SPAN_WARNING("[t_He] [t_has] [(feet_blood_color != COLOR_OIL) ? "blood" : "oil"]-stained feet!\n")
+
+	//socks
+	if(socks && !skipsocks)
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[socks]>[socks.get_examine_line(user)]</a> on [t_his] legs.\n"
 
 	//mask
 	if(wear_mask && !skipmask)
@@ -364,19 +370,19 @@
 		msg += wound_flavor_text["groin"]
 	if(is_bleeding["groin"])
 		display_groin = 1
-	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit) || (!socks && !skipsocks)))
 		msg += wound_flavor_text["left leg"]
 	if(is_bleeding["left leg"])
 		display_leg_left = 1
-	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)))
+	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["left foot"]
 	if(is_bleeding["left foot"])
 		display_foot_left = 1
-	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["right leg"]
 	if(is_bleeding["right leg"])
 		display_leg_right = 1
-	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)))
+	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["right foot"]
 	if(is_bleeding["right foot"])
 		display_foot_right = 1

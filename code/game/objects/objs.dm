@@ -138,6 +138,8 @@
 			return "in [t_his] left hand"
 		if(WEAR_R_HAND)
 			return "in [t_his] right hand"
+		if(WEAR_SOCKS)
+			return "on [t_his] legs"
 		if(WEAR_FEET)
 			return "on [t_his] feet"
 	return "...somewhere?"

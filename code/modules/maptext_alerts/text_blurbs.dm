@@ -165,5 +165,4 @@ but should see their own spawn message even if the player already dropped as USC
 		message_to_display = "<b>[name]</b>\n[artist] - [title]"
 	else
 		message_to_display = "<b>[name]</b>\n[artist] - [title]\n<i>[album]</i>"
-	show_blurb(world, duration = 10 SECONDS, message = "[message_to_display]", screen_position = "LEFT+0:16,BOTTOM+1:16",\
-	text_alignment = "left", text_color = "#FFFFFF", blurb_key = "song[name]", ignore_key = FALSE, speed = 1)
+	show_blurb(world, duration = 10 SECONDS, message = "[message_to_display]", screen_position = "LEFT+0:16,BOTTOM+1:16", text_alignment = "left", text_color = "#FFFFFF", blurb_key = "song[name]", ignore_key = FALSE, speed = 1)

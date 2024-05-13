@@ -1093,6 +1093,23 @@
 	show_blurb(GLOB.player_list, duration, message, TRUE, "center", "center", "#bd2020", "ADMIN")
 	message_admins("[key_name(usr)] sent an admin blurb alert to all players. Alert reads: '[message]' and lasts [(duration / 10)] seconds.")
 
+/client/proc/admin_song_blurb()
+	set name = "Song Blurb Message"
+	set category = "Admin.Events"
+
+	if(!check_rights(R_ADMIN|R_DEBUG))
+		return FALSE
+
+	var/song_title = tgui_input_text(usr, message = "Song Title - Displayed BOLDED on top.", title = "Song Title", timeout = null)
+	if (song_title == null) return
+	var/song_artist = tgui_input_text(usr, message = "Song Artist - Second line, left.", title = "Song Artist", timeout = null)
+	if (song_artist == null) return
+	var/song_name = tgui_input_text(usr, message = "Song Name - Second line, after dash on right. LAST CHANCE TO CANCEL.", title = "Song Name", timeout = null)
+	if (song_name == null) return
+	var/song_album = tgui_input_text(usr, message = "Song Album. Optional, Third line.", title = "Song Album", timeout = null)
+	show_blurb_song(name = "[song_title]", artist = "[song_artist]", title = "[song_title]", album = "[song_album]")
+	message_admins("[key_name(usr)] sent an admin song blurb. Strings sent: '[song_title]', '[song_artist]', '[song_name]', '[song_album]'")
+
 /client/proc/cmd_admin_pythia_say() // Checks for a Pythia reciever and talks as it and any of its voices.
 	set name = "Speak As Pythia"
 	set category = "Admin.Events"

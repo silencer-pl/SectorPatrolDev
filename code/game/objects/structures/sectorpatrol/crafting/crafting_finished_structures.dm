@@ -17,6 +17,7 @@
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] loosens the screws attaching the table top to its frame."), SPAN_INFO("You loosen the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 				var/obj/structure/crafting/frame/table/frame = new(get_turf(src))
 				frame.icon_state = icon_state
 				frame.variant_id = variant_id
@@ -66,7 +67,9 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_MULTITOOL))
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] Attaches the multitool to the port on the side of the mattress. The device beeps."), SPAN_INFO("You attach the multitool to the port on the side of the mattress. The device beeps."), SPAN_DANGER("You hear a soft beep."))
+			playsound(src, soundin = 'sound/machines/terminal_select.ogg', vol = 10, vary = 1)
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/air_release.ogg', vol = 25, vary = 1)
 				var/obj/structure/crafting/frame/bed/frame = new(get_turf(src))
 				frame.variant_id = variant_id
 				var/obj/item/crafting/top/bed/top = new(get_turf(src))
@@ -79,6 +82,7 @@
 	. = ..()
 	if(usr.a_intent == INTENT_GRAB)
 		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 			user.visible_message(SPAN_NOTICE("[user] flips a lever near one of the legs of the bed, detaching it from the floor."), SPAN_INFO ("You flip a lever near one of the legs of the bed, detaching it from the floor."))
 			anchored = !anchored
 
@@ -92,13 +96,13 @@
 
 	if(ishuman(usr))
 		usr.visible_message(SPAN_NOTICE("[usr] moves the pilow to the other side of the mattress."), SPAN_INFO("You move the pilow to the other side of the mattress."))
+		playsound(src, soundin = 'sound/effects/rustle3.ogg', vol = 25, vary = 1)
 		if (dir == NORTH)
 			dir = SOUTH
-			return
 		else
 			dir = NORTH
-			return
-	return
+		update_icon()
+		return
 
 //Desk Lamp
 
@@ -130,6 +134,7 @@
 			to_chat(user, SPAN_WARNING("You cannot turn the light [on ? "off" : "on"] while in [user.loc].")) //To prevent some lighting anomalies.
 			return FALSE
 		on = !on
+		playsound(src, soundin = 'sound/machines/click.ogg', vol = 25, vary = 1)
 		set_light_on(on)
 		update_icon()
 		return TRUE
@@ -146,6 +151,7 @@
 		to_chat(user, SPAN_NOTICE("You push down on the release button for the bulb..."))
 		if(do_after(user, CRAFTING_DELAY_SHORT, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			var/obj/item/crafting/frame/lamp/frame = new(get_turf(src))
+			playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 			frame.crafting_lamp_top_color = crafting_lamp_top_color
 			frame.variant_id = variant_id
 			frame.icon_state = "lamp"
@@ -195,6 +201,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to remove the drawers from the frame."), SPAN_INFO("You start to remove the drawers from the frame."), SPAN_DANGER("You hear loud metal scraping."))
 				if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					dump_contents()
+					playsound(src, soundin = 'sound/effects/metal_close.ogg', vol = 25, vary = 1)
 					var/obj/item/crafting/top/drawers/top = new(get_turf(src))
 					top.variant_id = crafting_drawer_color
 					var/obj/structure/crafting/frame/drawers/frame = new(get_turf(src))
@@ -208,6 +215,7 @@
 	. = ..()
 	if(usr.a_intent == INTENT_GRAB)
 		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 			user.visible_message(SPAN_NOTICE("[user] flips a lever near the bottom of the drawers, detaching it from the floor."), SPAN_INFO ("You flip a lever near the bottom of the drawers, detaching it from the floor."))
 			anchored = !anchored
 
@@ -248,6 +256,7 @@
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] starts to loosen the clamp holding the chair seat."), SPAN_INFO("You start to loosen the clamp holding the chair seat."), SPAN_DANGER("You hear metalic scraping."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 				var/obj/item/crafting/top/chair/seat/top = new(get_turf(src))
 				top.variant_id = crafting_chair_top_id
 				var/obj/structure/crafting/frame/chair/frame = new(get_turf(src))

@@ -27,6 +27,7 @@
 	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
+		playsound(src, soundin = 'sound/items/poster_ripped.ogg', vol = 25, vary = 1)
 		new /obj/item/crafting/frame_elements/chair(get_turf(usr))
 		new /obj/item/crafting/top/chair/seat(get_turf(usr))
 		new /obj/item/crafting/top/chair/wheels(get_turf(usr))
@@ -44,6 +45,7 @@
 	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
+		playsound(src, soundin = 'sound/items/poster_ripped.ogg', vol = 25, vary = 1)
 		new /obj/item/crafting/frame_elements/drawers(get_turf(usr))
 		new /obj/item/crafting/top/drawers(get_turf(usr))
 		qdel(src)
@@ -61,6 +63,7 @@
 	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
+		playsound(src, soundin = 'sound/items/poster_ripped.ogg', vol = 25, vary = 1)
 		new /obj/item/crafting/frame/lamp(get_turf(usr))
 		new /obj/item/crafting/top/lamp/base(get_turf(usr))
 		new /obj/item/crafting/top/lamp/bulb(get_turf(usr))
@@ -88,6 +91,7 @@
 			var/obj/item/crafting/top/lamp/base/D = C
 			user.visible_message(SPAN_NOTICE("[user] starts to attach a lamp top to its base."), SPAN_INFO("You start to attach a lamp top to its base."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 				crafting_lamp_top_color = D.variant_id
 				qdel(D)
 				icon_state = "lamp"
@@ -105,6 +109,7 @@
 			var/obj/item/crafting/top/lamp/bulb/bulb = C
 			user.visible_message(SPAN_NOTICE("[user] starts to screw a light bulb into the desk lamp."), SPAN_INFO("You start to screw a light bulb into the desk lamp."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 				var/obj/item/device/modular/lamp/lamp = new(get_turf(src))
 				lamp.crafting_lamp_top_color = crafting_lamp_top_color
 				lamp.crafting_lamp_bulb_color = bulb.crafting_lamp_bulb_color
@@ -122,6 +127,7 @@
 				user.visible_message(SPAN_NOTICE("[user] starts to detach a lamp top from its frame."), SPAN_INFO("You start to detach a lamp top from its frame."))
 				if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					var/obj/item/crafting/top/lamp/base/top = new(get_turf(src))
+					playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 					top.variant_id = crafting_lamp_top_color
 					user.put_in_hands(top)
 					crafting_lamp_top_color = null
@@ -155,6 +161,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 			var/obj/structure/crafting/frame/table/R = new(get_turf(usr))
 			R.variant_id = variant_id
 			qdel(src)
@@ -173,6 +180,7 @@
 	..()
 	user.visible_message(SPAN_NOTICE("[user] starts to assemble a cabinet frame from its components."), SPAN_INFO("You start to assemble a cabinet frame from its components."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 		var/obj/structure/crafting/frame/drawers/R = new(get_turf(usr))
 		R.variant_id = variant_id
 		qdel(src)

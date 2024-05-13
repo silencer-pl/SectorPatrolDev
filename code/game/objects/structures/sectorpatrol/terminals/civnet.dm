@@ -30,6 +30,7 @@
 		if (!puzzlebox_civnet_query)
 			puzzlebox_user = null
 			return
+		playsound(src, soundin = get_sfx("keyboard"), vol = 25, vary = 1)
 		terminal_speak("> [puzzlebox_civnet_query]")
 		usr.civnet_query = "[puzzlebox_civnet_query]"
 		log_game("[key_name(usr)] submitted the Civnet query: [puzzlebox_civnet_query]")

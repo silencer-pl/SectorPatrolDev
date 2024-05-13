@@ -38,6 +38,7 @@
 	if (!puzzlebox_parser_input)
 		puzzlebox_user = null
 		return
+	playsound(src, soundin = get_sfx("keyboard"), vol = 25, vary = 1)
 	terminal_parse(puzzlebox_parser_input)
 
 /obj/structure/eventterminal/logbuffer/proc/terminal_list()

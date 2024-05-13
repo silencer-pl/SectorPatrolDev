@@ -12,6 +12,20 @@
 			if(once)
 				qdel(src)
 
+//Location Blurbs
+
+/obj/effect/step_trigger/message/seeonce_blurb/
+	var/trigger_id = "default"
+	var/trigger_text = "default trigger text" // Use /n for new lines per show_blurb()
+
+/obj/effect/step_trigger/message/seeonce_blurb/Trigger(mob/M)
+	if(!istype(M) || !M)
+		return
+	if(M.client)
+		if(!("[trigger_id]" in M.saw_narrations))
+			M.saw_narrations.Add("[trigger_id]")
+			show_blurb(M, duration = 10 SECONDS, message = "[trigger_text]", screen_position = "BOTTOM+1:16", text_alignment = "center", text_color = "#FFFFFF", blurb_key = "[trigger_id]", ignore_key = FALSE, speed = 1)
+
 //Sector Patrol event specifc
 
 /obj/effect/step_trigger/message/seeonce/D31Scn2

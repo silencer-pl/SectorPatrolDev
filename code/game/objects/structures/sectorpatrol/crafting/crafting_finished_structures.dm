@@ -25,6 +25,12 @@
 				return
 	..()
 
+/obj/structure/surface/modular/table/attack_hand(mob/user)
+	. = ..()
+	if(usr.a_intent == INTENT_GRAB)
+		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			user.visible_message(SPAN_NOTICE("[user] flips a lever near one of the legs of the table, detaching it from the floor."), SPAN_INFO ("You flip a lever near one of the legs of the table, detaching it from the floor."))
+			anchored = !anchored
 
 /obj/structure/surface/modular/table/gray
 	icon_state = "table_metal_gray"
@@ -68,6 +74,13 @@
 				qdel(src)
 				return
 	return
+
+/obj/structure/bed/modular/attack_hand(mob/user)
+	. = ..()
+	if(usr.a_intent == INTENT_GRAB)
+		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			user.visible_message(SPAN_NOTICE("[user] flips a lever near one of the legs of the bed, detaching it from the floor."), SPAN_INFO ("You flip a lever near one of the legs of the bed, detaching it from the floor."))
+			anchored = !anchored
 
 /obj/structure/bed/modular/verb/rotate_pillow()
 	set category = "Object"
@@ -190,6 +203,13 @@
 					return
 		return
 	return
+
+/obj/structure/closet/modular/drawers/attack_hand(mob/user)
+	. = ..()
+	if(usr.a_intent == INTENT_GRAB)
+		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			user.visible_message(SPAN_NOTICE("[user] flips a lever near the bottom of the drawers, detaching it from the floor."), SPAN_INFO ("You flip a lever near the bottom of the drawers, detaching it from the floor."))
+			anchored = !anchored
 
 //office chair
 

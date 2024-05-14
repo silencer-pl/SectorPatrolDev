@@ -17,6 +17,7 @@
 	if(!("buffer_welcome" in usr.saw_narrations))
 		terminal_welcome()
 	terminal_cmd()
+	puzzlebox_user = null
 	return
 
 /obj/structure/eventterminal/logbuffer/proc/terminal_welcome()
@@ -110,7 +111,6 @@
 			terminal_speak("-A-Watchtower.")
 			terminal_speak("EOF.")
 
-
 //Hidden messages
 
 		if ("UPS-103-333-444")
@@ -136,6 +136,9 @@
 			terminal_speak("The Interpreters are the key. Now that Arbiters are here, the mechanism is complete.")
 			terminal_speak("Please, be kind to them if you have it within your heart.")
 			terminal_speak("EOF.")
+//End of logs
+		else
+			terminal_speak("Unknown log entry. Please try again.")
 
 // PARSING STARTS HERE
 /obj/structure/eventterminal/logbuffer/proc/terminal_parse(str)
@@ -143,6 +146,7 @@
 	switch(puzzlebox_parser_input)
 		if("EXIT")
 			terminal_speak("User exit. Goodbye.")
+			puzzlebox_user = null
 			return
 		if("HELP")
 			terminal_welcome()

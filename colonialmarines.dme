@@ -1401,6 +1401,7 @@
 #include "code\game\objects\structures\sectorpatrol\endpoint\004.dm"
 #include "code\game\objects\structures\sectorpatrol\endpoint\005.dm"
 #include "code\game\objects\structures\sectorpatrol\searchable\search_structures.dm"
+#include "code\game\objects\structures\sectorpatrol\terminals\briefing.dm"
 #include "code\game\objects\structures\sectorpatrol\terminals\buffer_log.dm"
 #include "code\game\objects\structures\sectorpatrol\terminals\civnet.dm"
 #include "code\game\objects\structures\sectorpatrol\terminals\efolder_reader.dm"

@@ -994,6 +994,7 @@
 #include "code\game\machinery\vending\vendor_types\intelligence_officer.dm"
 #include "code\game\machinery\vending\vendor_types\medical.dm"
 #include "code\game\machinery\vending\vendor_types\requisitions.dm"
+#include "code\game\machinery\vending\vendor_types\sectorpatrol.dm"
 #include "code\game\machinery\vending\vendor_types\supplies.dm"
 #include "code\game\machinery\vending\vendor_types\wo_vendors.dm"
 #include "code\game\machinery\vending\vendor_types\antag\antag_clothing.dm"

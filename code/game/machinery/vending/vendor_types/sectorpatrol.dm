@@ -4,7 +4,7 @@
 	desc_lore = "Recreated from generic blueprints of vending machines acquired from Earth, these devices have two key unique qualities. First, the screens and electronic parts were all manufactured on the PST, meaning that they all carry traces of the stations Liquid Data foundries and are also able to display colored images if they are not taken off station. Second, these devices aren't vending machines at all, but rather end points in a complex manufacturing system that, at least in theory, utilizes polymers, resins and unique metal alloys to manufacture everything its crew may need."
 	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
 	icon_state = "clothes"
-	item_types = list(/obj/item/clothing/head/sp_personal/basehat, /obj/item/clothing/under/sp_personal/, /obj/item/clothing/suit/sp_personal, /obj/item/clothing/socks, /obj/item/clothing/shoes/sp_personal)
+	item_types = list(/obj/item/clothing/head/sp_personal/basehat, /obj/item/clothing/under/sp_personal/, /obj/item/clothing/suit/sp_personal, /obj/item/clothing/socks/compression/thigh/, /obj/item/clothing/shoes/sp_personal)
 	vend_delay = 5 SECONDS
 
 /obj/structure/machinery/cm_vending/clothing/super_snowflake/sp_tiles

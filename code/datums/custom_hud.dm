@@ -57,10 +57,11 @@
 
 	//Pop-up inventory
 	var/ui_shoes = "WEST+1:8,1:5"
-	var/ui_iclothing = "WEST:6,2:7"
+	var/ui_socks = "WEST:6,2:7"
+	var/ui_iclothing = "WEST:6,3:9"//"WEST:6,2:7"
 	var/ui_oclothing = "WEST+1:8,2:7"
 	var/ui_gloves = "WEST+2:10,2:7"
-	var/ui_glasses = "WEST:6,3:9"
+	var/ui_glasses = "WEST:6,4:11"//"WEST:6,3:9"
 	var/ui_mask = "WEST+1:8,3:9"
 	var/ui_wear_l_ear = "WEST+2:10,3:9"
 	var/ui_wear_r_ear = "WEST+2:10,4:11"

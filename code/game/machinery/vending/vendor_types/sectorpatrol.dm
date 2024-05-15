@@ -5,7 +5,7 @@
 	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
 	icon_state = "clothes"
 	item_types = list(/obj/item/clothing/head/sp_personal/basehat, /obj/item/clothing/under/sp_personal/baseunder/, /obj/item/clothing/suit/sp_personal/basejacket/, /obj/item/clothing/socks/compression/thigh/, /obj/item/clothing/shoes/sp_personal/baseshoe/)
-	vend_delay = 5 SECONDS
+	vend_delay = 2 SECONDS
 
 /obj/structure/machinery/cm_vending/clothing/super_snowflake/sp_tiles
 	name = "OV-PST NRPS compliant tile press"

@@ -1,10 +1,12 @@
 /obj/item/clothing/suit/sp_personal
-	name = "civilian jacket master item"
+//	name = "civilian jacket master item"
 	desc = "A thick article of clothing, made from some hardened artificial, rubber like substance that is textured to simulate leather, with hardened resin elements used for finer details."
 	desc_lore = "Typically called 'jackets' or 'suits', this article of clothing is thicker than most and is meant to be worn on top of lighter, more breathable uniforms. This is why they are typically made of heavier leather and worn by personnel departing the ship for planets where the atmosphere is breathable. The PST made variants replace leather with a polymer and resin mixture, resulting in clothes that are just as warm, damage a bit easier, but can be easily recycled and made back from scratch with the push of a button."
 	customizable = 1
 	icon = 'icons/obj/sp_clothes/coats/icon/suit.dmi'
-	icon_state = ""
+//	icon_state = ""
+	name = "khaki lightjacket"
+	icon_state = "lightjacket_khaki"
 	item_icons = list(
 		WEAR_JACKET = 'icons/obj/sp_clothes/coats/onmob/suit.dmi'
 	)
@@ -41,9 +43,9 @@
 			else
 				to_chat(usr, SPAN_NOTICE("This jacket does not have any functional way of keeping it open and closed."))
 
-/obj/item/clothing/suit/sp_personal/basejacket/lightjacket_khaki
-	name = "khaki lightjacket"
-	icon_state = "lightjacket_khaki"
+///obj/item/clothing/suit/sp_personal/basejacket/lightjacket_khaki
+//	name = "khaki lightjacket"
+//	icon_state = "lightjacket_khaki"
 
 /obj/item/clothing/suit/sp_personal/basejacket/lightjacket_red
 	name = "red lightjacket"

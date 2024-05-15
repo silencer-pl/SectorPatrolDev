@@ -28,6 +28,7 @@
 "db" = (/obj/structure/surface/table/reinforced/almayer_blend/north,/obj/structure/machinery/door/poddoor/shutters/almayer{id = "scn1_shutter"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "de" = (/obj/structure/closet/modular/drawers,/turf/open/floor/plating/modular/gray,/area/ovpst)
 "dq" = (/turf/open/space/basic,/area/ovpst/airlock/ele_d_pin)
+"dE" = (/obj/structure/eventterminal/briefing_terminal,/turf/open/floor/almayer,/area/ovpst)
 "dK" = (/obj/docking_port/stationary/emergency_response/external/pst_dock31,/turf/open/space/basic,/area/space)
 "dP" = (/obj/effect/decal/info_tag/pst/lby{pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- LBY - R37 -</big><br> Dorms Deck 37 entrance lobby"},/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
 "ef" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
@@ -45,7 +46,7 @@
 "fa" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin/elevator_outer{id = "e-d31"},/turf/open/floor/almayer{icon_state = "plating"; dir = 1},/area/ovpst/airlock/ele_e_d31)
 "ff" = (/obj/structure/machinery/light,/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
 "fk" = (/obj/structure/bed/chair/modular/office{dir = 1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
-"fp" = (/turf/open/space/basic,/area/ovpst)
+"fp" = (/obj/structure/eventterminal/efolder_reader,/obj/structure/machinery/light/marker/admin{light_id = "efolder_viewer"},/turf/open/floor/almayer,/area/ovpst)
 "fs" = (/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/plating/modular,/area/ovpst)
 "fv" = (/obj/structure/machinery/light{dir = 8},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "fA" = (/obj/effect/decal/info_tag/pst/ele{dir = 1; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- EL-E -</big></b><br>Primary Access Elevator <b>- E</b>"},/turf/open/floor/almayer{icon_state = "emeraldcorner"},/area/ovpst)
@@ -54,11 +55,11 @@
 "fV" = (/obj/structure/ladder{id = "crypt1"; icon_state = "ladder10"; height = 1},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "go" = (/obj/structure/window/framed/almayer,/turf/open/floor/almayer{dir = 2; icon_state = "redcorner"},/area/ovpst)
 "gt" = (/turf/open/floor/almayer{dir = 8; icon_state = "emerald"},/area/ovpst)
+"gv" = (/obj/structure/eventterminal/logbuffer,/turf/open/floor/holofloor/grass,/area/ovpst)
 "gw" = (/obj/structure/machinery/light/small,/obj/structure/surface/modular/table,/obj/item/device/modular/lamp,/turf/open/floor/plating/modular/gray,/area/ovpst)
 "gD" = (/obj/structure/machinery/light{dir = 8},/obj/structure/bookcase,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "gR" = (/obj/effect/decal/info_tag/pst/sec{dir = 1; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- SEC - D01 -</big></b><br>Dock 31 Front Security Office."; desc_lore = "The label SEC indicates doors and areas that require an elevated security clearance, typically restricted for MPs and CMISRS agents who are assigned the security class D on the PST. D01 indicates this area requires general security clearance, available to anyone with proper certification but not requiring any formal rank. This door leads to a small office overseeing the intake of cargo and personnel via Dock 31."},/turf/open/floor/almayer{icon_state = "red"},/area/ovpst)
 "gY" = (/obj/effect/decal/info_tag/pst/ofc{dir = 4; pixel_y = 16; desc_lore = "The label OFC indicates office areas, which as the name suggests are typically areas with some specific, bureaucratic function assigned to them and can be anything from personal offices of high-ranking personnel to teaching rooms and spare, unused generic spaces.  This door leads to one of the orientation offices, used to brief and greet new arrivals to the station."; desc = "UACM Outer Veil Primary Supply Terminal <br><big> - OFC - </big><br>Entrance Orientation Office"},/turf/open/floor/almayer{dir = 4; icon_state = "silvercorner"},/area/ovpst)
-"hc" = (/turf/open/floor/plating/modular{tile_seal = "black"; tile_bot_left = "watermelonred"; tile_bot_rght = "iguanagreen"; tile_top_left = "dustyblue"; tile_top_rght = "crimsonred"},/area/ovpst)
 "hd" = (/turf/open/floor/holofloor/grass,/area/ovpst)
 "hj" = (/obj/docking_port/stationary/emergency_response/pst_start,/turf/open/space/basic,/area/space)
 "hr" = (/obj/effect/decal/info_tag/pst/drm{dir = 8; pixel_x = -16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- DRM -</big><br> Dorms, Deck 37, Sector A"},/turf/open/floor/almayer{dir = 8; icon_state = "greencorner"},/area/ovpst)
@@ -233,7 +234,6 @@
 "yp" = (/turf/open/floor/almayer/uscm/directional{dir = 1; icon_state = "logo_directional1"},/area/ovpst)
 "yu" = (/obj/effect/decal/info_tag/pst/scn{dir = 1; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- SCN -</big></b><br>Entrance Secondary Scanner D31-PT-SCN001 and EL-E Pathway"; desc_lore = "The label SCN indicates doors and areas where computer systems actively scan its inhabitants and contents. This door leads to the secondary Dock 31 scanner, but official documentation does not specify what scan is performed here, only that it is a check that involves reviewing the biographies of scanned personnel. Areas like this need to be clearly marked due to privacy and personal data handling laws passed back in the UA in the aftermath of the Colony Wars."},/turf/open/floor/almayer{icon_state = "emeraldcorner"},/area/ovpst)
 "yy" = (/obj/effect/decal/info_tag/pst/scn{pixel_x = -16; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- SCN -</big></b><br>Entrance Personnel Scanner D31SCN001 and EL-E Pathway"; desc_lore = "The label SCN indicates doors and areas where computer systems actively scan its inhabitants and contents. This door leads to the primary entrance scanner of the PST, where entering personnel's identities are verified by the central CMISRS registry. Areas like this need to be clearly marked due to privacy and personal data handling laws passed back in the UA in the aftermath of the Colony Wars."},/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{dir = 1; icon_state = "emeraldcorner"},/area/ovpst)
-"yB" = (/turf/open/floor/plating/modular{tile_bot_left = "orange"; tile_bot_rght = "green"; tile_seal = "black"; tile_top_left = "black"; tile_top_rght = "creamwhite"},/area/ovpst)
 "yF" = (/obj/effect/decal/info_tag/pst/lby{dir = 4; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- LBY -</big><br> Dorms Deck 37 entrance lobby"},/turf/open/floor/almayer{dir = 5; icon_state = "orange-green"},/area/ovpst)
 "yG" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 10},/area/ovpst)
 "yL" = (/turf/open/floor/almayer{dir = 1; icon_state = "silver"},/area/ovpst)
@@ -245,7 +245,7 @@
 "zF" = (/turf/open/floor/almayer{icon_state = "bluecorner"; dir = 1},/area/ovpst)
 "zG" = (/turf/open/floor/almayer{icon_state = "greenfull"},/area/ovpst)
 "zI" = (/obj/structure/machinery/light{dir = 2},/turf/open/floor/almayer{icon_state = "silver"},/area/ovpst)
-"zN" = (/turf/open/floor/plating/modular{tile_seal = "black"; tile_bot_left = "cactusgreen"; tile_bot_rght = "muddyyellow"; tile_top_left = "sandyellow"; tile_top_rght = "lavenderpurple"},/area/ovpst)
+"zN" = (/obj/effect/landmark/observer_start,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "zQ" = (/obj/structure/machinery/door/poddoor/almayer{id = "d31-entrance"; name = "\improper Umbillical Airlock"; unacidable = 1},/turf/open/floor/almayer{icon_state = "plate"},/area/ovpst/airlock/d31)
 "Aj" = (/turf/open/floor/almayer{dir = 1; icon_state = "red"},/area/ovpst)
 "Aq" = (/turf/open/floor/almayer{dir = 4; icon_state = "bluecorner"},/area/ovpst)
@@ -253,6 +253,7 @@
 "AI" = (/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{icon_state = "blackcorner"; dir = 4},/area/ovpst)
 "AJ" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/securedoor.dmi'},/turf/open/floor/almayer{icon_state = "bluefull"},/area/ovpst)
 "AM" = (/turf/open/floor/almayer/uscm/directional{dir = 9; icon_state = "logo_directional1"},/area/ovpst)
+"Ba" = (/obj/structure/eventterminal/briefing_display{pixel_y = 32},/obj/structure/machinery/light/marker/admin{light_id = "theathervoice"},/turf/open/floor/almayer,/area/ovpst)
 "Bc" = (/obj/structure/ladder{id = "crypt1"; icon_state = "ladder01"; height = 2},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Be" = (/obj/structure/searchable/puzzle04/drawers_smol/full1,/turf/open/floor/almayer,/area/ovpst)
 "Bi" = (/turf/open/floor/almayer{dir = 4; icon_state = "emeraldcorner"},/area/ovpst)
@@ -277,6 +278,7 @@
 "CC" = (/obj/structure/machinery/door/poddoor/almayer/locked,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "CE" = (/obj/effect/decal/info_tag/pst/eld{pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- EL-C - Elevator Shaft D</big><br>"},/turf/open/floor/almayer{dir = 1; icon_state = "emerald"},/area/ovpst)
 "CH" = (/turf/open/floor/almayer/uscm/directional{dir = 5; icon_state = "logo_directional1"},/area/ovpst)
+"CM" = (/obj/structure/eventterminal/civnet,/turf/open/floor/holofloor/grass,/area/ovpst)
 "CO" = (/turf/open/floor/almayer{icon_state = "purplefull"; dir = 8},/area/ovpst)
 "CS" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/engidoor2.dmi'; dir = 2},/turf/open/floor/plating/plating_catwalk,/area/ovpst)
 "CY" = (/obj/structure/machinery/light,/obj/effect/decal/info_tag/pst/san{dir = 4; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- SAN -</big><br>Dock 31 Personnel Sanitation"},/turf/open/floor/almayer{dir = 8; icon_state = "emerald-silver"},/area/ovpst)
@@ -304,7 +306,7 @@
 "EZ" = (/turf/open/floor/almayer{dir = 4; icon_state = "orangecorner"},/area/ovpst)
 "Fd" = (/obj/structure/machinery/light{dir = 8; brightness = 12},/turf/open/floor/almayer,/area/ovpst)
 "Fe" = (/turf/open/floor/almayer{icon_state = "emeraldcorner"},/area/ovpst)
-"Fi" = (/obj/structure/eventterminal/puzzle03/historycrt{pixel_y = 32},/obj/structure/machinery/light/marker/admin{pixel_y = 40; light_id = "theathervoice"},/turf/open/floor/almayer{icon_state = "blue2orange"; dir = 1},/area/ovpst)
+"Fi" = (/obj/structure/eventterminal/puzzle03/historycrt{pixel_y = 32},/turf/open/floor/almayer{icon_state = "blue2orange"; dir = 1},/area/ovpst)
 "Fj" = (/obj/structure/machinery/light{dir = 2},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Fo" = (/obj/effect/decal/info_tag/pst/cpu{dir = 1; desc_lore = "The label CPU indicates doors and areas related to the operation of ship AIs, which typically are also directly tied to the ships Twilight FTL drives and Liquid Data FTL communication systems. These areas are typically sealed to all but the highest-ranking command personnel on board a ship or station but may be sometimes unlocked by the AIs themselves if maintenance is required. The room behind the door leads to one of the PYTHIA scanner clusters which are somehow related to the secondary security scanner of the station, but no information is available about what the scanner is or why would it need what appears to be Liquid Data based communication systems. The presence of FTL comm protocols and Liquid Data explains the blue pathway and CPU designation at least."; desc = "UACM Outer Veil Primary Supply Terminal <br><b><big>- CPU -</big></b><br>Dock 31 Security Sub Processors PYTHIA Scanner Cluster D13-3"},/turf/open/floor/almayer{icon_state = "bluecorner"},/area/ovpst)
 "Fr" = (/turf/closed/wall/almayer,/area/ovpst/airlock/ele_e_pin)
@@ -350,11 +352,10 @@
 "KH" = (/obj/structure/surface/table/reinforced,/obj/item/pizzabox/margherita,/obj/item/pizzabox/margherita{pixel_y = 5},/obj/item/pizzabox/margherita{pixel_y = 10},/turf/open/floor/almayer,/area/ovpst)
 "KK" = (/turf/open/floor/almayer{dir = 8; icon_state = "orangecorner"},/area/ovpst)
 "KX" = (/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
-"KZ" = (/turf/open/floor/plating/modular{tile_bot_left = "limegreen"; tile_bot_rght = "plumpurple"; tile_top_left = "eclipsebrown"; tile_seal = "black"; tile_top_rght = "rustred"},/area/ovpst)
+"KZ" = (/obj/item/cargo/efolder/folder_pid/godbreaker,/turf/open/floor/holofloor/grass,/area/ovpst)
 "La" = (/obj/structure/machinery/door/poddoor/almayer{id = "d31-entrance"; name = "\improper Umbillical Airlock"; unacidable = 1},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/ovpst/airlock/d31)
 "Lc" = (/obj/structure/closet/secure_closet/sp/yellow/g01/engiebasics{pixel_x = -8; pixel_y = 16},/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/ovpst)
 "Lj" = (/obj/structure/machinery/light,/turf/open/floor/almayer,/area/ovpst)
-"Lq" = (/turf/open/floor/plating/modular{tile_seal = "black"; tile_bot_left = "bronzebrown"; tile_bot_rght = "bloodred"; tile_top_left = "white"; tile_top_rght = "mistblue"},/area/ovpst)
 "LA" = (/obj/structure/bed/sofa/south/grey/right,/turf/open/floor/almayer{icon_state = "silvercorner"},/area/ovpst)
 "LB" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 8},/area/ovpst)
 "LG" = (/obj/structure/machinery/light{dir = 4; brightness = 12},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -409,7 +410,7 @@
 "QG" = (/obj/structure/machinery/door/poddoor/almayer/locked{dir = 8},/turf/open/floor/almayer{dir = 1; icon_state = "emerald"},/area/ovpst)
 "QI" = (/turf/closed/wall/almayer,/area/ovpst/airlock/ele_d_pin)
 "QM" = (/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{dir = 9; icon_state = "orange"},/area/ovpst)
-"QO" = (/turf/open/floor/plating/modular{tile_bot_left = "navyblue"; tile_bot_rght = "darkpurple"; tile_top_left = "jadegreen"; tile_seal = "black"; tile_top_rght = "grassgreen"},/area/ovpst)
+"QO" = (/obj/item/cargo/efolder/folder_pid/we_failed,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "Ra" = (/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_e_pin)
 "Rl" = (/obj/item/light_bulb/marker/admin{name = "voicebox - log viewer"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Rz" = (/obj/structure/machinery/light/small{dir = 8},/turf/open/floor/almayer{icon_state = "silvercorner"; dir = 1},/area/ovpst)
@@ -423,7 +424,7 @@
 "So" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin{dir = 1; opacity = 0; id = "brief_doors"},/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "Sq" = (/obj/structure/surface/modular/table,/turf/open/floor/plating/modular/gray,/area/ovpst)
 "Su" = (/obj/structure/sink{dir = 1; pixel_y = -8},/obj/structure/mirror{pixel_y = -25},/obj/structure/machinery/light/small,/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
-"SB" = (/turf/open/floor/plating/modular{tile_bot_left = "gray"; tile_bot_rght = "lightgray"; tile_seal = "black"; tile_top_left = "blue"; tile_top_rght = "purple"},/area/ovpst)
+"SB" = (/obj/item/cargo/efolder/folder_pid/torchbearer,/turf/open/floor/holofloor/grass,/area/ovpst)
 "SE" = (/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_d_pin)
 "SF" = (/obj/structure/machinery/light{dir = 4},/obj/structure/bookcase,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "SG" = (/obj/structure/sink{dir = 1; pixel_y = -8},/obj/structure/mirror{pixel_y = -25},/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
@@ -491,6 +492,7 @@
 "ZB" = (/obj/structure/sink{dir = 8; pixel_y = 0; pixel_x = -9},/obj/structure/machinery/light/small{dir = 8},/turf/open/floor/almayer{icon_state = "silverfull"},/area/ovpst)
 "ZE" = (/obj/structure/searchable/puzzle04/bunk_chest/full1,/turf/open/floor/almayer,/area/ovpst)
 "ZL" = (/turf/open/floor/almayer{icon_state = "sterile"},/area/ovpst)
+"ZP" = (/obj/item/cargo/efolder/folder_pid/voidseeker,/turf/open/floor/holofloor/grass,/area/ovpst)
 "ZR" = (/obj/structure/surface/table/reinforced,/obj/item/pizzabox/mushroom,/obj/item/pizzabox/mushroom{pixel_y = 3},/obj/item/pizzabox/mushroom{pixel_y = 5},/turf/open/floor/almayer,/area/ovpst)
 "ZV" = (/turf/open/floor/almayer{dir = 6; icon_state = "emerald"},/area/ovpst)
 "ZW" = (/obj/effect/decal/info_tag/pst/mem{pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- MEM - l</big><br>Memorial"},/turf/open/floor/almayer{icon_state = "white"; dir = 1},/area/ovpst)
@@ -522,13 +524,13 @@ qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvbopOpOpO
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOwRpOhWVaVaMdpOwRpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDsDBmlFoTsDsDsDFZsDsDsDsDsDFZsDsDsDsDFZsDsDsDlhTSiojVZnKfTSIAIAIAIAIAIAIAIAqgaAaAaAaAaAaAaAaAkqaAaAaAaAaAkqaAaAaAmJxpvXaAaAqgIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhyXpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhsDlhTSioioioioTSIAIAIAIAIAIAIAIAqgaADODODODODODODODODODODODODODODODODODODODODOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOAqFizFpOlhRBZWlhZhZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhdeMFzilhdepjzilhampjzilhdeMFzilhvjfsvjlhsDlhTSioioioioTSTSTSTSIAIAIAIAIAqgaADOpLUFpLDOpLUFpLDOafIYNoDONoIYHZDOafCapkDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSEppOpOpOpOlhfvCBlhnbZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhPFamamlhamamamlhamamamlhamamamlhvjvjvjlhsDlhTSWmZRXCKHTSTmTmTSTSTSTSTSfpDOaADOpLpLpLDOpLpLpLDOHZNoNoDONoNoNoDONoVKNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSJgnkqMqMvslhpOpOlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhEGamamlhamamEGlhamamamlhamamamlhvjvjvjlhsDlhlhioioioionCyLyLBXioioioiolhDOaADOpLpLpLDOpLpLpLDONoNoNoDONoNoNoDONoNoNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSqMqMqMqMOXlhBVSclhzxpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhEvamamlhamEvSqlhamSqIQlhamamamlhvjvjvjlhnalhlhiohdhdhdhdPePehdhdhdhdiolhDOewDOpLpLpLDOpLpLpLDONoNoNoDONoNoNoDONoNoWqDOewqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASakjSESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMpOLBaMpOLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhamPlamlhamPlamlhamgwdelhamPlamlhvjiNvjlhsDlhlhFdhdhdhdhdPePehdhdhdhdNBlhDOaADOpLPgpLDOpLPgpLDONoihNoDONoNCVKDONoihNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaQIFWMGMGMGQIFWMGMGMGQISaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMeqLBaMXyLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSlhlhhrhdhdhdhdSByBhdhdhdhdvJlhlhwrDODxDODODODxDODODODxDODODODxDODODODxDODODOwrqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSHpHpygTQTQTQkpHpCETSTSoQTSoQvMoQTSoQxvoQTSGMGMGMGMIslhhZgYlhRzpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlFqZRBYYionVRBYYioKBRBYYionVRBYYioKBRBYYZLNblFCwzGhMPePePehcKZQOPePePePeLKxLXVxpsoXGdaMRkQXGdaMRnOXGdaMRkQXGdaMRnOXGdaaOWJxpqgIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOygTQkppOpOpOrIERMJJMrIERMJJMrIERLAlhBRGMGMGMHrlhfvCBlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSTALjiohWVaMdiohWVajliohWVaMdiohWVajliohWVaFAcoyFiGhMPePePePeLqzNPePePePeLKrWPjykMSMRSkvvYUMRSkvvPIMRSkvvYUMRSkvvPIMRSkvvPsykqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSEppOpOpOpOlhfvCBlhnbZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhPFamamlhamamamlhamamamlhamamamlhvjvjvjlhsDlhTSWmZRXCKHTSTmTmTSTSTSTSTSlhDOaADOpLpLpLDOpLpLpLDOHZNoNoDONoNoNoDONoVKNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSJgnkqMqMvslhpOpOlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhEGamamlhamamEGlhamamamlhamamamlhvjvjvjlhsDlhlhioioioionCyLyLBXdEBaioiolhDOaADOpLpLpLDOpLpLpLDONoNoNoDONoNoNoDONoNoNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSqMqMqMqMOXlhBVSclhzxpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhEvamamlhamEvSqlhamSqIQlhamamamlhvjvjvjlhnalhlhfphdKZSBZPQOPehdhdhdhdiolhDOewDOpLpLpLDOpLpLpLDONoNoNoDONoNoNoDONoNoWqDOewqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASakjSESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMpOLBaMpOLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhamPlamlhamPlamlhamgwdelhamPlamlhvjiNvjlhsDlhlhFdhdgvCMhdPePehdhdhdhdNBlhDOaADOpLPgpLDOpLPgpLDONoihNoDONoNCVKDONoihNoDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaQIFWMGMGMGQIFWMGMGMGQISaIAIAIAIAIAIAIAIAIATSpOpOpOpOaMeqLBaMXyLBZhZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSlhlhhrhdhdhdhdPePehdhdhdhdvJlhlhwrDODxDODODODxDODODODxDODODODxDODODODxDODODOwrqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSHpHpygTQTQTQkpHpCETSTSoQTSoQvMoQTSoQxvoQTSGMGMGMGMIslhhZgYlhRzpOZhpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlFqZRBYYionVRBYYioKBRBYYionVRBYYioKBRBYYZLNblFCwzGhMPePePePePePePePePePeLKxLXVxpsoXGdaMRkQXGdaMRnOXGdaMRkQXGdaMRnOXGdaaOWJxpqgIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOygTQkppOpOpOrIERMJJMrIERMJJMrIERLAlhBRGMGMGMHrlhfvCBlhZhZhpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSTALjiohWVaMdiohWVajliohWVaMdiohWVajliohWVaFAcoyFiGhMPePePePePezNPePePePeLKrWPjykMSMRSkvvYUMRSkvvPIMRSkvvYUMRSkvvPIMRSkvvPsykqgIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSfvpOpOpOTQogogogogogogogogogogogogogkVmZpOLBpOoCpOpOlhpOpOlhnbZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhCSlhlhNshdhdhdhdPePehdhdhdhdEblhlhwrDODODODxDODODODxDODODODxDODODODxDODODODxDOwrqgIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOpOpOpOpOpOpOpOwRpOpOpOpOpOWFogPzSINISoLBvJaZwzpOlhpOpOlhZhZhqMqMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTSTSTSTSTSTSTSIATSsDlhEGpjamlhzipTamlhvjfsvjlhdeMFamlhSqMFamlhsDlhlhFdhdhdhdhdPePehdhdhdhdNBlhDOaADOpLUFpLDOpLUFpLDOpLUFpLDOpLUFpLDOpLUFpLDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhEMLUlhlhlhlhlhlhlhlhlhcOpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIATSTVoRTVTVoRTVTSIATSsDlhBlamamlhamamamlhvjvjvjlhamamamlhEvamamlhsDlhlhiohdhdhdhdPePehdhdhdhdiolhDOaADOpLpLpLDOpLpLpLDOpLpLpLDOpLpLpLDOpLpLpLDOaAqgIAIAIAIAIAIAIAIAIAIAIAqg

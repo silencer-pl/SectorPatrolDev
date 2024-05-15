@@ -153,7 +153,7 @@ const SLOTS: Record<string, Slot> = {
   socks: {
     displayName: 'socks',
     gridSpot: getGridSpotKey([3, 3]),
-    image: 'inventory-shoes.png',
+    image: 'inventory-socks.png',
   },
 
   j_store: {

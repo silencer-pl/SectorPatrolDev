@@ -432,7 +432,7 @@ Applied by gun suicide and high impact bullet executions, removed by rejuvenate,
 	if(socks)
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown && hud_used.ui_datum)
 			client.add_to_screen(socks)
-			socks.screen_loc = hud_used.ui_datum.hud_slot_offset(shoes, hud_used.ui_datum.ui_shoes)
+			socks.screen_loc = hud_used.ui_datum.hud_slot_offset(shoes, hud_used.ui_datum.ui_socks)
 		if(!((wear_suit && wear_suit.flags_inv_hide & HIDESHOES) || (w_uniform && w_uniform.flags_inv_hide & HIDESHOES)))
 			I =  socks.get_mob_overlay(src, WEAR_SOCKS)
 

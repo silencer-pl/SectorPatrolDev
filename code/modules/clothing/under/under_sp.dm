@@ -1,10 +1,12 @@
 /obj/item/clothing/under/sp_personal/
-	name = "civilian clothing master item"
+//	name = "civilian clothing master item"
 	desc = "A body conforming layer of light, breathable fabric that is surprisingly warm when worn. Upon closer inspection, the material seems to be softer and retains shapes more than you'd expect. Most accents seem to be made using a colored, hardened resin."
 	desc_lore = "Suits, uniforms, jumpsuits, whatever you call them, your basic layer of clothing - be it a skirt and/or shorts complimented by socks, a jumpsuit or pants and a shirt - is something you will likely be wearing a lot during your time in space. As such, they are often made from light and durable fabrics. The PST polymer and resin equivalent feels a bit more spongy than typical clothes of this type, but in turn tend to be both more comfortable and easier to wash. Even if it should tear, recycling and remaking the exact same garment is a matter of pushing a single button and waiting a few minutes."
 	customizable = 1
+	name = "colonist jumpsuit"
+	icon_state = "colonist"
 	icon = 'icons/obj/sp_clothes/under/icon/under.dmi'
-	icon_state = ""
+//	icon_state = ""
 	item_icons = list(
 		WEAR_BODY = 'icons/obj/sp_clothes/under/onmob/under.dmi'
 	)
@@ -42,9 +44,9 @@
 
 // The Greyshirt.
 
-/obj/item/clothing/under/sp_personal/baseunder/colonist
-	name = "colonist jumpsuit"
-	icon_state = "colonist"
+//obj/item/clothing/under/sp_personal/baseunder/colonist
+//	name = "colonist jumpsuit"
+//	icon_state = "colonist"
 
 // No rollable icons
 

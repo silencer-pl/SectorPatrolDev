@@ -81,7 +81,8 @@
 				return
 		else
 			terminal_speak("Unknown command or briefing number. Please try again.")
-			terminal_cmd()
+			puzzlebox_user = null
+			return
 // Parsing starts here
 
 /obj/structure/eventterminal/briefing_terminal/proc/terminal_parse(str)
@@ -96,9 +97,9 @@
 			terminal_cmd()
 		if("LIST")
 			terminal_list()
+			terminal_cmd()
 		else
 			terminal_play(puzzlebox_parser_input)
-			terminal_cmd()
 
 
 /obj/structure/eventterminal/briefing_display
@@ -117,7 +118,7 @@
 
 /obj/structure/eventterminal/briefing_display/proc/lesson1()
 	for (var/obj/structure/eventterminal/briefing_terminal/T in world)
-		for (var/obj/structure/machinery/light/marker/admin/A in world )
+		for (var/obj/structure/machinery/light/marker/admin/A in world)
 			if (A.light_id == "theathervoice")
 				T.briefing_playing = TRUE
 				icon_state = "uacm"
@@ -161,7 +162,7 @@
 
 /obj/structure/eventterminal/briefing_display/proc/lesson2()
 	for (var/obj/structure/eventterminal/briefing_terminal/T in world)
-		for (var/obj/structure/machinery/light/marker/admin/A in world )
+		for (var/obj/structure/machinery/light/marker/admin/A in world)
 			if (A.light_id == "theathervoice")
 				T.briefing_playing = TRUE
 				icon_state = "blank"
@@ -230,7 +231,7 @@
 
 /obj/structure/eventterminal/briefing_display/proc/lesson3()
 	for (var/obj/structure/eventterminal/briefing_terminal/T in world)
-		for (var/obj/structure/machinery/light/marker/admin/A in world )
+		for (var/obj/structure/machinery/light/marker/admin/A in world)
 			if (A.light_id == "theathervoice")
 				T.briefing_playing = TRUE
 				icon_state = "blank"
@@ -310,7 +311,7 @@
 
 /obj/structure/eventterminal/briefing_display/proc/lesson4()
 	for (var/obj/structure/eventterminal/briefing_terminal/T in world)
-		for (var/obj/structure/machinery/light/marker/admin/A in world )
+		for (var/obj/structure/machinery/light/marker/admin/A in world)
 			if (A.light_id == "theathervoice")
 				T.briefing_playing = TRUE
 				icon_state = "blank"

@@ -24,29 +24,30 @@
 	if(M.client)
 		if(!("[trigger_id]" in M.saw_narrations))
 			M.saw_narrations.Add("[trigger_id]")
-			show_blurb(M, duration = 10 SECONDS, message = "[trigger_text]", screen_position = "BOTTOM+1:16", text_alignment = "center", text_color = "#FFFFFF", blurb_key = "[trigger_id]", ignore_key = FALSE, speed = 1)
+			var/mobs = list(M)
+			show_blurb(mobs, duration = 10 SECONDS, message = "[trigger_text]", screen_position = "CENTER,BOTTOM+1.5:16", text_alignment = "center", text_color = "#ffaef2", blurb_key = "[trigger_id]", ignore_key = FALSE, speed = 1)
 
 //Sector Patrol Area Entry Blurbs
 
 /obj/effect/step_trigger/message/seeonce_blurb/Dock31
 	trigger_id = "Dock31"
-	trigger_text = "<b>The Outer Veil Primary Supply Terminal - Dock 31</b>\nA quiet and clean entryway into the PST.\nReserved for Test Crew members."
+	trigger_text = "<b>The Outer Veil Primary Supply Terminal\nDock 31</b>\nA quiet and clean entryway into the PST.\nReserved for Test Crew members."
 
 /obj/effect/step_trigger/message/seeonce_blurb/Pinnacle
 	trigger_id = "Pinnacle"
-	trigger_text = "<b>The Outer Veil Primary Supply Terminal - The Pinnacle</b>\nThe topmost level of the PST.\nA place to find your way."
+	trigger_text = "<b>The Outer Veil Primary Supply Terminal\nThe Pinnacle</b>\nThe topmost level of the PST.\nA place to find your way."
 
 /obj/effect/step_trigger/message/seeonce_blurb/Dorms
 	trigger_id = "Dorms"
-	trigger_text = "<b>The Outer Veil Primary Supply Terminal - Dorms, Deck 37</b>\nFresh, cool air and artificial sunlight.\nHome."
+	trigger_text = "<b>The Outer Veil Primary Supply Terminal\nDorms, Deck 37</b>\nFresh, cool air and artificial sunlight.\nHome."
 
 /obj/effect/step_trigger/message/seeonce_blurb/Hideaway
 	trigger_id = "Hideaway"
-	trigger_text = "<b>The Outer Veil Primary Supply Terminal - The Hideaway, Deck 38</b>\nAn old Task Force 14 hideout.\nA place to relax and look back."
+	trigger_text = "<b>The Outer Veil Primary Supply Terminal\nThe Hideaway, Deck 38</b>\nAn old Task Force 14 hideout.\nA place to relax and look back."
 
 /obj/effect/step_trigger/message/seeonce_blurb/Testament
 	trigger_id = "Testament"
-	trigger_text = "<b>The Outer Veil Primary Supply Terminal - MUP #03-Upsilon, Deck 38<b>\nGateway to the heart of the station.\nA testament of sacrifice."
+	trigger_text = "<b>The Outer Veil Primary Supply Terminal\nMUP #03-Upsilon, Deck 38<b>\nGateway to the heart of the station.\nA testament of sacrifice."
 
 //Sector Patrol event specifc
 

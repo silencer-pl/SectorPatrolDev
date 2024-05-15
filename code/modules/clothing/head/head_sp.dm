@@ -115,12 +115,14 @@
 //Civilian and Off duty head covers
 
 /obj/item/clothing/head/sp_personal/
-	name = "Civilian head cover master item"
+//	name = "Civilian head cover master item"
+	name = "tan beret"
 	desc = "A piece of casual clothing meant to be worn on the head. Made from a soft, yet surprisingly firm material with accents sculpted from finely decorated hardener resin elements."
 	desc_lore = "Headwear is typically not of particular concern to crews of spaceships, only really coming into view on army or corporate vessels. Head coverings made on the PST are made from specially treated high-quality polymers and resins, treated within the stations manufacturers. While they may not last as long as traditional headgear, they can be recycled and replaced nearly with the push of a button, so that aspect is not of particular concern. "
 	customizable = 1
 	icon = 'icons/obj/sp_clothes/hats/icon/hats.dmi'
-	icon_state = ""
+//	icon_state = ""
+	icon_state = "beret_tan"
 	item_icons = list(
 		WEAR_HEAD = 'icons/obj/sp_clothes/hats/onmob/hats.dmi'
 	)
@@ -173,9 +175,9 @@
 			else
 				to_chat(usr, SPAN_NOTICE("This hat does not have anything that can be strapped and flipping it would have no effect."))
 
-/obj/item/clothing/head/sp_personal/basehat/beret_tan //Defined like this to double serve as base item for snowlfake vendors. Not great, but will do for now.
-	name = "tan beret"
-	icon_state = "beret_tan"
+///obj/item/clothing/head/sp_personal/basehat/beret_tan //Defined like this to double serve as base item for snowlfake vendors. Not great, but will do for now.
+//	name = "tan beret"
+//	icon_state = "beret_tan"
 
 //berets
 /obj/item/clothing/head/sp_personal/basehat/beret_red

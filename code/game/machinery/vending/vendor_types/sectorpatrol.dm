@@ -6,6 +6,7 @@
 	icon_state = "clothes"
 	item_types = list(/obj/item/clothing/head/sp_personal/basehat, /obj/item/clothing/under/sp_personal/baseunder/, /obj/item/clothing/suit/sp_personal/basejacket/, /obj/item/clothing/socks/compression/thigh/, /obj/item/clothing/shoes/sp_personal/baseshoe/)
 	vend_delay = 2 SECONDS
+	vendor_theme = VENDOR_THEME_USCM
 
 /obj/structure/machinery/cm_vending/clothing/super_snowflake/sp_tiles
 	name = "OV-PST NRPS compliant tile press"
@@ -15,3 +16,4 @@
 	icon_state = "tiles"
 	item_types = list(/obj/item/stack/modulartiles, /obj/item/modular/sealant)
 	vend_delay = 10 SECONDS
+	vendor_theme = VENDOR_THEME_USCM

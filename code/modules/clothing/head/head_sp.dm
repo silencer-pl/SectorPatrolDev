@@ -339,3 +339,22 @@
 	name = "ushanka"
 	icon_state = "ushanka"
 	flippable = "flaps"
+
+// Admeme zone
+
+/obj/item/clothing/head/sp_admin/
+
+	name = "Cassandra's pin"
+	desc = "A bright red decorative hair pin. A small heart seems to be engraved on the buckle."
+	desc_lore = "After their accident, the two Commanders found it hard to communicate with others while in their own presence. The issue was that often they would just communicate through their newly formed hivemind and completely forget communication that was not only heard by them without realizing it. We managed to solve the problem by specially prepared decorative hairpins that detect and indicate activity in the Crystalline parts of their brains, vibrating slightly if either of the women are talking only to themselves. Over time we expanded those to also include personal LD comms and other tidbits, but at its core, the pins are a means for them to stay focused on a world outside of their Hivemind."
+	icon = 'icons/obj/sp_clothes/admin/icon/sp_clothes.dmi'
+	icon_state = "cass_pin"
+	item_icons = list(
+		WEAR_HEAD = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
+	)
+
+/obj/item/clothing/head/sp_admin/Aly
+	name = "decorative hairpin"
+	icon_state = "aly_pin"
+	desc = "A hair pin with a set of high quality artifical flowers attached on top."
+	desc_lore = "Double sided communication, or 'double streaming' as they call it is apparently a constant issue with the Hivemind and the hairpins can help with those by vibrating whenever they detect activity in the Crystalline parts of the Commanders' brains. The sensation of both Commanders trying to control the same limb at the same time sounds unpleasant and by their description the shock goes way deeper than that. Maybe this was not true initially, but the current shapes of those devices are very much the Commanders' personal tastes."

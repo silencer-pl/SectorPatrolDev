@@ -59,3 +59,24 @@
 	name = "yellow sneakers"
 	icon_state = "yellow"
 
+//Admeme zone
+
+/obj/item/clothing/shoes/sp_admin/
+	name = "decorative boots"
+	desc = "A sturdy pair of over-the-ankle boots decorated with a plum-colored ribbon tied onto a bow on top of the shoelaces. "
+	desc_lore = "Initially, the Commanders needed clearly different shoes to be able to tell whose legs belong to who after their unintended implantation. Right at the beginning of their recovery, their hivemind would often confuse their perception of themselves and wearing unique footwear apparently helped them ground themselves. This need disappeared fast, but the tendency to wear unique footwear remained. By that point everyone was so used to it, no one protested. "
+	icon = 'icons/obj/sp_clothes/admin/icon/sp_clothes.dmi'
+	icon_state = "cass_shoes"
+	item_icons = list(
+		WEAR_FEET = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
+	)
+
+/obj/item/clothing/shoes/sp_admin/aly
+	name = "comfy shoes"
+	desc = "comfortable looking black shoes that reach just slightly over the ankle. "
+	desc_lore = "The problem with their condition, as the Commander assures us anyway, is not that they lose track of their own individuality within their Hivemind, but rather how natural it is to them to see their physical frames as interchangeable if needed. Hence the intricate outfits and in particular easily recognizable shoes, otherwise they literally would forget whose body they are currently looking through. "
+	icon = 'icons/obj/sp_clothes/admin/icon/sp_clothes.dmi'
+	icon_state = "cass_shoes"
+	item_icons = list(
+		WEAR_FEET = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
+	)

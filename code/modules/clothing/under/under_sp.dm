@@ -316,3 +316,21 @@
 	name = "white jacket with plaid green skirt"
 	icon_state = "plaid_green"
 	openable = "sleevesskirt"
+
+// admeme
+
+/obj/item/clothing/under/sp_admin/
+	name = "crimson-black dress"
+	desc = "A high-quality, deep red dress that seems to naturally shimmer in the dark."
+	desc_lore = "We didn't realize what exactly the Commanders being partially native to Liquid Data streams meant until Alysia designed a dress for Cassandra with by just musing about it in her spare time. This dress was designed from the ground up to fit Cassandra's body and even changes between recycling to adapt to any changes. This is direct editing of Liquid Data streams at an unprecedented rate and that wasn't even all of it."
+	icon = 'icons/obj/sp_clothes/admin/icon/sp_clothes.dmi'
+	icon_state = "cass_dress"
+	item_icons = list(
+		WEAR_FEET = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
+	)
+
+/obj/item/clothing/under/sp_admin/aly
+	name = "purple-pulse dress"
+	desc = "A high-quality purple dress that seems to naturally shift between different shades independently of other conditions."
+	desc_lore = "We knew that they could just program LD data streams, but the realization that Crystalline emitted from their 'implants' came as a shock to everyone. Cassandra would just flick a tear onto a Textile Printer and that was enough to copy that purple design wedding anniversary gift of hers regardless of the device in question being LD enabled or not. This was not regular Crystalline behavior; the question then is what changed. Was the Commander controlling the streams consciously and not telling us, or was there perhaps something else about Liquid Data we didn't understand? "
+	icon_state = "aly_dress"

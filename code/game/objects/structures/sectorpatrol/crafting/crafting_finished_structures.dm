@@ -28,7 +28,7 @@
 
 /obj/structure/surface/modular/table/attack_hand(mob/user)
 	. = ..()
-	if(usr.a_intent == INTENT_GRAB)
+	if(usr.a_intent == INTENT_DISARM)
 		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			user.visible_message(SPAN_NOTICE("[user] flips a lever near one of the legs of the table, detaching it from the floor."), SPAN_INFO ("You flip a lever near one of the legs of the table, detaching it from the floor."))
 			anchored = !anchored
@@ -80,7 +80,7 @@
 
 /obj/structure/bed/modular/attack_hand(mob/user)
 	. = ..()
-	if(usr.a_intent == INTENT_GRAB)
+	if(usr.a_intent == INTENT_DISARM)
 		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 			user.visible_message(SPAN_NOTICE("[user] flips a lever near one of the legs of the bed, detaching it from the floor."), SPAN_INFO ("You flip a lever near one of the legs of the bed, detaching it from the floor."))
@@ -138,7 +138,7 @@
 		set_light_on(on)
 		update_icon()
 		return TRUE
-	if(user.a_intent == INTENT_GRAB)
+	if(user.a_intent == INTENT_DISARM)
 		user.put_in_active_hand(src)
 		return
 
@@ -213,7 +213,7 @@
 
 /obj/structure/closet/modular/drawers/attack_hand(mob/user)
 	. = ..()
-	if(usr.a_intent == INTENT_GRAB)
+	if(usr.a_intent == INTENT_DISARM)
 		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			playsound(src, soundin = 'sound/items/Screwdriver2.ogg', vol = 25, vary = 1)
 			user.visible_message(SPAN_NOTICE("[user] flips a lever near the bottom of the drawers, detaching it from the floor."), SPAN_INFO ("You flip a lever near the bottom of the drawers, detaching it from the floor."))

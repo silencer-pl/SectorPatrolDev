@@ -1220,6 +1220,7 @@
 #include "code\game\objects\items\reagent_containers\glass\bottle\robot.dm"
 #include "code\game\objects\items\sectorpatrol\cargo_items.dm"
 #include "code\game\objects\items\sectorpatrol\crafting_items.dm"
+#include "code\game\objects\items\sectorpatrol\modular_sealant.dm"
 #include "code\game\objects\items\stacks\barbed_wire.dm"
 #include "code\game\objects\items\stacks\cable_coil.dm"
 #include "code\game\objects\items\stacks\catwalk.dm"

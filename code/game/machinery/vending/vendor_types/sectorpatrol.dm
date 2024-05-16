@@ -13,5 +13,5 @@
 	desc_lore = "Machines like these are used in other manufacturing facilities that produce NRPS compliant tiles, this one however seems to have been heavily modified to both make the process work with the unique materials and energy threshold available on the PST and to be Liquid Data compatible. The result is hard to deny, a complete set of tiles can be 'baked' in around 10 seconds compared to a whole day in most solutions. Near infinite stores of energy, as it turns out, have their benefit."
 	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
 	icon_state = "tiles"
-	item_types = list(/obj/item/stack/modulartiles)
+	item_types = list(/obj/item/stack/modulartiles, /obj/item/modular/sealant)
 	vend_delay = 10 SECONDS

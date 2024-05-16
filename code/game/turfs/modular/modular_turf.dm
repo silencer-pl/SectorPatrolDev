@@ -81,10 +81,10 @@
 		usr.put_in_inactive_hand(tiles)
 
 /turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
-	if (!(istype (C, /obj/item/stack/modulartiles) || istype(C, /obj/item/cargo/sealanttube) ||HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER)))
+	if (!(istype (C, /obj/item/stack/modulartiles) || istype(C, /obj/item/modular/sealant) ||HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER)))
 		to_chat(usr, SPAN_NOTICE("These two things don't seem to go together."))
 		return
-	if(istype(C, /obj/item/cargo/sealanttube))
+	if(istype(C, /obj/item/modular/sealant))
 		if(tile_bot_left == null || tile_bot_rght == null || tile_top_left == null || tile_top_rght == null)
 			to_chat(usr, SPAN_NOTICE("The sealant will not work properly unless all four tiles are installed."))
 			return
@@ -92,7 +92,7 @@
 			usr.visible_message(SPAN_NOTICE("[usr] starts applying sealant to the [src]"), SPAN_NOTICE("You start applying sealant to the [src]"))
 			playsound(src, 'sound/effects/squelch1.ogg', 30)
 			if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-				var/obj/item/cargo/sealanttube/sealant = C
+				var/obj/item/modular/sealant/sealant = C
 				sealant.sealant_color = tile_seal
 				update_icon()
 				return

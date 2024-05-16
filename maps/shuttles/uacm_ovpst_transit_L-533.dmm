@@ -170,15 +170,6 @@
 /obj/structure/surface/rack,
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
-"nn" = (
-/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
-	dir = 4;
-	pixel_x = -3;
-	buckling_x = -5
-	},
-/obj/effect/landmark/start/basepc,
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
 "nt" = (
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "window2l"
@@ -311,7 +302,6 @@
 	pixel_x = -3;
 	buckling_x = -5
 	},
-/obj/effect/landmark/start/basepc,
 /obj/structure/machinery/light/marker/admin{
 	brightness = 12
 	},
@@ -498,7 +488,6 @@
 	buckling_x = -5;
 	buckling_y = 16
 	},
-/obj/effect/landmark/start/basepc,
 /obj/structure/machinery/light/marker/admin{
 	brightness = 12
 	},
@@ -529,17 +518,6 @@
 	pixel_x = -3;
 	buckling_x = -5
 	},
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
-"Lo" = (
-/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
-	dir = 4;
-	pixel_y = 15;
-	pixel_x = -3;
-	buckling_x = -5;
-	buckling_y = 16
-	},
-/obj/effect/landmark/start/basepc,
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "LJ" = (
@@ -960,7 +938,7 @@ HB
 BA
 BA
 VZ
-nn
+Lk
 Lk
 vT
 RW
@@ -978,11 +956,11 @@ iP
 "}
 (20,1,1) = {"
 Bf
-Lo
-Lo
+BA
+BA
 BA
 LV
-nn
+Lk
 Lk
 Lk
 iP
@@ -1001,11 +979,11 @@ iP
 (22,1,1) = {"
 IG
 HB
-Lo
+BA
 BA
 VZ
 Lk
-nn
+Lk
 vT
 WK
 "}

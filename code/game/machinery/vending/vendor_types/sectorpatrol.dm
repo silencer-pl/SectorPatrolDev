@@ -29,7 +29,7 @@
 
 /obj/item/reagent_container/food/snacks/mre_pack/uacm/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 15)
+	reagents.add_reagent("nutriment", 25)
 	bitesize = 3
 /obj/structure/machinery/cm_vending/sorted/sectorpatrol/food
 	name = "OV-PST Meal Assembly Station"
@@ -50,4 +50,101 @@
 		list("UACM OV-PST BIOMASS PROCESSOR", -1, null, null),
 		list("I promise this tastes and works better than it looks. Unlockng the full potential of this technology will require a Corporate contract most likely. I'll fill you in when it's time. For now, the only consolation I have is that this is what everyone is eating. -C.", -1, null, null),
 		list("OV-PST Hyperprotein All-In-One Meal", 50, /obj/item/reagent_container/food/snacks/mre_pack/uacm, VENDOR_ITEM_REGULAR),
+	)
+
+/obj/item/reagent_container/food/drinks/coffee/uacm
+	desc = "A brown, thick paper cup with a hot beverage inside, complete with a spill proof lid and a cardboard straw. 100% recyclable, including the liquid inside. The coffee smells bland, but has a decent, medium roast flavor and a decent kick to it."
+	desc_lore = "OV-PST coffee is not grown, but rather manufactured as a compound that is injected into recycled water, then warmed up after careful blending. This is likely why the coffee ends up smelling more like bad water, however the lab-perfected taste tends to make up for this at least somewhat."
+
+/obj/item/reagent_container/food/drinks/tea/uacm
+	name = "tea"
+	desc = "A brown, thick paper cup with a hot beverage inside, complete with a spill proof lid and a cardboard straw. 100% recyclable, including the liquid inside. The liquid inside seems odorless and colorless, but tastes like a good, strong, Earl Gray tea."
+	desc_lore = "OV-PST tea is not grown, but rather manufactured as a compound that is injected into recycled water, then warmed up after careful blending. The lack of color and odor is a byproduct of this process - artificial flavorings and colors throw the taste off too much, at least that is what the PST's systems claim. The experience isn't bad, but the lack of an aroma is certainly noticeable."
+
+/obj/item/reagent_container/food/drinks/h_chocolate/uacm
+	name = "hot coffee"
+	desc = "A brown, thick paper cup with a hot beverage inside, complete with a spill proof lid and a cardboard straw. 100% recyclable, including the liquid inside. Appears to contain a genuine, natural cup of hot chocolate. A near perfect mix of sweet and dark."
+	desc_lore = "Artificial chocolate rivaling and in many cases topping in quality natural sources is the product of refugees fleeing the fall of Europe into the Northern Republic. The Northerners, keen to strike back at what is undeniably a threat to their very existence, would often support unorthodox projects they thought would be useful against the UPP in the long run. Artificial chocolate, along with other endangered 'comfort' products like coffee, tea and honey were perfected in cooperation with UA and TWE partners as a way of curing UPP dominance on the black market of these crops and substances. As such, it is probably the only foodstuff on the PST that tastes, looks and smells just like you would expect it."
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/hot_drink
+	name = "OV-PST hot drink dispenser"
+	desc = "A simple dispenser that drops a cup and fills it with a warmed-up liquid. A small console can be used to select a beverage. A light blue cable sticking out of the devices frame suggests that it has been modified to work in a Liquid Data environment."
+	desc_lore = "An often not mentioned aspect of life on bigger space faring installations and ships is the constant fight against moisture. Closed air environment hate moisture and somehow, humans just can't stop getting… Moist. Under most circumstances powering a system that would in any significant way reduce, let alone nullify moisture devastating long term effect on say heavy machinery or ship hulls would be considered a fool's errand. There is no power source known to man, or in fact conceivable by current human understanding of physics that would get the job done without producing a net loss. The PST is not concerned about power. Moisture is recycled to the last drop, a non-insignificant part of it is distilled, re-mineralized and then reused. Like, in hot beverage dispensers for instance. Bottoms up!"
+	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
+	icon_state = "coffee"
+	hackable = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	wrenchable = FALSE
+	vend_delay = 28
+	deny_delay = 20
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/hot_drink/populate_product_list(scale)
+	listed_products = list(
+		list("UACM OV-PST HOT BEVARAGE DISPENSER", -1, null, null),
+		list("Artificial Coffee, Real Caffeine", 50, /obj/item/reagent_container/food/drinks/coffee/uacm, VENDOR_ITEM_REGULAR),
+		list("Tea flavored water. Contains Caffeine.", 50, /obj/item/reagent_container/food/drinks/tea/uacm, VENDOR_ITEM_REGULAR),
+		list("Hot Chocolate", 50, /obj/item/reagent_container/food/drinks/h_chocolate/uacm, VENDOR_ITEM_REGULAR),
+	)
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/cigrette
+	name = "stripped cigarette dispenser"
+	desc = "A cigarette dispensing machine stripped of all branding."
+	desc_lore = "Cigarette companies formed a single trust at the turn of the century as they firmly attached themselves to humanities efforts in the stars. Their hold on patents, trademarks and anything related to smoking tobacco is undisputed and as such, no real research is taking place into spaceborne alternatives. The fact that this machine seems to have been stolen rather than created on board the PST seems to suggest that instead of reproduction someone picked a more… Direct route of acquiring these machines and their contents."
+	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
+	icon_state = "cigs"
+	hackable = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	wrenchable = FALSE
+	vend_delay = 10
+	deny_delay = 10
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/cigrette/populate_product_list(scale)
+	listed_products = list(
+		list("FREE CIGARETTES. DON'T ASK QUESTIONS, OKAY?", -1, null, null),
+		list("Koorlander Gold", 20, /obj/item/storage/fancy/cigarettes/kpack, VENDOR_ITEM_REGULAR),
+		list("Arcturian Ace", 20, /obj/item/storage/fancy/cigarettes/arcturian_ace, VENDOR_ITEM_REGULAR),
+		list("Emerald Green", 20, /obj/item/storage/fancy/cigarettes/emeraldgreen, VENDOR_ITEM_REGULAR),
+		list("Weyland-Yutani Gold", 20, /obj/item/storage/fancy/cigarettes/wypacket, VENDOR_ITEM_REGULAR),
+		list("Lady Fingers", 20, /obj/item/storage/fancy/cigarettes/lady_finger, VENDOR_ITEM_REGULAR),
+		list("Executive Select", 20, /obj/item/storage/fancy/cigarettes/blackpack, VENDOR_ITEM_REGULAR),
+		list("FREE LIGHTERS. THEY CAME WITH THE CIGS.", -1, null, null),
+		list("Disposable lighter", 100, /obj/item/tool/lighter/random, VENDOR_ITEM_REGULAR),
+	)
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda
+	name = "stripped soda dispenser"
+	desc = "A soda dispensing machine and fridge, stripped of all branding."
+	desc_lore = "Every planet, ship, tourist destination, foundry, kennel, and orphanage out in the galaxy has a soft beverage of choice. And they have opinions about it, best expressed over consuming said soft drinks, mixed with copious amounts of alcohol. This is most likely why the PST seems to be littered with copious amounts of Souto soft drinks, but perhaps it may not be the best of ideas to question this choice."
+	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
+	icon_state = "Cola_Machine"
+	hackable = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	wrenchable = FALSE
+	vend_delay = 10
+	deny_delay = 10
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/cigrette/populate_product_list(scale)
+	listed_products = list(
+		list("REGULAR SOUTO SOFT DRINKS", -1, null, null),
+		list("Souto Classic", 20, /obj/item/reagent_container/food/drinks/cans/souto/classic, VENDOR_ITEM_REGULAR),
+		list("Cherry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/cherry, VENDOR_ITEM_REGULAR),
+		list("Lime Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/lime, VENDOR_ITEM_REGULAR),
+		list("Grape Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/grape, VENDOR_ITEM_REGULAR),
+		list("Blue Raspberry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/blue, VENDOR_ITEM_REGULAR),
+		list("Peach Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/peach, VENDOR_ITEM_REGULAR),
+		list("Cranberry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/cranberry, VENDOR_ITEM_REGULAR),
+		list("Vanilla Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/vanilla, VENDOR_ITEM_REGULAR),
+		list("Pineapple Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/pineapple, VENDOR_ITEM_REGULAR),
+		list("DIET SOUTO SOFT DRINKS", -1, null, null),
+		list("Diet Souto Classic", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/classic, VENDOR_ITEM_REGULAR),
+		list("Diet Cherry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/cherry, VENDOR_ITEM_REGULAR),
+		list("Diet Lime Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/lime, VENDOR_ITEM_REGULAR),
+		list("Diet Grape Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/grape, VENDOR_ITEM_REGULAR),
+		list("Diet Blue Raspberry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/blue, VENDOR_ITEM_REGULAR),
+		list("Diet Peach Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/peach, VENDOR_ITEM_REGULAR),
+		list("Diet Cranberry Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/cranberry, VENDOR_ITEM_REGULAR),
+		list("Diet Vanilla Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/vanilla, VENDOR_ITEM_REGULAR),
+		list("Diet Pineapple Souto", 20, /obj/item/reagent_container/food/drinks/cans/souto/diet/pineapple, VENDOR_ITEM_REGULAR),
 	)

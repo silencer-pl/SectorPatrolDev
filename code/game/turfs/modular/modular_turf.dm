@@ -16,23 +16,29 @@
 	var/tile_bot_rght
 	var/tile_seal
 
-/turf/open/floor/plating/modular/proc/check_tile(reverse = FALSE)
-	switch(usr.a_intent)
+/turf/open/floor/plating/modular/proc/check_tile(str)
+	var/tiletocheck = str
+	switch(tiletocheck)
 		if(INTENT_HELP)
 			if(tile_top_left == null)
 				return TRUE
+			else
+				return FALSE
 		if(INTENT_DISARM)
 			if(tile_top_rght == null)
 				return TRUE
+			else
+				return FALSE
 		if(INTENT_HARM)
 			if(tile_bot_left == null)
 				return TRUE
+			else
+				return FALSE
 		if(INTENT_GRAB)
 			if(tile_bot_rght == null)
 				return TRUE
-		else
-			return FALSE
-
+			else
+				return FALSE
 
 
 /turf/open/floor/plating/modular/proc/set_tile(str)
@@ -40,7 +46,7 @@
 	to_chat(usr, SPAN_NOTICE("You start attaching a tile to the floor."))
 	if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		playsound(src, 'sound/effects/thud.ogg', 30)
-		visible_message(SPAN_NOTICE("[usr] sets a floor tile with a satisfying click."), SPAN_NOTICE("You set a floor tile with a satisfying click."), SPAN_WARNING("You hear a quiet click."))
+		usr.visible_message(SPAN_NOTICE("[usr] sets a floor tile with a satisfying click."), SPAN_NOTICE("You set a floor tile with a satisfying click."), SPAN_WARNING("You hear a quiet click."))
 		switch(usr.a_intent)
 			if(INTENT_HELP)
 				tile_top_left = clr
@@ -56,8 +62,9 @@
 	to_chat(usr, SPAN_NOTICE("You start detaching a tile from the floor."))
 	if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		playsound(src, 'sound/effects/thud.ogg', 30)
-		visible_message(SPAN_NOTICE("[usr] detaches a tile from the floor."), SPAN_NOTICE("You detach a tile form the floor."), SPAN_WARNING("You hear a quiet click."))
+		usr.visible_message(SPAN_NOTICE("[usr] detaches a tile from the floor."), SPAN_NOTICE("You detach a tile form the floor."), SPAN_WARNING("You hear a quiet click."))
 		var/obj/item/stack/modulartiles/tiles = new(get_turf(usr))
+		tiles.amount = 1
 		switch (usr.a_intent)
 			if(INTENT_HELP)
 				tiles.tiles_color = tile_top_left
@@ -71,20 +78,24 @@
 			if(INTENT_GRAB)
 				tiles.tiles_color = tile_bot_rght
 				tile_bot_rght = null
+		tiles.update_icon()
 		update_icon()
-		if(usr.get_inactive_hand() == /obj/item/stack/modulartiles)
-			var/obj/item/stack/modulartiles/othertiles = usr.get_inactive_hand()
-			if(othertiles.tiles_color == tiles.tiles_color)
-				if(othertiles.add(1) == TRUE)
-					qdel(tiles)
-					return
 		usr.put_in_inactive_hand(tiles)
+
+/turf/open/floor/plating/modular/attack_hand(mob/user)
+	if (tile_seal != null) return
+	if(check_tile(usr.a_intent) == TRUE)
+		to_chat(usr,SPAN_NOTICE("There is no tile to pick up in this slot. Please make sure you are using the right intent."))
+		return
+	else
+		rem_tile()
 
 /turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
 	if (!(istype (C, /obj/item/stack/modulartiles) || istype(C, /obj/item/modular/sealant) ||HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER)))
 		to_chat(usr, SPAN_NOTICE("These two things don't seem to go together."))
 		return
 	if(istype(C, /obj/item/modular/sealant))
+		var/obj/item/modular/sealant/sealant = C
 		if(tile_bot_left == null || tile_bot_rght == null || tile_top_left == null || tile_top_rght == null)
 			to_chat(usr, SPAN_NOTICE("The sealant will not work properly unless all four tiles are installed."))
 			return
@@ -92,8 +103,7 @@
 			usr.visible_message(SPAN_NOTICE("[usr] starts applying sealant to the [src]"), SPAN_NOTICE("You start applying sealant to the [src]"))
 			playsound(src, 'sound/effects/squelch1.ogg', 30)
 			if(do_after(usr, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-				var/obj/item/modular/sealant/sealant = C
-				sealant.sealant_color = tile_seal
+				tile_seal = sealant.sealant_color
 				update_icon()
 				return
 			to_chat(usr, SPAN_WARNING("You moved away."))
@@ -101,15 +111,16 @@
 		if(tile_seal != null)
 			to_chat(usr, SPAN_NOTICE("The tiles have been locked in place by a hardened sealant. You will need to scrape it away with a screwdriver, used in GRAB mode, before you can alter the tiling in any way."))
 			return
-		if (check_tile() == FALSE)
+		if (check_tile(usr.a_intent) == FALSE)
 			to_chat(usr, SPAN_NOTICE("A tile is already in that spot. You can remove it by clicking on it with an active empty hand."))
 			return
 		var/obj/item/stack/modulartiles/tile = C
-		if (tile.use(1) == FALSE)
+		if (tile.amount < 1)
 			to_chat(usr, SPAN_WARNING("Somehow, you are holding less than one tile. This really shount't be happening."))
 			return
-		if (tile.use(1) == TRUE)
+		if (tile.amount >= 1)
 			set_tile(tile.tiles_color)
+			tile.use(1)
 			return
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		if(tile_seal == null)
@@ -129,14 +140,6 @@
 		else
 			to_chat(usr, SPAN_WARNING("That does not seem to work. If you are trying to scrape off the tile sealent, please remember to use GRAB intent."))
 			return
-
-/turf/open/floor/plating/modular/attack_hand(mob/user)
-	if(tile_seal != null)
-		if(check_tile() == TRUE)
-			to_chat(usr,SPAN_NOTICE("There is no tile to pick up in this slot. Please make sure you are using the right intent."))
-			return
-		if(check_tile() == FALSE)
-			rem_tile()
 
 /turf/open/floor/plating/modular/break_tile_to_plating()
 	if (!broken)

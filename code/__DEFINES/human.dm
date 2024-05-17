@@ -116,16 +116,17 @@
 #define ORDER_FOCUS_MAX_LEVEL   50
 
 //Human Overlays Indexes used in update_icons/////////
-#define BODYPARTS_LAYER 42
-#define DAMAGE_LAYER 41
+#define BODYPARTS_LAYER 43
+#define DAMAGE_LAYER 42
 
-#define UNDERWEAR_LAYER 40
-#define UNDERSHIRT_LAYER 39
-#define MUTANTRACE_LAYER 38
+#define UNDERWEAR_LAYER 41
+#define UNDERSHIRT_LAYER 40
+#define MUTANTRACE_LAYER 39
 
 /// For use by Hunter Flay
-#define FLAY_LAYER 37
+#define FLAY_LAYER 38
 
+#define SOCKS_LAYER 37
 #define SHOES_LAYER 36
 #define UNIFORM_LAYER 35
 
@@ -178,7 +179,7 @@
 /// If you're hit by an acid DoT
 #define EFFECTS_LAYER 1
 
-#define TOTAL_LAYERS 42
+#define TOTAL_LAYERS 43
 //////////////////////////////////
 //Synthetic Defines
 #define SYNTH_COLONY "Third Generation Colonial Synthetic"

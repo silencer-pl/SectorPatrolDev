@@ -321,6 +321,7 @@ GLOBAL_LIST_INIT(default_onmob_icons, list(
 		WEAR_BODY = 'icons/mob/humans/onmob/uniform_0.dmi',
 		WEAR_JACKET = 'icons/mob/humans/onmob/suit_0.dmi',
 		WEAR_HEAD = 'icons/mob/humans/onmob/head_0.dmi',
+		WEAR_SOCKS = 'icons/obj/sp_clothes/socks/onmob/socks.dmi',
 		WEAR_FEET = 'icons/mob/humans/onmob/feet.dmi',
 		WEAR_FACE = 'icons/mob/humans/onmob/mask.dmi',
 		WEAR_HANDCUFFED = 'icons/mob/mob.dmi',

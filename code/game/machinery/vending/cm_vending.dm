@@ -34,7 +34,8 @@
 	var/gloves_type = /obj/item/clothing/gloves/marine
 	var/headset_type = /obj/item/device/radio/headset/almayer/marine
 
-	var/vend_delay = 0 //delaying vending of an item (for drinks machines animation, for example). Make sure to synchronize this with animation duration
+	var/vend_delay = 0 //delaying vending of an item (for drinks machines animation, for example). Make sure to synchronize this with animation duration. As a side note, this being set also enables using animations  _vend for icon_state animation.
+	var/deny_delay = 0 //As above, but for denials. Since animations don't have to take the same time. As above, affixes _deny
 	var/vend_sound //use with caution. Potential spam
 
 	/// X Offset to vend to
@@ -825,10 +826,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/structure/machinery/cm_vending/proc/vend_fail()
 	stat |= IN_USE
-	if(vend_delay)
+	if(deny_delay)
 		overlays.Cut()
 		icon_state = "[initial(icon_state)]_deny"
-	sleep(1.5 SECONDS)
+	sleep(deny_delay)
 	icon_state = initial(icon_state)
 	stat &= ~IN_USE
 	update_icon()

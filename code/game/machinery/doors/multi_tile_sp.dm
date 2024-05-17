@@ -27,9 +27,10 @@
 	name = "elevator door"
 	desc = "A heavy looking metal door with an equally heavy looking glass panel that lets you peek inside."
 	desc_lore = "Since time immemorial, people have taken great effort not to fall out of elevators in transit. These doors are one such method. Simple, yet effective. Spaceship freight elevators have not changed the game - people still hate falling down elevator shafts."
-	req_access = list()
+	req_access = list(ACCESS_SP_ADMIN)
 	icon = 'icons/obj/structures/doors/4x1_elevator_access.dmi'
-	icon_state = "door_closed"
+	icon_state = "door_locked"
+	locked = TRUE
 	width = 4
 	openspeed = 22
 	opacity = FALSE

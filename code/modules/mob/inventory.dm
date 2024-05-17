@@ -313,6 +313,10 @@
 			if(!src.head)
 				src.head = W
 				equipped = 1
+		if(WEAR_SOCKS)
+			if(!src.socks)
+				src.socks = W
+				equipped = 1
 		if(WEAR_FEET)
 			if(!src.shoes)
 				src.shoes = W

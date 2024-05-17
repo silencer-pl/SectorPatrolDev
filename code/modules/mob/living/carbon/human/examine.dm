@@ -40,6 +40,7 @@
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
 	var/skipshoes = 0
+	var/skipsocks = 0
 	var/skipmask = 0
 	var/skipears = 0
 	var/skipeyes = 0
@@ -51,6 +52,7 @@
 		skipsuitstorage = wear_suit.flags_inv_hide & HIDESUITSTORAGE
 		skipjumpsuit = wear_suit.flags_inv_hide & HIDEJUMPSUIT
 		skipshoes = wear_suit.flags_inv_hide & HIDESHOES
+		skipsocks = wear_suit.flags_inv_hide & HIDESHOES
 
 	if(head)
 		skipmask = head.flags_inv_hide & HIDEMASK
@@ -100,65 +102,69 @@
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
-		msg += "[t_He] [t_is] [w_uniform.get_examine_location(src, user, WEAR_BODY, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] wearing <a HREF=?src=\ref[src];descitem=\ref[w_uniform]>[w_uniform.get_examine_line(user)]</a>.\n"
 
 	//head
 	if(head)
-		msg += "[t_He] [t_is] wearing [head.get_examine_line(user)] [head.get_examine_location(src, user, WEAR_HEAD, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] wearing <a HREF=?src=\ref[src];descitem=\ref[head]>[head.get_examine_line(user)]</a> [head.get_examine_location(src, user, WEAR_HEAD, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//suit/armor
 	if(wear_suit)
-		msg += "[t_He] [t_is] [wear_suit.get_examine_location(src, user, WEAR_JACKET, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] wearing <a HREF=?src=\ref[src];descitem=\ref[wear_suit]>[wear_suit.get_examine_line(user)]</a>.\n"
 	//suit/armor storage
 	if(s_store && !skipsuitstorage)
-		msg += "[t_He] [t_is] carrying [s_store.get_examine_line(user)] [s_store.get_examine_location(src, user, WEAR_J_STORE, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] carrying <a HREF=?src=\ref[src];descitem=\ref[s_store]>[s_store.get_examine_line(user)]</a> [s_store.get_examine_location(src, user, WEAR_J_STORE, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//back
 	if(back)
-		msg += "[t_He] [t_has] [back.get_examine_line(user)] [back.get_examine_location(src, user, WEAR_BACK, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[back]>[back.get_examine_line(user)]</a> [back.get_examine_location(src, user, WEAR_BACK, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//left hand
 	if(l_hand)
-		msg += "[t_He] [t_is] holding [l_hand.get_examine_line(user)] [l_hand.get_examine_location(src, user, WEAR_L_HAND, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] holding <a HREF=?src=\ref[src];descitem=\ref[l_hand]>[l_hand.get_examine_line(user)]</a> [l_hand.get_examine_location(src, user, WEAR_L_HAND, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//right hand
 	if(r_hand)
-		msg += "[t_He] [t_is] holding [r_hand.get_examine_line(user)] [r_hand.get_examine_location(src, user, WEAR_R_HAND, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] holding <a HREF=?src=\ref[src];descitem=\ref[r_hand]>[r_hand.get_examine_line(user)]</a> [r_hand.get_examine_location(src, user, WEAR_R_HAND, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//gloves
 	if(gloves && !skipgloves)
-		msg += "[t_He] [t_has] [gloves.get_examine_line(user)] [gloves.get_examine_location(src, user, WEAR_HANDS, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[gloves]>[gloves.get_examine_line(user)]</a> [gloves.get_examine_location(src, user, WEAR_HANDS, t_He, t_his, t_him, t_has, t_is)].\n"
 	else if(hands_blood_color)
 		msg += SPAN_WARNING("[t_He] [t_has] [(hands_blood_color != COLOR_OIL) ? "blood" : "oil"]-stained hands!\n")
 
 	//belt
 	if(belt)
-		msg += "[t_He] [t_has] [belt.get_examine_line(user)] [belt.get_examine_location(src, user, WEAR_WAIST, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[belt]>[belt.get_examine_line(user)]</a> around [t_his] waist.\n"
 
 	//shoes
 	if(shoes && !skipshoes)
-		msg += "[t_He] [t_is] wearing [shoes.get_examine_line(user)] [shoes.get_examine_location(src, user, WEAR_FEET, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_is] wearing <a HREF=?src=\ref[src];descitem=\ref[shoes]>[shoes.get_examine_line(user)]</a> [shoes.get_examine_location(src, user, WEAR_FEET, t_He, t_his, t_him, t_has, t_is)].\n"
 	else if(feet_blood_color)
 		msg += SPAN_WARNING("[t_He] [t_has] [(feet_blood_color != COLOR_OIL) ? "blood" : "oil"]-stained feet!\n")
 
+	//socks
+	if(socks && !skipsocks)
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[socks]>[socks.get_examine_line(user)]</a> on [t_his] legs.\n"
+
 	//mask
 	if(wear_mask && !skipmask)
-		msg += "[t_He] [t_has] [wear_mask.get_examine_line(user)] [wear_mask.get_examine_location(src, user, WEAR_FACE, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_has] <a HREF=?src=\ref[src];descitem=\ref[wear_mask]>[wear_mask.get_examine_line(user)]</a> [wear_mask.get_examine_location(src, user, WEAR_FACE, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//eyes
 	if(glasses && !skipeyes)
-		msg += "[t_He] [t_has] [glasses.get_examine_line(user)] [glasses.get_examine_location(src, user, WEAR_EYES, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "[t_He] [t_has] some <a HREF=?src=\ref[src];descitem=\ref[glasses]>[glasses.get_examine_line(user)]</a> [glasses.get_examine_location(src, user, WEAR_EYES, t_He, t_his, t_him, t_has, t_is)].\n"
 
 	//ears
 	if(!skipears)
 		if(wear_l_ear)
-			msg += "[t_He] [t_has] [wear_l_ear.get_examine_line(user)] [wear_l_ear.get_examine_location(src, user, WEAR_L_EAR, t_He, t_his, t_him, t_has, t_is)].\n"
+			msg += "A <a HREF=?src=\ref[src];descitem=\ref[wear_l_ear]>[wear_l_ear.get_examine_line(user)]</a> is visible in [t_his] left ear.\n"
 		if(wear_r_ear)
-			msg += "[t_He] [t_has] [wear_r_ear.get_examine_line(user)] [wear_r_ear.get_examine_location(src, user, WEAR_R_EAR, t_He, t_his, t_him, t_has, t_is)].\n"
+			msg += "A <a HREF=?src=\ref[src];descitem=\ref[wear_r_ear]>[wear_r_ear.get_examine_line(user)]</a> is visible in [t_his] right ear.\n"
 
 	//ID
 	if(wear_id)
-		msg += "[t_He] [t_is] [wear_id.get_examine_location(src, user, WEAR_ID, t_He, t_his, t_him, t_has, t_is)].\n"
+		msg += "A <a HREF=?src=\ref[src];descitem=\ref[wear_id]>[wear_id.get_examine_line(user)]</a> hangs around [t_his] neck.\n"
 
 	//Admin-slept
 	if(sleeping > 8000000)
@@ -364,19 +370,19 @@
 		msg += wound_flavor_text["groin"]
 	if(is_bleeding["groin"])
 		display_groin = 1
-	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit) || (!socks && !skipsocks)))
 		msg += wound_flavor_text["left leg"]
 	if(is_bleeding["left leg"])
 		display_leg_left = 1
-	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)))
+	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["left foot"]
 	if(is_bleeding["left foot"])
 		display_foot_left = 1
-	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["right leg"]
 	if(is_bleeding["right leg"])
 		display_leg_right = 1
-	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)))
+	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)|| (!socks && !skipsocks)))
 		msg += wound_flavor_text["right foot"]
 	if(is_bleeding["right foot"])
 		display_foot_right = 1

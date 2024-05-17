@@ -9,6 +9,7 @@
 #define STRIPPABLE_ITEM_SUIT "wear_suit"
 #define STRIPPABLE_ITEM_GLOVES "gloves"
 #define STRIPPABLE_ITEM_FEET "shoes"
+#define STRIPPABLE_ITEM_SOCKS "socks"
 #define STRIPPABLE_ITEM_SUIT_STORAGE "j_store"
 #define STRIPPABLE_ITEM_ID "id"
 #define STRIPPABLE_ITEM_BELT "belt"

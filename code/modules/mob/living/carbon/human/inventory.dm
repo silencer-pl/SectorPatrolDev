@@ -58,6 +58,8 @@
 			return has_limb("head")
 		if(WEAR_FEET)
 			return has_limb("r_foot") && has_limb("l_foot")
+		if(WEAR_SOCKS)
+			return has_limb("l_leg") && has_limb("r_leg")
 		if(WEAR_JACKET)
 			return has_limb("chest")
 		if(WEAR_BODY)
@@ -112,6 +114,7 @@
 		wear_suit = null
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
+			update_inv_socks()
 		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair()
 		if(I.flags_inv_hide & HIDEJUMPSUIT)
@@ -161,6 +164,9 @@
 	else if (I == shoes)
 		shoes = null
 		update_inv_shoes()
+	else if (I == socks)
+		socks = null
+		update_inv_socks()
 	else if (I == belt)
 		belt = null
 		update_inv_belt()
@@ -314,10 +320,15 @@
 			shoes = equipping_item
 			equipping_item.equipped(src, slot, disable_warning)
 			update_inv_shoes()
+		if(WEAR_SOCKS)
+			socks = equipping_item
+			equipping_item.equipped(src, slot, disable_warning)
+			update_inv_socks()
 		if(WEAR_JACKET)
 			wear_suit = equipping_item
 			if(wear_suit.flags_inv_hide & HIDESHOES)
 				update_inv_shoes()
+				update_inv_socks()
 			if(wear_suit.flags_inv_hide & HIDEJUMPSUIT)
 				update_inv_w_uniform()
 			if( wear_suit.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
@@ -436,6 +447,8 @@
 			return head
 		if(WEAR_FEET)
 			return shoes
+		if(WEAR_SOCKS)
+			return socks
 		if(WEAR_JACKET)
 			return wear_suit
 		if(WEAR_BODY)
@@ -472,6 +485,8 @@
 		return WEAR_HEAD
 	if(I == shoes)
 		return WEAR_FEET
+	if(I == socks)
+		return WEAR_SOCKS
 	if(I == wear_suit)
 		return WEAR_JACKET
 	if(I == w_uniform)

@@ -227,16 +227,17 @@
 #define SLOT_FACE (1<<5)
 #define SLOT_HEAD (1<<6)
 #define SLOT_FEET (1<<7)
-#define SLOT_ID (1<<8)
-#define SLOT_WAIST (1<<9)
-#define SLOT_BACK (1<<10)
-#define SLOT_STORE (1<<11) //this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_NO_STORE (1<<12) //this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_LEGS (1<<13)
-#define SLOT_ACCESSORY (1<<14)
-#define SLOT_SUIT_STORE (1<<15) //this allows items to be stored in the suit slot regardless of suit
+#define SLOT_SOCKS (1<<8)
+#define SLOT_ID (1<<9)
+#define SLOT_WAIST (1<<10)
+#define SLOT_BACK (1<<11)
+#define SLOT_STORE (1<<12) //this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define SLOT_NO_STORE (1<<13) //this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define SLOT_LEGS (1<<14)
+#define SLOT_ACCESSORY (1<<15)
+#define SLOT_SUIT_STORE (1<<16) //this allows items to be stored in the suit slot regardless of suit
 /// Anything with this flag cannot be worn in suit storage, period.
-#define SLOT_BLOCK_SUIT_STORE (1<<16)
+#define SLOT_BLOCK_SUIT_STORE (1<<17)
 //=================================================
 
 //slots
@@ -245,6 +246,7 @@
 #define WEAR_L_EAR "wear_l_ear"
 #define WEAR_R_EAR "wear_r_ear"
 #define WEAR_BODY "w_uniform"
+#define WEAR_SOCKS "socks"
 #define WEAR_FEET "shoes"
 #define WEAR_HANDS "gloves"
 #define WEAR_WAIST "belt"
@@ -271,6 +273,7 @@
 #define WEAR_IN_L_STORE  "in_l_store"
 #define WEAR_IN_R_STORE  "in_r_store"
 #define WEAR_IN_SHOES "in_shoes"
+#define WEAR_IN_SOCKS "in_socks"
 
 // Contained Sprites
 #define WORN_LHAND "_lh"
@@ -322,6 +325,8 @@ GLOBAL_LIST_INIT(slot_to_contained_sprite_shorthand, list(
 			. = SLOT_ICLOTHING
 		if(WEAR_FEET)
 			. = SLOT_FEET
+		if(WEAR_SOCKS)
+			. = SLOT_SOCKS
 		if(WEAR_HANDS)
 			. = SLOT_HANDS
 		if(WEAR_WAIST)
@@ -356,6 +361,8 @@ GLOBAL_LIST_INIT(slot_to_contained_sprite_shorthand, list(
 		WEAR_HEAD,\
 		WEAR_FEET,\
 		WEAR_IN_SHOES,\
+		WEAR_SOCKS,\
+		WEAR_IN_SOCKS,\
 		WEAR_FACE,\
 		WEAR_HANDS,\
 		WEAR_L_EAR,\

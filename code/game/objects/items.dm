@@ -563,6 +563,12 @@ cases. Override_icon_state should be a list.*/
 				if(!(flags_equip_slot & SLOT_FEET))
 					return FALSE
 				return TRUE
+			if(WEAR_SOCKS)
+				if(human.socks)
+					return FALSE
+				if(!(flags_equip_slot & SLOT_SOCKS))
+					return FALSE
+				return TRUE
 			if(WEAR_WAIST)
 				if(human.belt)
 					return FALSE
@@ -762,6 +768,8 @@ cases. Override_icon_state should be a list.*/
 			return flags_equip_slot & SLOT_HANDS
 		if(WEAR_FEET)
 			return flags_equip_slot & SLOT_FEET
+		if(WEAR_SOCKS)
+			return flags_equip_slot & SLOT_SOCKS
 		if(WEAR_WAIST)
 			return flags_equip_slot & SLOT_WAIST
 		if(WEAR_EYES)

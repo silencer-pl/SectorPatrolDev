@@ -355,6 +355,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"inventory-hand_l.png" = 'icons/ui_Icons/inventory/hand_l.png',
 		"inventory-hand_r.png" = 'icons/ui_Icons/inventory/hand_r.png',
 		"inventory-shoes.png" = 'icons/ui_Icons/inventory/shoes.png',
+		"inventory-socks.png" = 'icons/ui_Icons/inventory/socks.png',
 		"inventory-suit_storage.png" = 'icons/ui_Icons/inventory/suit_storage.png',
 		"inventory-id.png" = 'icons/ui_Icons/inventory/id.png',
 		"inventory-belt.png" = 'icons/ui_Icons/inventory/belt.png',

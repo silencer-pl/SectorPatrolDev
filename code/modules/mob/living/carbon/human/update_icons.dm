@@ -296,6 +296,7 @@ Applied by gun suicide and high impact bullet executions, removed by rejuvenate,
 	update_inv_glasses()
 	update_inv_ears()
 	update_inv_shoes()
+	update_inv_socks()
 	update_inv_s_store()
 	update_inv_wear_mask()
 	update_inv_head()
@@ -425,6 +426,19 @@ Applied by gun suicide and high impact bullet executions, removed by rejuvenate,
 	overlays_standing[SHOES_LAYER] = I
 	apply_overlay(SHOES_LAYER)
 
+/mob/living/carbon/human/update_inv_socks()
+	remove_overlay(SOCKS_LAYER)
+	var/image/I
+	if(socks)
+		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown && hud_used.ui_datum)
+			client.add_to_screen(socks)
+			socks.screen_loc = hud_used.ui_datum.hud_slot_offset(shoes, hud_used.ui_datum.ui_socks)
+		if(!((wear_suit && wear_suit.flags_inv_hide & HIDESHOES) || (w_uniform && w_uniform.flags_inv_hide & HIDESHOES)))
+			I =  socks.get_mob_overlay(src, WEAR_SOCKS)
+
+		I.layer = -SOCKS_LAYER
+		overlays_standing[SOCKS_LAYER] = I
+		apply_overlay(SOCKS_LAYER)
 
 /mob/living/carbon/human/update_inv_s_store()
 	remove_overlay(SUIT_STORE_LAYER)
@@ -553,6 +567,7 @@ Applied by gun suicide and high impact bullet executions, removed by rejuvenate,
 		update_tail_showing()
 		update_inv_w_uniform()
 		update_inv_shoes()
+		update_inv_socks()
 		update_inv_gloves()
 
 	update_collar()

@@ -10,6 +10,7 @@
 
 /datum/game_mode/announce()
 	to_world("<B>Sector Patrol ALPHA</B>")
+	show_blurb(GLOB.player_list, duration = 10 SECONDS, message = "<b>August 24th, 2185\nUACM Outer Veil PST</b>\nDorms, Deck 37.", screen_position = "CENTER,BOTTOM+1.5:16", text_alignment = "center", text_color = "#ffaef2", blurb_key = "introduction", ignore_key = FALSE, speed = 1)
 
 /datum/game_mode/extended/get_roles_list()
 

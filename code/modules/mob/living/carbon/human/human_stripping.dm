@@ -195,6 +195,10 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	key = STRIPPABLE_ITEM_FEET
 	item_slot = SLOT_FEET
 
+/datum/strippable_item/mob_item_slot/socks
+	key = STRIPPABLE_ITEM_SOCKS
+	item_slot = SLOT_SOCKS
+
 /datum/strippable_item/mob_item_slot/suit_storage
 	key = STRIPPABLE_ITEM_SUIT_STORAGE
 	item_slot = SLOT_SUIT_STORE
@@ -231,11 +235,11 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	if(tag.dogtag_taken)
 		to_chat(user, SPAN_WARNING("Someone's already taken [sourcemob]'s information tag."))
 		return
-	
+
 	if(sourcemob.stat != DEAD)
 		to_chat(user, SPAN_WARNING("You can't take a dogtag's information tag while its owner is alive."))
 		return
-		
+
 	to_chat(user, SPAN_NOTICE("You take [sourcemob]'s information tag, leaving the ID tag"))
 	tag.dogtag_taken = TRUE
 	tag.icon_state = "dogtag_taken"
@@ -244,7 +248,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	newtag.fallen_assgns = list(tag.assignment)
 	newtag.fallen_blood_types = list(tag.blood_type)
 	user.put_in_hands(newtag)
-		
+
 
 
 /datum/strippable_item/mob_item_slot/belt

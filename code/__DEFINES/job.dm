@@ -351,12 +351,15 @@ GLOBAL_LIST_INIT(job_command_roles, JOB_COMMAND_ROLES_LIST)
 
 //-------- SECTOR PATROL ---------//
 
-#define JOB_UACM_BASEPC "UACM Comissioned Officer"
+#define JOB_UACM_BASEPC "UACM OV-PST Test Crew Officer"
+#define JOB_UACM_NEWPC "UACM Comissioned Officer"
 
 #define JOB_UACM_RDML "UACM Read Admiral (lower half)"
 #define JOB_UACM_CMISRS_LT "CMISRS Intelligence Liaison"
 #define JOB_UACM_PSTENG "UACM Station Engineer"
 
+#define JOB_UACM_CASSANDRA "OV-PST Chief of Special Operations"
+#define JOB_UACM_ALYSIA "OV-PST Chief Engineer"
 
 #define JOB_PREDATOR "Predator"
 #define JOB_XENOMORPH    "Xenomorph"

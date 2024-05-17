@@ -28,6 +28,7 @@
 	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
+		playsound(src, soundin = 'sound/items/poster_ripped.ogg', vol = 25, vary = 1)
 		new /obj/item/crafting/frame_elements/table(get_turf(src))
 		new /obj/item/crafting/top/table(get_turf(src))
 		qdel(src)
@@ -43,11 +44,13 @@
 	user.visible_message(SPAN_NOTICE("[user] starts to unwrap a package."), SPAN_INFO("You start to unwrap the pacckage."), SPAN_DANGER("You hear tearing sounds."))
 	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		user.visible_message(SPAN_NOTICE("[user] tears through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_INFO("You tear through the package, revealing its contents. Once ripped, the packing material quickly turns to a fine dust."), SPAN_DANGER("The ripping stops."))
+		playsound(src, soundin = 'sound/items/poster_ripped.ogg', vol = 25, vary = 1)
 		new /obj/item/crafting/frame_elements/bed(get_turf(src))
 		new /obj/item/crafting/top/bed(get_turf(src))
 		qdel(src)
 		return
 
+//frames
 
 /obj/structure/crafting/frame/
 	name = "structure frame master object"
@@ -65,8 +68,9 @@
 /obj/structure/crafting/frame/table/attack_hand(mob/user)
 	if(crafting_top_ready == TRUE)
 		if(user.a_intent == INTENT_GRAB)
-			user.visible_message(SPAN_NOTICE("[user] lifts a table top of its frame."), SPAN_INFO("You lift a table top of its frame."))
+			user.visible_message(SPAN_NOTICE("[user] lifts a table top from its frame."), SPAN_INFO("You lift a table top from its frame."))
 			if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/handling/book_pickup.ogg', vol = 25, vary = 1)
 				switch(icon_state)
 					if("table_metal_black")
 						var/obj/item/crafting/top/table/tabletop = new(get_turf(user))
@@ -88,6 +92,7 @@
 		var/obj/item/crafting/top/table/W = C
 		user.visible_message(SPAN_NOTICE("[user] starts starts to align a table top with a frame."), SPAN_INFO("You start to to align a table top with a frame."))
 		if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/handling/book_pickup.ogg', vol = 25, vary = 1)
 			switch(W.variant_id)
 				if("default")
 					icon_state = "table_metal_black"
@@ -104,6 +109,7 @@
 		if(crafting_top_ready == TRUE)
 			user.visible_message(SPAN_NOTICE("[user] tightens the screws attaching the table top to its frame."), SPAN_INFO("You tighten the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Ratchet.ogg', vol = 25, vary = 1)
 				switch(icon_state)
 					if("table_metal_black")
 						new /obj/structure/surface/modular/table(get_turf(src))
@@ -121,6 +127,7 @@
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 				var/obj/item/crafting/frame_elements/table/elements = new(get_turf(usr))
 				elements.variant_id = variant_id
 				qdel(src)
@@ -141,6 +148,7 @@
 		var/obj/item/crafting/top/bed/top = C
 		user.visible_message(SPAN_NOTICE("[user] places a bag in the middle of the frame and pushes a button on the side."), SPAN_INFO("You place a bag in the middle of the frame and push a button on the side."))
 		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/air_release.ogg', vol = 25, vary = 1)
 			var/obj/structure/bed/modular/bed = new(get_turf(src))
 			bed.crafting_bed_bedsheet_id = top.variant_id
 			bed.variant_id = variant_id
@@ -152,6 +160,7 @@
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Screwdriver.ogg', vol = 25, vary = 1)
 				var/obj/item/crafting/frame_elements/bed/B = C
 				B.variant_id = variant_id
 				qdel(src)
@@ -171,6 +180,7 @@
 		var/obj/item/crafting/top/drawers/D = C
 		user.visible_message(SPAN_NOTICE("[user] slides metal drawers into the cabinet frame."), SPAN_INFO("You slide metal drawers into the cabinet frame."), SPAN_WARNING("You hear metal sliding against metal."))
 		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/Deconstruct.ogg', vol = 25, vary = 1)
 			var/obj/structure/closet/modular/drawers/O = new(get_turf(src))
 			O.crafting_drawer_color = D.variant_id
 			O.variant_id = variant_id
@@ -182,6 +192,7 @@
 		if (user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] starts to detach elements of a cabinet frame from each other."), SPAN_INFO("You start to detach elements of a cabinet frame from each other."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				playsound(src, soundin = 'sound/items/Deconstruct.ogg', vol = 25, vary = 1)
 				var/obj/item/crafting/frame_elements/drawers/frame = new(get_turf(src))
 				frame.variant_id = variant_id
 				qdel(src)
@@ -206,6 +217,7 @@
 				if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					crafting_chair_wheels -= 1
 					if(crafting_chair_wheels == 0)
+						playsound(src, soundin = 'sound/items/Crowbar.ogg', vol = 25, vary = 1)
 						var/obj/item/crafting/top/chair/wheels/wheels = new(get_turf(usr))
 						var/obj/item/crafting/frame_elements/chair/frame = new(get_turf(usr))
 						wheels.variant_id = crafting_chair_wheel_id
@@ -221,6 +233,7 @@
 		var/obj/structure/crafting/frame/chair/W = C
 		user.visible_message(SPAN_NOTICE("[user] pushes a chair seat and backrest onto a chair frame."), SPAN_INFO("You push a chair seat and backrest onto a chair frame."), SPAN_WARNING("You hear a metallic thud."))
 		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			playsound(src, soundin = 'sound/items/Deconstruct.ogg', vol = 25, vary = 1)
 			var/obj/structure/bed/chair/modular/office/chair = new(get_turf(usr))
 			chair.variant_id = variant_id
 			chair.crafting_chair_wheel_id = crafting_chair_wheel_id

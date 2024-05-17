@@ -326,7 +326,7 @@
 	icon = 'icons/obj/sp_clothes/admin/icon/sp_clothes.dmi'
 	icon_state = "cass_dress"
 	item_icons = list(
-		WEAR_FEET = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
+		WEAR_BODY = 'icons/obj/sp_clothes/admin/onmob/sp_clothes.dmi'
 	)
 
 /obj/item/clothing/under/sp_admin/aly

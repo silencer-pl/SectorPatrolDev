@@ -15,3 +15,15 @@
 	new /obj/item/tool/crowbar/uacm(src)
 	new /obj/item/tool/wirecutters/uacm(src)
 	new /obj/item/device/multitool/uacm(src)
+
+/obj/item/storage/backpack/satchel/discrete
+	name = "discrete satchel"
+	desc = "A small satchel worn under clothing, obscured from view unless one knows to look for it or is performing a direct search."
+	icon = 'icons/obj/sp_clothes/back/icon/back.dmi'
+	icon_state = "satchel_black"
+	worn_accessible = TRUE
+	storage_slots = null
+	max_storage_space = 30
+	item_icons = list(
+	WEAR_BACK = 'icons/obj/sp_clothes/back/onmob/back.dmi'
+	)

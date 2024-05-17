@@ -125,7 +125,7 @@
 	vend_delay = 10
 	deny_delay = 10
 
-/obj/structure/machinery/cm_vending/sorted/sectorpatrol/cigrette/populate_product_list(scale)
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda/populate_product_list(scale)
 	listed_products = list(
 		list("REGULAR SOUTO SOFT DRINKS", -1, null, null),
 		list("Souto Classic", 20, /obj/item/reagent_container/food/drinks/cans/souto/classic, VENDOR_ITEM_REGULAR),

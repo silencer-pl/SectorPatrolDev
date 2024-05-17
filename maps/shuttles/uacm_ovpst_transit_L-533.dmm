@@ -660,12 +660,6 @@
 	icon_state = "23,6rd"
 	},
 /area/shuttle/ert)
-"Tw" = (
-/obj/effect/landmark/late_join,
-/turf/open/shuttle/lifeboat{
-	icon_state = "plate-r"
-	},
-/area/shuttle/ert)
 "TM" = (
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "24,4u"
@@ -871,7 +865,7 @@ IR
 GA
 Qi
 dr
-Tw
+dr
 dr
 GD
 Td

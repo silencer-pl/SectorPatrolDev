@@ -165,7 +165,9 @@ GLOBAL_LIST_INIT(admin_verbs_major_event, list(
 	/client/proc/admin_song_blurb,
 	/client/proc/cmd_admin_pythia_say,
 	/client/proc/cmd_start_sequence,
-	/client/proc/cmd_answer_civnet
+	/client/proc/cmd_answer_civnet,
+	/client/proc/cmd_save_turfs,
+	/client/proc/cmd_load_turfs
 ))
 
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(

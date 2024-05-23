@@ -140,3 +140,5 @@ GLOBAL_VAR(obfs_y)
 //For generating hexlike adress groups
 
 GLOBAL_LIST_INIT(hex_string, list("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"))
+
+GLOBAL_VAR_INIT(savefile_number, 0)

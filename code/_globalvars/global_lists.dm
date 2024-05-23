@@ -147,7 +147,6 @@ GLOBAL_LIST_EMPTY(active_areas)
 GLOBAL_LIST_EMPTY(all_areas)
 
 GLOBAL_LIST_EMPTY(turfs)
-GLOBAL_LIST_EMPTY(turfs_saved)
 
 GLOBAL_LIST(objects_of_interest) // This is used to track the stealing objective for Agents.
 
@@ -583,3 +582,8 @@ GLOBAL_PROTECT(topic_tokens)
 
 GLOBAL_LIST_EMPTY(topic_commands)
 GLOBAL_PROTECT(topic_commands)
+
+// Sector Patrol - Persistancy lists
+
+GLOBAL_LIST_EMPTY(turfs_saved)
+GLOBAL_LIST_EMPTY(objects_saved)

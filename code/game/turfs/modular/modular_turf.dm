@@ -203,31 +203,6 @@
 	if(tile_top_left != null || tile_bot_left != null || tile_top_rght != null || tile_bot_rght != null || tile_seal != null)
 		update_icon()
 
-//saving procs
-
-/turf/open/floor/plating/modular/Write()
-	var/savefile/S = new("data/persistance/turf_ovpst.sav")
-	var/tile_xyz = "[x]-[y]-[z]"
-	if(S.dir.Find("[tile_xyz]") == FALSE) S.dir.Add("[tile_xyz]")
-	S.cd = "[tile_xyz]"
-	S["tile_top_left"] << tile_top_left
-	S["tile_top_riht"] << tile_top_rght
-	S["tile_bot_left"] << tile_bot_left
-	S["tile_bot_riht"] << tile_bot_rght
-	S["tile_seal"] << tile_seal
-
-/turf/open/floor/plating/modular/Read()
-	var/savefile/S = new("data/persistance/turf_ovpst.sav")
-	if(!S) return
-	var/tile_xyz = "[x]-[y]-[z]"
-	if(S.dir.Find("[tile_xyz]") == FALSE) return
-	S.cd = "[tile_xyz]"
-	S["tile_top_left"] >> tile_top_left
-	S["tile_top_riht"] >> tile_top_rght
-	S["tile_bot_left"] >> tile_bot_left
-	S["tile_bot_riht"] >> tile_bot_rght
-	S["tile_seal"] >> tile_seal
-
 //Completed floors start here.
 /turf/open/floor/plating/modular/gray
 	tile_top_left = "gray"

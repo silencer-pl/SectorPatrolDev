@@ -77,32 +77,106 @@
 
 /client/proc/cmd_save_turfs()
 
-	set name = "Peristancy - Save Modular Turfs"
+	set name = "Peristancy - Save"
 	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
+	to_chat(world, SPAN_BOLDWARNING("Persistancy save initiated. Game may stop responding..."))
+	sleep(5)
+	GLOB.savefile_number += 1
+	//Globals
+	var/savefile/G = new("data/persistance/globals.sav")
+	G["current_save"] << GLOB.savefile_number
+	//Turfs
 	to_chat(world, SPAN_BOLDWARNING("Saving modular turf data..."))
 	sleep(5)
-	for(var/area/ovpst/A in GLOB.all_areas)
-		A.Write()
-	to_chat(usr, SPAN_BOLDWARNING("Turf data saved."))
+	var/savefile/S = new("data/persistance/turf_ovpst_[GLOB.savefile_number].sav")
+	var/tile_xyz
+	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
+		tile_xyz = "[T.x]-[T.y]-[T.z]"
+		S.cd = "[tile_xyz]"
+		S["tile_top_left"] << T.tile_top_left
+		S["tile_top_rght"] << T.tile_top_rght
+		S["tile_bot_left"] << T.tile_bot_left
+		S["tile_bot_rght"] << T.tile_bot_rght
+		S["tile_seal"] << T.tile_seal
+	to_chat(world, SPAN_BOLDWARNING("Turf data saved."))
+	//Objects
+	to_chat(world, SPAN_BOLDWARNING("Saving object data..."))
+	var/savefile/I = new("data/persistance/objects_ovpst_[GLOB.savefile_number].sav")
+	var/item_index = 0
+	for(var/obj/obj in GLOB.objects_saved)
+		item_index += 1
+		I.cd = "[item_index]"
+		I["objtype"] << obj.type
+		I["name"] << obj.name
+		I["desc"] << obj.desc
+		I["desc_lore"] << obj.desc_lore
+		I["x"] << obj.x
+		I["pixel_x"] << obj.pixel_x
+		I["y"] << obj.y
+		I["pixel_y"] << obj.pixel_y
+		I["z"] << obj.z
+		I["customizable"] << obj.customizable
+		I["customizable_desc"] << obj.customizable_desc
+		I["customizable_desc_lore"] << obj.customizable_desc
+	I.cd = "general"
+	I["item_index_max"] << item_index
 
 /client/proc/cmd_load_turfs()
 
-	set name = "Peristancy - Load Modular Turfs"
+	set name = "Peristancy - Load"
 	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	to_chat(world, SPAN_BOLDWARNING("Loading modular turf data..."))
+	to_chat(world, SPAN_BOLDWARNING("Performing persistant data load. The game may stop responidng..."))
 	sleep(5)
-	for(var/area/ovpst/A in GLOB.all_areas)
-		A.Read()
+	var/savefile/G = new("data/persistance/globals.sav")
+	G["current_save"] >> GLOB.savefile_number
+	to_chat(world, SPAN_BOLDWARNING("Loading turfs..."))
+	var/savefile/S = new("data/persistance/turf_ovpst_[GLOB.savefile_number].sav")
+	var/tile_xyz
 	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
+		tile_xyz = "[T.x]-[T.y]-[T.z]"
+		S.cd = "[tile_xyz]"
+		S["tile_top_left"] >> T.tile_top_left
+		S["tile_top_rght"] >> T.tile_top_rght
+		S["tile_bot_left"] >> T.tile_bot_left
+		S["tile_bot_rght"] >> T.tile_bot_rght
+		S["tile_seal"] >> T.tile_seal
 		T.update_icon()
 	to_chat(usr, SPAN_BOLDWARNING("Modular turf data restored."))
+	to_chat(usr, SPAN_BOLDWARNING("Restoring item data..."))
+	var/savefile/I = new("data/persistance/objects_ovpst_[GLOB.savefile_number].sav")
+	var/item_index
+	var/current_index = 0
+	var/item_x
+	var/item_y
+	var/item_z
+	var/item_type
+	I.cd = "general"
+	I["item_index_max"] >> item_index
+	while(current_index <= item_index)
+		current_index += 1
+		I.cd = "[current_index]"
+		I["objtype"] >> item_type
+		I["x"] >> item_x
+		I["y"] >> item_y
+		I["z"] >> item_z
+		var/obj/newitem = new item_type(item_x, item_y, item_z)
+		I["name"] << newitem.name
+		I["desc"] << newitem.desc
+		I["desc_lore"] << newitem.desc_lore
+		I["pixel_x"] << newitem.pixel_x
+		I["pixel_y"] << newitem.pixel_y
+		I["customizable"] << newitem.customizable
+		I["customizable_desc"] << newitem.customizable_desc
+		I["customizable_desc_lore"] << newitem.customizable_desc
+		newitem.update_icon()
+		newitem.update_custom_descriptions()

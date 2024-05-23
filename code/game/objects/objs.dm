@@ -36,12 +36,20 @@
 	var/flags_obj = NO_FLAGS
 	/// set when a player uses a pen on a renamable object
 	var/renamedByPlayer = FALSE
+	// Sector Patrol Persistancy, determines if object is added to persistancy save list.
+	var/PersistantObject = FALSE
+	// Sector Patrol Customization
+	var/customizable = 0 //Checked by the customizers to escape Sector Patrol 'approved' drip
+	var/customizable_desc
+	var/customizable_desc_lore
 
 
 /obj/Initialize(mapload, ...)
 	. = ..()
 	if(garbage)
 		add_to_garbage(src)
+	if(PersistantObject)
+		GLOB.objects_saved += src
 
 /obj/Destroy(force)
 	if(buckled_mob)
@@ -470,3 +478,15 @@
 /// override for subtypes that require extra behaviour when spawned from a vendor
 /obj/proc/post_vendor_spawn_hook(mob/living/carbon/human/user)
 	return
+
+//Sector Patrol
+//Appending Descriptions and Lore Description Customizations to clothes
+/obj/proc/update_custom_descriptions()
+	if (customizable_desc != null)
+		desc = "<p>[initial(desc)]</p><p>[customizable_desc]</p>"
+	if (customizable_desc == null)
+		desc = "[initial(desc)]"
+	if (customizable_desc_lore != null)
+		desc_lore = "<p>[initial(desc_lore)]</p><p>[customizable_desc_lore]</p>"
+	if (customizable_desc_lore == null)
+		desc_lore = "[initial(desc_lore)]"

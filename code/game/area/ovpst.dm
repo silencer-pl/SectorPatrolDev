@@ -25,37 +25,3 @@
 /area/ovpst/airlock/ele_d_drm
 
 /area/ovpst/airlock/ele_d_pin
-
-// Persistant sotrage areas
-
-/area/ovpst/Write()
-	var/savefile/S = new("data/persistance/turf_ovpst.sav")
-	var/tile_xyz
-	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
-		tile_xyz = "[T.x]-[T.y]-[T.z]"
-		if(S.dir.Find("[tile_xyz]") == FALSE) S.dir.Add("[tile_xyz]")
-		S.cd = "[tile_xyz]"
-		S["tile_top_left"] << T.tile_top_left
-		S["tile_top_riht"] << T.tile_top_rght
-		S["tile_bot_left"] << T.tile_bot_left
-		S["tile_bot_riht"] << T.tile_bot_rght
-		S["tile_seal"] << T.tile_seal
-
-/area/ovpst/Read()
-	var/savefile/S = new("data/persistance/turf_ovpst.sav")
-	var/tile_xyz
-	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
-		tile_xyz = "[T.x]-[T.y]-[T.z]"
-		if(S.dir.Find("[tile_xyz]") == FALSE) return
-		S.cd = "[tile_xyz]"
-		S["tile_top_left"] >> T.tile_top_left
-		S["tile_top_riht"] >> T.tile_top_rght
-		S["tile_bot_left"] >> T.tile_bot_left
-		S["tile_bot_riht"] >> T.tile_bot_rght
-		S["tile_seal"] >> T.tile_seal
-
-
-/area/ovpst/persist
-	name = "Persistant save area master define"
-	desc = "This should not be used in game - use or create specific paths for each savable room/area"
-	desc_lore = "Its also acceptable to use this for testing, but do not leave it in game"

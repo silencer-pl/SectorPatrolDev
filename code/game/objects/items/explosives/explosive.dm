@@ -4,7 +4,7 @@
 /obj/item/explosive
 	var/base_icon_state
 	var/active = FALSE
-	var/customizable = FALSE
+	var/exp_customizable = FALSE
 	var/datum/cause_data/cause_data
 	var/creator
 	//Is it harmful? Are they banned for synths?
@@ -34,7 +34,7 @@
 	. = ..()
 	if(!base_icon_state)
 		base_icon_state = initial(icon_state)
-	if(!customizable)
+	if(!exp_customizable)
 		return
 	if(has_blast_wave_dampener)
 		verbs += /obj/item/explosive/proc/toggle_blast_dampener
@@ -67,7 +67,7 @@
 
 /obj/item/explosive/attack_self(mob/user)
 	..()
-	if(customizable && assembly_stage <= ASSEMBLY_UNLOCKED)
+	if(exp_customizable && assembly_stage <= ASSEMBLY_UNLOCKED)
 		if(detonator)
 			detonator.detached()
 			usr.put_in_hands(detonator)
@@ -103,7 +103,7 @@
 			icon_state = base_icon_state
 
 /obj/item/explosive/attackby(obj/item/W as obj, mob/user as mob)
-	if(!customizable || active)
+	if(!exp_customizable || active)
 		return
 	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_MASTER))
 		to_chat(user, SPAN_WARNING("You do not know how to tinker with [name]."))
@@ -178,7 +178,7 @@
 		active = TRUE
 
 /obj/item/explosive/proc/prime(force = FALSE)
-	if(!force && (!customizable || !assembly_stage || assembly_stage < ASSEMBLY_LOCKED))
+	if(!force && (!exp_customizable || !assembly_stage || assembly_stage < ASSEMBLY_LOCKED))
 		return
 
 	active = FALSE

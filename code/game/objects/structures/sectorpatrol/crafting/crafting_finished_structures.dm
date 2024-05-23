@@ -10,6 +10,7 @@
 	anchored = 1
 	opacity = FALSE
 	density = TRUE
+	PersistantObject = TRUE
 
 /obj/structure/surface/modular/table/attackby(obj/item/C, mob/user)
 
@@ -49,6 +50,7 @@
 	anchored = 1
 	opacity = FALSE
 	density = TRUE
+	PersistantObject = TRUE
 
 /obj/structure/bed/modular/attackby(obj/item/C, mob/user)
 
@@ -120,6 +122,7 @@
 	var/crafting_lamp_bulb_color = COLOR_WHITE
 	var/crafting_lamp_top_color = "default"
 	var/on = FALSE
+	PersistantObject = TRUE
 
 /obj/item/device/modular/lamp/update_icon()
 	. = ..()
@@ -183,6 +186,7 @@
 	density = TRUE
 	var/variant_id = "default"
 	var/crafting_drawer_color = "default"
+	PersistantObject = TRUE
 
 /obj/structure/closet/modular/drawers/attackby(obj/item/C, mob/user)
 	if(src.opened)
@@ -235,6 +239,7 @@
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
+	PersistantObject = TRUE
 
 
 

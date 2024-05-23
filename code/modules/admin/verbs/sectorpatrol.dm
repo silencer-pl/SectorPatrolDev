@@ -97,7 +97,7 @@
 	var/tile_xyz
 	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
 		tile_xyz = "[T.x]-[T.y]-[T.z]"
-		S.cd = "[tile_xyz]"
+		S.cd = "/[tile_xyz]"
 		S["tile_top_left"] << T.tile_top_left
 		S["tile_top_rght"] << T.tile_top_rght
 		S["tile_bot_left"] << T.tile_bot_left
@@ -110,7 +110,7 @@
 	var/item_index = 0
 	for(var/obj/obj in GLOB.objects_saved)
 		item_index += 1
-		I.cd = "[item_index]"
+		I.cd = "/[item_index]"
 		I["objtype"] << obj.type
 		I["name"] << obj.name
 		I["desc"] << obj.desc
@@ -122,8 +122,8 @@
 		I["z"] << obj.z
 		I["customizable"] << obj.customizable
 		I["customizable_desc"] << obj.customizable_desc
-		I["customizable_desc_lore"] << obj.customizable_desc
-	I.cd = "general"
+		I["customizable_desc_lore"] << obj.customizable_desc_lore
+	I.cd = "/general"
 	I["item_index_max"] << item_index
 
 /client/proc/cmd_load_turfs()
@@ -144,7 +144,7 @@
 	var/tile_xyz
 	for(var/turf/open/floor/plating/modular/T in GLOB.turfs_saved)
 		tile_xyz = "[T.x]-[T.y]-[T.z]"
-		S.cd = "[tile_xyz]"
+		S.cd = "/[tile_xyz]"
 		S["tile_top_left"] >> T.tile_top_left
 		S["tile_top_rght"] >> T.tile_top_rght
 		S["tile_bot_left"] >> T.tile_bot_left
@@ -160,16 +160,16 @@
 	var/item_y
 	var/item_z
 	var/item_type
-	I.cd = "general"
+	I.cd = "/general"
 	I["item_index_max"] >> item_index
-	while(current_index <= item_index)
+	while(current_index < item_index)
 		current_index += 1
-		I.cd = "[current_index]"
+		I.cd = "/[current_index]"
 		I["objtype"] >> item_type
 		I["x"] >> item_x
 		I["y"] >> item_y
 		I["z"] >> item_z
-		var/obj/newitem = new item_type(item_x, item_y, item_z)
+		var/obj/newitem = new item_type(locate(item_x, item_y, item_z))
 		I["name"] << newitem.name
 		I["desc"] << newitem.desc
 		I["desc_lore"] << newitem.desc_lore
@@ -177,6 +177,6 @@
 		I["pixel_y"] << newitem.pixel_y
 		I["customizable"] << newitem.customizable
 		I["customizable_desc"] << newitem.customizable_desc
-		I["customizable_desc_lore"] << newitem.customizable_desc
+		I["customizable_desc_lore"] << newitem.customizable_desc_lore
 		newitem.update_icon()
 		newitem.update_custom_descriptions()

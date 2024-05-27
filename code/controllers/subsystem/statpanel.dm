@@ -26,9 +26,9 @@ SUBSYSTEM_DEF(statpanels)
 		num_fires++
 		global_data = list(
 			"Sector Patrol ALPHA",
-			"UACM Outer Veil Primary Supply Terminal, Neroid Sector",
-			"August 24th, 2185",
-			"Station Time: [time2text(642000 + wtime,"hh:mm",0)]",
+			"[GLOB.ingame_location]",
+			"[GLOB.ingame_date]",
+			"Local Time: [time2text(GLOB.ingame_time + wtime,"hh:mm",0)]",
 			"---------",
 //   "Round Time: [ROUND_TIME]",
 //			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",

@@ -77,7 +77,7 @@
 
 /client/proc/cmd_save_turfs()
 
-	set name = "Peristancy - Save"
+	set name = "Peristancy - Save Turfs and Objects"
 	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -87,7 +87,7 @@
 	to_chat(world, SPAN_BOLDWARNING("Persistancy save initiated. Game may stop responding..."))
 	sleep(5)
 	GLOB.savefile_number += 1
-	//Globals
+	//Savefile number reference
 	var/savefile/G = new("data/persistance/globals.sav")
 	G["current_save"] << GLOB.savefile_number
 	//Turfs
@@ -125,10 +125,12 @@
 		I["customizable_desc_lore"] << obj.customizable_desc_lore
 	I.cd = "/general"
 	I["item_index_max"] << item_index
+	to_chat(world, SPAN_BOLDWARNING("Object data saved."))
+	to_chat(world, SPAN_BOLDWARNING("Persistancy save complete. You may resume playing."))
 
 /client/proc/cmd_load_turfs()
 
-	set name = "Peristancy - Load"
+	set name = "Peristancy - Load Turfs and Objects"
 	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -180,3 +182,58 @@
 		I["customizable_desc_lore"] << newitem.customizable_desc_lore
 		newitem.update_icon()
 		newitem.update_custom_descriptions()
+	to_chat(world, SPAN_BOLDWARNING("Object data loaded."))
+	to_chat(world, SPAN_BOLDWARNING("Persistancy load complete. You may resume playing."))
+
+/client/proc/cmd_set_time_date_loc()
+
+	set name = "Set Statpanel IC information"
+	set category = "Admin.SectorPatrol"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/olddate = GLOB.ingame_date
+	GLOB.ingame_date = tgui_input_text(usr, message = "Enter Date to display:", title = "Date Entry", default = "[GLOB.ingame_date]", timeout = 0)
+	if(GLOB.ingame_date == null) GLOB.ingame_date = olddate
+
+	var/oldtime = GLOB.ingame_time
+	var/newtime_hrs = tgui_input_number(usr, message = "In-game time, HOURS:", title = "Time Entry HOURS", timeout = 0)
+	var/newtime_min = tgui_input_number(usr, message = "In-game time, MINUTES:", title = "Time Entry MINUTES", timeout = 0)
+	GLOB.ingame_time = ((newtime_hrs * 36000) + (newtime_min * 600)) - world.time
+	if(GLOB.ingame_time == null) GLOB.ingame_time = oldtime
+
+	var/oldlocation = GLOB.ingame_location
+	GLOB.ingame_location = tgui_input_text(usr, message = "Enter Location to display:", title = "Location Entry", default = "[GLOB.ingame_location]", timeout = 0)
+	if(GLOB.ingame_location == null) GLOB.ingame_location = oldlocation
+
+/client/proc/cmd_save_general()
+
+	set name = "Peristancy - Save General Status"
+	set category = "Admin.SectorPatrol"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/savefile/G = new("data/persistance/globals.sav")
+	G["Date"] << GLOB.ingame_date
+	G["Time"] << GLOB.ingame_time
+	G["Location"] << GLOB.ingame_location
+	to_chat(src, SPAN_BOLDWARNING("General data saved."))
+
+/client/proc/cmd_load_general()
+
+	set name = "Peristancy - Load General Status"
+	set category = "Admin.SectorPatrol"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/savefile/G = new("data/persistance/globals.sav")
+	G["Date"] >> GLOB.ingame_date
+	G["Time"] >> GLOB.ingame_time
+	G["Location"] >> GLOB.ingame_location
+	to_chat(src, SPAN_BOLDWARNING("General data loaded."))

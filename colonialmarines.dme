@@ -205,6 +205,7 @@
 #include "code\_globalvars\global_lists.dm"
 #include "code\_globalvars\misc.dm"
 #include "code\_globalvars\regexes.dm"
+#include "code\_globalvars\sectorpatrol.dm"
 #include "code\_globalvars\tgui.dm"
 #include "code\_globalvars\lists\clans.dm"
 #include "code\_globalvars\lists\client.dm"

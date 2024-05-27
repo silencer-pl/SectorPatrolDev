@@ -23,12 +23,17 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
 		var/wtime = world.time
+		var/time_displayed
+		if (SSticker.current_state >= GAME_STATE_PLAYING)
+			time_displayed = "[time2text((GLOB.ingame_time - SSticker.round_start_time)+ wtime,"hh:mm",0)]"
+		else
+			time_displayed = "[time2text(GLOB.ingame_time,"hh:mm",0)]"
 		num_fires++
 		global_data = list(
 			"Sector Patrol ALPHA",
 			"[GLOB.ingame_location]",
 			"[GLOB.ingame_date]",
-			"Local Time: [time2text(GLOB.ingame_time + wtime,"hh:mm",0)]",
+			"Local Time: [time_displayed]",
 			"---------",
 //   "Round Time: [ROUND_TIME]",
 //			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",

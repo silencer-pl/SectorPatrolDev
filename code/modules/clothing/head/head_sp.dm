@@ -129,6 +129,7 @@
 	var/flippable
 	var/flippable_flipped
 	var/flippable_returns
+	PersistantObject = TRUE
 
 
 //flippable caps, add icon with _flipped to both sets

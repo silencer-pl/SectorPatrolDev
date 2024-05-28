@@ -24,6 +24,7 @@
         WEAR_SOCKS = 'icons/obj/sp_clothes/socks/onmob/socks.dmi'
     )
 	layer = SOCKS_LAYER
+	PersistantObject = TRUE
 
 /obj/item/clothing/socks/update_clothing_icon()
 	if(ismob(loc))

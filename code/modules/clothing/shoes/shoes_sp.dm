@@ -10,6 +10,7 @@
 	item_icons = list(
 		WEAR_FEET = 'icons/obj/sp_clothes/shoes/onmob/shoes.dmi'
 	)
+	PersistantObject = TRUE
 
 ///obj/item/clothing/shoes/sp_personal/baseshoe/marine
 //	name = "marine boots"

@@ -12,6 +12,7 @@
 	)
 	var/openable
 	var/openable_open
+	PersistantObject = TRUE
 
 // Objects with rollable sleeves
 

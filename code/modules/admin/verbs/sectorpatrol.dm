@@ -88,7 +88,7 @@
 	sleep(5)
 	GLOB.savefile_number += 1
 	//Savefile number reference
-	var/savefile/G = new("data/persistance/globals.sav")
+	var/savefile/G = new("data/persistance/turf_obj_globals.sav")
 	G["current_save"] << GLOB.savefile_number
 	//Turfs
 	to_chat(world, SPAN_BOLDWARNING("Saving modular turf data..."))
@@ -110,16 +110,17 @@
 	var/item_index = 0
 	for(var/obj/obj in GLOB.objects_saved)
 		item_index += 1
+		var/turf/groundloc = get_turf(obj)
 		I.cd = "/[item_index]"
 		I["objtype"] << obj.type
 		I["name"] << obj.name
 		I["desc"] << obj.desc
 		I["desc_lore"] << obj.desc_lore
-		I["x"] << obj.x
+		I["x"] << groundloc.x
 		I["pixel_x"] << obj.pixel_x
-		I["y"] << obj.y
+		I["y"] << groundloc.y
 		I["pixel_y"] << obj.pixel_y
-		I["z"] << obj.z
+		I["z"] << groundloc.z
 		I["customizable"] << obj.customizable
 		I["customizable_desc"] << obj.customizable_desc
 		I["customizable_desc_lore"] << obj.customizable_desc_lore
@@ -139,7 +140,7 @@
 
 	to_chat(world, SPAN_BOLDWARNING("Performing persistant data load. The game may stop responidng..."))
 	sleep(5)
-	var/savefile/G = new("data/persistance/globals.sav")
+	var/savefile/G = new("data/persistance/turf_obj_globals.sav")
 	G["current_save"] >> GLOB.savefile_number
 	to_chat(world, SPAN_BOLDWARNING("Loading turfs..."))
 	var/savefile/S = new("data/persistance/turf_ovpst_[GLOB.savefile_number].sav")
@@ -172,14 +173,14 @@
 		I["y"] >> item_y
 		I["z"] >> item_z
 		var/obj/newitem = new item_type(locate(item_x, item_y, item_z))
-		I["name"] << newitem.name
-		I["desc"] << newitem.desc
-		I["desc_lore"] << newitem.desc_lore
-		I["pixel_x"] << newitem.pixel_x
-		I["pixel_y"] << newitem.pixel_y
-		I["customizable"] << newitem.customizable
-		I["customizable_desc"] << newitem.customizable_desc
-		I["customizable_desc_lore"] << newitem.customizable_desc_lore
+		I["name"] >> newitem.name
+		I["desc"] >> newitem.desc
+		I["desc_lore"] >> newitem.desc_lore
+		I["pixel_x"] >> newitem.pixel_x
+		I["pixel_y"] >> newitem.pixel_y
+		I["customizable"] >> newitem.customizable
+		I["customizable_desc"] >> newitem.customizable_desc
+		I["customizable_desc_lore"] >> newitem.customizable_desc_lore
 		newitem.update_icon()
 		newitem.update_custom_descriptions()
 	to_chat(world, SPAN_BOLDWARNING("Object data loaded."))

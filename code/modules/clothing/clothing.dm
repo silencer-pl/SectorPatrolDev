@@ -19,11 +19,6 @@
 	var/blood_overlay_type = "" //which type of blood overlay to use on the mob when bloodied
 	var/list/clothing_traits // Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot
 	var/clothing_traits_active = TRUE //are the clothing traits that are applied to the item active (acting on the mob) or not?
-	//Sector Patrol..//
-	var/customizable = 0 //Checked by the customizers to escape Sector Patrol 'approved' drip
-	var/customizable_desc
-	var/customizable_desc_lore
-	//Sector Patrol//..
 /obj/item/clothing/get_examine_line(mob/user)
 	. = ..()
 	var/list/ties = list()
@@ -453,15 +448,3 @@
 		return TRUE
 
 	return ..()
-
-//Sector Patrol
-//Appending Descriptions and Lore Description Customizations to clothes
-/obj/item/clothing/proc/update_custom_descriptions()
-	if (customizable_desc != null)
-		desc = "<p>[initial(desc)]</p><p>[customizable_desc]</p>"
-	if (customizable_desc == null)
-		desc = "[initial(desc)]"
-	if (customizable_desc_lore != null)
-		desc_lore = "<p>[initial(desc_lore)]</p><p>[customizable_desc_lore]</p>"
-	if (customizable_desc_lore == null)
-		desc_lore = "[initial(desc_lore)]"

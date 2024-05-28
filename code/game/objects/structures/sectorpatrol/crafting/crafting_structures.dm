@@ -17,6 +17,7 @@
 	desc_lore = "The Northern Republic Production Standard not only dictates screw hole sizes and tube lengths, but also regulates both packaging and labeling of anything adhering to the standard when it is produced. Essentially this means that every NRPS standard complaint wrapping is made of the same brownish artificial resin, meant to be a combination of cardboard and Styrofoam, and always comes with a label oriented towards the bottom-right hand corner of the package. Essentially this means that if you can read the letters, the package is likely upright."
 	opacity = FALSE
 	density = TRUE
+	PersistantObject = TRUE
 
 /obj/structure/crafting/packages/table
 	icon_state = "package_xl"

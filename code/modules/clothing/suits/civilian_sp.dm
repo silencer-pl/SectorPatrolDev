@@ -12,6 +12,7 @@
 	)
 	var/openable
 	var/openable_open
+	PersistantObject = TRUE
 
 
 /obj/item/clothing/suit/sp_personal/verb/open_jacket()

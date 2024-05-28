@@ -199,6 +199,7 @@
 
 /turf/open/floor/plating/modular/Initialize(mapload, ...)
 	. = ..()
+	GLOB.turfs_saved += src
 	if(tile_top_left != null || tile_bot_left != null || tile_top_rght != null || tile_bot_rght != null || tile_seal != null)
 		update_icon()
 
@@ -209,3 +210,4 @@
 	tile_bot_left = "gray"
 	tile_bot_rght = "gray"
 	tile_seal = "black"
+

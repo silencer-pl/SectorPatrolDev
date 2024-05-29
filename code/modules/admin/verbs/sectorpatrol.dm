@@ -109,21 +109,22 @@
 	var/savefile/I = new("data/persistance/objects_ovpst_[GLOB.savefile_number].sav")
 	var/item_index = 0
 	for(var/obj/obj in GLOB.objects_saved)
-		item_index += 1
 		var/turf/groundloc = get_turf(obj)
-		I.cd = "/[item_index]"
-		I["objtype"] << obj.type
-		I["name"] << obj.name
-		I["desc"] << obj.desc
-		I["desc_lore"] << obj.desc_lore
-		I["x"] << groundloc.x
-		I["pixel_x"] << obj.pixel_x
-		I["y"] << groundloc.y
-		I["pixel_y"] << obj.pixel_y
-		I["z"] << groundloc.z
-		I["customizable"] << obj.customizable
-		I["customizable_desc"] << obj.customizable_desc
-		I["customizable_desc_lore"] << obj.customizable_desc_lore
+		if (groundloc != null)
+			item_index += 1
+			I.cd = "/[item_index]"
+			I["objtype"] << obj.type
+			I["name"] << obj.name
+			I["desc"] << obj.desc
+			I["desc_lore"] << obj.desc_lore
+			I["x"] << groundloc.x
+			I["pixel_x"] << obj.pixel_x
+			I["y"] << groundloc.y
+			I["pixel_y"] << obj.pixel_y
+			I["z"] << groundloc.z
+			I["customizable"] << obj.customizable
+			I["customizable_desc"] << obj.customizable_desc
+			I["customizable_desc_lore"] << obj.customizable_desc_lore
 	I.cd = "/general"
 	I["item_index_max"] << item_index
 	to_chat(world, SPAN_BOLDWARNING("Object data saved."))

@@ -196,19 +196,39 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/olddate = GLOB.ingame_date
+	var/oldvalue = GLOB.ingame_date
 	GLOB.ingame_date = tgui_input_text(usr, message = "Enter Date to display:", title = "Date Entry", default = "[GLOB.ingame_date]", timeout = 0)
-	if(GLOB.ingame_date == null) GLOB.ingame_date = olddate
+	if(GLOB.ingame_date == null) GLOB.ingame_date = oldvalue
 
-	var/oldtime = GLOB.ingame_time
+	oldvalue = GLOB.ingame_time
 	var/newtime_hrs = tgui_input_number(usr, message = "In-game time, HOURS:", title = "Time Entry HOURS", timeout = 0)
 	var/newtime_min = tgui_input_number(usr, message = "In-game time, MINUTES:", title = "Time Entry MINUTES", timeout = 0)
 	GLOB.ingame_time = ((newtime_hrs * 36000) + (newtime_min * 600)) - world.time
-	if(GLOB.ingame_time == null) GLOB.ingame_time = oldtime
+	if(GLOB.ingame_time == null) GLOB.ingame_time = oldvalue
 
-	var/oldlocation = GLOB.ingame_location
+	oldvalue = GLOB.ingame_location
 	GLOB.ingame_location = tgui_input_text(usr, message = "Enter Location to display:", title = "Location Entry", default = "[GLOB.ingame_location]", timeout = 0)
-	if(GLOB.ingame_location == null) GLOB.ingame_location = oldlocation
+	if(GLOB.ingame_location == null) GLOB.ingame_location = oldvalue
+
+	oldvalue = GLOB.start_narration_header
+	GLOB.start_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	if(GLOB.start_narration_header == null) GLOB.start_narration_header = oldvalue
+
+	oldvalue = GLOB.start_narration_body
+	GLOB.start_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	if(GLOB.start_narration_body == null) GLOB.start_narration_body = oldvalue
+
+	oldvalue = GLOB.start_narration_footer
+	GLOB.start_narration_footer = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	if(GLOB.start_narration_footer == null) GLOB.start_narration_footer = oldvalue
+
+	oldvalue = GLOB.end_narration_header
+	GLOB.end_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	if(GLOB.end_narration_header == null) GLOB.end_narration_header = oldvalue
+
+	oldvalue = GLOB.end_narration_body
+	GLOB.end_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	if(GLOB.end_narration_body == null) GLOB.end_narration_body = oldvalue
 
 /client/proc/cmd_save_general()
 
@@ -221,8 +241,14 @@
 
 	var/savefile/G = new("data/persistance/globals.sav")
 	G["Date"] << GLOB.ingame_date
-	G["Time"] << GLOB.ingame_time
+	var/saved_time = (GLOB.ingame_time - SSticker.round_start_time)+ world.time
+	G["Time"] << saved_time
 	G["Location"] << GLOB.ingame_location
+	G["start_narration_header"] << GLOB.start_narration_header
+	G["start_narration_footer"] << GLOB.start_narration_footer
+	G["start_narration_body"] << GLOB.start_narration_body
+	G["end_narration_header"] << GLOB.end_narration_header
+	G["end_narration_body"] << GLOB.end_narration_body
 	to_chat(src, SPAN_BOLDWARNING("General data saved."))
 
 /client/proc/cmd_load_general()
@@ -238,4 +264,9 @@
 	G["Date"] >> GLOB.ingame_date
 	G["Time"] >> GLOB.ingame_time
 	G["Location"] >> GLOB.ingame_location
+	G["start_narration_header"] >> GLOB.start_narration_header
+	G["start_narration_footer"] >> GLOB.start_narration_footer
+	G["start_narration_body"] >> GLOB.start_narration_body
+	G["end_narration_header"] >> GLOB.end_narration_header
+	G["end_narration_body"] >> GLOB.end_narration_body
 	to_chat(src, SPAN_BOLDWARNING("General data loaded."))

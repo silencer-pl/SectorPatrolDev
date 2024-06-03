@@ -10,7 +10,7 @@
 
 /datum/game_mode/announce()
 	to_world("<B>Sector Patrol ALPHA</B>")
-	show_blurb(GLOB.player_list, duration = 10 SECONDS, message = "<b>[GLOB.ingame_date]\n[GLOB.ingame_location]]</b>\nLocal time: [time2text(GLOB.ingame_time,"hh:mm",0)]", screen_position = "CENTER,BOTTOM+1.5:16", text_alignment = "center", text_color = "#ffaef2", blurb_key = "introduction", ignore_key = FALSE, speed = 1)
+	show_blurb(GLOB.player_list, duration = 10 SECONDS, message = "<b>[GLOB.ingame_date]\n[GLOB.ingame_location]</b>\nLocal time: [time2text(GLOB.ingame_time,"hh:mm",0)]", screen_position = "CENTER,BOTTOM+1.5:16", text_alignment = "center", text_color = "#ffaef2", blurb_key = "introduction", ignore_key = FALSE, speed = 1)
 
 /datum/game_mode/extended/get_roles_list()
 

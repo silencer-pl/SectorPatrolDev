@@ -17,3 +17,10 @@ GLOBAL_VAR_INIT(start_narration_body, "You are currently assigned to the <b>Seco
 GLOBAL_VAR_INIT(start_narration_footer, "This is an Open Session without a general objective.")
 GLOBAL_VAR_INIT(end_narration_header, "Interval Complete.")
 GLOBAL_VAR_INIT(end_narration_body, "Thank you for participating in the Alpha of Sector Patrol!")
+
+//Display Values for Statpanel/Reference
+
+GLOBAL_VAR_INIT(resources_ldpol, 0)
+GLOBAL_VAR_INIT(resources_metal, 0)
+GLOBAL_VAR_INIT(resources_resin, 0)
+GLOBAL_VAR_INIT(resources_alloy, 0)

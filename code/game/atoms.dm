@@ -499,7 +499,53 @@ Parameters are passed from New.
 		return TRUE
 
 	if(href_list["desc_lore"])
-		show_browser(usr, "<BODY><TT>[replacetext(desc_lore, "\n", "<BR>")]</TT></BODY>", name, name, "size=500x500")
+		var/lorehtml = {"
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<style>
+		body {
+		background-color:black;
+		color:#ddd;
+		}
+		#title {
+		width:90%;
+		padding:5%;
+		text-align:center;
+		font-size:130%;
+		font-family:Tahoma, sans-serif;
+		}
+		#desc {
+		width:90%;
+		padding:5%;
+		text-align:justify;
+		font-size:120%;
+		font-family:Tahoma, sans-serif;
+		}
+		</style>
+		</head>
+		<body>
+		<div id="title">
+		<p>
+		<b>
+		Viewing: [name]
+		</b>
+		</p>
+		</div>
+		<hr>
+		<div id="desc">
+		<p>
+		[desc]
+		</p>
+		</div>
+		<hr>
+		<div id="desc">
+		<p>
+		[desc_lore]
+		</p>
+		</div>
+		"}
+		usr << browse(lorehtml,"window=[name];display=1;size=527x700;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
 		onclose(usr, "[name]")
 
 ///This proc is called on atoms when they are loaded into a shuttle

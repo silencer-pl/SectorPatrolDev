@@ -13,7 +13,7 @@
 
 //Going to take this chance to sneak in emoting and speaking procs :P
 
-/obj/item/proc/speakas(str, delay) //Talk as item. Delay in BYOND ticks (about 1/10 of a second per tick) If not provided, delay calculated automatically depending in message length.
+/obj/item/proc/talkas(str, delay) //Talk as item. Delay in BYOND ticks (about 1/10 of a second per tick) If not provided, delay calculated automatically depending in message length.
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)

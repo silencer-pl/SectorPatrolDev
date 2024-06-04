@@ -105,8 +105,8 @@
 
 /obj/item/salvaging/recycler_nozzle/attack_self(mob/user)
 	. = ..()
-	if(usr.a_intent = INTENT_GRAB)
-		if(recycler_nozzle_paired_pack = null)
+	if(usr.a_intent == INTENT_GRAB)
+		if(recycler_nozzle_paired_pack == null)
 			to_chat(usr, SPAN_INFO("This nozzle is not paired to any packs."))
 			return
 		recycler_nozzle_paired_pack = null
@@ -122,7 +122,7 @@
 	var/recycler_busy = FALSE
 
 /obj/structure/salvaging/recycler_base/attackby(obj/item/W, mob/user)
-	if(recycler_busy = TRUE)
+	if(recycler_busy == TRUE)
 		to_chat(usr, SPAN_WARNING("This device is working. Please wait until it finishes processing its current task."))
 		return
 	if(istype(W, /obj/item/salvaging/recycler_backpack))

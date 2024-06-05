@@ -280,8 +280,6 @@ cases. Override_icon_state should be a list.*/
 	. += "This is a [blood_color ? blood_color != COLOR_OIL ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item."
 	if(desc)
 		. += desc
-	if(desc_lore)
-		. += SPAN_NOTICE("This has an <a href='byond://?src=\ref[src];desc_lore=1'>extended lore description</a>.")
 
 /obj/item/attack_hand(mob/user)
 	if (!user)

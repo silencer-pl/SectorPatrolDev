@@ -18,6 +18,8 @@
 		"search_return_initial" = "After a through search you don't discover anything of note. Oops.",
 		"search_return_complete" = "There is nothing special about this item."
 		)
+	var/desc_affix
+	var/desc_lore_affix
 
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
@@ -25,6 +27,10 @@
 	GLOB.salvaging_total_metal += salvage_contents["metal"]
 	GLOB.salvaging_total_resin += salvage_contents["resin"]
 	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(desc_affix != null)
+		desc = initial(desc) + "</p><p>" + desc_affix
+	if(desc_lore_affix != null)
+		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
 
 /obj/item/salvage/proc/salvage_recycle(obj/item/salvaging/recycler_nozzle/N)
 	var/obj/item/salvaging/recycler_nozzle/nozzle = N

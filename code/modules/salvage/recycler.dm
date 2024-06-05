@@ -160,3 +160,11 @@
 			INVOKE_ASYNC(backpack, TYPE_PROC_REF(/obj/item/salvaging/recycler_backpack, recycler_empty))
 			recycler_busy = FALSE
 			talkas("Deposit complete! Thank you for your contirbution!")
+
+/obj/item/salvaging/data_spike
+	name = "data spike"
+	desc = "A small device that looks like a blue-tinted metal syringe with a swirling, bright purple liquid inside that seems to be oddly colored Liquid Data. The tip of the device does not look like it could break skin and there is no visible way to eject the liquid."
+	desc_lore = "Data spikes contain a small amount of Liquid Data that comes directly from the OV-PSTs reserves and contains instructions written by Pythia in cooperation with UAAC-TIS engineers led by Commander Alysia Reed-Wilo. </p><p>When connected to a computer system, the data spike injects its Liquid Data content into the machine which results in a localized Crystalline infestation which instead of destroying the machine attempts to convert its contents into a Liquid Data compatible format, then transmits it to the PST's processing system, where the data is analyzed by Pythia and any usable intelligence is passed to UAAC-TIS operatives."
+	icon = 'icons/sectorpatrol/salvage/items.dmi'
+	icon_state = "spike"
+	flags_item = NOBLUDGEON

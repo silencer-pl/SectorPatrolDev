@@ -15,9 +15,9 @@
 		WEAR_BACK = 'icons/obj/sp_icons/salvaging/onmob/recycler_back.dmi'
 		)
 	var/list/recycler_backpack_stored_materials = list(
-		"metals" = 0,
-		"resins" = 0,
-		"alloys" = 0
+		"metal" = 0,
+		"resin" = 0,
+		"alloy" = 0
 		)
 	var/recycler_backpack_storage_max = 500
 	var/recycler_backpack_storage = 0
@@ -36,7 +36,7 @@
 			return
 
 /obj/item/salvaging/recycler_backpack/update_icon()
-	recycler_backpack_storage = recycler_backpack_stored_materials["metals"] + recycler_backpack_stored_materials["resins"] + recycler_backpack_stored_materials["alloys"]
+	recycler_backpack_storage = recycler_backpack_stored_materials["metal"] + recycler_backpack_stored_materials["resin"] + recycler_backpack_stored_materials["alloy"]
 	if(recycler_backpack_storage == 0)
 		slowdown = initial(slowdown)
 		drag_delay = initial(drag_delay)
@@ -61,16 +61,12 @@
 	. = ..()
 
 /obj/item/salvaging/recycler_backpack/proc/recycler_add_salvage(metal = 0,resin = 0,alloy = 0) // Called by nozzles depending on objects used on, adds resources to backpacks storage
-	if (recycler_backpack_storage >= recycler_backpack_storage_max)
-		talkas("Error. Backpack full. Please depoist resources.")
-		recycler_full_warning()
-		return "full"
 	if (metal == 0 && resin == 0 && alloy == 0)
-		to_chat(usr, SPAN_WARNING("Error. No resources of note detected."))
-		return "zero"
-	recycler_backpack_stored_materials["metals"] += metal
-	recycler_backpack_stored_materials["resins"] += resin
-	recycler_backpack_stored_materials["alloys"] += alloy
+		talkas("Item recycled. Notice: No resources of note detected.")
+		return
+	recycler_backpack_stored_materials["metal"] += metal
+	recycler_backpack_stored_materials["resin"] += resin
+	recycler_backpack_stored_materials["alloy"] += alloy
 	update_icon()
 
 /obj/item/salvaging/recycler_backpack/proc/recycler_full_warning()
@@ -79,9 +75,9 @@
 	talkas("Internal pressure safety threshold reached. This backpack is full. Please head to your nearest deposit station.")
 
 /obj/item/salvaging/recycler_backpack/proc/recycler_empty()
-	recycler_backpack_stored_materials["metals"] = 0
-	recycler_backpack_stored_materials["resins"] = 0
-	recycler_backpack_stored_materials["alloys"] = 0
+	recycler_backpack_stored_materials["metal"] = 0
+	recycler_backpack_stored_materials["resin"] = 0
+	recycler_backpack_stored_materials["alloy"] = 0
 	recycler_backpack_storage = 0
 	playsound(src, 'sound/effects/tankhiss1.ogg', 25)
 	sleep(30)
@@ -134,26 +130,26 @@
 		recycler_busy = TRUE
 		if(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			talkas("Depositing...")
-			if(backpack.recycler_backpack_stored_materials["metals"] != 0)
-				GLOB.resources_metal += backpack.recycler_backpack_stored_materials["metals"]
+			if(backpack.recycler_backpack_stored_materials["metal"] != 0)
+				GLOB.resources_metal += backpack.recycler_backpack_stored_materials["metal"]
 				icon_state = "salvage_deposit_on"
 				update_icon()
 				sleep(25)
-				talkas("Metals deposited. Units processed: [backpack.recycler_backpack_stored_materials["metals"]]")
+				talkas("metal deposited. Units processed: [backpack.recycler_backpack_stored_materials["metal"]]")
 				icon_state = initial(icon_state)
-			if(backpack.recycler_backpack_stored_materials["resins"] != 0)
-				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["resins"]
+			if(backpack.recycler_backpack_stored_materials["resin"] != 0)
+				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["resin"]
 				icon_state = "salvage_deposit_on"
 				update_icon()
 				sleep(25)
-				talkas("Resins deposited. Units processed: [backpack.recycler_backpack_stored_materials["resins"]]")
+				talkas("resin deposited. Units processed: [backpack.recycler_backpack_stored_materials["resin"]]")
 				icon_state = initial(icon_state)
-			if(backpack.recycler_backpack_stored_materials["metals"] != 0)
-				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["alloys"]
+			if(backpack.recycler_backpack_stored_materials["metal"] != 0)
+				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["alloy"]
 				icon_state = "salvage_deposit_on"
 				update_icon()
 				sleep(25)
-				talkas("Metals deposited. Units processed: [backpack.recycler_backpack_stored_materials["metals"]]")
+				talkas("metal deposited. Units processed: [backpack.recycler_backpack_stored_materials["metal"]]")
 				icon_state = initial(icon_state)
 			GLOB.resources_ldpol += backpack.recycler_backpack_storage
 			icon_state = "salvage_deposit_on"

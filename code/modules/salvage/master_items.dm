@@ -106,9 +106,50 @@
 	var/salvage_strucutre_ready = FALSE
 	var/desc_affix
 	var/desc_lore_affix
+	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
+	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
+	var/salvage_steps
+	var/salvage_current_step = 0
+
+/obj/structure/salvage/proc/salvage_generate_decon()
+
+	salvage_steps = (length(salvage_decon_keyword) / 2)
+	salvage_decon_array = new/list(2,salvage_steps)
+	var/salvage_gen_current_step = 0
+	while (salvage_gen_current_step < salvage_steps)
+		salvage_gen_current_step += 1
+		var/salvage_decon_letter = uppertext(copytext(salvage_decon_keyword, salvage_gen_current_step, (salvage_gen_current_step + 1)))
+		switch(salvage_decon_letter)
+			if("A")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_SCREWDRIVER
+			if("B")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_CROWBAR
+			if("C")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_WIRECUTTERS
+			if("D")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_WRENCH
+			if("E")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_MULTITOOL
+			if("F")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_DRILL
+	salvage_gen_current_step = 0
+	while (salvage_gen_current_step < salvage_steps)
+		salvage_gen_current_step += 1
+		var/salvage_decon_letter = uppertext(copytext(salvage_decon_keyword, (salvage_gen_current_step + salvage_steps), ((salvage_gen_current_step + salvage_steps + 1))))
+		switch(salvage_decon_letter)
+			if("A")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
+			if("B")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_GRAB
+			if("C")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_DISARM
+			if("D")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HARM
+
 
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
+	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
 	GLOB.salvaging_total_ldpol += (salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])
 	GLOB.salvaging_total_metal += salvage_contents["metal"]
 	GLOB.salvaging_total_resin += salvage_contents["resin"]

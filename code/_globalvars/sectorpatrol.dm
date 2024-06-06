@@ -25,9 +25,15 @@ GLOBAL_VAR_INIT(resources_metal, 0)
 GLOBAL_VAR_INIT(resources_resin, 0)
 GLOBAL_VAR_INIT(resources_alloy, 0)
 
+GLOBAL_VAR_INIT(salvaging_intel_items, 0)
+GLOBAL_VAR_INIT(salvaging_intel_hacks, 0)
+
 // Salvaging resource tallies for grading and reference
 
 GLOBAL_VAR_INIT(salvaging_total_ldpol, 0)
 GLOBAL_VAR_INIT(salvaging_total_metal, 0)
 GLOBAL_VAR_INIT(salvaging_total_resin, 0)
 GLOBAL_VAR_INIT(salvaging_total_alloy, 0)
+
+GLOBAL_VAR_INIT(salvaging_total_intel_items, 0)
+GLOBAL_VAR_INIT(salvaging_total_intel_hacks, 0)

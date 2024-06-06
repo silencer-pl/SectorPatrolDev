@@ -163,6 +163,9 @@
 	/// How much to offset the item randomly either way alongside Y visually
 	var/ground_offset_y = 0
 
+	var/is_used = 0
+
+
 /obj/item/Initialize(mapload, ...)
 	. = ..()
 
@@ -1098,3 +1101,9 @@ cases. Override_icon_state should be a list.*/
 ///Called by /mob/living/carbon/swap_hand() when hands are swapped
 /obj/item/proc/hands_swapped(mob/living/carbon/swapper_of_hands)
 	return
+
+/obj/item/proc/check_use() // Used to test if this item is already being used on something, sets tool_occupied to 1 and returns 1 if it's 0, returns 0 if it's 1.
+	if(is_used == 0)
+		is_used = 1
+		return 1
+	return 0

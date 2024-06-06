@@ -29,10 +29,18 @@
 	GLOB.salvaging_total_metal += salvage_contents["metal"]
 	GLOB.salvaging_total_resin += salvage_contents["resin"]
 	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(salvage_intel_item) GLOB.salvaging_intel_items += 1
 	if(desc_affix != null)
 		desc = initial(desc) + "</p><p>" + desc_affix
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
+
+/obj/item/salvage/examine(mob/user)
+	..()
+	if(salvage_search["can_be_searched"] == 1 && salvage_search["was_searched"] == 0)
+		to_chat(usr, SPAN_INFO("This object can be searched for more information. Use it in your active hand to begin the search."))
+	if(salvage_search["can_be_searched"] == 1 && salvage_search["was_searched"] == 1)
+		to_chat(usr, SPAN_INFO("This object can be searched for more information. It looks like someone already went through it, but you can still take a closer look."))
 
 /obj/item/salvage/proc/salvage_recycle(obj/item/salvaging/recycler_nozzle/N)
 	var/obj/item/salvaging/recycler_nozzle/nozzle = N
@@ -105,8 +113,10 @@
 		)
 	var/desc_affix
 	var/desc_lore_affix
+	var/hackable = 0 // If 1, spike proc will trigger as priority after using data spike. Introduce a state that breaks on decon later too, but for now keeping it simple. If 2, hack in progress, if 3 hack completed.
 	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
+	var/salvage_big_item = 0 //If 1, restricts tool usage to specific item
 	var/salvage_steps
 	var/salvage_current_step = 1
 
@@ -178,27 +188,57 @@
 			switch(state_to_return)
 				if("starting") return "You start to unfasten the screws on the [src]."
 				if("finished") return "You remove the screws from the [src] and put them aside."
+				if("examine") return "You need a screwdriver to prepare this object for salvaging."
 		if(TRAIT_TOOL_CROWBAR)
 			switch(state_to_return)
 				if("starting") return "You start to pry the external cover off the [src] with a crowbar."
 				if("finished") return "You remove the external cover from the [src]."
+				if("examine") return "You need a crowbar to prepare this object for salvaging."
 		if(TRAIT_TOOL_WIRECUTTERS)
 			switch(state_to_return)
 				if("starting") return "You start to cut the internal circutry of [src] with the wirecutters."
 				if("finished") return "You finish cutting the internal circutry of [src] and make sure the internal elements are loose."
+				if("examine") return "You need some wirecutters to prepare this object for salvaging."
 		if(TRAIT_TOOL_WRENCH)
 			switch(state_to_return)
 				if("starting") return "You start to remove heavy bolts from the [src] with a wrench."
 				if("finished") return "You remove the bolts from the [src]."
+				if("examine") return "You need a wrench to prepare this object for salvaging."
 		if(TRAIT_TOOL_MULTITOOL)
 			switch(state_to_return)
 				if("starting") return "You plug in a multitool to [src] and start a diagnostic routine."
 				if("finished") return "The multitool finishes its routine on [src] and opens its maintenance hatch."
+				if("examine") return "You need a multitool to prepare this object for salvaging."
 		if(TRAIT_TOOL_DRILL)
 			switch(state_to_return)
 				if("starting") return "You start to drill through the [src]."
 				if("finished") return "You finish drilling through the [src]."
+				if("examine") return "You need a drill to prepare this object for salvaging."
+		if(INTENT_HELP)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HELP intent."
+		if(INTENT_GRAB)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HELP intent."
+		if(INTENT_DISARM)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HELP intent."
+		if(INTENT_HARM)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HELP intent."
 
+
+/obj/structure/salvage/examine(mob/user)
+	..()
+	if(salvage_current_step > salvage_steps)
+		to_chat(usr, SPAN_INFO("This object has been fully prepared for recycling."))
+	if(salvage_current_step <= salvage_steps)
+		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
+		to_chat(usr, SPAN_INFO(salvage_desc))
+	if(salvage_current_step > salvage_steps)
+		to_chat(usr, SPAN_INFO("This object is ready for recycling."))
+	if(salvage_big_item)
+		to_chat(usr, SPAN_INFO("This object is large and complex enough that it will require your full attention during decomission."))
 /obj/structure/salvage/proc/salvage_process_decon(tool = null)
 	if (tool == null) return 0
 	var/salvage_active_tool_trait = tool
@@ -208,6 +248,30 @@
 		salvage_current_step += 1
 		return 1
 	return 0
+
+/obj/structure/salvage/proc/salvage_process_spike()
+	switch(hackable)
+		if(1)
+			emoteas("pops louldy a few times as liquid from the spike is absorbed inside.")
+			hackable = 2
+			langchat_color = "#9b06a8"
+			talkas("Spike delivery sucessful. Caching information.")
+	//		icon_state = initial(icon_state) + "_spike"
+	//		update_icon()
+			sleep(100)
+			talkas("Infomration retrieved. Data cache pulse sent. This device now may be deconstructed.")
+			hackable = 3
+			GLOB.salvaging_intel_items += 1
+			return 1
+		if(2)
+			to_chat(usr, SPAN_INFO("This device is already being hacked."))
+			return 0
+		if(3)
+			to_chat(usr, SPAN_INFO("This device has already been scrapped for data."))
+			return 0
+		else
+			return "exeption"
+
 
 /obj/structure/salvage/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/salvaging/recycler_nozzle/))
@@ -231,18 +295,30 @@
 			return
 		salvage_recycle(nozzle)
 		return
+	if(hackable)
+		if(istype(W, /obj/item/salvaging/data_spike/))
+			var/obj/item/salvaging/data_spike/spike = W
+			if(salvage_process_spike() == 1)
+				qdel(spike)
+				return
+			return
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This object is ready for salvaging and does not need any further tinkering."))
 		return
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(istype(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
-				if(salvage_process_decon(tool = W) == 1)
-					update_icon()
-					return
-				return "exception - salvage_process_decon failed"
+				if(W.check_use() == 1)
+					if(salvage_process_decon(tool = W) == 1)
+						update_icon()
+						W.is_used = 0
+						return
+					W.is_used = 0
+					return "exception - salvage_process_decon failed"
+				to_chat(usr, SPAN_INFO("You are already using this tool a big object."))
+				return
 			to_chat(usr, SPAN_INFO("You do not seem to be using the correct intent for this action. Look at the object for more information."))
 			return
 		to_chat(usr, SPAN_INFO("You do not seem to be using the correct tool for this action. Look at the object for more information."))
 		return
-	to_chat(usr, SPAN_INFO("This object does not seem to need any tinkering."))
+	to_chat(usr, SPAN_INFO("You have no idea how to combine these two together."))

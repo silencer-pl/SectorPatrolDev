@@ -5,25 +5,19 @@
 	icon = 'icons/sectorpatrol/salvage/items.dmi'
 	icon_state = "master"
 	var/terminal_id = "default"
-	var/terminal_intro_text = "Hello. I am a terminal and this is my intro text."
-	var/list/terminal_buffer = list()
+	var/list/terminal_buffer = list("_")
 	var/terminal_busy = 0
 
-/obj/structure/terminal/proc/reset_buffer()
+/obj/structure/terminal/proc/reset_buffer() // resets terminal buffer and creates fresh list.
 	terminal_buffer = null
-	terminal_buffer = list()
-	terminal_buffer += terminal_intro_text
-
-/obj/structure/terminal/Initialize(mapload, ...)
-	. = ..()
-	reset_buffer()
+	terminal_buffer = list("_")
 
 /obj/structure/terminal/proc/kill_window()
 	usr << browse(null, "window=[terminal_id]")
 	reset_buffer()
 
-/obj/structure/terminal/proc/terminal_display()
-	var/terminal_output = ("<p>" + jointext(terminal_buffer, "</p><p>") + "/<p>")
+/obj/structure/terminal/proc/terminal_display() // Display loop. HTML encodes (which incidentally should also prevent a lot of HTML shenanigans since it escapes characters) and displays current buffer. Please don't laugh at my placeholder HTML -_- , in normal circumstances should not need edits unless you want to change the style for an individual terminal.
+	var/terminal_output = ("<p>" + jointext((terminal_buffer), "</p><p>") + "/<p>")
 	var/terminal_html ={"<!DOCTYPE html>
 	<html>
 	<head>
@@ -48,26 +42,50 @@
 	</div>
 	</body>
 	"}
-	usr << browse(terminal_html,"window=[terminal_id];display=1;size=500x700;border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
+	usr << browse(terminal_html,"window=[terminal_id];display=1;size=600x800;border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
 	onclose(usr, "[terminal_id]")
 
-/obj/structure/terminal/proc/terminal_input()
-	terminal_buffer += html_encode(">_")
+/obj/structure/terminal/proc/terminal_display_line(str)
+	var/line_to_display = str
+	if(!line_to_display) return "null string passed to display line."
+	terminal_buffer += html_encode(line_to_display)
 	terminal_display()
-	var/terminal_input = tgui_input_text(usr, message = "Please enter a command, use cancel or close the window to close the terminal.", title = "Terminal Input", timeout = 0)
+
+
+/obj/structure/terminal/proc/terminal_parse(str) //Ideally, this is the only block that should be copied into definitions down the line. Yes, the whole block. HELP is what prints as an intro to new users as well, so it should be defined no matter what unless you want it to throw errors and break :P
+	var/string_to_parse = uppertext(str)
+	if(!string_to_parse) return "error - null string parsed"
+	switch(string_to_parse)
+		if("HELP")
+			if(!(terminal_id in usr.saw_narrations))
+				terminal_display_line("New user detected. Welcome, [usr.name]. Displaying help message:")
+				terminal_display()
+				usr.saw_narrations += terminal_id
+			terminal_display_line("Hello. I am a terminal and this is my intro text.")
+			terminal_display()
+			terminal_input()
+			return
+		else
+			terminal_display_line("Unknown Command Error Message.")
+			terminal_display()
+			terminal_input()
+
+/obj/structure/terminal/proc/terminal_input() //Asks for input, kills window on cancel or escape
+	terminal_display_line(">_")
+	terminal_display()
+	var/terminal_input = tgui_input_text(usr, message = "Please enter a command, use cancel or close the window to close the terminal.", title = "Terminal Input", encode = TRUE, timeout = 0)
 	if(!terminal_input)
 		kill_window()
-		return
+		return "normal exit"
 	terminal_buffer -= html_encode(">_")
 	terminal_buffer += (html_encode("> ") + terminal_input)
 	terminal_display()
-	sleep(TERMINAL_STANDARD_SLEEP)
-	terminal_buffer += ("If I had something to say, it would show up here.")
-	terminal_display()
-	sleep(TERMINAL_STANDARD_SLEEP)
-	terminal_input()
+	terminal_parse(str = terminal_input)
 
 
 /obj/structure/terminal/attack_hand(mob/user)
-	terminal_input()
-	return
+	if(!(terminal_id in usr.saw_narrations))
+		terminal_parse("help")
+	else
+		terminal_input()
+	return "end of input loop"

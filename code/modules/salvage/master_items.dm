@@ -322,3 +322,27 @@
 		to_chat(usr, SPAN_INFO("You do not seem to be using the correct tool for this action. Look at the object for more information."))
 		return
 	to_chat(usr, SPAN_INFO("You have no idea how to combine these two together."))
+
+//turfs, tile stripping, straightforward really.
+
+/turf/proc/salvage_decon()
+	mouse_opacity = 0
+	sleep(rand(1,20))
+	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
+	sleep(65)
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "empty"
+	plane = SPACE_PLANE
+	update_icon()
+	decon_effect.delete_with_anim()
+	GLOB.resources_metal += salvage_contents["metal"]
+	GLOB.resources_resin += salvage_contents["resin"]
+	GLOB.resources_alloy += salvage_contents["alloy"]
+	GLOB.resources_ldpol += (salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])
+	salvage_contents["metal"] = 0
+	salvage_contents["resin"] = 0
+	salvage_contents["alloy"] = 0
+
+/turf/proc/salvage_decon_area()
+	for (var/turf/T in get_area(src))
+		INVOKE_ASYNC(T, TYPE_PROC_REF(/turf, salvage_decon))

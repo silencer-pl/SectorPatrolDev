@@ -2340,6 +2340,7 @@
 #include "code\modules\round_recording\debug_verbs.dm"
 #include "code\modules\round_recording\hooks.dm"
 #include "code\modules\round_recording\round_recorder.dm"
+#include "code\modules\salvage\decon_effects.dm"
 #include "code\modules\salvage\master_items.dm"
 #include "code\modules\salvage\recycler.dm"
 #include "code\modules\security_levels\keycard_authentication.dm"

@@ -138,14 +138,14 @@
 				talkas("metal deposited. Units processed: [backpack.recycler_backpack_stored_materials["metal"]]")
 				icon_state = initial(icon_state)
 			if(backpack.recycler_backpack_stored_materials["resin"] != 0)
-				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["resin"]
+				GLOB.resources_resin += backpack.recycler_backpack_stored_materials["resin"]
 				icon_state = "salvage_deposit_on"
 				update_icon()
 				sleep(25)
 				talkas("resin deposited. Units processed: [backpack.recycler_backpack_stored_materials["resin"]]")
 				icon_state = initial(icon_state)
-			if(backpack.recycler_backpack_stored_materials["metal"] != 0)
-				GLOB.resources_ldpol += backpack.recycler_backpack_stored_materials["alloy"]
+			if(backpack.recycler_backpack_stored_materials["alloy"] != 0)
+				GLOB.resources_alloy += backpack.recycler_backpack_stored_materials["alloy"]
 				icon_state = "salvage_deposit_on"
 				update_icon()
 				sleep(25)

@@ -83,6 +83,8 @@
 	/// Doesn't need to be set for areas/Z levels that are marked as admin-only
 	var/block_game_interaction = FALSE
 
+	var/savlage_was_cleared = 0 // Status flag to make sure double spiking can't happen.
+
 
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
@@ -455,3 +457,4 @@
 		areas_in_z["[z]"] = list()
 	areas_in_z["[z]"] += src
 
+/area/test_area

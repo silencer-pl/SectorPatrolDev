@@ -2402,6 +2402,7 @@
 #include "code\modules\tents\equipment.dm"
 #include "code\modules\tents\folded_tents.dm"
 #include "code\modules\tents\templates.dm"
+#include "code\modules\terminal\terminal.dm"
 #include "code\modules\tgchat\cm_shims.dm"
 #include "code\modules\tgchat\message.dm"
 #include "code\modules\tgchat\to_chat.dm"

@@ -1,3 +1,5 @@
+
+
 /obj/structure/terminal/
 	name = "terminal- master definition"
 	desc = "This is a master item. It should not be placed anywhere in the game world."
@@ -5,12 +7,14 @@
 	icon = 'icons/sectorpatrol/salvage/items.dmi'
 	icon_state = "master"
 	var/terminal_id = "default"
-	var/list/terminal_buffer = list("_")
+	var/list/terminal_buffer = list()
 	var/terminal_busy = 0
+	var/terminal_line_length = 70
+	var/terminal_line_height = 21
 
 /obj/structure/terminal/proc/reset_buffer() // resets terminal buffer and creates fresh list.
 	terminal_buffer = null
-	terminal_buffer = list("_")
+	terminal_buffer = list()
 
 /obj/structure/terminal/proc/kill_window()
 	usr << browse(null, "window=[terminal_id]")
@@ -42,14 +46,31 @@
 	</div>
 	</body>
 	"}
-	usr << browse(terminal_html,"window=[terminal_id];display=1;size=600x800;border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
+	usr << browse(terminal_html,"window=[terminal_id];display=1;size=800x800;border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
 	onclose(usr, "[terminal_id]")
 
-/obj/structure/terminal/proc/terminal_display_line(str)
-	var/line_to_display = str
+/obj/structure/terminal/proc/trim_buffer()
+	while (terminal_buffer.len > terminal_line_height)
+		terminal_buffer.Cut(1,2)
+
+
+/obj/structure/terminal/proc/terminal_display_line(text = null,delay = TERMINAL_STANDARD_SLEEP)
+	var/line_to_display = text
 	if(!line_to_display) return "null string passed to display line."
-	terminal_buffer += html_encode(line_to_display)
-	terminal_display()
+	if(length(line_to_display) > terminal_line_length)
+		var/cut_line
+		while(length(line_to_display) > terminal_line_length)
+			cut_line = copytext(line_to_display,1,terminal_line_length)
+			terminal_buffer += (html_encode(cut_line) + "&nbsp")
+			trim_buffer()
+			terminal_display()
+			sleep(delay)
+			line_to_display = copytext(line_to_display,terminal_line_length,0)
+	if(length(line_to_display) <= terminal_line_length)
+		terminal_buffer += (html_encode(line_to_display) + "&nbsp")
+		trim_buffer()
+		terminal_display()
+		sleep(delay)
 
 
 /obj/structure/terminal/proc/terminal_parse(str) //Ideally, this is the only block that should be copied into definitions down the line. Yes, the whole block. HELP is what prints as an intro to new users as well, so it should be defined no matter what unless you want it to throw errors and break :P
@@ -62,13 +83,12 @@
 				terminal_display()
 				usr.saw_narrations += terminal_id
 			terminal_display_line("Hello. I am a terminal and this is my intro text.")
-			terminal_display()
 			terminal_input()
 			return
 		else
 			terminal_display_line("Unknown Command Error Message.")
-			terminal_display()
 			terminal_input()
+			return
 
 /obj/structure/terminal/proc/terminal_input() //Asks for input, kills window on cancel or escape
 	terminal_display_line(">_")
@@ -78,8 +98,9 @@
 		kill_window()
 		return "normal exit"
 	terminal_buffer -= html_encode(">_")
-	terminal_buffer += (html_encode("> ") + terminal_input)
+	terminal_buffer += (html_encode(">  [terminal_input]_"))
 	terminal_display()
+	sleep(TERMINAL_STANDARD_SLEEP)
 	terminal_parse(str = terminal_input)
 
 

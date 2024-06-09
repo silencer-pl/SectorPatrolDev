@@ -97,7 +97,7 @@
 	if(!terminal_input)
 		kill_window()
 		return "normal exit"
-	terminal_buffer -= html_encode(">_")
+	terminal_buffer.Cut(terminal_buffer.len)
 	terminal_buffer += (html_encode(">  [terminal_input]_"))
 	terminal_display()
 	sleep(TERMINAL_STANDARD_SLEEP)

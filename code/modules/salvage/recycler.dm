@@ -120,6 +120,53 @@
 	no_salvage = 1
 	var/recycler_busy = FALSE
 
+/obj/structure/salvage/recycler_base/proc/salvage_process_recycler(metal = 0, resin = 0, alloy = 0)
+	recycler_busy = TRUE
+	var/metal_to_add = metal
+	var/resin_to_add = resin
+	var/alloy_to_add = alloy
+	var/LDPol_to_add
+	talkas("Depositing...")
+	if(metal_to_add)
+		GLOB.resources_metal += metal_to_add
+		LDPol_to_add += metal_to_add
+		icon_state = "salvage_deposit_on"
+		update_icon()
+		sleep(25)
+		talkas("Metals deposited. Units processed: [metal_to_add]")
+		icon_state = initial(icon_state)
+		update_icon()
+	if(resin_to_add)
+		GLOB.resources_resin += resin_to_add
+		LDPol_to_add += resin_to_add
+		icon_state = "salvage_deposit_on"
+		update_icon()
+		sleep(25)
+		talkas("Resins deposited. Units processed: [resin_to_add]")
+		icon_state = initial(icon_state)
+		update_icon()
+	if(alloy_to_add)
+		GLOB.resources_alloy += alloy_to_add
+		LDPol_to_add += alloy_to_add
+		icon_state = "salvage_deposit_on"
+		update_icon()
+		sleep(25)
+		talkas("Alloys deposited. Units processed: [alloy_to_add]")
+		icon_state = initial(icon_state)
+		update_icon()
+	LDPol_to_add /= 5
+	GLOB.resources_ldpol += LDPol_to_add
+	icon_state = "salvage_deposit_on"
+	update_icon()
+	sleep(25)
+	talkas("LD-Polymer extraction complete. Units processed: [LDPol_to_add]")
+	icon_state = initial(icon_state)
+	update_icon()
+	recycler_busy = FALSE
+	talkas("Deposit complete! Thank you for your contirbution!")
+	return 1
+
+
 /obj/structure/salvage/recycler_base/attackby(obj/item/W, mob/user)
 	if(recycler_busy == TRUE)
 		to_chat(usr, SPAN_WARNING("This device is working. Please wait until it finishes processing its current task."))
@@ -130,45 +177,11 @@
 			playsound(src, 'sound/machines/terminal_error.ogg', 25)
 			talkas("Error: Backpack empty.")
 			return
-		recycler_busy = TRUE
 		if(do_after(user, 20, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			talkas("Depositing...")
-			if(backpack.recycler_backpack_stored_materials["metal"] != 0)
-				GLOB.resources_metal += backpack.recycler_backpack_stored_materials["metal"]
-				icon_state = initial(icon_state)
-				update_icon() //Above two required by the update_icon() loop that does not run without changes made. I am to lazy to make it ingore theat.
-				icon_state = "salvage_deposit_on"
-				update_icon()
-				sleep(25)
-				talkas("metal deposited. Units processed: [backpack.recycler_backpack_stored_materials["metal"]]")
-				icon_state = initial(icon_state)
-			if(backpack.recycler_backpack_stored_materials["resin"] != 0)
-				GLOB.resources_resin += backpack.recycler_backpack_stored_materials["resin"]
-				icon_state = initial(icon_state)
-				update_icon()
-				icon_state = "salvage_deposit_on"
-				update_icon()
-				sleep(25)
-				talkas("resin deposited. Units processed: [backpack.recycler_backpack_stored_materials["resin"]]")
-				icon_state = initial(icon_state)
-			if(backpack.recycler_backpack_stored_materials["alloy"] != 0)
-				GLOB.resources_alloy += backpack.recycler_backpack_stored_materials["alloy"]
-				icon_state = "salvage_deposit_on"
-				icon_state = initial(icon_state)
-				update_icon()
-				update_icon()
-				sleep(25)
-				talkas("metal deposited. Units processed: [backpack.recycler_backpack_stored_materials["metal"]]")
-				icon_state = initial(icon_state)
-			GLOB.resources_ldpol += backpack.recycler_backpack_storage
-			icon_state = "salvage_deposit_on"
-			update_icon()
-			sleep(25)
-			talkas("LD-Polymer extraction complete. Units processed: [backpack.recycler_backpack_storage]")
-			icon_state = initial(icon_state)
-			INVOKE_ASYNC(backpack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_empty))
-			recycler_busy = FALSE
-			talkas("Deposit complete! Thank you for your contirbution!")
+			if(salvage_process_recycler(metal = backpack.recycler_backpack_stored_materials["metal"], resin = backpack.recycler_backpack_stored_materials["resin"], alloy = backpack.recycler_backpack_stored_materials["alloy"]) == 1)
+				INVOKE_ASYNC(backpack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_empty))
+
+
 
 /obj/item/salvage/data_spike
 	name = "data spike"

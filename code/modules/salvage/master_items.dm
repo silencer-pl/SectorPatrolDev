@@ -229,13 +229,13 @@
 				if("examine") return "The tool should be used in HELP intent."
 		if(INTENT_GRAB)
 			switch(state_to_return)
-				if("examine") return "The tool should be used in HELP intent."
+				if("examine") return "The tool should be used in GRAB intent."
 		if(INTENT_DISARM)
 			switch(state_to_return)
-				if("examine") return "The tool should be used in HELP intent."
+				if("examine") return "The tool should be used in DISARM intent."
 		if(INTENT_HARM)
 			switch(state_to_return)
-				if("examine") return "The tool should be used in HELP intent."
+				if("examine") return "The tool should be used in HARM intent."
 
 
 /obj/structure/salvage/examine(mob/user)
@@ -319,7 +319,7 @@
 		to_chat(usr, SPAN_INFO("This object is ready for salvaging and does not need any further tinkering."))
 		return
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
-		if(istype(W, salvage_decon_array[1][salvage_current_step]))
+		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
 				if(W.check_use() == 1)
 					if(salvage_process_decon(tool = W) == 1)

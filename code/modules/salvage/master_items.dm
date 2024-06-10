@@ -151,6 +151,8 @@
 				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_MULTITOOL
 			if("F")
 				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_DRILL
+			else
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_SCREWDRIVER
 	salvage_gen_current_step = 0
 	while (salvage_gen_current_step < salvage_steps)
 		salvage_gen_current_step += 1
@@ -164,6 +166,8 @@
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_DISARM
 			if("D")
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HARM
+			else
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
 
 
 /obj/structure/salvage/Initialize(mapload, ...)
@@ -237,14 +241,16 @@
 			switch(state_to_return)
 				if("examine") return "The tool should be used in HARM intent."
 
-
-/obj/structure/salvage/examine(mob/user)
-	..()
+/obj/structure/salvage/proc/salvage_return_step_text()
 	if(salvage_current_step <= salvage_steps)
 		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
 		to_chat(usr, SPAN_INFO(salvage_desc))
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This object is ready for recycling."))
+
+/obj/structure/salvage/examine(mob/user)
+	..()
+	salvage_return_step_text()
 	if(salvage_big_item)
 		to_chat(usr, SPAN_INFO("This object is large and complex enough that it will require your full attention during decomission."))
 
@@ -252,6 +258,7 @@
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
+		salvage_return_step_text()
 		salvage_current_step += 1
 		return 1
 	return 0
@@ -395,6 +402,8 @@
 				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_MULTITOOL
 			if("F")
 				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_DRILL
+			else
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_SCREWDRIVER
 	salvage_gen_current_step = 0
 	while (salvage_gen_current_step < salvage_steps)
 		salvage_gen_current_step += 1
@@ -408,6 +417,8 @@
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_DISARM
 			if("D")
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HARM
+			else
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
 
 
 /turf/open/salvage/Initialize(mapload, ...)
@@ -480,20 +491,23 @@
 			switch(state_to_return)
 				if("examine") return "The tool should be used in HARM intent."
 
-
-/turf/open/salvage/examine(mob/user)
-	..()
+/turf/open/salvage/proc/salvage_return_step_text()
 	if(salvage_current_step <= salvage_steps)
 		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
 		to_chat(usr, SPAN_INFO(salvage_desc))
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This floor is ready for recycling."))
 
+/turf/open/salvage/examine(mob/user)
+	..()
+	salvage_return_step_text()
+
 /turf/open/salvage/proc/salvage_process_decon()
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
 		salvage_current_step += 1
+		salvage_return_step_text()
 		return 1
 	return 0
 

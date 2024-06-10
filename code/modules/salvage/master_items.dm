@@ -169,7 +169,7 @@
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
-	GLOB.salvaging_total_ldpol += (salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])
+	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
 	GLOB.salvaging_total_metal += salvage_contents["metal"]
 	GLOB.salvaging_total_resin += salvage_contents["resin"]
 	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
@@ -240,8 +240,6 @@
 
 /obj/structure/salvage/examine(mob/user)
 	..()
-	if(salvage_current_step > salvage_steps)
-		to_chat(usr, SPAN_INFO("This object has been fully prepared for recycling."))
 	if(salvage_current_step <= salvage_steps)
 		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
 		to_chat(usr, SPAN_INFO(salvage_desc))
@@ -249,12 +247,11 @@
 		to_chat(usr, SPAN_INFO("This object is ready for recycling."))
 	if(salvage_big_item)
 		to_chat(usr, SPAN_INFO("This object is large and complex enough that it will require your full attention during decomission."))
-/obj/structure/salvage/proc/salvage_process_decon(tool = null)
-	if (tool == null) return 0
-	var/salvage_active_tool_trait = tool
-	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_active_tool_trait, state = "starting")))
+
+/obj/structure/salvage/proc/salvage_process_decon()
+	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_active_tool_trait, state = "finished")))
+		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
 		salvage_current_step += 1
 		return 1
 	return 0
@@ -322,7 +319,7 @@
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
 				if(W.check_use() == 1)
-					if(salvage_process_decon(tool = W) == 1)
+					if(salvage_process_decon() == 1)
 						update_icon()
 						W.is_used = 0
 						return
@@ -359,3 +356,192 @@
 /turf/proc/salvage_decon_area()
 	for (var/turf/T in get_area(src))
 		INVOKE_ASYNC(T, TYPE_PROC_REF(/turf, salvage_decon))
+
+
+/turf/open/salvage/
+	name = "salvagable floor - master item"
+	desc = "Yet another item that should not be player facing. Oops!"
+	desc_lore = "Please report this as a bug if this is visible anywhere if you have the time."
+	icon = 'icons/sp_default.dmi'
+	icon_state = "default_turf"
+
+	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
+	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
+	var/salvage_steps
+	var/salvage_current_step = 1
+	no_salvage = 0
+	var/desc_affix
+	var/desc_lore_affix
+	var/salvage_tiles_recycled = 0
+
+/turf/open/salvage/proc/salvage_generate_decon()
+
+	salvage_steps = (length(salvage_decon_keyword) / 2)
+	salvage_decon_array = new/list(2,salvage_steps)
+	var/salvage_gen_current_step = 0
+	while (salvage_gen_current_step < salvage_steps)
+		salvage_gen_current_step += 1
+		var/salvage_decon_letter = uppertext(copytext(salvage_decon_keyword, salvage_gen_current_step, (salvage_gen_current_step + 1)))
+		switch(salvage_decon_letter)
+			if("A")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_SCREWDRIVER
+			if("B")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_CROWBAR
+			if("C")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_WIRECUTTERS
+			if("D")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_WRENCH
+			if("E")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_MULTITOOL
+			if("F")
+				salvage_decon_array[1][salvage_gen_current_step] = TRAIT_TOOL_DRILL
+	salvage_gen_current_step = 0
+	while (salvage_gen_current_step < salvage_steps)
+		salvage_gen_current_step += 1
+		var/salvage_decon_letter = uppertext(copytext(salvage_decon_keyword, (salvage_gen_current_step + salvage_steps), ((salvage_gen_current_step + salvage_steps + 1))))
+		switch(salvage_decon_letter)
+			if("A")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
+			if("B")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_GRAB
+			if("C")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_DISARM
+			if("D")
+				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HARM
+
+
+/turf/open/salvage/Initialize(mapload, ...)
+	. = ..()
+	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
+	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
+	GLOB.salvaging_total_metal += salvage_contents["metal"]
+	GLOB.salvaging_total_resin += salvage_contents["resin"]
+	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(desc_affix != null)
+		desc = initial(desc) + "</p><p>" + desc_affix
+	if(desc_lore_affix != null)
+		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
+
+/turf/open/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
+	var/obj/item/salvage/recycler_nozzle/nozzle = N
+	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
+	playsound(src, 'sound/effects/EMPulse.ogg', 25)
+	sleep(10)
+	icon_state = initial(icon_state) + "_stripped"
+	salvage_tiles_recycled = 1
+	return
+
+
+/turf/open/salvage/proc/salvage_process_decon_generate_text(text = null, state = null)
+	if (text == null || state == null) return
+	var/text_to_return = text
+	var/state_to_return = state
+	switch(text_to_return)
+		if(TRAIT_TOOL_SCREWDRIVER)
+			switch(state_to_return)
+				if("starting") return "You start to unfasten the screws on the [src]."
+				if("finished") return "You remove the screws from the [src] and put them aside."
+				if("examine") return "You need a screwdriver to prepare this object for salvaging."
+		if(TRAIT_TOOL_CROWBAR)
+			switch(state_to_return)
+				if("starting") return "You start to pry the external cover off the [src] with a crowbar."
+				if("finished") return "You remove the external cover from the [src]."
+				if("examine") return "You need a crowbar to prepare this object for salvaging."
+		if(TRAIT_TOOL_WIRECUTTERS)
+			switch(state_to_return)
+				if("starting") return "You start to cut the internal circutry of [src] with the wirecutters."
+				if("finished") return "You finish cutting the internal circutry of [src] and make sure the internal elements are loose."
+				if("examine") return "You need some wirecutters to prepare this object for salvaging."
+		if(TRAIT_TOOL_WRENCH)
+			switch(state_to_return)
+				if("starting") return "You start to remove heavy bolts from the [src] with a wrench."
+				if("finished") return "You remove the bolts from the [src]."
+				if("examine") return "You need a wrench to prepare this object for salvaging."
+		if(TRAIT_TOOL_MULTITOOL)
+			switch(state_to_return)
+				if("starting") return "You plug in a multitool to [src] and start a diagnostic routine."
+				if("finished") return "The multitool finishes its routine on [src] and opens its maintenance hatch."
+				if("examine") return "You need a multitool to prepare this object for salvaging."
+		if(TRAIT_TOOL_DRILL)
+			switch(state_to_return)
+				if("starting") return "You start to drill through the [src]."
+				if("finished") return "You finish drilling through the [src]."
+				if("examine") return "You need a drill to prepare this object for salvaging."
+		if(INTENT_HELP)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HELP intent."
+		if(INTENT_GRAB)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in GRAB intent."
+		if(INTENT_DISARM)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in DISARM intent."
+		if(INTENT_HARM)
+			switch(state_to_return)
+				if("examine") return "The tool should be used in HARM intent."
+
+
+/turf/open/salvage/examine(mob/user)
+	..()
+	if(salvage_current_step <= salvage_steps)
+		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
+		to_chat(usr, SPAN_INFO(salvage_desc))
+	if(salvage_current_step > salvage_steps)
+		to_chat(usr, SPAN_INFO("This floor is ready for recycling."))
+
+/turf/open/salvage/proc/salvage_process_decon()
+	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
+	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
+		salvage_current_step += 1
+		return 1
+	return 0
+
+/turf/open/salvage/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/salvage/recycler_nozzle/))
+		var/obj/item/salvage/recycler_nozzle/nozzle = W
+		if(no_salvage)
+			nozzle.talkas("Error: This floor cannot be recycled.")
+			return
+		if(salvage_tiles_recycled)
+			nozzle.talkas("Error. Tiles already restracted. To remove the entire floor, please use a drone spike.")
+			return
+		if(nozzle.recycler_nozzle_paired_pack == null)
+			nozzle.talkas("Error: No backpack paired. Please pair this nozzle to a backpack.")
+			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
+			return
+		if (nozzle.recycler_nozzle_paired_pack.recycler_backpack_storage >= nozzle.recycler_nozzle_paired_pack.recycler_backpack_storage_max)
+			nozzle.recycler_nozzle_paired_pack.talkas("Error. Backpack full. Please depoist resources.")
+			nozzle.recycler_nozzle_paired_pack.recycler_full_warning()
+			return
+		if (nozzle.recycler_nozzle_charges < 1)
+			nozzle.talkas("Error: Air canister depleted. Please recharge at nearest charging station.")
+			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
+			return
+		if(salvage_current_step < salvage_steps)
+			nozzle.talkas("Error: Unloosened fastening detected. Salvage will be suboptimal.")
+			nozzle.talkas("Error: Safety mode engaged. Action disallowed.")
+			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
+			return
+		salvage_recycle(nozzle)
+		return
+	if(salvage_current_step > salvage_steps)
+		to_chat(usr, SPAN_INFO("This floor is ready for salvaging and does not need any further tinkering."))
+		return
+	if(salvage_decon_array && salvage_current_step <= salvage_steps)
+		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
+			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
+				if(W.check_use() == 1)
+					if(salvage_process_decon() == 1)
+						update_icon()
+						W.is_used = 0
+						return
+					W.is_used = 0
+					return "exception - salvage_process_decon failed"
+				to_chat(usr, SPAN_INFO("You are already using this tool a big object."))
+				return
+			to_chat(usr, SPAN_INFO("You do not seem to be using the correct intent for this action. Look at the object for more information."))
+			return
+		to_chat(usr, SPAN_INFO("You do not seem to be using the correct tool for this action. Look at the object for more information."))
+		return
+	to_chat(usr, SPAN_INFO("You have no idea how to combine these two together."))

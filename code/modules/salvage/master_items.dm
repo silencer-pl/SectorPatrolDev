@@ -55,7 +55,7 @@
 	icon_state = "empty"
 	plane = SPACE_PLANE
 	update_icon()
-	decon_effect.delete_with_anim()
+	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	qdel(src)
 	return
 
@@ -184,11 +184,13 @@
 
 /obj/structure/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
 	var/obj/item/salvage/recycler_nozzle/nozzle = N
-	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
+	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents["metal"], salvage_contents["resin"], salvage_contents["alloy"])
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
-//  icon_state = initial(icon_state) + "_0"
-//  update_icon()
-	sleep(10)
+	var/obj/item/effect/decon_shimmer/decon_structure/decon_effect = new (get_turf(src))
+	decon_effect.pixel_x = pixel_x
+	decon_effect.pixel_y = pixel_y
+	sleep(15)
+	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	qdel(src)
 	return
 
@@ -325,7 +327,7 @@
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
-				if(W.check_use() == 1)
+				if(W.check_use(flag = salvage_big_item) == 1)
 					if(salvage_process_decon() == 1)
 						update_icon()
 						W.is_used = 0
@@ -438,7 +440,9 @@
 	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
 	sleep(10)
-	icon_state = initial(icon_state) + "_stripped"
+	icon = 'icons/turf/floors/floors.dmi'
+	icon_state = "plating"
+	update_icon()
 	salvage_tiles_recycled = 1
 	return
 
@@ -545,15 +549,11 @@
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
-				if(W.check_use() == 1)
-					if(salvage_process_decon() == 1)
-						update_icon()
-						W.is_used = 0
-						return
+				if(salvage_process_decon() == 1)
+					update_icon()
 					W.is_used = 0
-					return "exception - salvage_process_decon failed"
-				to_chat(usr, SPAN_INFO("You are already using this tool a big object."))
-				return
+					return
+				return "exception - salvage_process_decon failed"
 			to_chat(usr, SPAN_INFO("You do not seem to be using the correct intent for this action. Look at the object for more information."))
 			return
 		to_chat(usr, SPAN_INFO("You do not seem to be using the correct tool for this action. Look at the object for more information."))

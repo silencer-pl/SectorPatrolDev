@@ -25,3 +25,6 @@
 
 /obj/item/effect/decon_shimmer/decon_item
 	shimmer_type = "item"
+
+/obj/item/effect/decon_shimmer/decon_structure
+	shimmer_type = "structure"

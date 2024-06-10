@@ -79,10 +79,11 @@
 	vis_contents.Cut()
 
 	GLOB.turfs += src
-	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"]) / 5)
-	GLOB.salvaging_total_metal += salvage_contents["metal"]
-	GLOB.salvaging_total_resin += salvage_contents["resin"]
-	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(!no_salvage)
+		GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"]) / 5)
+		GLOB.salvaging_total_metal += salvage_contents["metal"]
+		GLOB.salvaging_total_resin += salvage_contents["resin"]
+		GLOB.salvaging_total_alloy += salvage_contents["alloy"]
 
 
 	assemble_baseturfs()

@@ -14,7 +14,7 @@
 "aS" = (/obj/effect/step_trigger/message/seeonce_blurb/Dock31,/turf/open/floor/almayer{dir = 8; icon_state = "emeraldcorner"},/area/ovpst)
 "aX" = (/turf/open/floor/almayer/empty,/area/ovpst/airlock/ele_e_d31)
 "aZ" = (/turf/open/floor/almayer{icon_state = "blue"},/area/ovpst)
-"ba" = (/obj/structure/terminal/buffer_reader,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
+"ba" = (/obj/item/salvage/recycler_backpack,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "bl" = (/turf/open/floor/almayer{icon_state = "silvercorner"; dir = 1},/area/ovpst)
 "bm" = (/obj/structure/surface/table/reinforced/black,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "bo" = (/obj/structure/bed/sofa/vert/grey/bot,/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
@@ -126,6 +126,7 @@
 "lM" = (/obj/effect/step_trigger/message/seeonce/D31Scn2,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "lP" = (/obj/structure/machinery/telecomms/broadcaster/preset_cent,/obj/structure/machinery/telecomms/broadcaster/preset_left,/obj/structure/machinery/telecomms/broadcaster/preset_right,/obj/structure/machinery/telecomms/bus/preset_cent,/obj/structure/machinery/telecomms/bus/preset_four,/obj/structure/machinery/telecomms/bus/preset_one,/obj/structure/machinery/telecomms/bus/preset_three,/obj/structure/machinery/telecomms/bus/preset_two,/obj/structure/machinery/telecomms/hub/preset,/obj/structure/machinery/telecomms/hub/preset_cent,/obj/structure/machinery/telecomms/processor/preset_cent,/obj/structure/machinery/telecomms/processor/preset_four,/obj/structure/machinery/telecomms/processor/preset_one,/obj/structure/machinery/telecomms/processor/preset_three,/obj/structure/machinery/telecomms/processor/preset_two,/obj/structure/machinery/telecomms/receiver/preset,/obj/structure/machinery/telecomms/receiver/preset_cent,/obj/structure/machinery/telecomms/receiver/preset_left,/obj/structure/machinery/telecomms/relay/preset,/obj/structure/machinery/telecomms/relay/preset/centcom,/obj/structure/machinery/telecomms/relay/preset/telecomms,/obj/structure/machinery/telecomms/relay/preset/mining,/obj/structure/machinery/telecomms/relay/preset/station,/obj/structure/machinery/telecomms/relay/preset/station/prison,/obj/structure/machinery/telecomms/server/presets,/obj/structure/machinery/telecomms/server/presets/centcomm,/obj/structure/machinery/telecomms/server/presets/command,/obj/structure/machinery/telecomms/server/presets/common,/obj/structure/machinery/telecomms/server/presets/engineering,/obj/structure/machinery/telecomms/server/presets/medical,/obj/structure/machinery/telecomms/server/presets/security,/obj/structure/machinery/telecomms/server/presets/squads,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
 "lV" = (/obj/effect/decal/info_tag/pst/t14{pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- T-14 - Hideaway O37</big><br>"},/turf/open/floor/almayer{icon_state = "black"; dir = 1},/area/ovpst)
+"lZ" = (/obj/item/salvage/recycler_nozzle,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "me" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food{density = 0; pixel_y = 20},/turf/open/floor/almayer,/area/ovpst)
 "mh" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "whitecorner"},/area/ovpst)
 "mj" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'; id = "crypt_airlock_doors2"; locked = 1},/turf/open/floor/plating/plating_catwalk,/area/ovpst)
@@ -171,7 +172,7 @@
 "pL" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/secdoor.dmi'},/turf/open/floor/almayer{icon_state = "redfull"; dir = 4},/area/ovpst)
 "pO" = (/turf/open/floor/almayer{allow_construction = 0},/area/ovpst)
 "pZ" = (/obj/structure/machinery/light/small,/turf/open/floor/almayer,/area/ovpst)
-"qa" = (/obj/structure/terminal,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
+"qa" = (/obj/structure/salvage/recycler_base,/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "qe" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/engidoor2.dmi'; dir = 2},/turf/open/floor/almayer{icon_state = "orangefull"},/area/ovpst)
 "qg" = (/turf/closed/wall/almayer/outer,/area/space)
 "qn" = (/obj/structure/machinery/light/small,/turf/open/floor/almayer{icon_state = "tcomms"},/area/ovpst)
@@ -286,7 +287,7 @@
 "Bi" = (/turf/open/floor/almayer{dir = 4; icon_state = "emeraldcorner"},/area/ovpst)
 "Bm" = (/obj/structure/machinery/light/small{dir = 1},/turf/open/floor/almayer{dir = 4; icon_state = "orangecorner"},/area/ovpst)
 "Bu" = (/turf/open/floor/almayer{dir = 8; icon_state = "redcorner"},/area/ovpst)
-"Bz" = (/turf/open/floor/holofloor/grass,/area/test_area)
+"Bz" = (/obj/item/salvage{salvage_contents = list("metal" = 50, "resin" = 50, "alloy" = 50)},/turf/open/floor/holofloor/grass,/area/ovpst)
 "BF" = (/obj/effect/decal/info_tag/pst/sec{dir = 4; pixel_y = 16; desc = "UACM Outer Veil Primary Supply Terminal <br><big>- SEC - D01 - R37 -</big><br>Dorms Deck 37 Entrance Guest Clearance and Cargo Reception Station"},/obj/structure/machinery/light{dir = 4; brightness = 12},/turf/open/floor/almayer{dir = 4; icon_state = "redcorner"},/area/ovpst)
 "BH" = (/obj/structure/machinery/light/small{dir = 8; light_id = "cargointake"},/turf/open/floor/almayer{icon_state = "plate"},/area/ovpst/airlock/d31)
 "BI" = (/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{dir = 4; icon_state = "emeraldcorner"},/area/ovpst)
@@ -440,7 +441,7 @@
 "Pj" = (/turf/open/floor/almayer{dir = 4; icon_state = "blue2orange"},/area/ovpst)
 "Pn" = (/obj/structure/surface/table/reinforced/black,/obj/structure/eventterminal/logbuffer{dir = 8},/turf/open/floor/almayer,/area/ovpst)
 "Ps" = (/obj/structure/machinery/door/poddoor/almayer/locked{dir = 8},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/ovpst)
-"Pv" = (/obj/effect/landmark/start/basepc,/turf/open/floor/holofloor/grass,/area/test_area)
+"Pv" = (/obj/item/salvage{salvage_contents = list("metal" = 50, "resin" = 50, "alloy" = 50)},/turf/open/floor/almayer{allow_construction = 0; icon_state = "plate"},/area/ovpst)
 "Pz" = (/turf/open/floor/almayer{dir = 10; icon_state = "emerald"},/area/ovpst)
 "PI" = (/obj/structure/sink{dir = 1; pixel_y = -8},/obj/structure/mirror{pixel_y = -26},/turf/open/floor/almayer{icon_state = "whitefull"; dir = 4},/area/ovpst)
 "PO" = (/turf/open/floor/almayer{icon_state = "silver"; dir = 1},/area/ovpst)
@@ -608,10 +609,10 @@ qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSrIMJpOLN
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSpOpOhdhdhdhdhdhdhdhdhdpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhsDlhVlmlKXKXrWlhdEdalhKZBalhafKZlhsDlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSaSaSaSaSaSaSaSaSaSaSaSaIAIAIAIAIAIAIAIAIATSfvpOhdybhdybhdybybhdhdpOCBTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhlhsoKXlhlhXGpOlhlhlhlhlhlhlhsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvcepOhdhdhdhdhdhdhdhdhdpOcexvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDlhlhHaycyciGnCyLyLBXioioioiolhlhsDlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESEdqSaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhnalhlhiohdzKhdhdPePeBzBzPvBziolhlhSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhSLTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhsDlhlhFdzKhdzKhdPePeBzPvBzPvNBlhlhsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvbopOpOpOpOpOpOpOpOpOpOpOboxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSlhlhfphdzKhdzKPePePvBzPvBzvJlhlhCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
-qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOwRpOhWVaVaMdpOwRpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlFeNRBYYiDnVRBYYmeKBRBYYllnVRBYYVUKBRBYYZLNblFCgzGhMPePePePePeqabaPePePetLxLXVlFqZRBYYBenVRBYYVUKBRBYYllnVRBYYmeKBRBYYMYNbaATSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESEdqSaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhnalhlhiohdzKhdhdPePehdhdzKhdiolhlhSLlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhvjvjvjlhSLTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvIRpOpOpOpOpOpOpOpOpOpOpOIRxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhsDlhlhFdzKhdzKBzPvPvBzzKhdzKNBlhlhsDlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhvjiNvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIAxvbopOpOpOpOpOpOpOpOpOpOpOboxvIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSlhlhfphdzKhdzKPePezKhdzKhdvJlhlhCSlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhCSTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
+qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOpOpOwRpOhWVaVaMdpOwRpOpOTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSlFeNRBYYiDnVRBYYmeKBRBYYllnVRBYYVUKBRBYYZLNblFCgzGhMPePePeqaPePebalZPePetLxLXVlFqZRBYYBenVRBYYVUKBRBYYllnVRBYYmeKBRBYYMYNbaATSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSlhlhlhlhlhlhyXpOlhlhlhlhlhTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSKzLjiohWVaMdiohWVajliohWVaMdiohWVajliohWVaWqcoyFzohMPePePePeSFzNPePePePetLkqPjTACaiohWVaMdiohWVajliohWVaMdiohWVajliohWVaFAcoTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSpOAqFizFpOlhRBZWlhZhZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSCSlhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhCSlhlhNshdzKhdzKPePezKhdzKhdEjlhlhCSlhlhlhkElhlhlhkElhlhlhkElhlhlhkElhlhlhkElhCSTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg
 qgIAIAIAIAIAIAIAIAIAIAIAIASaSESESESESESESESESESESESaIAIAIAIAIAIAIAIAIATSEppOpOpOpOlhfvCBlhnbZhGMGMTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIATSsDlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhsDlhlhFdzKhdhdhdPePehdzKhdzKNBlhlhsDlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhvjQzvjlhsDTSIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqg

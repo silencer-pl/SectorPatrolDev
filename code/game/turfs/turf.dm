@@ -67,6 +67,7 @@
 		"resin" = 0,
 		"alloy" = 0,
 		)
+	var/no_salvage = 1
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // this doesn't parent call for optimisation reasons

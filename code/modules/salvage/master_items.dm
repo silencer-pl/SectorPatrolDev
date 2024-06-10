@@ -22,6 +22,7 @@
 		)
 	var/desc_affix
 	var/desc_lore_affix
+	var/no_salvage = 0
 
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
@@ -42,19 +43,28 @@
 	if(salvage_search["can_be_searched"] == 1 && salvage_search["was_searched"] == 1)
 		to_chat(usr, SPAN_INFO("This object can be searched for more information. It looks like someone already went through it, but you can still take a closer look."))
 
-/obj/item/salvage/proc/salvage_recycle(obj/item/salvaging/recycler_nozzle/N)
-	var/obj/item/salvaging/recycler_nozzle/nozzle = N
-	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
+/obj/item/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
+	var/obj/item/salvage/recycler_nozzle/nozzle = N
+	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents["metal"], salvage_contents["resin"], salvage_contents["alloy"])
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
-//  icon_state = initial(icon_state) + "_0"
-//  update_icon()
-	sleep(10)
+	var/obj/item/effect/decon_shimmer/decon_item/decon_effect = new (get_turf(src))
+	decon_effect.pixel_x = pixel_x
+	decon_effect.pixel_y = pixel_y
+	sleep(15)
+	icon = 'icons/turf/almayer.dmi'
+	icon_state = "empty"
+	plane = SPACE_PLANE
+	update_icon()
+	decon_effect.delete_with_anim()
 	qdel(src)
 	return
 
 /obj/item/salvage/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/salvaging/recycler_nozzle/))
-		var/obj/item/salvaging/recycler_nozzle/nozzle = W
+	if(istype(W, /obj/item/salvage/recycler_nozzle/))
+		var/obj/item/salvage/recycler_nozzle/nozzle = W
+		if(no_salvage)
+			nozzle.talkas("Error: This item cannot be recycled.")
+			return
 		if(nozzle.recycler_nozzle_paired_pack == null)
 			nozzle.talkas("Error: No backpack paired. Please pair this nozzle to a backpack.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
@@ -74,7 +84,6 @@
 	. = ..()
 	if(usr.a_intent == INTENT_GRAB)
 		if(salvage_search["can_be_searched"] == 0)
-			to_chat(usr, SPAN_INFO("There is nothing to search. This item can be safely recycled."))
 			return
 		if(salvage_search["was_searched"] == 1)
 			to_chat(usr, SPAN_INFO("This item was already searched, but you can still gather the following:"))
@@ -119,6 +128,7 @@
 	var/salvage_big_item = 0 //If 1, restricts tool usage to specific item
 	var/salvage_steps
 	var/salvage_current_step = 1
+	var/no_salvage = 0
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -168,8 +178,8 @@
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
 
-/obj/structure/salvage/proc/salvage_recycle(obj/item/salvaging/recycler_nozzle/N)
-	var/obj/item/salvaging/recycler_nozzle/nozzle = N
+/obj/structure/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
+	var/obj/item/salvage/recycler_nozzle/nozzle = N
 	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
 //  icon_state = initial(icon_state) + "_0"
@@ -274,8 +284,11 @@
 
 
 /obj/structure/salvage/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/salvaging/recycler_nozzle/))
-		var/obj/item/salvaging/recycler_nozzle/nozzle = W
+	if(istype(W, /obj/item/salvage/recycler_nozzle/))
+		var/obj/item/salvage/recycler_nozzle/nozzle = W
+		if(no_salvage)
+			nozzle.talkas("Error: This item cannot be recycled.")
+			return
 		if(nozzle.recycler_nozzle_paired_pack == null)
 			nozzle.talkas("Error: No backpack paired. Please pair this nozzle to a backpack.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
@@ -296,8 +309,8 @@
 		salvage_recycle(nozzle)
 		return
 	if(hackable)
-		if(istype(W, /obj/item/salvaging/data_spike/))
-			var/obj/item/salvaging/data_spike/spike = W
+		if(istype(W, /obj/item/salvage/data_spike/))
+			var/obj/item/salvage/data_spike/spike = W
 			if(salvage_process_spike() == 1)
 				qdel(spike)
 				return

@@ -22,3 +22,6 @@
 
 /obj/item/effect/decon_shimmer/decon_turf
 	shimmer_type = "turf"
+
+/obj/item/effect/decon_shimmer/decon_item
+	shimmer_type = "item"

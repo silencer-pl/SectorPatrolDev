@@ -101,6 +101,12 @@
 	var/recycler_nozzle_charges_max = 100
 	var/recycler_nozzle_charges = 100
 
+/obj/item/salvage/recycler_nozzle/proc/nozzle_recharge()
+	recycler_nozzle_charges = recycler_nozzle_charges_max
+	playsound(src, 'sound/effects/tankhiss1.ogg', 25)
+	talkas("Nozzle recharged.")
+
+
 /obj/item/salvage/recycler_nozzle/attack_self(mob/user)
 	. = ..()
 	if(usr.a_intent == INTENT_GRAB)
@@ -191,3 +197,36 @@
 	icon_state = "spike"
 	no_salvage = 1
 	flags_item = NOBLUDGEON
+
+/obj/structure/salvage/nozzle_charger
+	name = "recycler nozzle recharge station"
+	desc = "A small air compressor hooked up to a bigger machine that seems to be connected to a small Liquid Data pipeline. Something can clearly be attached to its bottom left corner."
+	desc_lore = "The LD-Polymer Recycler system nozzle chargers follow the general idea behind all LD technology on the PST and attempts to be a waste-free source of compressed air for the nozzles. As such, it is a small closed system where a localized Twilight Paradox power source is used to create air molecules from 'scratch' as it were. While this means a nearly five-minute recharge time, which leaves much to be desired, the zero-waste production cycle is generally fairly impressive. "
+	icon = 'icons/sectorpatrol/salvage/items.dmi'
+	icon_state = "structures"
+	no_salvage = 1
+	anchored = 1
+	opacity = 0
+	density = 0
+	var/charge_in_ticks = 1800
+	var/charge_timer = 1
+
+/obj/structure/salvage/nozzle_charger/proc/set_delay_timer()
+	charge_timer = world.time + charge_in_ticks
+	icon_state = initial(icon_state) + "_on"
+	update_icon()
+	sleep(charge_in_ticks)
+	icon_state = initial(icon_state)
+	update_icon()
+	playsound(src, 'sound/machines/twobeep.ogg', 25)
+	talkas("Recharge complete. Awaiting nozzle.")
+
+/obj/structure/salvage/nozzle_charger/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/salvage/recycler_nozzle/))
+		if(charge_timer < world.time)
+			INVOKE_ASYNC(W, TYPE_PROC_REF(/obj/item/salvage/recycler_nozzle, nozzle_recharge))
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/nozzle_charger, set_delay_timer))
+			return
+		if(charge_timer >= world.time)
+			talkas("Error. Compressed air recharge in progress. Estimated time until recharge ready: [(charge_timer - world.time) / 10] seconds.")
+			return

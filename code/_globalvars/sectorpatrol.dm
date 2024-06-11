@@ -37,3 +37,5 @@ GLOBAL_VAR_INIT(salvaging_total_alloy, 0)
 
 GLOBAL_VAR_INIT(salvaging_total_intel_items, 0)
 GLOBAL_VAR_INIT(salvaging_total_intel_hacks, 0)
+
+GLOBAL_LIST_EMPTY(salvaging_active_spikes)

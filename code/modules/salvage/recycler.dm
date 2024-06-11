@@ -187,17 +187,6 @@
 			if(salvage_process_recycler(metal = backpack.recycler_backpack_stored_materials["metal"], resin = backpack.recycler_backpack_stored_materials["resin"], alloy = backpack.recycler_backpack_stored_materials["alloy"]) == 1)
 				INVOKE_ASYNC(backpack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_empty))
 
-
-
-/obj/item/salvage/data_spike
-	name = "data spike"
-	desc = "A small device that looks like a blue-tinted metal syringe with a swirling, bright purple liquid inside that seems to be oddly colored Liquid Data. The tip of the device does not look like it could break skin and there is no visible way to eject the liquid."
-	desc_lore = "Data spikes contain a small amount of Liquid Data that comes directly from the OV-PSTs reserves and contains instructions written by Pythia in cooperation with UAAC-TIS engineers led by Commander Alysia Reed-Wilo. </p><p>When connected to a computer system, the data spike injects its Liquid Data content into the machine which results in a localized Crystalline infestation which instead of destroying the machine attempts to convert its contents into a Liquid Data compatible format, then transmits it to the PST's processing system, where the data is analyzed by Pythia and any usable intelligence is passed to UAAC-TIS operatives."
-	icon = 'icons/sectorpatrol/salvage/items.dmi'
-	icon_state = "spike"
-	no_salvage = 1
-	flags_item = NOBLUDGEON
-
 /obj/structure/salvage/nozzle_charger
 	name = "recycler nozzle recharge station"
 	desc = "A small air compressor hooked up to a bigger machine that seems to be connected to a small Liquid Data pipeline. Something can clearly be attached to its bottom left corner."
@@ -230,3 +219,58 @@
 		if(charge_timer >= world.time)
 			talkas("Error. Compressed air recharge in progress. Estimated time until recharge ready: [(charge_timer - world.time) / 10] seconds.")
 			return
+
+/obj/structure/salvage/drone_spike
+	name = "OV-PST salvaging beacon"
+	desc = "A thick metal disc of considerable weight. Seems to come with four heavy duty mounting struts that extend automatically. A big button and display light can be clearly seen on its top."
+	desc_lore = "These beacons are used to take a detailed scan of the room they are in, convert the results of this scan into a Liquid Data compatible data format and then, once triggered by the salvaging operation commander and if no excess matter I detected, transmit this data to salvaging drones which in turn use it to dismantle the room completely. "
+	icon = 'icons/sectorpatrol/salvage/items.dmi'
+	icon_state = "beacon_priming"
+	anchored = 1
+	no_salvage = 1
+	opacity = 0
+	density = 1
+
+/obj/structure/salvage/drone_spike/proc/icon_cycle()
+	sleep(15)
+	icon_state = "beacon_primed"
+	update_icon()
+
+/obj/structure/salvage/drone_spike/Initialize(mapload, ...)
+	. = ..()
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/drone_spike, icon_cycle))
+	GLOB.salvaging_active_spikes += src
+
+/obj/item/salvage/data_spike
+	name = "data spike"
+	desc = "A small device that looks like a blue-tinted metal syringe with a swirling, bright purple liquid inside that seems to be oddly colored Liquid Data. The tip of the device does not look like it could break skin and there is no visible way to eject the liquid."
+	desc_lore = "Data spikes contain a small amount of Liquid Data that comes directly from the OV-PSTs reserves and contains instructions written by Pythia in cooperation with UAAC-TIS engineers led by Commander Alysia Reed-Wilo. </p><p>When connected to a computer system, the data spike injects its Liquid Data content into the machine which results in a localized Crystalline infestation which instead of destroying the machine attempts to convert its contents into a Liquid Data compatible format, then transmits it to the PST's processing system, where the data is analyzed by Pythia and any usable intelligence is passed to UAAC-TIS operatives."
+	icon = 'icons/sectorpatrol/salvage/items.dmi'
+	icon_state = "spike"
+	no_salvage = 1
+	flags_item = NOBLUDGEON
+
+/obj/item/salvage/drone_spike
+	name = "OV-PST salvaging beacon"
+	desc = "A thick metal disc of considerable weight. Seems to come with four heavy duty mounting struts that extend automatically. A big button and display light can be clearly seen on its top."
+	desc_lore = "These beacons are used to take a detailed scan of the room they are in, convert the results of this scan into a Liquid Data compatible data format and then, once triggered by the salvaging operation commander and if no excess matter I detected, transmit this data to salvaging drones which in turn use it to dismantle the room completely. "
+	w_class = SIZE_LARGE
+	icon = 'icons/sectorpatrol/salvage/items.dmi'
+	icon_state = "beacon"
+	no_salvage = 1
+
+
+/obj/item/salvage/drone_spike/attack_self(mob/user)
+	. = ..()
+	if(icon_state == initial(icon_state))
+		if(user.a_intent == INTENT_HELP)
+			var/turf/current_turf = get_turf(src)
+			if(current_turf.no_salvage == 1)
+				talkas("Error. This room cannot be salvaged.")
+				return
+			if(do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				new /obj/structure/salvage/drone_spike(current_turf)
+				qdel(src)
+				return
+
+

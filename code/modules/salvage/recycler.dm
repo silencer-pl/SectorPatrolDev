@@ -133,38 +133,26 @@
 	var/alloy_to_add = alloy
 	var/LDPol_to_add
 	talkas("Depositing...")
+	icon_state = "salvage_deposit_on"
+	update_icon()
 	if(metal_to_add)
 		GLOB.resources_metal += metal_to_add
 		LDPol_to_add += metal_to_add
-		icon_state = "salvage_deposit_on"
-		update_icon()
-		sleep(25)
 		talkas("Metals deposited. Units processed: [metal_to_add]")
-		icon_state = initial(icon_state)
-		update_icon()
+		sleep(15)
 	if(resin_to_add)
 		GLOB.resources_resin += resin_to_add
 		LDPol_to_add += resin_to_add
-		icon_state = "salvage_deposit_on"
-		update_icon()
-		sleep(25)
 		talkas("Resins deposited. Units processed: [resin_to_add]")
-		icon_state = initial(icon_state)
-		update_icon()
+		sleep(15)
 	if(alloy_to_add)
 		GLOB.resources_alloy += alloy_to_add
 		LDPol_to_add += alloy_to_add
-		icon_state = "salvage_deposit_on"
-		update_icon()
-		sleep(25)
 		talkas("Alloys deposited. Units processed: [alloy_to_add]")
-		icon_state = initial(icon_state)
-		update_icon()
+		sleep(15)
 	LDPol_to_add /= 5
 	GLOB.resources_ldpol += LDPol_to_add
-	icon_state = "salvage_deposit_on"
-	update_icon()
-	sleep(25)
+	sleep(15)
 	talkas("LD-Polymer extraction complete. Units processed: [LDPol_to_add]")
 	icon_state = initial(icon_state)
 	update_icon()
@@ -191,8 +179,8 @@
 	name = "recycler nozzle recharge station"
 	desc = "A small air compressor hooked up to a bigger machine that seems to be connected to a small Liquid Data pipeline. Something can clearly be attached to its bottom left corner."
 	desc_lore = "The LD-Polymer Recycler system nozzle chargers follow the general idea behind all LD technology on the PST and attempts to be a waste-free source of compressed air for the nozzles. As such, it is a small closed system where a localized Twilight Paradox power source is used to create air molecules from 'scratch' as it were. While this means a nearly five-minute recharge time, which leaves much to be desired, the zero-waste production cycle is generally fairly impressive. "
-	icon = 'icons/sectorpatrol/salvage/items.dmi'
-	icon_state = "structures"
+	icon = 'icons/sectorpatrol/salvage/structures.dmi'
+	icon_state = "nozzle_charger"
 	no_salvage = 1
 	anchored = 1
 	opacity = 0
@@ -272,5 +260,35 @@
 				new /obj/structure/salvage/drone_spike(current_turf)
 				qdel(src)
 				return
+			return
+
+/obj/structure/salvage/intel_dropoff
+	name = "OV-PST intelligence processor"
+	desc = "A document scanner, at home in an office in the last century, combined with an LD-enabled processor."
+	desc_lore = "Liquid Data enabled scanners utilize high speed data streams to not just scan the object but create a printable three-dimensional digital replica of it, down to the fine details. A full scan like this can take hours, so it's generally not recommended to do unless it's really needed, but even in its more basic mode, this device can be used to help Pythia extract information from physical sources."
+	icon = 'icons/sectorpatrol/salvage/structures.dmi'
+	icon_state = "intel_scanner"
+	anchored = 1
+	density = 1
+	opacity = 0
+
+/obj/structure/salvage/intel_dropoff/proc/process_intel(metal = null, resin = null, alloy = null)
+	var/metal_to_rem = metal
+	var/resin_to_rem = resin
+	var/alloy_to_rem = alloy
+	if(metal_to_rem) GLOB.salvaging_total_metal -= metal_to_rem
+	if(resin_to_rem) GLOB.salvaging_total_resin -= resin_to_rem
+	if(alloy_to_rem) GLOB.salvaging_total_alloy -= alloy_to_rem
+	GLOB.salvaging_intel_items += 1
+	return 1
 
 
+/obj/structure/salvage/intel_dropoff/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/salvage/))
+		var/obj/item/salvage/processed_item
+		if (processed_item.salvage_intel_item == FALSE)
+			to_chat(usr, SPAN_INFO("There does not seem to be anything important to process."))
+			return
+		if(process_intel(metal = processed_item.salvage_contents["metal"], resin = processed_item.salvage_contents["resin"], alloy = processed_item.salvage_contents["alloy"]) == 1)
+			qdel(processed_item)
+			return

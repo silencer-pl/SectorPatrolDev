@@ -126,7 +126,7 @@
 	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
 	var/salvage_big_item = 0 //If 1, restricts tool usage to specific item
-	var/salvage_steps
+	var/salvage_steps = 0
 	var/salvage_current_step = 1
 	var/no_salvage = 0
 
@@ -376,7 +376,7 @@
 
 	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
-	var/salvage_steps
+	var/salvage_steps = 0
 	var/salvage_current_step = 1
 	no_salvage = 0
 	var/desc_affix
@@ -437,12 +437,14 @@
 
 /turf/open/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
 	var/obj/item/salvage/recycler_nozzle/nozzle = N
-	nozzle.recycler_nozzle_paired_pack.recycler_add_salvage(metal = salvage_contents["metal"], resin = salvage_contents["resin"], alloy = salvage_contents["alloy"])
+	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents["metal"], salvage_contents["resin"], salvage_contents["alloy"])
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
-	sleep(10)
+	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
+	sleep(70)
 	icon = 'icons/turf/floors/floors.dmi'
 	icon_state = "plating"
 	update_icon()
+	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	salvage_tiles_recycled = 1
 	return
 

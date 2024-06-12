@@ -1,3 +1,7 @@
+//Recycling related items and structures
+
+//salvager loop - backpack, nozzle, recycler
+
 /obj/item/salvage/recycler_backpack
 	name = "recycler backpack"
 	desc = "Two hefty looking cylinders with some electronics attached to them, wrapped in several tubes connected to what looks like a Liquid Data enabled terminal on the back. Heavier than it looks, and it looks quite heavy."
@@ -175,6 +179,8 @@
 			if(salvage_process_recycler(metal = backpack.recycler_backpack_stored_materials["metal"], resin = backpack.recycler_backpack_stored_materials["resin"], alloy = backpack.recycler_backpack_stored_materials["alloy"]) == 1)
 				INVOKE_ASYNC(backpack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_empty))
 
+//Processing: Nozzle recharge, document handler
+
 /obj/structure/salvage/nozzle_charger
 	name = "recycler nozzle recharge station"
 	desc = "A small air compressor hooked up to a bigger machine that seems to be connected to a small Liquid Data pipeline. Something can clearly be attached to its bottom left corner."
@@ -292,3 +298,15 @@
 		if(process_intel(metal = processed_item.salvage_contents["metal"], resin = processed_item.salvage_contents["resin"], alloy = processed_item.salvage_contents["alloy"]) == 1)
 			qdel(processed_item)
 			return
+
+// Extra gear: Pouches etc as needed
+
+/obj/item/storage/pouch/document/uacm_salvage
+	name = "UACM embroidered document satchel"
+	desc = "A document pouch made from what feels like high quality synthetic fiber with the UACM logo visible on the top flap. Upon closer inspection, the logo is intricately embroidered into the fabric."
+	desc_lore = "The pouches and in particular the embroidery were initially a product of an early prototype of what ultimately became the textile 'forges' of the Outer Veil PST, dedicated sectors on each of the stations wings that produce high quality textile-like materials and turn them into finished product, like this very pouch."
+	storage_slots = 30
+	max_storage_space = 30
+	can_hold = list(
+		/obj/item/salvage/document
+	)

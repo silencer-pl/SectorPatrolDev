@@ -83,7 +83,7 @@
 	/// Doesn't need to be set for areas/Z levels that are marked as admin-only
 	var/block_game_interaction = FALSE
 
-	var/savlage_was_cleared = 0 // Status flag to make sure double spiking can't happen.
+	var/salvage_area_tag
 
 
 /area/New()

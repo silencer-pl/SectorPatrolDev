@@ -1,4 +1,18 @@
+// Areas - for final area spiking, rooms etc
+/area/salvage
+	name = "salvage area master definition"
+	desc = "Ideally should not be used in game, use subtypes"
+	desc_lore = "What desc said. Can desc lore even be viewed for areas? I think not :P"
+	has_gravity = 0
+	weather_enabled = 0
+	requires_power = 0
+	unlimited_power = 1
+	salvage_area_tag = "default"
+
+//Procs below everything else to avoid definition loopholes
+
 //items - no disassembly, but can be intel
+
 
 /obj/item/salvage
 	name = "salvage item - master definition"
@@ -13,28 +27,53 @@
 		"alloy" = 0,
 		)
 	var/salvage_intel_item = FALSE
-	var/list/salvage_search = list(
+	var/list/salvage_search = list(		//Main search list, has all the basic data, plus default return/reexamine texts. This is the var that is read for all text/functions of the searching system. Ideally this list should not be touched.
 		"can_be_searched" = 0,
 		"was_searched" = 0,
 		"search_time" = SEARCH_TIME_NORMAL,
 		"search_return_initial" = "After a through search you don't discover anything of note. Oops.",
 		"search_return_complete" = "There is nothing special about this item."
 		)
+	var/list/salvage_search_alttext = list( //Alttexts for specific steps/results of searches. Copy the whole bock to customize.
+		"search_return_initial" = "There seems to be unique writing or instruction on this object that warrant it being scanned for intel instead of salvaged.",
+		"search_return_complete" = "There seems to be unique writing or instruction on this object that warrant it being scanned for intel instead of salvaged. "
+		)
 	var/desc_affix
 	var/desc_lore_affix
 	var/no_salvage = 0
+	var/icon_state_max = 0 // Change to a number to indicate dmi has more than one possible icon_state for randomization. Names shold be [icon_state]_[number], with last number being the value in this var
+	var/salvage_random = 0 // If 1 will roll a 5% chance for this item to be an intel document and sets it salvage_search values accordingly, and 15% to be a dummy serchable if the previous does not hapen
+	var/salvage_area_tag
 
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
-	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"]) / 5)
-	GLOB.salvaging_total_metal += salvage_contents["metal"]
-	GLOB.salvaging_total_resin += salvage_contents["resin"]
-	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
-	if(salvage_intel_item) GLOB.salvaging_intel_items += 1
+	if(icon_state_max > 0)
+		icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+		update_icon()
+	if(salvage_random)
+		var/random_roll = rand(1,100)
+		if(random_roll >= 95)
+			salvage_search["can_be_searched"] = 1
+			salvage_search["search_return_initial"] = salvage_search_alttext["search_return_initial"]
+			salvage_search["search_return_complete"] = salvage_search_alttext["search_return_complete"]
+			salvage_intel_item = 1
+		if(random_roll >= 80 && random_roll < 95)
+			salvage_search["can_be_searched"] = 1
+	if(no_salvage == 0)
+		GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"]) / 5)
+		GLOB.salvaging_total_metal += salvage_contents["metal"]
+		GLOB.salvaging_total_resin += salvage_contents["resin"]
+		GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+		GLOB.salvaging_items_objects += src
+		if(salvage_intel_item) GLOB.salvaging_intel_items += 1
+		var/area/currentarea = get_area(src)
+		if(currentarea.salvage_area_tag != null)
+			salvage_area_tag = currentarea.salvage_area_tag
 	if(desc_affix != null)
 		desc = initial(desc) + "</p><p>" + desc_affix
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
+
 
 /obj/item/salvage/examine(mob/user)
 	..()
@@ -129,6 +168,7 @@
 	var/salvage_steps = 0
 	var/salvage_current_step = 1
 	var/no_salvage = 0
+	var/salvage_area_tag = "default"
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -173,14 +213,21 @@
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
-	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
-	GLOB.salvaging_total_metal += salvage_contents["metal"]
-	GLOB.salvaging_total_resin += salvage_contents["resin"]
-	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(no_salvage == 0)
+		GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
+		GLOB.salvaging_total_metal += salvage_contents["metal"]
+		GLOB.salvaging_total_resin += salvage_contents["resin"]
+		GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+		GLOB.salvaging_items_objects += src
+		if(hackable) GLOB.salvaging_total_intel_hacks += 1
+		var/area/currentarea = get_area(src)
+		if(currentarea.salvage_area_tag != null)
+			salvage_area_tag = currentarea.salvage_area_tag
 	if(desc_affix != null)
 		desc = initial(desc) + "</p><p>" + desc_affix
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
+
 
 /obj/structure/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
 	var/obj/item/salvage/recycler_nozzle/nozzle = N
@@ -330,9 +377,9 @@
 				if(W.check_use(flag = salvage_big_item) == 1)
 					if(salvage_process_decon() == 1)
 						update_icon()
-						W.is_used = 0
+						if(salvage_big_item == 1) W.is_used = 0
 						return
-					W.is_used = 0
+					if(salvage_big_item == 1) W.is_used = 0
 					return "exception - salvage_process_decon failed"
 				to_chat(usr, SPAN_INFO("You are already using this tool a big object."))
 				return
@@ -383,6 +430,12 @@
 	var/desc_lore_affix
 	var/salvage_tiles_recycled = 0
 
+	var/list/salvage_contents_tile = list(
+		"metal" = 0,
+		"resin" = 0,
+		"alloy" = 0,
+		)
+
 /turf/open/salvage/proc/salvage_generate_decon()
 
 	salvage_steps = (length(salvage_decon_keyword) / 2)
@@ -426,18 +479,18 @@
 /turf/open/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
-	GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
-	GLOB.salvaging_total_metal += salvage_contents["metal"]
-	GLOB.salvaging_total_resin += salvage_contents["resin"]
-	GLOB.salvaging_total_alloy += salvage_contents["alloy"]
+	if(!no_salvage) GLOB.salvaging_turfs_open += src
 	if(desc_affix != null)
 		desc = initial(desc) + "</p><p>" + desc_affix
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
 
-/turf/open/salvage/proc/salvage_recycle(obj/item/salvage/recycler_nozzle/N)
+/turf/open/salvage/proc/salvage_recycle_tile(obj/item/salvage/recycler_nozzle/N)
 	var/obj/item/salvage/recycler_nozzle/nozzle = N
-	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents["metal"], salvage_contents["resin"], salvage_contents["alloy"])
+	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents_tile["metal"], salvage_contents_tile["resin"], salvage_contents_tile["alloy"])
+	salvage_contents_tile["metal"] = 0
+	salvage_contents_tile["resin"] = 0
+	salvage_contents_tile["alloy"] = 0
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
 	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
 	sleep(70)
@@ -543,7 +596,7 @@
 			nozzle.talkas("Error: Safety mode engaged. Action disallowed.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
 			return
-		salvage_recycle(nozzle)
+		salvage_recycle_tile(nozzle)
 		return
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This floor is ready for salvaging and does not need any further tinkering."))
@@ -551,13 +604,40 @@
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
 			if(usr.a_intent == salvage_decon_array[2][salvage_current_step])
-				if(salvage_process_decon() == 1)
-					update_icon()
-					W.is_used = 0
-					return
-				return "exception - salvage_process_decon failed"
+				if(W.check_use(flag = 0) == 1)
+					if(salvage_process_decon() == 1)
+						update_icon()
+						return
+					if(salvage_process_decon() == 1)
+						update_icon()
+						W.is_used = 0
+						return
+					return "exception - salvage_process_decon failed"
+				to_chat(usr, SPAN_INFO("This tool is already being used on an object that requires your full attention. Stop the process by moving or taking the tool out of your hand, or wait until it is finished."))
+				return
 			to_chat(usr, SPAN_INFO("You do not seem to be using the correct intent for this action. Look at the object for more information."))
 			return
 		to_chat(usr, SPAN_INFO("You do not seem to be using the correct tool for this action. Look at the object for more information."))
 		return
 	to_chat(usr, SPAN_INFO("You have no idea how to combine these two together."))
+
+//area proc down here so there is no undefined funnies
+
+/area/salvage/proc/salvage_process_area_decon() // Checks objects and items that are not nulled (i/e deleted) for matches to area tags. If suceeds, does the same for turfs but chekcs for their decon state, if none of that makes it return a fail state, proceeds and calls salvages for all turfs with area tag in salvagable turf list (to spare the dumb way BYOND handles area.contents from scanning the whole fucking world, I can likely optimize taht to specifc lists by area tag later but lets see how this performs first. If this text is still here after a while, it likley performs in the relams of 'good enough'  | returns : null - exceptions, 1 - success, 2 - non nulled items found, 3 - non nulled structures, 4 - non salvaged turfs (checks for tiles removal var)
+	for(var/obj/item/salvage/salvage_item in GLOB.salvaging_items_objects)
+		if(get_turf(salvage_item) == !null)
+			if (salvage_item.salvage_area_tag == salvage_area_tag)
+				return 2
+	for(var/obj/structure/salvage/salvage_structure in GLOB.salvaging_items_objects)
+		if(get_turf(salvage_structure) == !null)
+			if (salvage_structure.salvage_area_tag == salvage_area_tag)
+				return 3
+	for(var/turf/open/salvage/open_turf in GLOB.salvaging_turfs_open)
+		if(open_turf.salvage_area_tag == salvage_area_tag)
+			if(open_turf.salvage_tiles_recycled == 0)
+				return 4
+	for(var/turf/turf_with_area_tag in GLOB.salvaging_turfs_all)
+		if (turf_with_area_tag.salvage_turf_processed == 0)
+			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
+	return 1
+

@@ -38,4 +38,8 @@ GLOBAL_VAR_INIT(salvaging_total_alloy, 0)
 GLOBAL_VAR_INIT(salvaging_total_intel_items, 0)
 GLOBAL_VAR_INIT(salvaging_total_intel_hacks, 0)
 
+GLOBAL_LIST_EMPTY(salvaging_items_objects)
+GLOBAL_LIST_EMPTY(salvaging_turfs_all)
+GLOBAL_LIST_EMPTY(salvaging_turfs_open)
+
 GLOBAL_LIST_EMPTY(salvaging_active_spikes)

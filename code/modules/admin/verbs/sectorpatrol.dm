@@ -1,6 +1,6 @@
 /client/proc/admin_blurb()
 	set name = "Global Blurb Message"
-	set category = "Admin.Events"
+	set category = "Admin.SectorPatrol"
 
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return FALSE
@@ -17,7 +17,7 @@
 
 /client/proc/admin_song_blurb()
 	set name = "Song Blurb Message"
-	set category = "Admin.Events"
+	set category = "Admin.SectorPatrol"
 
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return FALSE
@@ -34,7 +34,7 @@
 
 /client/proc/cmd_admin_pythia_say() // Checks for a Pythia reciever and talks as it and any of its voices.
 	set name = "Speak As Pythia"
-	set category = "Admin.Events"
+	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -51,7 +51,7 @@
 
 /client/proc/cmd_start_sequence()
 	set name = "Start Sequence"
-	set category = "Admin.Events"
+	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -77,8 +77,8 @@
 
 /client/proc/cmd_save_turfs()
 
-	set name = "Peristancy - Save Turfs and Objects"
-	set category = "Admin.SectorPatrol"
+	set name = "Save Turfs and Objects"
+	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -132,8 +132,8 @@
 
 /client/proc/cmd_load_turfs()
 
-	set name = "Peristancy - Load Turfs and Objects"
-	set category = "Admin.SectorPatrol"
+	set name = "Load Turfs and Objects"
+	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -189,7 +189,7 @@
 
 /client/proc/cmd_set_time_date_loc()
 
-	set name = "Set Statpanel IC information"
+	set name = "Set Statpanel and IC information"
 	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -219,25 +219,25 @@
 	if(GLOB.start_narration_header == null) GLOB.start_narration_header = oldvalue
 
 	oldvalue = GLOB.start_narration_body
-	GLOB.start_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Body:", title = "Narration Entry", default = "[GLOB.start_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_body == null) GLOB.start_narration_body = oldvalue
 
 	oldvalue = GLOB.start_narration_footer
-	GLOB.start_narration_footer = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_footer = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Footer:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_footer == null) GLOB.start_narration_footer = oldvalue
 
 	oldvalue = GLOB.end_narration_header
-	GLOB.end_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.end_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "End Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.end_narration_header == null) GLOB.end_narration_header = oldvalue
 
 	oldvalue = GLOB.end_narration_body
-	GLOB.end_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.end_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "EBd Narration Body:", title = "Narration Entry", default = "[GLOB.end_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.end_narration_body == null) GLOB.end_narration_body = oldvalue
 
 /client/proc/cmd_save_general()
 
-	set name = "Peristancy - Save General Status"
-	set category = "Admin.SectorPatrol"
+	set name = "Save General Status"
+	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -258,8 +258,8 @@
 
 /client/proc/cmd_load_general()
 
-	set name = "Peristancy - Load General Status"
-	set category = "Admin.SectorPatrol"
+	set name = "Load General Status"
+	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -276,3 +276,57 @@
 	G["end_narration_header"] >> GLOB.end_narration_header
 	G["end_narration_body"] >> GLOB.end_narration_body
 	to_chat(src, SPAN_BOLDWARNING("General data loaded."))
+
+/client/proc/cmd_save_cargo()
+
+	set name = "Save Cargo Status"
+	set category = "Admin.Peristancy"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/savefile/G = new("data/persistance/cargo/ovpst.sav")
+	G["ldpol"] << (GLOB.testcrew_ldpol + GLOB.resources_ldpol)
+	G["metal"] << (GLOB.testcrew_metal + GLOB.resources_metal)
+	G["resin"] << (GLOB.testcrew_resin + GLOB.resources_resin)
+	G["alloy"] << (GLOB.testcrew_alloy + GLOB.resources_alloy)
+	to_chat(src, SPAN_BOLDWARNING("Data Stores Updated and Saved."))
+
+/client/proc/cmd_load_cargo()
+
+	set name = "Load Cargo Status"
+	set category = "Admin.Peristancy"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/savefile/G = new("data/persistance/cargo/ovpst.sav")
+	G["ldpol"] >> GLOB.testcrew_ldpol
+	G["metal"] >> GLOB.testcrew_metal
+	G["resin"] >> GLOB.testcrew_resin
+	G["alloy"] >> GLOB.testcrew_alloy
+	to_chat(src, SPAN_BOLDWARNING("Data Stores Loaded."))
+
+/client/proc/cmd_show_resources()
+	set name = "Map and Total Resource Info"
+	set category = "Admin.SectorPatrol"
+
+	if(!check_rights(R_ADMIN|R_DEBUG))
+		return FALSE
+
+	to_chat(src, narrate_head("Resource Stores information:"))
+	to_chat(src, narrate_body("Test Crew Stores:"))
+	to_chat(src, narrate_body("LD-Pol: [GLOB.testcrew_ldpol]"))
+	to_chat(src, narrate_body("Metal: [GLOB.testcrew_metal]"))
+	to_chat(src, narrate_body("Resin: [GLOB.testcrew_resin]"))
+	to_chat(src, narrate_body("Alloy: [GLOB.testcrew_alloy]"))
+	to_chat(src, "<hr>")
+	to_chat(src, narrate_body("Current level information:"))
+	to_chat(src, narrate_body("LdPol - [GLOB.resources_ldpol] / [GLOB.salvaging_total_ldpol]"))
+	to_chat(src, narrate_body("Metal - [GLOB.resources_metal] / [GLOB.salvaging_total_ldpol]"))
+	to_chat(src, narrate_body("Alloy - [GLOB.resources_resin] / [GLOB.salvaging_total_ldpol]"))
+	to_chat(src, narrate_body("Resin - [GLOB.resources_alloy] / [GLOB.salvaging_total_ldpol]"))
+	to_chat(src, narrate_body("Intel - [GLOB.salvaging_intel_items] / [GLOB.salvaging_total_intel_items]"))
+	to_chat(src, narrate_body("Hacks - [GLOB.salvaging_intel_hacks] / [GLOB.salvaging_total_intel_hacks]"))

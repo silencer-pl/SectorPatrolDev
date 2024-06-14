@@ -69,7 +69,7 @@
 			terminal_display_line("SPIKE is used to control salvaging spikes, specifically fire them off once they are set. Use the command without any arguments for information.")
 			terminal_display_line("Good luck!")
 		if("RESOURCES")
-			terminal_display_line("Querrying resource estimates. Standby.", 50)
+			terminal_display_line("Querrying resource estimates. Standby.", TERMINAL_LOOKUP_SLEEP)
 			terminal_display_line("RESOURCES RECOVERED / ESTIMATED MAXIMUM:")
 			terminal_display_line("METALS")
 			terminal_display_line("[GLOB.resources_metal] / [GLOB.salvaging_total_metal]")
@@ -83,7 +83,7 @@
 		else
 			switch(cut_string_to_parse)
 				if("SPIKE")
-					terminal_display_line("Standby. Processing Spike Buffer Command.", 50)
+					terminal_display_line("Standby. Processing Spike Buffer Command.", TERMINAL_LOOKUP_SLEEP)
 					terminal_spike(string_to_parse)
 				else
 					terminal_display_line("Unknown Command Error Message.")

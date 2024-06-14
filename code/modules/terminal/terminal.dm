@@ -12,6 +12,7 @@
 	var/terminal_line_length = 70
 	var/terminal_line_height = 21
 	var/terminal_reserved_lines = 0
+	var/terminal_window_size = "800x800"
 	var/list/terminal_header = list()
 
 /obj/structure/terminal/proc/reset_buffer() // resets terminal buffer and creates fresh list.
@@ -54,7 +55,7 @@
 	</div>
 	</body>
 	"}
-	usr << browse(terminal_html,"window=[terminal_id];display=1;size=800x800;border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
+	usr << browse(terminal_html,"window=[terminal_id];display=1;size=[terminal_window_size];border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")
 	onclose(usr, "[terminal_id]")
 
 /obj/structure/terminal/proc/trim_buffer()
@@ -62,7 +63,7 @@
 		terminal_buffer.Cut((1+terminal_reserved_lines),(2+terminal_reserved_lines))
 
 
-/obj/structure/terminal/proc/terminal_display_line(text = null,delay = TERMINAL_STANDARD_SLEEP)
+/obj/structure/terminal/proc/terminal_display_line(text = null,delay = TERMINAL_STANDARD_SLEEP, cache = 0) // cache = 1 bypasses displaying, this is for briefing terminals that may want to parse multiple lines before displaying
 	var/line_to_display = text
 	if(!line_to_display) return "null string passed to display line."
 	if(length(line_to_display) > terminal_line_length)
@@ -70,13 +71,15 @@
 		while(length(line_to_display) > terminal_line_length)
 			cut_line = copytext(line_to_display,1,terminal_line_length)
 			terminal_buffer += (html_encode(cut_line) + "&nbsp")
-			terminal_display()
-			sleep(delay)
+			if(cache == 0)
+				terminal_display()
+				if(delay != 0) sleep(delay)
 			line_to_display = copytext(line_to_display,terminal_line_length,0)
 	if(length(line_to_display) <= terminal_line_length)
 		terminal_buffer += (html_encode(line_to_display) + "&nbsp")
-		terminal_display()
-		sleep(delay)
+		if(cache == 0)
+			terminal_display()
+			if(delay != 0) sleep(delay)
 
 
 /obj/structure/terminal/proc/terminal_parse(str) //Ideally, this is the only block that should be copied into definitions down the line. Yes, the whole block. HELP is what prints as an intro to new users as well, so it should be defined no matter what unless you want it to throw errors and break :P

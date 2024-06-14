@@ -11,16 +11,24 @@
 	var/terminal_busy = 0
 	var/terminal_line_length = 70
 	var/terminal_line_height = 21
+	var/terminal_reserved_lines = 0
+	var/list/terminal_header = list()
 
 /obj/structure/terminal/proc/reset_buffer() // resets terminal buffer and creates fresh list.
 	terminal_buffer = null
 	terminal_buffer = list()
+	terminal_buffer += terminal_header
+
+/obj/structure/terminal/Initialize(mapload, ...)
+	. = ..()
+	if(terminal_header) terminal_buffer += terminal_header
 
 /obj/structure/terminal/proc/kill_window()
 	usr << browse(null, "window=[terminal_id]")
 	reset_buffer()
 
 /obj/structure/terminal/proc/terminal_display() // Display loop. HTML encodes (which incidentally should also prevent a lot of HTML shenanigans since it escapes characters) and displays current buffer. Please don't laugh at my placeholder HTML -_- , in normal circumstances should not need edits unless you want to change the style for an individual terminal.
+	trim_buffer()
 	var/terminal_output = ("<p>" + jointext((terminal_buffer), "</p><p>") + "/<p>")
 	var/terminal_html ={"<!DOCTYPE html>
 	<html>
@@ -50,8 +58,8 @@
 	onclose(usr, "[terminal_id]")
 
 /obj/structure/terminal/proc/trim_buffer()
-	while (terminal_buffer.len > terminal_line_height)
-		terminal_buffer.Cut(1,2)
+	while (terminal_buffer.len > (terminal_line_height - terminal_reserved_lines))
+		terminal_buffer.Cut((1+terminal_reserved_lines),(2+terminal_reserved_lines))
 
 
 /obj/structure/terminal/proc/terminal_display_line(text = null,delay = TERMINAL_STANDARD_SLEEP)
@@ -62,13 +70,11 @@
 		while(length(line_to_display) > terminal_line_length)
 			cut_line = copytext(line_to_display,1,terminal_line_length)
 			terminal_buffer += (html_encode(cut_line) + "&nbsp")
-			trim_buffer()
 			terminal_display()
 			sleep(delay)
 			line_to_display = copytext(line_to_display,terminal_line_length,0)
 	if(length(line_to_display) <= terminal_line_length)
 		terminal_buffer += (html_encode(line_to_display) + "&nbsp")
-		trim_buffer()
 		terminal_display()
 		sleep(delay)
 

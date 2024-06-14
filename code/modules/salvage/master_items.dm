@@ -404,7 +404,7 @@
 	GLOB.resources_metal += salvage_contents["metal"]
 	GLOB.resources_resin += salvage_contents["resin"]
 	GLOB.resources_alloy += salvage_contents["alloy"]
-	GLOB.resources_ldpol += (salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])
+	GLOB.resources_ldpol += (salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"] / 5)
 	salvage_contents["metal"] = 0
 	salvage_contents["resin"] = 0
 	salvage_contents["alloy"] = 0
@@ -623,7 +623,7 @@
 
 //area proc down here so there is no undefined funnies
 
-/area/salvage/proc/salvage_process_area_decon() // Checks objects and items that are not nulled (i/e deleted) for matches to area tags. If suceeds, does the same for turfs but chekcs for their decon state, if none of that makes it return a fail state, proceeds and calls salvages for all turfs with area tag in salvagable turf list (to spare the dumb way BYOND handles area.contents from scanning the whole fucking world, I can likely optimize taht to specifc lists by area tag later but lets see how this performs first. If this text is still here after a while, it likley performs in the relams of 'good enough'  | returns : null - exceptions, 1 - success, 2 - non nulled items found, 3 - non nulled structures, 4 - non salvaged turfs (checks for tiles removal var)
+/area/proc/salvage_process_area_decon() // Checks objects and items that are not nulled (i/e deleted) for matches to area tags. If suceeds, does the same for turfs but chekcs for their decon state, if none of that makes it return a fail state, proceeds and calls salvages for all turfs with area tag in salvagable turf list (to spare the dumb way BYOND handles area.contents from scanning the whole fucking world, I can likely optimize taht to specifc lists by area tag later but lets see how this performs first. If this text is still here after a while, it likley performs in the relams of 'good enough'  | returns : null - exceptions, 1 - success, 2 - non nulled items found, 3 - non nulled structures, 4 - non salvaged turfs (checks for tiles removal var)
 	for(var/obj/item/salvage/salvage_item in GLOB.salvaging_items_objects)
 		if(get_turf(salvage_item) == !null)
 			if (salvage_item.salvage_area_tag == salvage_area_tag)

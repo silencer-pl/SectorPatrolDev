@@ -224,6 +224,8 @@
 	no_salvage = 1
 	opacity = 0
 	density = 1
+	var/spike_serial
+	var/global/spike_serial_max = 0
 
 /obj/structure/salvage/drone_spike/proc/icon_cycle()
 	sleep(15)
@@ -232,6 +234,8 @@
 
 /obj/structure/salvage/drone_spike/Initialize(mapload, ...)
 	. = ..()
+	spike_serial_max += 1
+	spike_serial = spike_serial_max
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/drone_spike, icon_cycle))
 	GLOB.salvaging_active_spikes += src
 

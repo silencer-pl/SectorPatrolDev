@@ -2405,6 +2405,7 @@
 #include "code\modules\tents\templates.dm"
 #include "code\modules\terminal\terminal.dm"
 #include "code\modules\terminal\buffer_reader\buffer_reader.dm"
+#include "code\modules\terminal\mission_control\salvage.dm"
 #include "code\modules\tgchat\cm_shims.dm"
 #include "code\modules\tgchat\message.dm"
 #include "code\modules\tgchat\to_chat.dm"

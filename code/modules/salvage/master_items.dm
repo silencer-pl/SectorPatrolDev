@@ -44,6 +44,7 @@
 	var/icon_state_max = 0 // Change to a number to indicate dmi has more than one possible icon_state for randomization. Names shold be [icon_state]_[number], with last number being the value in this var
 	var/salvage_random = 0 // If 1 will roll a 5% chance for this item to be an intel document and sets it salvage_search values accordingly, and 15% to be a dummy serchable if the previous does not hapen
 	var/salvage_area_tag
+	var/salvage_container_tag
 
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
@@ -169,6 +170,7 @@
 	var/salvage_current_step = 1
 	var/no_salvage = 0
 	var/salvage_area_tag = "default"
+	var/salvage_container_tag
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -212,6 +214,10 @@
 
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
+	if(salvage_container_tag)
+		for(var/obj/item/salvage/items in get_turf(src))
+			if(salvage_container_tag == items.salvage_container_tag)
+				items.forceMove(src)
 	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
 	if(no_salvage == 0)
 		GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
@@ -237,6 +243,8 @@
 	decon_effect.pixel_x = pixel_x
 	decon_effect.pixel_y = pixel_y
 	sleep(15)
+	for(var/obj/item/salvage/items in contents)
+		items.forceMove(get_turf(src))
 	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	qdel(src)
 	return
@@ -649,4 +657,3 @@
 		if (turf_with_area_tag.salvage_turf_processed == 0)
 			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
 	return 1
-

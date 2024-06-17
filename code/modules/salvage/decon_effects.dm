@@ -28,3 +28,6 @@
 
 /obj/item/effect/decon_shimmer/decon_structure
 	shimmer_type = "structure"
+
+/obj/item/effect/decon_shimmer/decon_tile
+	shimmer_type = "tiles"

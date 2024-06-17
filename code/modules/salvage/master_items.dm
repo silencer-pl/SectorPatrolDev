@@ -501,8 +501,8 @@
 	salvage_contents_tile["resin"] = 0
 	salvage_contents_tile["alloy"] = 0
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
-	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
-	sleep(70)
+	var/obj/item/effect/decon_shimmer/decon_tile/decon_effect = new (get_turf(src))
+	sleep(15)
 	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
 	icon_state = "floor_base"
 	update_icon()
@@ -518,18 +518,18 @@
 	switch(text_to_return)
 		if(TRAIT_TOOL_SCREWDRIVER)
 			switch(state_to_return)
-				if("starting") return "You start to unfasten the screws on the [src]."
-				if("finished") return "You remove the screws from the [src] and put them aside."
-				if("examine") return "You need a screwdriver to prepare this object for salvaging."
+				if("starting") return "You unfasten the screws on the [src]."
+				if("finished") return "You unfasten the screws on the [src] and put them aside."
+				if("examine") return "You need a screwdriver to prepare this floor for salvaging."
 		if(TRAIT_TOOL_CROWBAR)
 			switch(state_to_return)
-				if("starting") return "You start to pry the external cover off the [src] with a crowbar."
-				if("finished") return "You remove the external cover from the [src]."
+				if("starting") return "You start to loosen the tiles off the [src]."
+				if("finished") return "You loosen the tiles off the[src]."
 				if("examine") return "You need a crowbar to prepare this object for salvaging."
 		if(TRAIT_TOOL_WIRECUTTERS)
 			switch(state_to_return)
-				if("starting") return "You start to cut the internal circutry of [src] with the wirecutters."
-				if("finished") return "You finish cutting the internal circutry of [src] and make sure the internal elements are loose."
+				if("starting") return "You start to cut the cables fastening the tiles to the [src]."
+				if("finished") return "You finish cutting the cables fastening the tiles to the [src]."
 				if("examine") return "You need some wirecutters to prepare this object for salvaging."
 		if(TRAIT_TOOL_WRENCH)
 			switch(state_to_return)

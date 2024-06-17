@@ -396,7 +396,7 @@
 	sleep(rand(1,20))
 	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
 	sleep(65)
-	icon = 'icons/turf/almayer.dmi'
+	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
 	icon_state = "empty"
 	plane = SPACE_PLANE
 	update_icon()
@@ -418,8 +418,8 @@
 	name = "salvagable floor - master item"
 	desc = "Yet another item that should not be player facing. Oops!"
 	desc_lore = "Please report this as a bug if this is visible anywhere if you have the time."
-	icon = 'icons/sp_default.dmi'
-	icon_state = "default_turf"
+	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
+	icon_state = "master"
 
 	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
@@ -435,6 +435,15 @@
 		"resin" = 0,
 		"alloy" = 0,
 		)
+
+/turf/open/salvage/update_icon()
+	. = ..()
+	if(salvage_current_step > salvage_steps)
+		desc_affix = null
+		desc_lore_affix = null
+		desc = initial(desc)
+		desc_lore = initial(desc_lore)
+
 
 /turf/open/salvage/proc/salvage_generate_decon()
 
@@ -494,8 +503,8 @@
 	playsound(src, 'sound/effects/EMPulse.ogg', 25)
 	var/obj/item/effect/decon_shimmer/decon_turf/decon_effect = new (get_turf(src))
 	sleep(70)
-	icon = 'icons/turf/floors/floors.dmi'
-	icon_state = "plating"
+	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
+	icon_state = "floor_base"
 	update_icon()
 	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	salvage_tiles_recycled = 1

@@ -173,3 +173,16 @@
 	icon_state = "wm_1"
 	desc = "An alloy drum inside a metal container, consolidating both a washer and a dryer in one device."
 	desc_lore = "While the exact psychological mechanism behind it remains a mystery, there is a generally accepted link between crews maintaining a high standard of cleanliness and hygiene, especially during long trips, and the number of mental episodes that Spacers are somewhat infamous for. As such, most ships use machines such as these to help crews stay clean and sane. Yields same resources as an average piece of heavy machinery."
+
+/obj/structure/salvage/smes
+	name = "smes device"
+	icon = 'icons/sectorpatrol/salvage/heavy_machinery/smes.dmi'
+	icon_state = "smes_1"
+	desc = "A cluster of ring-shaped batteries stacked on top of each other, with a set of displays and dials hidden behind a panel on the front."
+	desc_lore = "The SMES, or the Standardized Modular Energy Storage is essentially multiple high-capacity Twilight Paradox energy cores connected to the ships power grid and accumulating passive charge during any Hyperspace jump. SMES devices are used on space stations and during long term deployments, along with quick leapfrog 'recharger' jumps within the same solar system, to help keep its spaceship or station operational while stationary. Yields mostly resins and alloys."
+	icon = 'icons/sectorpatrol/salvage/heavy_machinery/computer_hardware.dmi'
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 20,
+	"alloy" = 25,
+	)

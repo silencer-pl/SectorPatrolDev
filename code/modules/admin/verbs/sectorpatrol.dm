@@ -15,22 +15,37 @@
 	show_blurb(GLOB.player_list, duration, message, TRUE, "center", "center", "#bd2020", "ADMIN")
 	message_admins("[key_name(usr)] sent an admin blurb alert to all players. Alert reads: '[message]' and lasts [(duration / 10)] seconds.")
 
-/client/proc/admin_song_blurb()
-	set name = "Song Blurb Message"
+/client/proc/admin_play_song_and_blurb()
+	set name = "Play Predefined Song"
 	set category = "Admin.SectorPatrol"
 
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return FALSE
 
-	var/song_name = tgui_input_text(usr, message = "Song In-Game Name - Displayed BOLDED on top.", title = "Song Title", timeout = null)
-	if (song_name == null) return
-	var/song_artist = tgui_input_text(usr, message = "Song Artist - Second line, left.", title = "Song Artist", timeout = null)
-	if (song_artist == null) return
-	var/song_title = tgui_input_text(usr, message = "Song Title - Second line, after dash on right. LAST CHANCE TO CANCEL.", title = "Song Name", timeout = null)
-	if (song_title == null) return
-	var/song_album = tgui_input_text(usr, message = "Song Album. Optional, Third line.", title = "Song Album", timeout = null)
-	show_blurb_song(name = "[song_name]", artist = "[song_artist]", title = "[song_title]", album = "[song_album]")
-	message_admins("[key_name(usr)] sent an admin song blurb. Strings sent: '[song_title]', '[song_artist]', '[song_name]', '[song_album]'")
+	var/song_choice = tgui_input_list(usr, "Select a song", "Song Selection", list("1", "2"), timeout = 0)
+	var/songtoplay
+	switch(song_choice)
+		if("1")
+			show_blurb_song(title = "Test Song", additonal = "Super Band - Great Album")
+			songtoplay = 'music/1.ogg'
+			for(var/mob/mob as anything in GLOB.mob_list)
+				var/client/client = mob?.client
+				if((client?.prefs?.toggles_sound & SOUND_MIDI) && (client?.prefs?.toggles_sound & SOUND_ADMIN_ATMOSPHERIC))
+					INVOKE_ASYNC(client, PROC_REF(playsound_client), client, songtoplay, null, 70, 0, VOLUME_ADM, SOUND_CHANNEL_MUSIC, SOUND_STREAM)
+		if("2")
+			return
+
+/client/proc/prepare_admin_song_blurb()
+	set name = "Setup Custom Song Blurb"
+	set category = "Admin.SectorPatrol"
+
+	if(!check_rights(R_ADMIN|R_DEBUG))
+		return FALSE
+
+	GLOB.song_title = tgui_input_text(usr, "Enter a Song Title", "Title selection", GLOB.song_title, MAX_MESSAGE_LEN, FALSE, TRUE, 0)
+	GLOB.song_info = tgui_input_text(usr, "Enter a Song Artist/Album", "Artist/Album selection", GLOB.song_info, MAX_MESSAGE_LEN, FALSE, TRUE, 0)
+	to_chat(src, SPAN_INFO("[GLOB.song_title] / [GLOB.song_info] set"))
+
 
 /client/proc/cmd_admin_pythia_say() // Checks for a Pythia reciever and talks as it and any of its voices.
 	set name = "Speak As Pythia"

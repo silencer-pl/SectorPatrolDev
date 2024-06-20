@@ -513,6 +513,8 @@
 	sleep(15)
 	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
 	icon_state = "floor_base"
+	desc_affix = null
+	desc_lore_affix = null
 	update_icon()
 	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	salvage_tiles_recycled = 1

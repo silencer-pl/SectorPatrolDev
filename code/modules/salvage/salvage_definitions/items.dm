@@ -12,3 +12,14 @@
 	icon_state = "document"
 	icon_state_max = 25
 	salvage_random = 1
+	salvage_search = list(		//Main search list, has all the basic data, plus default return/reexamine texts. This is the var that is read for all text/functions of the searching system. Ideally this list should not be touched.
+		"can_be_searched" = 0,
+		"was_searched" = 0,
+		"search_time" = SEARCH_TIME_NORMAL,
+		"search_return_initial" = "There is nothing of note written in this document.",
+		"search_return_complete" = "There is nothing of note written in this document."
+		)
+	salvage_search_alttext = list( //Alttexts for specific steps/results of searches. Copy the whole bock to customize.
+		"search_return_initial" = "While scanning the document, you clearly find a note saying 'DO NOT RECYCLE' in red marker. This must be one of the Commander's 'intel' files. You mark the note and put the file to the side.",
+		"search_return_complete" = "A 'DO NOT RECYCLE' note in red marker is circled in the document."
+		)

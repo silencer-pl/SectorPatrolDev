@@ -1,6 +1,6 @@
 /turf/open/salvage/plating
 	name = "hull - floor"
-	icon = 'icons/sectorpatrol/salvage/salvagables/floortiles.dmi'
+	icon = 'icons/sectorpatrol/salvage/turfs/floortiles.dmi'
 	icon_state = "default"
 	desc = "A hull segment that acts as a floor of the ship. Made from thick, hull metal, cold to the touch."
 	desc_affix = "It's covered with plating seemingly cobbled together in a 3d printer somewhere. Not NRPS compliant."

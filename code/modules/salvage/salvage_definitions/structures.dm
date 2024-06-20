@@ -5,7 +5,7 @@
 	desc = "A heavy metal door that slides and locks into place when opened from a nearby terminal."
 	desc_lore = "Airlocks, as the name suggests, are essentially what doors are to spacers. Typically opened remotely via a control panel next to them, but most with some sort of emergency release, these separate major 'rooms' in a ship from each other, forming protective, airtight seals if needed."
 	desc_lore_affix = "A standard airlock is most likely going to have a fair share of metal and alloys, with some resins as well. It's generally advised to just salvage an airlock to gain entry to a closed off area if such a need arises."
-	icon = 'icons/sectorpatrol/salvage/salvagables/doors.dmi'
+	icon = 'icons/sectorpatrol/salvage/turfs/doors.dmi'
 	icon_state = "door_1"
 	salvage_decon_keyword = "AECBBADB"
 	var/width = 1
@@ -20,9 +20,11 @@
 		bound_height = width * world.icon_size
 
 /obj/structure/salvage/airlock/double
-	icon = 'icons/sectorpatrol/salvage/salvagables/doors64.dmi'
+	icon = 'icons/sectorpatrol/salvage/turfs/doors64.dmi'
 	icon_state = "door_1"
 	width = 2
+
+// Heavy Machinery
 
 /obj/structure/salvage/heavy_machinery
 	name = "heavy machinery"
@@ -174,7 +176,7 @@
 	desc = "An alloy drum inside a metal container, consolidating both a washer and a dryer in one device."
 	desc_lore = "While the exact psychological mechanism behind it remains a mystery, there is a generally accepted link between crews maintaining a high standard of cleanliness and hygiene, especially during long trips, and the number of mental episodes that Spacers are somewhat infamous for. As such, most ships use machines such as these to help crews stay clean and sane. Yields same resources as an average piece of heavy machinery."
 
-/obj/structure/salvage/smes
+/obj/structure/salvage/heavy_machinery/smes
 	name = "smes device"
 	icon = 'icons/sectorpatrol/salvage/heavy_machinery/smes.dmi'
 	icon_state = "smes_1"
@@ -186,3 +188,114 @@
 	"resin" = 20,
 	"alloy" = 25,
 	)
+
+//Small machinery/electronics/wall ceilign stuff
+
+/obj/structure/salvage/small_machinery
+	name = "small machinery"
+	desc_affix = "A small machine, computer or other electronic device or any other object that cannot be easily carried, either due to its assembly or mounting."
+	desc_lore_affix = "These devices include any computer or electronic device, or any other object that cannot be easily carried and has some form of electronic circuitry inside requiring preparation before salvaging."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/computers.dmi'
+	icon_state = "default"
+	salvage_decon_keyword = "ABEBCD"
+	salvage_contents = list(
+	"metal" = 15,
+	"resin" = 5,
+	"alloy" = 10,
+	)
+
+/obj/structure/salvage/small_machinery/computer
+	name = "computer"
+	desc = "A computer or similar device, with a clearly visible data output and input method."
+	desc_lore = "Computers big and small are extremely common on spaceships and can be used to both interact with specific systems of the ship as well as run an operating system with a more general application. Yields the same ammount of resources as a typical small machine."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/computers.dmi'
+	icon_state = "computer_2"
+
+/obj/structure/salvage/small_machinery/hanging
+	name = "celing mounted device"
+	desc = "An electronic device attached to or near the ceiling of the ship."
+	desc_lore = "Loudspeakers or cameras that are attached near or directly to 'ceilings' on ships. These devices typically yield less than an average small machine, but the resource types remain in balance. They also do not require using a multitool as part of the perparation process."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/hanging.dmi'
+	icon_state = "hanging_1"
+	salvage_decon_keyword = "ABBC"
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 5,
+	"alloy" = 5,
+	)
+
+/obj/structure/salvage/small_machinery/kitchen
+	name = "kitchen appliance"
+	desc = "A small device used in preparation or cooking of food."
+	desc_lore = "Maintaining a healthy diet has a notable effect on the amount of instability incidents during long term voyages, which is why most ships typically have a dedicated kitchen area where food is prepared from as close to scratch as possible. In their spare time, crew are typically encouraged to take the extra time it takes to use devices like those to cook a proper meal. Yields the same ammount of resources as a typical small machine."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/kitchen.dmi'
+	icon_state = "kitchen_2"
+
+/obj/structure/salvage/small_machinery/medical
+	name = "medical device"
+	desc = "A medical device with a significant electrical or electronic component."
+	desc_lore = "Ship medbays typically link most of their equipment to the on-board AI so that the computer can monitor levels and alert them of shortages. As such, most medical equipment that cannot be easily picked up carries electronic devices that need to be prepared for salvage"
+	icon = 'icons/sectorpatrol/salvage/small_machinery/medical.dmi'
+	icon_state = "medical_1"
+
+/obj/structure/salvage/small_machinery/office
+	name = "office electronics"
+	desc = "A piece of office equipment."
+	desc_lore = "Scanners, faxes linked to the LD network and other such devices are typically first handled by the UAAC-TIS due to the information they may have stored in their buffer and a chance that they have LD components. Yields more resins and alloys at the cost of metals."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/office.dmi'
+	icon_state = "office_1"
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 10,
+	"alloy" = 15,
+	)
+
+/obj/structure/salvage/small_machinery/wall_displays
+	name = "wall-mounted display"
+	desc = "A display monitor mounted on the wall."
+	desc_lore = "Hyperspace ruins most computer displays, which is essentially why most of space travel is done by looking at a green, text only display, even one hundred years into the age of space travel. Larger displays such as these typically retain enough integrity over jumps that they can be used with some graphic elements, but they are also notoriously loud and buggy. Yields mostly alloys with some resins and no metal."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/wall_displays.dmi'
+	icon_state = "wall_displays_1"
+	salvage_contents = list(
+	"metal" = 0,
+	"resin" = 5,
+	"alloy" = 25,
+	)
+
+/obj/structure/salvage/small_machinery/wall_electronics
+	name = "wall-mounted electronic device"
+	desc = "A small terminal, button, display or some other device attached to the wall controlling a nearby aspect of the ship."
+	desc_lore = "Switches, buttons, levers, small wall mounted displays and status controls, atmospheric dan power controls for rooms all fall into this category. They are easier to dismantle than the typical small electronic but yield a bit less materials at the cost of metals."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/wall_electronics.dmi'
+	icon_state = "wall_electronics_1"
+	salvage_decon_keyword = "AEBD"
+	salvage_contents = list(
+	"metal" = 0,
+	"resin" = 10,
+	"alloy" = 10,
+	)
+
+/obj/structure/salvage/small_machinery/wall_electronics/lights
+	name = "wall-mounted light"
+	desc = "A light tube or bulb attached to a fixture on the wall."
+	desc_lore = "While there are definite benefits to having a well-lit ship as far as crew morale is concerned, the main reason most ship engineers rigorously make sure all lights are up to snuff is the consequences of lacking light in case of a power related emergency in deep space. These fixtures typically require just one step to prepare for salvaging but yield only trace amounts of alloys and metals."
+	icon = 'icons/sectorpatrol/salvage/small_machinery/lights.dmi'
+	icon_state = "default"
+	salvage_decon_keyword = "FD"
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 0,
+	"alloy" = 5,
+	)
+
+/obj/structure/salvage/small_machinery/wall_electronics/lights/tube
+	icon_state = "tube"
+	icon_state_max = 4
+
+/obj/structure/salvage/small_machinery/wall_electronics/lights/bigtube
+	icon_state = "bigtube"
+	icon_state_max = 4
+
+/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb
+	icon_state = "bulb"
+	icon_state_max = 3

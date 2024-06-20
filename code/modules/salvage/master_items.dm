@@ -46,10 +46,14 @@
 	var/salvage_area_tag
 	var/salvage_container_tag
 
+/obj/item/salvage/update_icon()
+	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+	. = ..()
+
+
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(icon_state_max > 0)
-		icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
 		update_icon()
 	if(salvage_random)
 		var/random_roll = rand(1,100)
@@ -171,6 +175,7 @@
 	var/no_salvage = 0
 	var/salvage_area_tag = "default"
 	var/salvage_container_tag
+	var/icon_state_max = 0
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -211,9 +216,14 @@
 			else
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
 
+/obj/structure/salvage/update_icon()
+	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+	. = ..()
 
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
+	if(icon_state_max > 0)
+		update_icon()
 	if(salvage_container_tag)
 		for(var/obj/item/salvage/items in get_turf(src))
 			if(salvage_container_tag == items.salvage_container_tag)
@@ -549,7 +559,7 @@
 		if(TRAIT_TOOL_MULTITOOL)
 			switch(state_to_return)
 				if("starting") return "You plug in a multitool to [src] and start a diagnostic routine."
-				if("finished") return "The multitool finishes its routine on [src] and opens its maintenance hatch."
+				if("finished") return "The multitool finishes its routine on [src] and beeps loudly."
 				if("examine") return "You need a multitool to prepare this object for salvaging."
 		if(TRAIT_TOOL_DRILL)
 			switch(state_to_return)

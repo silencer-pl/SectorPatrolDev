@@ -45,7 +45,6 @@
 	var/salvage_random = 0 // If 1 will roll a 5% chance for this item to be an intel document and sets it salvage_search values accordingly, and 15% to be a dummy serchable if the previous does not hapen
 	var/salvage_area_tag
 	var/salvage_container_tag
-	var/salvage_category
 	var/pixel_randomize = 0
 
 /obj/item/salvage/update_icon()
@@ -234,6 +233,7 @@
 	. = ..()
 
 /obj/structure/salvage/proc/randomize_contents()
+	if (content_salvage_category == null) return
 	var/randomize_current_step = 1
 	while (randomize_current_step <= content_ammount)
 		var/obj/item/salvage/salvage = new content_salvage_category(get_turf(src))

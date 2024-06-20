@@ -177,6 +177,7 @@
 	var/salvage_area_tag = "default"
 	var/salvage_container_tag
 	var/icon_state_max = 0
+	var/icon_opens
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -219,6 +220,9 @@
 
 /obj/structure/salvage/update_icon()
 	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+	if(salvage_current_step > salvage_steps)
+		if(icon_opens)
+			icon = icon_opens
 	. = ..()
 
 /obj/structure/salvage/Initialize(mapload, ...)
@@ -314,6 +318,9 @@
 		var/salvage_desc = salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "examine") + " " + salvage_process_decon_generate_text(text = salvage_decon_array[2][salvage_current_step], state = "examine")
 		to_chat(usr, SPAN_INFO(salvage_desc))
 	if(salvage_current_step > salvage_steps)
+		for(var/obj/item/salvage/items in src.contents)
+			items.forceMove(get_turf(src))
+		update_icon()
 		to_chat(usr, SPAN_INFO("This object is ready for recycling."))
 
 /obj/structure/salvage/examine(mob/user)

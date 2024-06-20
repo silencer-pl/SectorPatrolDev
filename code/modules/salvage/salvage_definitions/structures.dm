@@ -299,3 +299,28 @@
 /obj/structure/salvage/small_machinery/wall_electronics/lights/bulb
 	icon_state = "bulb"
 	icon_state_max = 3
+
+/obj/structure/salvage/locker
+	name = "storage container"
+	desc = "A container used to store other items."
+	desc_lore = "There is always a need for storage space to keep items big and small where you can find them easily. The container should reveal its contents once it's prepared for salvaging. Typically, is made from only resins."
+	icon = 'icons/sectorpatrol/salvage/lockers/lockers.dmi'
+	icon_state = "locker_3"
+	icon_opens = 'icons/sectorpatrol/salvage/lockers/lockers_o.dmi'
+	salvage_decon_keyword = "FBDB"
+	salvage_contents = list(
+	"metal" = 0,
+	"resin" = 20,
+	"alloy" = 0,
+	)
+
+/obj/structure/salvage/locker/crate
+	icon_opens = null
+	icon = 'icons/sectorpatrol/salvage/lockers/crates.dmi'
+	icon_state = "crate_6"
+	salvage_decon_keyword = "BB"
+	salvage_contents = list(
+	"metal" = 0,
+	"resin" = 10,
+	"alloy" = 0,
+	)

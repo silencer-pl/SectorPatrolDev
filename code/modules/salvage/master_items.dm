@@ -167,6 +167,7 @@
 	var/desc_affix
 	var/desc_lore_affix
 	var/hackable = 0 // If 1, spike proc will trigger as priority after using data spike. Introduce a state that breaks on decon later too, but for now keeping it simple. If 2, hack in progress, if 3 hack completed.
+	var/hackable_message = 0 // If 1, will play a message after getting spiked.
 	var/salvage_decon_keyword // Keyword formula: [TOOL(A to F) PAIR 1][TOOL PAIR 2](...)[INTENT(A to D) PAIR 1][INTENT PAIR2](...) ammount of steps is derived from lengh of string. Example: AFFAADBA, case insensitive
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
 	var/salvage_big_item = 0 //If 1, restricts tool usage to specific item
@@ -330,6 +331,11 @@
 		return 1
 	return 0
 
+/obj/structure/salvage/proc/salvage_play_message()
+	talkas("Pythia Exception: Critical information flag detected. Compiling and playing back relevant infomration:")
+	talkas("Hello. I am a default message. If you can see me someone, most likley silencer, forgot to set me up properly. Please report this as a bug.")
+	return
+
 /obj/structure/salvage/proc/salvage_process_spike()
 	switch(hackable)
 		if(1)
@@ -337,11 +343,10 @@
 			hackable = 2
 			langchat_color = "#9b06a8"
 			talkas("Spike delivery sucessful. Caching information.")
-	//		icon_state = initial(icon_state) + "_spike"
-	//		update_icon()
 			sleep(100)
 			talkas("Infomration retrieved. Data cache pulse sent. This device now may be deconstructed.")
 			hackable = 3
+			if(hackable_message) INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/, salvage_play_message))
 			GLOB.salvaging_intel_items += 1
 			return 1
 		if(2)

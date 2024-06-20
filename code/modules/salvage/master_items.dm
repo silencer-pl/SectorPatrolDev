@@ -45,16 +45,22 @@
 	var/salvage_random = 0 // If 1 will roll a 5% chance for this item to be an intel document and sets it salvage_search values accordingly, and 15% to be a dummy serchable if the previous does not hapen
 	var/salvage_area_tag
 	var/salvage_container_tag
+	var/salvage_category
+	var/pixel_randomize = 0
 
 /obj/item/salvage/update_icon()
 	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
 	. = ..()
 
+/obj/item/salvage/proc/pixel_randomize()
+	pixel_x = rand(-8, 8)
+	pixel_y = rand(-8, 8)
 
 /obj/item/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(icon_state_max > 0)
 		update_icon()
+	if(pixel_randomize) pixel_randomize()
 	if(salvage_random)
 		var/random_roll = rand(1,100)
 		if(random_roll >= 95)
@@ -178,6 +184,8 @@
 	var/salvage_container_tag
 	var/icon_state_max = 0
 	var/icon_opens
+	var/content_ammount = 0
+	var/content_salvage_category = /obj/item/salvage
 
 /obj/structure/salvage/proc/salvage_generate_decon()
 
@@ -225,6 +233,14 @@
 			icon = icon_opens
 	. = ..()
 
+/obj/structure/salvage/proc/randomize_contents()
+	var/randomize_current_step = 1
+	while (randomize_current_step <= content_ammount)
+		var/obj/item/salvage/salvage = new content_salvage_category(get_turf(src))
+		salvage.forceMove(src)
+		randomize_current_step += 1
+
+
 /obj/structure/salvage/Initialize(mapload, ...)
 	. = ..()
 	if(icon_state_max > 0)
@@ -233,6 +249,7 @@
 		for(var/obj/item/salvage/items in get_turf(src))
 			if(salvage_container_tag == items.salvage_container_tag)
 				items.forceMove(src)
+	if(content_ammount != 0) INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/, randomize_contents))
 	if(salvage_decon_keyword && !salvage_decon_array) salvage_generate_decon()
 	if(no_salvage == 0)
 		GLOB.salvaging_total_ldpol += ((salvage_contents["metal"] + salvage_contents["resin"] + salvage_contents["alloy"])/ 5)
@@ -320,6 +337,7 @@
 	if(salvage_current_step > salvage_steps)
 		for(var/obj/item/salvage/items in src.contents)
 			items.forceMove(get_turf(src))
+			items.pixel_randomize()
 		update_icon()
 		to_chat(usr, SPAN_INFO("This object is ready for recycling."))
 

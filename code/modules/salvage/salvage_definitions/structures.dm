@@ -324,3 +324,39 @@
 	"resin" = 10,
 	"alloy" = 0,
 	)
+
+/obj/structure/salvage/furniture
+	name = "furniture"
+	desc = "A surface to put things on, including yourself. Simple and effective"
+	desc_lore = "Tables, chairs and other furniture are typically manufactured by the ships themselves and while the NRPS is slowly catching on, there is no real consistency in assembly and used mounts and tools. Furniture is typically made of resins and some metals and does not contain any alloys."
+	icon = 'icons/sectorpatrol/salvage/furniture/table.dmi'
+	icon_state = "table_4"
+	salvage_decon_keyword = "ABBD"
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 10,
+	"alloy" = 0,
+	)
+
+/obj/structure/salvage/furniture/chair
+
+	icon = 'icons/sectorpatrol/salvage/furniture/chair.dmi'
+	icon_state = "chair_1"
+	salvage_contents = list(
+	"metal" = 5,
+	"resin" = 10,
+	"alloy" = 0,
+	)
+
+/obj/structure/salvage/toilet
+	name = "toilet implement"
+	desc = "A bathroom item with an obvious use. Does not currently work."
+	desc_lore = "Personal hygiene is a contributing factor to mental issues that notoriously plague Spacers and as such, most ships try to provide at least a basic shower and toilet for every crew member, as well as imposing mandatory showers on some ships. Due to their constant exposure to moisture, these objects have trace amount of alloys along with resins, but no metals. "
+	icon = 'icons/sectorpatrol/salvage/toilet/toilet.dmi'
+	icon_state = "toilet_1"
+	salvage_decon_keyword = "BDDD"
+	salvage_contents = list(
+	"metal" = 0,
+	"resin" = 10,
+	"alloy" = 5,
+	)

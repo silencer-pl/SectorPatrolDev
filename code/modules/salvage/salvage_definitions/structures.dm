@@ -82,14 +82,14 @@
 	desc = "A machine typically connected somewhere to the atmospherics control system on the ship. "
 	desc_lore = "Atmospherics heavy machines are typically air warmers, air coolers and the diagnostic equipment that controls them. These machines keep the ship warm or cool it down as needed or are used to store and measure local atmospheric information to maintain a healthy environment on the ship. They share yields with other heavy machines."
 
-/obj/structure/salvage/heavy_machinery/dispsensers
+/obj/structure/salvage/heavy_machinery/dispensers
 	name = "dispenser"
-	icon = 'icons/sectorpatrol/salvage/heavy_machinery/dispsensers.dmi'
-	icon_state = "dispsenser_1"
+	icon = 'icons/sectorpatrol/salvage/heavy_machinery/dispensers.dmi'
+	icon_state = "dispenser_1"
 	desc = "An automated dispenser with a numeric button input visible on the side. It does not appear to be working. "
 	desc_lore = "As the name implies, dispensers are used for storage, keeping inventory and, yes, dispensing a whole variety of items from food and tools to armor and weapons. Yields same resources as an average piece of heavy machinery."
 
-/obj/structure/salvage/heavy_machinery/generators/gen_1
+/obj/structure/salvage/heavy_machinery/generators/gen_2
 	name = "generation 2 Twilight Paradox power generator"
 	icon = 'icons/sectorpatrol/salvage/heavy_machinery/generators.dmi'
 	icon_state = "gen_1"
@@ -101,8 +101,8 @@
 	"alloy" = 25,
 	)
 
-/obj/structure/salvage/heavy_machinery/generators/gen_1
-	name = "generation 2 Twilight Paradox power generator"
+/obj/structure/salvage/heavy_machinery/generators/gen_3
+	name = "generation 3 Twilight Paradox power generator"
 	icon = 'icons/sectorpatrol/salvage/heavy_machinery/generators.dmi'
 	icon_state = "gen_2"
 	desc = "A Twilight Paradox power generator with a visible rechargeable cell port. Seems to be offline."
@@ -182,7 +182,6 @@
 	icon_state = "smes_1"
 	desc = "A cluster of ring-shaped batteries stacked on top of each other, with a set of displays and dials hidden behind a panel on the front."
 	desc_lore = "The SMES, or the Standardized Modular Energy Storage is essentially multiple high-capacity Twilight Paradox energy cores connected to the ships power grid and accumulating passive charge during any Hyperspace jump. SMES devices are used on space stations and during long term deployments, along with quick leapfrog 'recharger' jumps within the same solar system, to help keep its spaceship or station operational while stationary. Yields mostly resins and alloys."
-	icon = 'icons/sectorpatrol/salvage/heavy_machinery/computer_hardware.dmi'
 	salvage_contents = list(
 	"metal" = 5,
 	"resin" = 20,
@@ -324,6 +323,11 @@
 	"resin" = 10,
 	"alloy" = 0,
 	)
+
+/obj/structure/salvage/locker/crate/random
+	icon_state = "crate"
+	name = "storage container"
+	icon_state_max = 22
 
 /obj/structure/salvage/furniture
 	name = "furniture"

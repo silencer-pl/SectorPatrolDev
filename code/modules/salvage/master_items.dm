@@ -543,6 +543,10 @@
 	if(desc_lore_affix != null)
 		desc_lore = initial(desc_lore) + "</p><p>" + desc_lore_affix
 
+/turf/open/salvage/proc/remove_decals()
+	for (var/obj/effect/decal/decal in get_turf(src))
+		qdel(decal)
+
 /turf/open/salvage/proc/salvage_recycle_tile(obj/item/salvage/recycler_nozzle/N)
 	var/obj/item/salvage/recycler_nozzle/nozzle = N
 	INVOKE_ASYNC(nozzle.recycler_nozzle_paired_pack, TYPE_PROC_REF(/obj/item/salvage/recycler_backpack, recycler_add_salvage), salvage_contents_tile["metal"], salvage_contents_tile["resin"], salvage_contents_tile["alloy"])
@@ -557,6 +561,7 @@
 	desc_affix = null
 	desc_lore_affix = null
 	update_icon()
+	INVOKE_ASYNC(src, PROC_REF(remove_decals))
 	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))
 	salvage_tiles_recycled = 1
 	return
@@ -683,6 +688,30 @@
 		return
 	to_chat(usr, SPAN_INFO("You have no idea how to combine these two together."))
 
+/turf/closed/wall/salvage
+	salvage_contents = list(
+		"metal" = 50,
+		"resin" = 10,
+		"alloy" = 10,
+		)
+	icon = 'icons/sectorpatrol/salvage/walls/black.dmi'
+	icon_state = "blackwall"
+	walltype = "blackwall"
+	desc = "A thick layer of hardened metal."
+	desc_lore = "From the earliest days of interstellar travel, ship hulls were always one of the least technologically impressive parts of ships, most ship designs veering more towards 'surround crew with as much steel as possible' design principle and not anything else. Notably TWE and some new UA designs introduce more complex alloys and intricate designs, but for the most part, most human ships still hold true to this principle.</p><p>Ship hulls are a good source of metals and should also yield some resins and alloys but need to be recovered via deconstruction drones utilizing a drone spike."
+	tiles_with = list(
+		/turf/closed/wall,
+		/obj/structure/window/framed,
+		/obj/structure/window_frame,
+		/obj/structure/girder,
+		/obj/structure/machinery/door,
+	)
+
+/turf/closed/wall/salvage/attackby(obj/item/attacking_item, mob/user)
+	to_chat(usr, SPAN_NOTICE("Trying to dismantle the walls piece by piece would take too long and you lack the tools to breach the wall right now. If you want to go into or outside the ship, find a door to recycle and breach."))
+	return
+
+
 //area proc down here so there is no undefined funnies
 
 /area/proc/salvage_process_area_decon() // Checks objects and items that are not nulled (i/e deleted) for matches to area tags. If suceeds, does the same for turfs but chekcs for their decon state, if none of that makes it return a fail state, proceeds and calls salvages for all turfs with area tag in salvagable turf list (to spare the dumb way BYOND handles area.contents from scanning the whole fucking world, I can likely optimize taht to specifc lists by area tag later but lets see how this performs first. If this text is still here after a while, it likley performs in the relams of 'good enough'  | returns : null - exceptions, 1 - success, 2 - non nulled items found, 3 - non nulled structures, 4 - non salvaged turfs (checks for tiles removal var)
@@ -702,17 +731,3 @@
 		if (turf_with_area_tag.salvage_turf_processed == 0)
 			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
 	return 1
-
-/turf/closed/wall/salvage
-	salvage_contents = list(
-		"metal" = 50,
-		"resin" = 10,
-		"alloy" = 10,
-		)
-	name = "ship hull"
-	desc = "A thick layer of hardened metal."
-	desc_lore = "From the earliest days of interstellar travel, ship hulls were always one of the least technologically impressive parts of ships, most ship designs veering more towards 'surround crew with as much steel as possible' design principle and not anything else. Notably TWE and some new UA designs introduce more complex alloys and intricate designs, but for the most part, most human ships still hold true to this principle.</p><p>Ship hulls are a good source of metals and should also yield some resins and alloys but need to be recovered via deconstruction drones utilizing a drone spike."
-
-/turf/closed/wall/salvage/attackby(obj/item/attacking_item, mob/user)
-	to_chat(usr, SPAN_NOTICE("Trying to dismantle the walls piece by piece would take too long and you lack the tools to breach the wall right now. If you want to go into or outside the ship, find a door to recycle and breach."))
-	return

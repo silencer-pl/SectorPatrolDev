@@ -702,3 +702,17 @@
 		if (turf_with_area_tag.salvage_turf_processed == 0)
 			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
 	return 1
+
+/turf/closed/wall/salvage
+	salvage_contents = list(
+		"metal" = 50,
+		"resin" = 10,
+		"alloy" = 10,
+		)
+	name = "ship hull"
+	desc = "A thick layer of hardened metal."
+	desc_lore = "From the earliest days of interstellar travel, ship hulls were always one of the least technologically impressive parts of ships, most ship designs veering more towards 'surround crew with as much steel as possible' design principle and not anything else. Notably TWE and some new UA designs introduce more complex alloys and intricate designs, but for the most part, most human ships still hold true to this principle.</p><p>Ship hulls are a good source of metals and should also yield some resins and alloys but need to be recovered via deconstruction drones utilizing a drone spike."
+
+/turf/closed/wall/salvage/attackby(obj/item/attacking_item, mob/user)
+	to_chat(usr, SPAN_NOTICE("Trying to dismantle the walls piece by piece would take too long and you lack the tools to breach the wall right now. If you want to go into or outside the ship, find a door to recycle and breach."))
+	return

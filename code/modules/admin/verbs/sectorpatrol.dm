@@ -15,26 +15,6 @@
 	show_blurb(GLOB.player_list, duration, message, TRUE, "center", "center", "#bd2020", "ADMIN")
 	message_admins("[key_name(usr)] sent an admin blurb alert to all players. Alert reads: '[message]' and lasts [(duration / 10)] seconds.")
 
-/client/proc/admin_play_song_and_blurb()
-	set name = "Play Predefined Song"
-	set category = "Admin.SectorPatrol"
-
-	if(!check_rights(R_ADMIN|R_DEBUG))
-		return FALSE
-
-	var/song_choice = tgui_input_list(usr, "Select a song", "Song Selection", list("1", "2"), timeout = 0)
-	var/songtoplay
-	switch(song_choice)
-		if("1")
-			show_blurb_song(title = "Test Song", additonal = "Super Band - Great Album")
-			songtoplay = 'music/1.ogg'
-			for(var/mob/mob as anything in GLOB.mob_list)
-				var/client/client = mob?.client
-				if((client?.prefs?.toggles_sound & SOUND_MIDI) && (client?.prefs?.toggles_sound & SOUND_ADMIN_ATMOSPHERIC))
-					INVOKE_ASYNC(client, PROC_REF(playsound_client), client, songtoplay, null, 70, 0, VOLUME_ADM, SOUND_CHANNEL_MUSIC, SOUND_STREAM)
-		if("2")
-			return
-
 /client/proc/prepare_admin_song_blurb()
 	set name = "Setup Custom Song Blurb"
 	set category = "Admin.SectorPatrol"
@@ -63,6 +43,19 @@
 		if(!pythia_say) return
 		T.pythiasay(pythia_say)
 		return
+
+/client/proc/cmd_admin_mission_control_say() // Checks for a Pythia reciever and talks as it and any of its voices.
+	set name = "Mission Control Comms"
+	set category = "Admin.SectorPatrol"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	var/mission_control_say = tgui_input_text(src, "What to say as Mission Control into the general Radio Channel", "MC Say Text", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, encode = FALSE, timeout = 0)
+	if(!mission_control_say) return
+	to_chat(world, "<span class='big'><span class='radio'><span class='name'>Mission Control<b>[icon2html('icons/obj/items/radio.dmi', usr, "beacon")] \u005BOV-PST \u0028TC-MC\u0029\u005D </b></span><span class='message'>, says \"[mission_control_say]\"</span></span></span>", type = MESSAGE_TYPE_RADIO)
+	return
 
 /client/proc/cmd_start_sequence()
 	set name = "Start Sequence"
@@ -221,6 +214,10 @@
 	GLOB.ingame_time = ((newtime_hrs * 36000) + (newtime_min * 600)) - world.time
 	if(GLOB.ingame_time == null) GLOB.ingame_time = oldvalue
 
+	oldvalue = GLOB.mission_control_hello
+	GLOB.mission_control_hello = tgui_input_text(usr, message = "Change Mission Control Hello:", title = "Mission Control Hello", default = "[GLOB.mission_control_hello]", timeout = 0)
+	if(GLOB.mission_control_hello == null) GLOB.mission_control_hello = oldvalue
+
 	oldvalue = GLOB.ingame_location
 	GLOB.ingame_location = tgui_input_text(usr, message = "Enter Location to display:", title = "Location Entry", default = "[GLOB.ingame_location]", timeout = 0)
 	if(GLOB.ingame_location == null) GLOB.ingame_location = oldvalue
@@ -262,6 +259,7 @@
 	G["Date"] << GLOB.ingame_date
 	var/saved_time = (GLOB.ingame_time - SSticker.round_start_time)+ world.time
 	G["Time"] << saved_time
+	G["Mission_Control_Hello"] << GLOB.mission_control_hello
 	G["Location"] << GLOB.ingame_location
 	G["Mission_Type"] << GLOB.ingame_mission_type
 	G["start_narration_header"] << GLOB.start_narration_header
@@ -283,6 +281,7 @@
 	var/savefile/G = new("data/persistance/globals.sav")
 	G["Date"] >> GLOB.ingame_date
 	G["Time"] >> GLOB.ingame_time
+	G["Mission_Control_Hello"] >> GLOB.mission_control_hello
 	G["Location"] >> GLOB.ingame_location
 	G["Mission_Type"] >> GLOB.ingame_mission_type
 	G["start_narration_header"] >> GLOB.start_narration_header

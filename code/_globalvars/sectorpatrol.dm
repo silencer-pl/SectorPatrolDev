@@ -9,6 +9,9 @@ GLOBAL_VAR_INIT(ingame_date, "Unknown Date/Time")
 GLOBAL_VAR_INIT(ingame_time, 0)
 GLOBAL_VAR_INIT(ingame_mission_type, "Open Session")
 
+//Hello message
+GLOBAL_VAR_INIT(mission_control_hello, "Mission Control Online. Interval recording online. Hello, Test Crews!")
+
 //Persistancy lists
 GLOBAL_LIST_EMPTY(turfs_saved) //turfs to be saved/loaded, ordered by xyz coordiates
 GLOBAL_LIST_EMPTY(objects_saved) //objects to be saved/loaded, orderd by an index number

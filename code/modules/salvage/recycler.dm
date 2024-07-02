@@ -314,3 +314,52 @@
 	can_hold = list(
 		/obj/item/salvage/document
 	)
+
+/obj/item/storage/pouch/uacm/salvage/left
+	name = "UACM salvaging toolkit left-hand pouch"
+	desc = "A pouch that can fit a few tools on a mounting clip that is slightly offset to the left."
+	desc_lore = "UACM salvaging pouches come with a slight offset to the right or left to allow quick access of the tools contained within. In the UACM engineering handbook, 'left hand' tools are, in order: a screwdriver, wire cutters and a multitool. These pouches are sometimes called 'electronics helpers'."
+	icon_state = "salvage_tools_l"
+	storage_slots = 3
+	max_storage_space = 3
+	can_hold = list(
+		/obj/item/tool/screwdriver/uacm,
+		/obj/item/tool/wrench/uacm,
+		/obj/item/tool/crowbar/uacm,
+		/obj/item/tool/wirecutters/uacm,
+		/obj/item/device/multitool/uacm,
+		/obj/item/tool/drill/uacm
+	)
+
+/obj/item/storage/pouch/uacm/salvage/left/fill_preset_inventory()
+	new /obj/item/tool/screwdriver/uacm
+	new /obj/item/tool/wirecutters/uacm
+	new /obj/item/device/multitool/uacm
+
+/obj/item/storage/pouch/uacm/salvage/right
+	name = "UACM salvaging toolkit left-hand pouch"
+	desc = "A pouch that can fit a few tools on a mounting clip that is slightly offset to the right."
+	desc_lore = "UACM salvaging pouches come with a slight offset to the right or left to allow quick access of the tools contained within. In the UACM engineering handbook, 'left hand' tools are, in order: a drill, a crowbar and a wrench. These pouches are sometimes called 'construction helpers'."
+	icon_state = "salvage_tools_r"
+	storage_slots = 3
+	max_storage_space = 3
+	can_hold = list(
+		/obj/item/tool/screwdriver/uacm,
+		/obj/item/tool/wrench/uacm,
+		/obj/item/tool/crowbar/uacm,
+		/obj/item/tool/wirecutters/uacm,
+		/obj/item/device/multitool/uacm,
+		/obj/item/tool/drill/uacm
+	)
+
+/obj/item/storage/pouch/uacm/salvage/right/fill_preset_inventory()
+	new /obj/item/tool/drill/uacm
+	new /obj/item/tool/crowbar/uacm
+	new /obj/item/tool/wrench/uacm
+
+/obj/item/device/flashlight/salvage
+	name = "UACM high powered, blubless flashlight"
+	desc = "A simple metal tube with a glass insert on one side revealing blue-tinted circuitry inside. Lights up with a clear, white light."
+	desc_lore = "You may think that flashlights of all things would not really stand to be improved by LD technology, but one of the PST's designers would likely say that's not thinking outside the box. In this case, thinking outside the box means a flashlight that does not have any light bulb or similar lighting element and instead relies by the glow of a small orb filled with what looks like a swirling light-blue liquid. This liquid seems to be able to stimulate itself and produce natural light on-demand."
+	light_range = 8
+	raillight_compatible = FALSE

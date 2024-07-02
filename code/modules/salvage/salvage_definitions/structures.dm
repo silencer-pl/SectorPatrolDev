@@ -329,6 +329,22 @@
 	name = "storage container"
 	icon_state_max = 22
 
+/obj/structure/salvage/locker/crate/random/barrels
+	icon_state_min = 1
+	icon_state_max = 5
+
+/obj/structure/salvage/locker/crate/random/wooden
+	icon_state_min = 6
+	icon_state_max = 9
+
+/obj/structure/salvage/locker/crate/random/black_case
+	icon_state_min = 10
+	icon_state_max = 15
+
+/obj/structure/salvage/locker/crate/random/assort
+	icon_state_min = 16
+
+
 /obj/structure/salvage/furniture
 	name = "furniture"
 	desc = "A surface to put things on, including yourself. Simple and effective"

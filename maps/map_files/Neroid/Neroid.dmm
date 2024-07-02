@@ -11,6 +11,7 @@
 "bG" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_1"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "bQ" = (/obj/structure/salvage/furniture/chair{dir = 4},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "cb" = (/obj/structure/salvage/airlock{icon_state = "door_32"; item_serial = "Twilight Paradox Drive - BL"; dir = 8},/turf/open/salvage/plating{icon_state = "orange2full"},/area/salvage/ovpst_salvage)
+"cn" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/assort,/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "ct" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
 "cv" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = 32},/turf/open/salvage/plating{icon_state = "blue2"; dir = 6},/area/salvage/ovpst_salvage)
 "cA" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
@@ -20,7 +21,7 @@
 "cN" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = 32},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating{icon_state = "blue2"; dir = 4},/area/salvage/ovpst_salvage)
 "cQ" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/obj/structure/salvage/small_machinery/wall_electronics/lights/bigtube{dir = 1},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "cR" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
-"cY" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"cY" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/wooden,/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "dA" = (/turf/open/salvage/plating{icon_state = "blue2"; dir = 1},/area/salvage/ovpst_salvage)
 "dI" = (/obj/structure/salvage/airlock/double{icon_state = "door_11"},/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "dU" = (/obj/structure/salvage/airlock/double{icon_state = "door_10"; dir = 8; item_serial = "Command Center"},/turf/open/salvage/plating{icon_state = "blue2full"},/area/salvage/ovpst_salvage)
@@ -28,7 +29,7 @@
 "ek" = (/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/electronic/random,/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/structure/salvage/furniture{icon_state = "table_5a"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "em" = (/obj/structure/salvage/furniture{icon_state = "table_5a"; dir = 6},/obj/item/salvage/electronic/random,/obj/item/salvage/electronic/random,/obj/item/salvage/electronic/random,/obj/item/salvage/document/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "es" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
-"ey" = (/obj/effect/decal/cargo_stripes{icon_state = "ne"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"ey" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
 "eP" = (/obj/structure/salvage/locker{icon_state = "locker_13"; salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "eT" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/heavy_machinery/generators/gen_2,/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "eV" = (/obj/structure/salvage/airlock{icon_state = "door_50"; dir = 4},/turf/open/salvage/plating{icon_state = "red2full"},/area/salvage/ovpst_salvage)
@@ -61,7 +62,7 @@
 "hR" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "hS" = (/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/obj/item/salvage/electronic/random,/obj/item/salvage/document/random,/obj/structure/salvage/furniture{icon_state = "table_5a"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "id" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
-"io" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating{icon_state = "purple2"; dir = 4},/area/salvage/ovpst_salvage)
+"io" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "is" = (/obj/structure/salvage/heavy_machinery/washer,/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "it" = (/obj/structure/salvage/furniture{icon_state = "table_5a"; dir = 4},/obj/structure/salvage/small_machinery/computer,/turf/open/salvage/plating{icon_state = "blue2"; dir = 1},/area/salvage/ovpst_salvage)
 "iM" = (/obj/structure/salvage/airlock/double{icon_state = "door_19"; item_serial = "Brig"},/turf/open/salvage/plating{icon_state = "red2full"},/area/salvage/ovpst_salvage)
@@ -118,6 +119,7 @@
 "pU" = (/obj/structure/salvage/small_machinery/computer{icon_state = "computer_3"; dir = 1},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "qo" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_13"; pixel_y = 32},/turf/open/salvage/plating{icon_state = "black2"; dir = 1},/area/salvage/ovpst_salvage)
 "qG" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb,/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_13"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "plating_catwalk"},/area/salvage/ovpst_salvage)
+"qM" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "qU" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = -26},/turf/open/salvage/plating{icon_state = "orange2"; dir = 6},/area/salvage/ovpst_salvage)
 "qY" = (/obj/structure/salvage/airlock{icon_state = "door_3"; item_serial = "Command Quarters"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "rp" = (/obj/structure/salvage/furniture{icon_state = "table_5a"; dir = 9},/obj/structure/salvage/small_machinery/computer{icon_state = "computer_1"; dir = 4},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
@@ -128,7 +130,7 @@
 "sl" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/heavy_machinery/smes,/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "sn" = (/obj/structure/salvage/heavy_machinery/sleeper,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "sF" = (/turf/open/salvage/plating{icon_state = "black2"; dir = 5},/area/salvage/ovpst_salvage)
-"sI" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"sI" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "sT" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_1"},/turf/open/salvage/plating{icon_state = "orange2"; dir = 6},/area/salvage/ovpst_salvage)
 "tc" = (/obj/structure/salvage/locker{icon_state = "locker_29"; salvage_container_tag = "000000"},/obj/item/salvage/parts/random{salvage_container_tag = "000000"},/obj/item/salvage/parts/random{salvage_container_tag = "000000"},/obj/item/salvage/parts/random{salvage_container_tag = "000000"},/obj/item/salvage/parts/random{salvage_container_tag = "000000"},/obj/item/salvage/parts/random{salvage_container_tag = "000000"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
 "td" = (/obj/structure/salvage/small_machinery/wall_displays{icon_state = "wall_displays_2"; pixel_y = 32},/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 4},/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/tools/random,/turf/open/salvage/plating{icon_state = "blue2"; dir = 1},/area/salvage/ovpst_salvage)
@@ -149,18 +151,18 @@
 "uW" = (/turf/open/salvage/plating{icon_state = "plate"},/area/salvage/ovpst_salvage)
 "vj" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "vn" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_13"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "plate"},/area/salvage/ovpst_salvage)
-"vq" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
+"vq" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "vw" = (/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 4},/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/electronic/random,/obj/item/salvage/electronic/random,/obj/item/salvage/tools/random,/obj/item/salvage/tools/random,/turf/open/salvage/plating{icon_state = "emerald"; dir = 9},/area/salvage/ovpst_salvage)
 "vE" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_1"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
 "vJ" = (/turf/open/salvage/plating{icon_state = "emerald"; dir = 1},/area/salvage/ovpst_salvage)
-"vK" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = 32},/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
-"vS" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 9},/area/salvage/ovpst_salvage)
+"vK" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = 32},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"vS" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/barrels,/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "vT" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "vW" = (/obj/effect/decal/cargo_stripes{icon_state = "ne"},/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "wf" = (/obj/structure/salvage/locker{icon_state = "locker_12"},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "wt" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_13"; pixel_x = 32},/turf/open/salvage/plating{icon_state = "blue2"; dir = 4},/area/salvage/ovpst_salvage)
 "wv" = (/obj/structure/salvage/airlock/double{icon_state = "door_4"; item_serial = "medbay"},/turf/open/salvage/plating{icon_state = "green2full"},/area/salvage/ovpst_salvage)
-"wA" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"wA" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "wC" = (/obj/item/salvage/resources/random,/obj/item/salvage/resources/random,/obj/item/salvage/document/random,/obj/structure/salvage/furniture{icon_state = "table_5b"},/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "wD" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_2"},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "wE" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/obj/structure/salvage/heavy_machinery/smes,/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
@@ -168,19 +170,19 @@
 "wH" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_2"},/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
 "wI" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "wK" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = 32},/turf/open/salvage/plating{icon_state = "black2"; dir = 1},/area/salvage/ovpst_salvage)
-"wO" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"wO" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "xe" = (/obj/structure/salvage/airlock/double{icon_state = "door_11"; dir = 8; item_serial = "Cargo Bay - B"},/turf/open/salvage/plating{icon_state = "purple2full"},/area/salvage/ovpst_salvage)
 "xi" = (/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 4},/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/electronic/random,/obj/item/salvage/tools/random,/turf/open/salvage/plating{icon_state = "emerald"; dir = 10},/area/salvage/ovpst_salvage)
 "xo" = (/obj/structure/salvage/heavy_machinery/smes,/turf/open/salvage/plating{icon_state = "outerhull"},/area/salvage/ovpst_salvage)
-"xr" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
+"xr" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "xv" = (/obj/structure/salvage/heavy_machinery/sleeper,/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
-"xw" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
+"xw" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
 "xF" = (/obj/structure/salvage/small_machinery/hanging{dir = 9},/turf/open/salvage/plating{icon_state = "emerald"; dir = 5},/area/salvage/ovpst_salvage)
 "xM" = (/turf/open/salvage/plating{icon_state = "blue2"},/area/salvage/ovpst_salvage)
 "xP" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "xZ" = (/turf/open/salvage/plating{icon_state = "blue2full"},/area/salvage/ovpst_salvage)
 "yg" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating{icon_state = "purple2"; dir = 4},/area/salvage/ovpst_salvage)
-"yn" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"yn" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "yu" = (/obj/structure/salvage/toilet{dir = 1},/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb{dir = 4},/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "zp" = (/obj/structure/salvage/heavy_machinery/comm_hardware{icon_state = "comms_3"; hackable = 1},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 8},/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "zt" = (/obj/structure/salvage/airlock/double{icon_state = "door_6"; dir = 4; item_serial = "medbay"},/turf/open/salvage/plating{icon_state = "green2full"},/area/salvage/ovpst_salvage)
@@ -198,7 +200,7 @@
 "AQ" = (/obj/structure/salvage/furniture/chair{icon_state = "chair_3"; dir = 8},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "AR" = (/obj/item/salvage/resources/random,/obj/item/salvage/resources/random,/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 1},/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "Ba" = (/obj/structure/salvage/locker{icon_state = "locker_13"; salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/obj/item/salvage/clothing/random{salvage_container_tag = "a"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
-"Bc" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Bc" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating{icon_state = "purple2"; dir = 9},/area/salvage/ovpst_salvage)
 "Bf" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "Bg" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = -29},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Bl" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 4},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
@@ -208,9 +210,9 @@
 "BQ" = (/obj/structure/salvage/locker{icon_state = "locker_12"},/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
 "BU" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_2"},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "Ce" = (/obj/structure/salvage/heavy_machinery/dispensers{icon_state = "dispenser_8"},/turf/open/salvage/plating{icon_state = "green2"; dir = 4},/area/salvage/ovpst_salvage)
-"Cj" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"Cj" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "CF" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_8"; pixel_y = 32},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
-"CO" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 4},/area/salvage/ovpst_salvage)
+"CO" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "CR" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = 32},/turf/open/salvage/plating{icon_state = "red2"; dir = 6},/area/salvage/ovpst_salvage)
 "Df" = (/obj/structure/salvage/airlock{icon_state = "door_3"; dir = 4; item_serial = "Command Quarters"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Dj" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "orange2"; dir = 5},/area/salvage/ovpst_salvage)
@@ -219,8 +221,10 @@
 "Dz" = (/obj/structure/salvage/airlock/double{icon_state = "door_21"; dir = 8; item_serial = "Cargo Bay - T"},/turf/open/salvage/plating{icon_state = "plating_catwalk"},/area/salvage/ovpst_salvage)
 "DJ" = (/obj/structure/salvage/heavy_machinery/generators/gen_2,/turf/open/salvage/plating{icon_state = "orange2"; dir = 5},/area/salvage/ovpst_salvage)
 "DX" = (/obj/structure/salvage/locker{icon_state = "locker_1"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
-"Ea" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
+"Ea" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "Eb" = (/obj/structure/salvage/furniture{icon_state = "table_5b"},/obj/item/salvage/parts/random,/obj/item/salvage/parts/random,/obj/item/salvage/parts/random,/obj/item/salvage/parts/random,/obj/item/salvage/parts/random,/obj/item/salvage/parts/random,/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
+"Ef" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Em" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 "Ep" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = 32},/turf/open/salvage/plating{icon_state = "green2"; dir = 5},/area/salvage/ovpst_salvage)
 "Er" = (/obj/structure/salvage/heavy_machinery/terminals{icon_state = "terminal_5"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "EC" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_2"},/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
@@ -234,10 +238,12 @@
 "Ft" = (/obj/structure/salvage/small_machinery/wall_displays{icon_state = "wall_displays_2"; pixel_y = -32},/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 8},/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/document/random,/obj/item/salvage/medical/random,/turf/open/salvage/plating{icon_state = "blue2"},/area/salvage/ovpst_salvage)
 "Fx" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb,/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "Fz" = (/obj/structure/salvage/heavy_machinery/production{icon_state = "prod_3"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "green2"},/area/salvage/ovpst_salvage)
-"FA" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
+"FA" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
+"FH" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "FI" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "outerhull"},/area/salvage/ovpst_salvage)
-"FU" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 10},/area/salvage/ovpst_salvage)
-"FZ" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"FR" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/black_case,/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"FU" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"; dir = 8},/area/salvage/ovpst_salvage)
+"FZ" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Ga" = (/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Gf" = (/obj/structure/salvage/small_machinery/hanging{dir = 9},/obj/structure/salvage/locker{icon_state = "locker_23"},/turf/open/salvage/plating{icon_state = "emerald"; dir = 6},/area/salvage/ovpst_salvage)
 "Gl" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb{dir = 1},/turf/open/salvage/plating{icon_state = "plate"},/area/salvage/ovpst_salvage)
@@ -251,7 +257,7 @@
 "He" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Hm" = (/turf/open/salvage/plating{icon_state = "red2"; dir = 1},/area/salvage/ovpst_salvage)
 "Hp" = (/obj/structure/salvage/heavy_machinery/sleeper{icon_state = "sleeper_3"; dir = 1},/turf/open/salvage/plating{icon_state = "green2"; dir = 9},/area/salvage/ovpst_salvage)
-"Hq" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Hq" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Hr" = (/obj/structure/salvage/airlock{icon_state = "door_41"; item_serial = "Twilight Paradox Energy Bank Alpha"; dir = 1},/turf/open/salvage/plating{icon_state = "orange2full"},/area/salvage/ovpst_salvage)
 "Ht" = (/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "Hz" = (/obj/structure/salvage/heavy_machinery/production,/turf/open/salvage/plating{icon_state = "orange2"; dir = 9},/area/salvage/ovpst_salvage)
@@ -259,9 +265,9 @@
 "HK" = (/turf/open/salvage/plating{icon_state = "emerald"; dir = 8},/area/salvage/ovpst_salvage)
 "HL" = (/obj/structure/salvage/airlock/double{icon_state = "door_12"; dir = 1; item_serial = "Ready Room"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "HR" = (/obj/structure/salvage/furniture{icon_state = "table_5"},/obj/structure/salvage/small_machinery/computer{icon_state = "computer_1"; dir = 8},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
-"Ih" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Ih" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Ii" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/obj/structure/salvage/heavy_machinery/generators/gen_2,/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
-"Il" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Il" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Im" = (/obj/structure/salvage/locker{icon_state = "locker_11"},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 1},/turf/open/salvage/plating{icon_state = "orange2"; dir = 1},/area/salvage/ovpst_salvage)
 "Io" = (/obj/effect/decal/cargo_stripes{icon_state = "sw"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "It" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_8"; pixel_x = 32},/turf/open/salvage/plating{icon_state = "blue2"; dir = 4},/area/salvage/ovpst_salvage)
@@ -269,7 +275,7 @@
 "IM" = (/obj/structure/salvage/airlock{icon_state = "door_51"; item_serial = "Residential - Officer"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "IZ" = (/obj/structure/salvage/heavy_machinery/washer,/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb{dir = 1},/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "Ja" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 8},/turf/open/salvage/plating{icon_state = "outerhull"},/area/salvage/ovpst_salvage)
-"Jb" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Jb" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Jf" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Jn" = (/obj/structure/salvage/small_machinery/medical,/turf/open/salvage/plating{icon_state = "green2"; dir = 4},/area/salvage/ovpst_salvage)
 "Jt" = (/obj/structure/salvage/locker{icon_state = "locker_9"; salvage_container_tag = "1"},/obj/item/salvage/medical/random{salvage_container_tag = "1"},/obj/item/salvage/medical/random{salvage_container_tag = "1"},/obj/item/salvage/medical/random{salvage_container_tag = "1"},/obj/item/salvage/medical/random{salvage_container_tag = "1"},/obj/item/salvage/medical/random{salvage_container_tag = "1"},/turf/open/salvage/plating{icon_state = "green2"; dir = 10},/area/salvage/ovpst_salvage)
@@ -277,7 +283,7 @@
 "JU" = (/obj/structure/salvage/furniture{icon_state = "table_5"},/obj/structure/salvage/small_machinery/computer{icon_state = "computer_1"; dir = 2; hackable = 1},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb{dir = 1},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "JY" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_y = 0; pixel_x = 32},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Kv" = (/obj/structure/salvage/heavy_machinery/generators/gen_2,/turf/open/salvage/plating{icon_state = "orange2"},/area/salvage/ovpst_salvage)
-"Kx" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 4},/area/salvage/ovpst_salvage)
+"Kx" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/barrels,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "KD" = (/obj/structure/salvage/heavy_machinery/comp_hardware{icon_state = "hardware_5"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 8},/turf/open/salvage/plating{icon_state = "orange2"; dir = 8},/area/salvage/ovpst_salvage)
 "KE" = (/obj/structure/salvage/airlock{icon_state = "door_41"; item_serial = "Liquid Data Comms Array"; dir = 1},/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "KL" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating{icon_state = "orange2"; dir = 5},/area/salvage/ovpst_salvage)
@@ -285,6 +291,7 @@
 "Ld" = (/obj/structure/salvage/airlock{icon_state = "door_51"; item_serial = "MAINTENANCE - T"},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "Lo" = (/turf/open/salvage/plating{icon_state = "emeraldfull"; dir = 4},/area/salvage/ovpst_salvage)
 "Lq" = (/obj/structure/salvage/heavy_machinery/generators/gen_2,/turf/open/salvage/plating{icon_state = "orange2"; dir = 6},/area/salvage/ovpst_salvage)
+"Lt" = (/obj/effect/decal/cargo_stripes{icon_state = "w"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "LJ" = (/obj/structure/salvage/toilet{icon_state = "toilet_2"; dir = 8},/obj/structure/salvage/toilet{icon_state = "toilet_2"; dir = 8},/turf/open/salvage/plating{icon_state = "dark_sterile_old"},/area/salvage/ovpst_salvage)
 "LU" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/salvage/plating{icon_state = "purple2"; dir = 4},/area/salvage/ovpst_salvage)
 "LX" = (/obj/structure/salvage/small_machinery/wall_electronics/lights/bulb,/turf/open/salvage/plating{icon_state = "plate"},/area/salvage/ovpst_salvage)
@@ -298,7 +305,7 @@
 "Nj" = (/obj/structure/salvage/furniture/chair,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Nv" = (/obj/structure/salvage/furniture/chair{icon_state = "chair_4"; dir = 1; pixel_x = -1},/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = -32},/turf/open/salvage/plating{icon_state = "black2full"},/area/salvage/ovpst_salvage)
 "NC" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
-"NI" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
+"NI" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "NN" = (/obj/structure/salvage/heavy_machinery/comm_hardware{icon_state = "comms_2"},/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "NR" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "NU" = (/obj/structure/salvage/airlock{icon_state = "door_6"},/turf/open/salvage/plating{icon_state = "emeraldfull"; dir = 4},/area/salvage/ovpst_salvage)
@@ -315,7 +322,8 @@
 "PK" = (/turf/open/salvage/plating{icon_state = "plating_catwalk"},/area/salvage/ovpst_salvage)
 "Qa" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = -32},/turf/open/salvage/plating{icon_state = "emerald"; dir = 8},/area/salvage/ovpst_salvage)
 "Qh" = (/obj/structure/salvage/furniture/chair{icon_state = "chair_3"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
-"Qu" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"; dir = 6},/area/salvage/ovpst_salvage)
+"Qm" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"Qu" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/obj/structure/salvage/locker/crate/random/wooden,/turf/open/salvage/plating{icon_state = "purple2"; dir = 6},/area/salvage/ovpst_salvage)
 "QC" = (/obj/structure/salvage/locker{icon_state = "locker_23"},/turf/open/salvage/plating{icon_state = "emerald"; dir = 4},/area/salvage/ovpst_salvage)
 "QE" = (/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "QG" = (/obj/structure/salvage/airlock{icon_state = "door_32"; item_serial = "Twilight Paradox Drive - TR"},/turf/open/salvage/plating{icon_state = "orange2full"},/area/salvage/ovpst_salvage)
@@ -340,16 +348,16 @@
 "Tf" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_10"; pixel_y = -29},/turf/open/salvage/plating{icon_state = "black2"; dir = 10},/area/salvage/ovpst_salvage)
 "Tj" = (/obj/structure/salvage/heavy_machinery/dispensers{icon_state = "dispenser_9"},/turf/open/salvage/plating{icon_state = "green2"; dir = 4},/area/salvage/ovpst_salvage)
 "Tn" = (/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
-"To" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
+"To" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "Tq" = (/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 8},/obj/structure/salvage/small_machinery/computer,/turf/open/salvage/plating{icon_state = "emerald"; dir = 1},/area/salvage/ovpst_salvage)
 "TC" = (/obj/structure/salvage/small_machinery/wall_displays{dir = 4; pixel_x = 32},/turf/open/salvage/plating{icon_state = "orange2"; dir = 4},/area/salvage/ovpst_salvage)
 "TM" = (/obj/structure/salvage/small_machinery/wall_displays{dir = 4; pixel_y = 0; pixel_x = -32},/obj/structure/salvage/small_machinery/computer{icon_state = "computer_3"; dir = 4},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 8},/turf/open/salvage/plating{icon_state = "blue2"; dir = 8},/area/salvage/ovpst_salvage)
-"TQ" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/obj/structure/salvage/locker/crate/random,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"TQ" = (/obj/effect/decal/cargo_stripes{icon_state = "s"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating{icon_state = "purple2"},/area/salvage/ovpst_salvage)
 "TZ" = (/obj/structure/salvage/locker{icon_state = "locker_11"},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube,/turf/open/salvage/plating{icon_state = "emerald"},/area/salvage/ovpst_salvage)
 "Ue" = (/obj/structure/salvage/small_machinery/wall_displays{icon_state = "wall_displays_2"; pixel_y = -32},/obj/structure/salvage/furniture{icon_state = "table_5b"; dir = 4},/obj/item/salvage/document/random,/obj/item/salvage/electronic/random,/turf/open/salvage/plating{icon_state = "blue2"},/area/salvage/ovpst_salvage)
 "Uk" = (/obj/structure/salvage/locker{icon_state = "locker_17"; pixel_y = 32},/obj/structure/salvage/locker{icon_state = "locker_5"; salvage_container_tag = "1"},/turf/open/salvage/plating{icon_state = "emerald"; dir = 5},/area/salvage/ovpst_salvage)
 "Us" = (/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_8"; pixel_y = 27},/turf/open/salvage/plating{icon_state = "plating_catwalk"},/area/salvage/ovpst_salvage)
-"US" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random,/obj/structure/salvage/small_machinery/wall_electronics{icon_state = "wall_electronics_12"; pixel_y = 30},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
+"US" = (/obj/effect/decal/cargo_stripes{icon_state = "open"},/obj/structure/salvage/locker/crate/random/black_case,/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Vh" = (/obj/structure/salvage/heavy_machinery/dispensers{icon_state = "dispenser_11"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "Vo" = (/obj/effect/decal/cargo_stripes{icon_state = "nw"},/turf/open/salvage/plating{icon_state = "purple2"; dir = 9},/area/salvage/ovpst_salvage)
 "Vp" = (/turf/open/salvage/plating{icon_state = "red2full"},/area/salvage/ovpst_salvage)
@@ -383,6 +391,7 @@
 "ZD" = (/obj/structure/salvage/airlock{icon_state = "door_41"; item_serial = "Liquid Data Comms Array"; dir = 8},/turf/open/salvage/plating{icon_state = "tcomms"},/area/salvage/ovpst_salvage)
 "ZG" = (/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/salvage/plating,/area/salvage/ovpst_salvage)
 "ZR" = (/obj/structure/salvage/small_machinery/wall_electronics{pixel_x = -32},/obj/structure/salvage/small_machinery/wall_electronics/lights/tube{dir = 8},/turf/open/salvage/plating{icon_state = "emerald"; dir = 8},/area/salvage/ovpst_salvage)
+"ZY" = (/obj/effect/decal/cargo_stripes{icon_state = "n"},/obj/structure/salvage/locker/crate/random/assort,/turf/open/salvage/plating{icon_state = "purple2"; dir = 1},/area/salvage/ovpst_salvage)
 
 (1,1,1) = {"
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
@@ -410,15 +419,15 @@ TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKuIPKPKPKPKPKPKPKPKuIPKPKPKPKPKPKPKPKPKPKPKPKPKPKuIPKPKPKPKPKPKPKPKuIPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFVoEawGCjwGwGwGwGwGwGEaEaEaCjvWXdXdynBfwGwGwGwGEawGwGEaEaCjwGwGfrGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFxwHqcRHqHqHqcRHqHqHqHqHqHqcRZGnZnZaxHqHqHqwAHqHqcRcRHqHqwAwAHqygGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFxwHqHqHqcRHqHqHqHqcRcRHqHqcRZGnZnZaxwAHqHqHqHqHqcRHqHqHqHqwAHqLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFFAididJbIhIhididIhididIhNCidxPnZnZIoIhNCidididIhIhidididNCidIhCOGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFBcwGwGBfwGwGwGwGwGwGwGEaEaBfvWXdXdynBfwGwGwGwGwGwGZYZYwGBfwGwGfrGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFRKKxcRKxKxKxcRKxKxcRcRvScRcRZGnZnZvqwAcRwAwAcRwAwAwAcRcRcRwAcRygGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFRKKxKxKxcRcRKxKxcRcRKxvSvScRZGnZnZaxwAwAwAwAcncRcRwAwAwAwAwAwALUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFfOCOCOJbidCOCOidididididJbCOxPnZnZIoidNCidididIlIlidididNCIlIlSxGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFWHBlGFGFnZnZBlGFGFaCnZnZGFGFaCnZnZBlGFGFnZnZBlGFGFaCnZnZGFGFnZgAGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFctJfJfuwJfJfFZFZJfJfFZJfuwRapEnZnZsIJfuwJfJfJfFZFZJfFZFZuwJfJfSsGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFRKHqHqcRHqHqcRHqHqHqHqHqHqcRZGnZnZwOHqHqHqHqHqHqHqcRHqcRHqHqHqLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFnZnZEXBqOQuIPKPKPKPKPKPKPKPKPKPKPKPKuIPKGFPKGFxwHqcRHqHqwAcRHqcRHqcRHqHqcRZGnZnZaxHqHqcRcRHqcRHqHqHqcRHqHqHqioGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFuIPKPKPKqGUsPKPKllnZnZGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFPKGFFUNRNRkvNRToToNRNRNRNRToNRkvOqTnTnwIkvToToNRToToToToToNRNINRToACGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFFUJfJfEfQmQmQmJfJfJfJfJfuwRapEnZnZvjFZuwJfJfJfFZFZJfJfJfuwFZFZSsGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFeycRcRcRcRUSUSUSUSUSUScRUScRZGnZnZaxHqcRHqHqHqHqcRcRcRHqHqHqcRLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFnZnZEXBqOQuIPKPKPKPKPKPKPKPKPKPKPKPKuIPKGFPKGFeyUScRUSUSUScRUSUSUScRcRUScRZGnZnZaxHqcYcYHqcRHqHqHqcYcYHqHqHqygGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFuIPKPKPKqGUsPKPKllnZnZGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFPKGFrPNRNRkvNRNRNRNRNRNRNRTQNRkvOqTnTnwIkvFANRNRNRNRFANRNRNRkvFANRACGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFGFGFGFGFGFGFGFnZnZGFByByByBysnuqnZGmWmWmnkGFrzhbSGGFPKGFPKGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFlBcIGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFRjeTrDWkslKLGFnZnZGFaCnZnZnZnZnZnZnZnZnZnZrzrzrzSGGFPKGFPKuIPKPKPKPKPKPKPKPKPKPKPKPKBqOQWonZnZEXOQBqPKPKPKPKPKPKPKPKPKPKPKPKPKPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFXunZnZnZnZnnGFaCnZGFnZnZnZnZnZnZnZnZnZnZnZdIrzrzLJGFPKGFGFGFGFGFGFGFGFGFGFGFPKGFGFGFGFGFGFDzPKGFGFGFGFGFGFGFGFGFGFXjGFGFGFGFGFGFGFGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
@@ -442,15 +451,15 @@ TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFgMwDWKesXIDjGFnZ
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFXunZnZnZnZTCGFaCnZGFnZnZnZnZnZnZnZnZnZnZnZrzrzrzrzGFPKGFGFGFGFGFGFGFGFGFGFGFPKGFGFGFGFGFGFAePKGFGFGFGFGFGFGFGFGFGFMgGFGFGFGFGFGFGFGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFzEIiKvPCwEzJGFnZnZGFhfGFhfGFhfGFhfGFAgGFnZdIrzrzrzGFPKGFPKYKPKPKPKPKPKPKPKPKPKPKPKPKBqmgScnZnZScmgBqPKPKPKPKPKPKPKPKPKPKPKPKYKPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFGFGFGFGFGFGFGFnZnZGFyuGFyuGFyuGFyuGFyuGFnZGFfTgJfTGFPKGFPKGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFxecIGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFYKPKPKPKqGBqPKPKjUnZnZGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFPKGFvSwGEaCjEawGEawGEaEaEawGwGBfeyXdXdvKBfcYEaEawGwGwGwGwGwGBfwGwGfrGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFnZnZScOQBqYKPKPKPKPKPKPKPKPKPKPKPKPKYKPKGFPKGFRKcRcRcRHqcRHqHqcRcRHqHqHqHqZGnZnZwOHqHqHqcRcRHqHqHqHqHqHqHqcRLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFxwHqHqHqcRcRHqcRHqHqwAcRHqHqTQnZnZaxcRcRHqHqHqHqHqHqHqHqHqHqcRLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFfOIhidJbidIhidIhidididIhNCidIlnZnZIoIhJbIhIhIhIhididididididIhSxGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFYKPKPKPKqGBqPKPKjUnZnZGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFPKGFVoEaEaCjEawGwGwGwGwGEaEaEaBfvWXdXdvKEmwGwGwGqMwGwGqMwGwGBfwGwGfrGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFnZnZScOQBqYKPKPKPKPKPKPKPKPKPKPKPKPKYKPKGFPKGFRKcRcRKxvSKxKxKxKxcRKxKxcRKxZGnZnZLtUScRUSUSUScRUSUSUSFRUSUSUSLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFRKKxKxKxKxKxKxKxvSvSvSKxKxKxZGnZnZaxUSUSFRUScRUSUScRUSUScRUSUSLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFfOCOCOJbididididididididJbidxPnZnZIoidNCIhididididIhIhidididIhSxGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFWHnZGFGFnZnZBlGFGFaCnZnZGFGFaCnZnZBlGFGFnZnZBlGFGFaCnZnZGFGFnZgAGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFvqFZJfBcJfFZJfFZJfJfJfFZBcUSpEnZnZvjJfuwFZFZJfJfFZFZJfJfuwFZFZSsGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFRKHqHqHqcRHqHqHqcRHqcRHqcRHqZGnZnZwOHqcRHqHqcRHqHqHqHqHqHqHqcRLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFxwcRcRHqcRHqcRHqcRHqcRHqHqHqTQnZnZaxHqHqcRcRHqcRHqcRHqHqcRcRcRKxGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
-TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFrPToNRkvToNRToToNRToToNRNRkvxrTnTnwINIToNRToNRNRNRNRNRNRNIToToQuGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFctJfJfuwJfJfJfJfJfJfJfJfuwRapEnZnZsIJfioJfFZJfJfFZFZJfJfioFZFZSsGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFxwwAwAcRwAwAwAwAwAwAwAwAwAcRZGnZnZwOcRHqcRcYHqHqHqcRHqHqcRcRHqLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFxwwAwAcnwAwAwAcnwAwAcnwAwAcRZGnZnZwOcRHqHqHqHqHqcRHqHqcRcRHqHqLUGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
+TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFrPNRTokvNRNRNRToToToToToNRkvxrTnTnFHNIFANRNRNRNRNRFANRNRNINRFAQuGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFPKYKPKPKPKPKPKPKPKPKYKPKPKPKPKPKPKPKPKPKPKPKPKPKPKYKPKPKPKPKPKPKPKPKYKPKGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa
 TaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFGFTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTaTa

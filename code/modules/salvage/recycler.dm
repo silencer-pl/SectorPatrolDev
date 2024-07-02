@@ -24,7 +24,7 @@
 		"resin" = 0,
 		"alloy" = 0
 		)
-	var/recycler_backpack_storage_max = 500
+	var/recycler_backpack_storage_max = 1000
 	var/recycler_backpack_storage = 0
 
 /obj/item/salvage/recycler_backpack/attackby(obj/item/W, mob/user)

@@ -205,19 +205,26 @@
 //Salvage Tug
 
 /obj/docking_port/mobile/emergency_response/uacm_ovpst_salvage_tug
-	name = "Shuttle L-533"
+	name = "OV-PST Test Crew Salvage Tug"
 	id = "uacm_ovpst_salvage_tug"
 	preferred_direction = EAST
 	port_direction = EAST
-	width = 10
-	height = 14
-	movement_force = list("KNOCKDOWN" = 2, "THROW" = 0)
+	width = 14
+	height = 17
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	callTime = 10
 	ignitionTime = 55
 	rechargeTime = 0
 	prearrivalTime = 0
 	var/starboard_door
 	var/port_door
+
+/obj/docking_port/stationary/emergency_response/salvage_dock
+	name = "OV-PST Test Crew Salvage Pen Docking Area"
+	dir = NORTH
+	id = "ovpst_tc_pen"
+	width = 14
+	height = 17
 
 /obj/docking_port/mobile/emergency_response/uacm_ovpst_salvage_tug/Initialize(mapload)
 	. = ..()
@@ -247,3 +254,8 @@
 
 /area/shuttle/uacm_ovpst_salvage_tug
 	name = "OV-PST Test Crew Salvage Tug"
+
+//Salvage landing pad
+
+
+

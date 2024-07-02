@@ -130,48 +130,10 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(attacking_mob)
 
-			//Accidental gun discharge
-			if(!skillcheck(attacking_mob, SKILL_CQC, SKILL_CQC_SKILLED))
-				if (isgun(r_hand) || isgun(l_hand))
-					var/obj/item/weapon/gun/held_weapon = null
-					var/chance = 0
-
-					if (isgun(l_hand))
-						held_weapon = l_hand
-						chance = hand ? 40 : 20
-
-					if (isgun(r_hand))
-						held_weapon = r_hand
-						chance = !hand ? 40 : 20
-
-					if (prob(chance))
-						visible_message(SPAN_DANGER("[attacking_mob] accidentally makes [src]'s [held_weapon.name] go off during the struggle!"), SPAN_DANGER("You accidentally make [src]'s [held_weapon.name] go off during the struggle!"), null, 5)
-						var/list/turfs = list()
-						for(var/turf/T in view())
-							turfs += T
-						var/turf/target = pick(turfs)
-						count_niche_stat(STATISTICS_NICHE_DISCHARGE)
-
-						attack_log += "\[[time_stamp()]\] <b>[key_name(src)]</b> accidentally fired <b>[held_weapon.name]</b> in [get_area(src)] triggered by <b>[key_name(attacking_mob)]</b>."
-						attacking_mob.attack_log += "\[[time_stamp()]\] <b>[key_name(src)]</b> accidentally fired <b>[held_weapon.name]</b> in [get_area(src)] triggered by <b>[key_name(attacking_mob)]</b>."
-						msg_admin_attack("[key_name(src)] accidentally fired <b>[held_weapon.name]</b> in [get_area(attacking_mob)] ([attacking_mob.loc.x],[attacking_mob.loc.y],[attacking_mob.loc.z]) triggered by <b>[key_name(attacking_mob)]</b>.", attacking_mob.loc.x, attacking_mob.loc.y, attacking_mob.loc.z)
-
-						return held_weapon.afterattack(target,src)
-
 			var/disarm_chance = rand(1, 100)
-			var/attacker_skill_level = attacking_mob.skills ? attacking_mob.skills.get_skill_level(SKILL_CQC) : SKILL_CQC_MAX // No skills, so assume max
-			var/defender_skill_level = skills ? skills.get_skill_level(SKILL_CQC) : SKILL_CQC_MAX // No skills, so assume max
-			disarm_chance -= 5 * attacker_skill_level
-			disarm_chance += 5 * defender_skill_level
 
 			if(disarm_chance <= 25)
-				var/strength = 2 + max((attacker_skill_level - defender_skill_level), 0)
-				KnockDown(strength)
-				Stun(strength)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				var/shove_text = attacker_skill_level > 1 ? "tackled" : pick("pushed", "shoved")
-				visible_message(SPAN_DANGER("<B>[attacking_mob] has [shove_text] [src]!</B>"), null, null, 5)
-				return
+				walk_away(src, attacking_mob, 3)
 
 			if(disarm_chance <= 60)
 				//BubbleWrap: Disarming breaks a pull

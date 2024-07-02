@@ -734,3 +734,15 @@
 		if (turf_with_area_tag.salvage_turf_processed == 0)
 			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
 	return 1
+
+/obj/structure/ewall
+	name = "energy harness"
+	desc = "A beam of bright blue energy linking several pylons together."
+	desc_lore = "The Salvaging Energy Harness, as the name implies, is a 'semi-virtual' dock established near Dock 37 for exclusive use of the OV-PST Test Crews. While the official purpose of this area is prototype testing, this area is fully exposed to the PST's anomalous star meaning a lot of the PST's central functions are also active on whatever is contained within the energy field."
+	icon = 'icons/sectorpatrol/beamwall/salvage.dmi'
+	icon_state = "full"
+	indestructible = TRUE
+
+/obj/structure/ewall/Crossed(mob/living/carbon/human/H)
+	to_chat(H, narrate_body("You have reached the edge of the Energy Harness and its wall repulses you back inside."))
+	walk_away(src, H, 5, 2)

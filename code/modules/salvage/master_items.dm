@@ -41,14 +41,15 @@
 	var/desc_affix
 	var/desc_lore_affix
 	var/no_salvage = 0
-	var/icon_state_max = 0 // Change to a number to indicate dmi has more than one possible icon_state for randomization. Names shold be [icon_state]_[number], with last number being the value in this var
+	var/icon_state_min = 1 // Can be used with icon_state_max to further limit range of autorolled icons. For subvarieties
+	var/icon_state_max = 0 // Change to a number to indicate dmi has more than one possible icon_state for randomization. Names shold be [icon_state]_[number], with last number being the value in this var.
 	var/salvage_random = 0 // If 1 will roll a 5% chance for this item to be an intel document and sets it salvage_search values accordingly, and 15% to be a dummy serchable if the previous does not hapen
 	var/salvage_area_tag
 	var/salvage_container_tag
 	var/pixel_randomize = 0
 
 /obj/item/salvage/update_icon()
-	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(icon_state_min,icon_state_max)]"
 	. = ..()
 
 /obj/item/salvage/proc/pixel_randomize()
@@ -181,6 +182,7 @@
 	var/no_salvage = 0
 	var/salvage_area_tag = "default"
 	var/salvage_container_tag
+	var/icon_state_min = 1
 	var/icon_state_max = 0
 	var/icon_opens
 	var/content_ammount = 0
@@ -226,7 +228,8 @@
 				salvage_decon_array[2][salvage_gen_current_step] = INTENT_HELP
 
 /obj/structure/salvage/update_icon()
-	if(icon_state_max > 0) icon_state = initial(icon_state) + "_[rand(1,icon_state_max)]"
+	if(icon_state_max > 0)
+		icon_state = initial(icon_state) + "_[rand(icon_state_min,icon_state_max)]"
 	if(salvage_current_step > salvage_steps)
 		if(icon_opens)
 			icon = icon_opens

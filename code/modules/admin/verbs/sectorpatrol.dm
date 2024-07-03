@@ -227,23 +227,23 @@
 	if(GLOB.ingame_mission_type == null) GLOB.ingame_mission_type = oldvalue
 
 	oldvalue = GLOB.start_narration_header
-	GLOB.start_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_header = tgui_input_text(usr, message = "Start Narration Header:", title = "Narration Entry", default = "[GLOB.start_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_header == null) GLOB.start_narration_header = oldvalue
 
 	oldvalue = GLOB.start_narration_body
-	GLOB.start_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Body:", title = "Narration Entry", default = "[GLOB.start_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_body = tgui_input_text(usr, message = "Start Narration Body:", title = "Narration Entry", default = "[GLOB.start_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_body == null) GLOB.start_narration_body = oldvalue
 
 	oldvalue = GLOB.start_narration_footer
-	GLOB.start_narration_footer = GLOB.ingame_location = tgui_input_text(usr, message = "Start Narration Footer:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_foote = tgui_input_text(usr, message = "Start Narration Footer:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_footer == null) GLOB.start_narration_footer = oldvalue
 
 	oldvalue = GLOB.end_narration_header
-	GLOB.end_narration_header = GLOB.ingame_location = tgui_input_text(usr, message = "End Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.end_narration_header = tgui_input_text(usr, message = "End Narration Header:", title = "Narration Entry", default = "[GLOB.end_narration_header]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.end_narration_header == null) GLOB.end_narration_header = oldvalue
 
 	oldvalue = GLOB.end_narration_body
-	GLOB.end_narration_body = GLOB.ingame_location = tgui_input_text(usr, message = "EBd Narration Body:", title = "Narration Entry", default = "[GLOB.end_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.end_narration_body = tgui_input_text(usr, message = "EBd Narration Body:", title = "Narration Entry", default = "[GLOB.end_narration_body]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.end_narration_body == null) GLOB.end_narration_body = oldvalue
 
 /client/proc/cmd_save_general()

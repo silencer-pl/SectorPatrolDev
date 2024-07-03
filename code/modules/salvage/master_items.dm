@@ -123,6 +123,11 @@
 			nozzle.recycler_nozzle_paired_pack.talkas("Error. Backpack full. Please depoist resources.")
 			nozzle.recycler_nozzle_paired_pack.recycler_full_warning()
 			return
+		if (salvage_intel_item == 1)
+			nozzle.talkas("Error. Inteligence item tag found. Examination and Intel processing recommended.")
+			nozzle.talkas("Error: Safety mode engaged. Action disallowed.")
+			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
+			return
 		if (nozzle.recycler_nozzle_charges < 1)
 			nozzle.talkas("Error: Air canister depleted. Please recharge at nearest charging station.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)

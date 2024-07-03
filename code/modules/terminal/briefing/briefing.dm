@@ -4,12 +4,12 @@
 	name = "briefing display"
 	desc = "This is a master item. It should not be placed anywhere in the game world."
 	desc_lore = "If you have the time, please consider reporting this as a bug."
-	icon = 'icons/sectorpatrol/salvage/items.dmi'
-	icon_state = "master"
+	icon = 'icons/obj/structures/machinery/displaymonitor.dmi'
+	icon_state = "off"
 	terminal_id = "briefing"
 	var/terminal_range = 20
 	terminal_window_size = "500x500"
-	terminal_line_length = 44
+	terminal_line_length = 42
 	terminal_line_height = 13
 
 /obj/structure/terminal/briefing/kill_window(reset = 1)
@@ -54,31 +54,27 @@
 
 /obj/structure/terminal/briefing/proc/display_briefing()
 	var/obj/structure/machinery/light/marker/admin/marker = new(get_turf(src))
-	marker.name = "Cassandra"
-	marker.langchat_color = "#bb2356"
-	marker.talkas("Hello. This is an example briefing. A proof of concept if you will.")
-	marker.emoteas("laughs audibly")
-	emoteas("Starts to display shit. It will open a window for everyone in range. There is no escape.")
-	terminal_buffer += "<br><br><br>"
-	terminal_buffer += "<center><b>UACM 2ND LOGISTICS</b></center>"
+	marker.name = "RDML. Thomas Boulette"
+	marker.langchat_color = "#268323"
+	emoteas("buzzes audibly then comes to life.")
+	terminal_buffer += "<br>"
+	terminal_buffer += "<center><b>UACM 2ND LOGISTICS</b><br>RDML. Thomas Boulette<hr>OPERATION PHOENIX</center>"
+	terminal_reserved_lines = 4
 	terminal_display()
-	marker.talkas("As the briefing continues, the display may or may not update. If someone closes it, it will reopen the next time something changes, as long as you stay in view and in range.")
-	marker.talkas("It should also respect its positon. I guess we'll see.")
-	terminal_header += "<b><center>UACM 2ND LOGISTICS</b><br>TEST CREW STG</center>"
-	terminal_header += "<hr>"
-	terminal_reserved_lines = 2
-	reset_buffer()
-	terminal_display_line("Objectives:", 0, 1)
-	terminal_display_line("1. This is the first objective")
-	marker.talkas("As I keep talking and new objectives are added, the display is refreshed.")
-	marker.talkas("Again, as long as you are in range, in view of the display.")
-	terminal_display_line("2. This is the second objective")
-	marker.talkas("Then, when the briefing is over, it can cycle to some suumary. Or not. I havent decided. Anyway.")
-	terminal_header = null
-	terminal_header = list()
-	reset_buffer()
-	terminal_buffer += "<br><br><br>"
-	terminal_buffer += "<center><b>GOOD LUCK</b></center>"
-	marker.talkas("Then, the window closes 10 seconds after the last thing I say or emote. Fun!")
-	sleep(100)
+	marker.talkas("Good morning, Test Crews. Cassandra says you are ready to go to work, which is just as well, because we have work to do.")
+	marker.talkas("As of right now, the Second Logistics is joining the UAAC-TIS operation codenamed Operation Phoenix.")
+	marker.talkas("Long story short, with cooperation from our TWE allies, we are scouring a part of Neroid Dark Space and recovering wreckage lost to the dark.")
+	marker.talkas("Our point of contact for this operation is our own Commander…s Reed-Wilo as it were and their TWE counterpart, Major Asuka Bannister.")
+	marker.talkas("Some of you read the files that were unclassified for you I hope, so that name should ring a bell.")
+	terminal_display_line("A derelict USCMC vessel was found during the search. The ship was claimed by the PST for recovery.<br>", 0, 1)
+	terminal_display_line("Recover all materials from the ship compoments and structure using the PST disassembler array and drones.<br>", 0, 1)
+	terminal_display_line("Paper and Electronic Intelligence is avaialble. Keep an eye an use according procedures to secure them.<br>", 0, 1)
+	terminal_display_line("Mission Control has any more additonal information you may need.", 0, 0)
+	marker.talkas("While we work on the bigger picture and getting you the clearance you need to actively partake in the operation, an opportunity present itself to give you a dry run of an important function you will be fulfilling as Test Crews.")
+	marker.talkas("Salvage anything that's not intel and isn't bolted down. Deconstruct and salvage anything that is. ")
+	marker.talkas("Take everything. You should have the tools to completely recycle the whole vessel.")
+	marker.talkas("Mission Control will handle any details. You can trust her with your life.")
+	marker.talkas("I hope to finally be able to formally meet you soon. Good luck.")
 	kill_window()
+	reset_buffer()
+

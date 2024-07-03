@@ -1,5 +1,6 @@
 "a" = (/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
 "b" = (/obj/structure/bed/chair/comfy/black{dir = 4},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
+"c" = (/obj/structure/terminal/briefing{pixel_x = 16; pixel_y = 33},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "d" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "e" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
 "f" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
@@ -13,7 +14,6 @@
 "p" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
 "q" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "r" = (/turf/template_noop,/area/template_noop)
-"s" = (/obj/structure/eventterminal/briefing_display{pixel_y = 32; pixel_x = 16},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "t" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
 "u" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
 "v" = (/obj/structure/salvage/nozzle_charger{pixel_y = 36},/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
@@ -54,7 +54,7 @@ oFFFFFFFFFFFFo
 LeaaaXFFXQQQDL
 LkeeanFFfQDDtL
 oooooodToooooo
-rLmsXmFFmXXKLr
+rLmcXmFFmXXKLr
 rLGGGGFFTTTALr
 rLGGGGFFTTTZLr
 rLUGGUFFRTbELr

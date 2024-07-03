@@ -7,7 +7,13 @@
 	desc_lore_affix = "A standard airlock is most likely going to have a fair share of metal and alloys, with some resins as well. It's generally advised to just salvage an airlock to gain entry to a closed off area if such a need arises."
 	icon = 'icons/sectorpatrol/salvage/turfs/doors.dmi'
 	icon_state = "door_1"
+	opacity = 1
 	salvage_decon_keyword = "AECBBADB"
+	salvage_contents = list(
+	"metal" = 20,
+	"resin" = 10,
+	"alloy" = 20,
+	)
 	var/width = 1
 
 /obj/structure/salvage/airlock/Initialize(mapload, ...)
@@ -23,6 +29,7 @@
 	icon = 'icons/sectorpatrol/salvage/turfs/doors64.dmi'
 	icon_state = "door_1"
 	width = 2
+	opacity = 1
 
 // Heavy Machinery
 
@@ -197,6 +204,7 @@
 	icon = 'icons/sectorpatrol/salvage/small_machinery/computers.dmi'
 	icon_state = "default"
 	salvage_decon_keyword = "ABEBCD"
+	density = 0
 	salvage_contents = list(
 	"metal" = 15,
 	"resin" = 5,

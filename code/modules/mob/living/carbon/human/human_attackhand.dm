@@ -133,7 +133,7 @@
 			var/disarm_chance = rand(1, 100)
 
 			if(disarm_chance <= 25)
-				walk_away(src, attacking_mob, 3)
+				walk_away(attacking_mob, src, 3)
 
 			if(disarm_chance <= 60)
 				//BubbleWrap: Disarming breaks a pull

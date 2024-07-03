@@ -242,12 +242,6 @@
 	if(is_mob_restrained()) //Check to see if we can do things
 		return 0
 
-	//Check to see if we slipped
-	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, SPAN_NOTICE(" <B>You slipped!</B>"))
-		src.inertia_dir = src.last_move_dir
-		step(src, src.inertia_dir)
-		return 0
 	//If not then we can reset inertia and move
 	inertia_dir = 0
 	return 1

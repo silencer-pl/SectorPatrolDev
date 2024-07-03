@@ -284,6 +284,28 @@
 	qdel(src)
 	return
 
+/obj/structure/salvage/proc/salvage_process_decon_generate_av(tool = null)
+	if(tool == null) return
+	var/av_to_play = tool
+	switch(av_to_play)
+		if(TRAIT_TOOL_SCREWDRIVER)
+			playsound(src, 'sound/items/Screwdriver.ogg', 25)
+			return
+		if(TRAIT_TOOL_CROWBAR)
+			playsound(src, 'sound/items/Crowbar.ogg', 25)
+			return
+		if(TRAIT_TOOL_WIRECUTTERS)
+			playsound(src, 'sound/items/Wirecutter.ogg', 25)
+			return
+		if(TRAIT_TOOL_WRENCH)
+			playsound(src, 'sound/items/Ratchet.ogg', 25)
+			return
+		if(TRAIT_TOOL_MULTITOOL)
+			playsound(src, 'sound/machines/ping.ogg', 25)
+			return
+		if(TRAIT_TOOL_DRILL)
+			playsound(src, 'sound/items/Drill.ogg', 25)
+			return
 
 /obj/structure/salvage/proc/salvage_process_decon_generate_text(text = null, state = null)
 	if (text == null || state == null) return
@@ -353,10 +375,11 @@
 
 /obj/structure/salvage/proc/salvage_process_decon()
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
+	salvage_process_decon_generate_av(tool = salvage_decon_array[1][salvage_current_step])
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
-		salvage_return_step_text()
 		salvage_current_step += 1
+		salvage_return_step_text()
 		return 1
 	return 0
 
@@ -569,6 +592,28 @@
 	salvage_tiles_recycled = 1
 	return
 
+/turf/open/salvage/proc/salvage_process_decon_generate_av(tool = null)
+	if(tool == null) return
+	var/av_to_play = tool
+	switch(av_to_play)
+		if(TRAIT_TOOL_SCREWDRIVER)
+			playsound(src, 'sound/items/Screwdriver.ogg', 25)
+			return
+		if(TRAIT_TOOL_CROWBAR)
+			playsound(src, 'sound/items/Crowbar.ogg', 25)
+			return
+		if(TRAIT_TOOL_WIRECUTTERS)
+			playsound(src, 'sound/items/Wirecutter.ogg', 25)
+			return
+		if(TRAIT_TOOL_WRENCH)
+			playsound(src, 'sound/items/Ratchet.ogg', 25)
+			return
+		if(TRAIT_TOOL_MULTITOOL)
+			playsound(src, 'sound/machines/ping.ogg', 25)
+			return
+		if(TRAIT_TOOL_DRILL)
+			playsound(src, 'sound/items/Drill.ogg', 25)
+			return
 
 /turf/open/salvage/proc/salvage_process_decon_generate_text(text = null, state = null)
 	if (text == null || state == null) return
@@ -633,6 +678,7 @@
 
 /turf/open/salvage/proc/salvage_process_decon()
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
+	salvage_process_decon_generate_av(tool = salvage_decon_array[1][salvage_current_step])
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
 		salvage_current_step += 1
@@ -699,6 +745,7 @@
 		)
 	icon = 'icons/sectorpatrol/salvage/walls/black.dmi'
 	icon_state = "blackwall"
+	no_salvage = 0
 	walltype = "blackwall"
 	desc = "A thick layer of hardened metal."
 	desc_lore = "From the earliest days of interstellar travel, ship hulls were always one of the least technologically impressive parts of ships, most ship designs veering more towards 'surround crew with as much steel as possible' design principle and not anything else. Notably TWE and some new UA designs introduce more complex alloys and intricate designs, but for the most part, most human ships still hold true to this principle.</p><p>Ship hulls are a good source of metals and should also yield some resins and alloys but need to be recovered via deconstruction drones utilizing a drone spike."
@@ -731,8 +778,9 @@
 			if(open_turf.salvage_tiles_recycled == 0)
 				return 4
 	for(var/turf/turf_with_area_tag in GLOB.salvaging_turfs_all)
-		if (turf_with_area_tag.salvage_turf_processed == 0)
-			INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
+		if(turf_with_area_tag.salvage_area_tag == salvage_area_tag)
+			if (turf_with_area_tag.salvage_turf_processed == 0)
+				INVOKE_ASYNC(turf_with_area_tag, TYPE_PROC_REF(/turf, salvage_recycle_turf))
 	return 1
 
 /obj/structure/ewall
@@ -745,4 +793,4 @@
 
 /obj/structure/ewall/Crossed(mob/living/carbon/human/H)
 	to_chat(H, narrate_body("You have reached the edge of the Energy Harness and its wall repulses you back inside."))
-	walk_away(src, H, 5, 2)
+	walk_away(H, src, 5, 2)

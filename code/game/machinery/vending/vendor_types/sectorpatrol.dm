@@ -65,7 +65,7 @@
 	vend_delay = 28
 	deny_delay = 20
 
-/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food/populate_product_list(scale)
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged/populate_product_list(scale)
 	listed_products = list(
 		list("UACM OV-PST WARM FOOD DISPENSER", -1, null, null),
 		list("Classic burger", 50, /obj/item/reagent_container/food/snacks/packaged_burger, VENDOR_ITEM_REGULAR),
@@ -194,7 +194,7 @@
 		list("Nozzles - One per squad memeber. One spare.", 4, /obj/item/salvage/recycler_nozzle, VENDOR_ITEM_REGULAR),
 		list("TOOLS", -1, null, null),
 		list("Left Hand Pouch - Screwdriver, wirecutters, multitool.", 10, /obj/item/storage/pouch/uacm/salvage/left, VENDOR_ITEM_REGULAR),
-		list("Left Hand Pouch - Drill, crowbar, wrench.", 10, /obj/item/storage/pouch/uacm/salvage/right, VENDOR_ITEM_REGULAR),
+		list("Right Hand Pouch - Drill, crowbar, wrench.", 10, /obj/item/storage/pouch/uacm/salvage/right, VENDOR_ITEM_REGULAR),
 		list("High powered flashlight.", 10, /obj/item/device/flashlight/salvage, VENDOR_ITEM_REGULAR),
 		list("Intel Document Pouch", 10, /obj/item/storage/pouch/document/uacm_salvage, VENDOR_ITEM_REGULAR),
 	)

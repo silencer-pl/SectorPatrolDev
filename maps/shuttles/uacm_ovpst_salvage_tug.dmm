@@ -2,39 +2,43 @@
 "b" = (/obj/structure/bed/chair/comfy/black{dir = 4},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "d" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "e" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
-"f" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
+"f" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "g" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'; dir = 1; locked = 1; id = "starboard_door"},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
-"k" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
-"m" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
-"n" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
+"i" = (/obj/structure/machinery/light{dir = 4; pixel_y = -15},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
+"j" = (/obj/structure/machinery/light{dir = 8; pixel_y = -15},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
+"k" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
+"m" = (/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
+"n" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "o" = (/turf/closed/wall/almayer/outer,/area/shuttle/ert)
-"p" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
+"p" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
+"q" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "r" = (/turf/template_noop,/area/template_noop)
 "s" = (/obj/structure/eventterminal/briefing_display{pixel_y = 32; pixel_x = 16},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
-"t" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
+"t" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
 "u" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
-"v" = (/obj/structure/salvage/nozzle_charger{pixel_y = 36},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
-"w" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
+"v" = (/obj/structure/salvage/nozzle_charger{pixel_y = 36},/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
+"w" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
 "x" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
 "y" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'; locked = 1},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "z" = (/obj/effect/landmark/observer_start,/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
 "A" = (/obj/structure/salvage/intel_dropoff,/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "D" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
-"E" = (/obj/structure/surface/table/reinforced/black,/obj/structure/terminal/mc_salvage{dir = 8; pixel_y = 4; pixel_x = -5},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
+"E" = (/obj/structure/surface/table/reinforced/black,/obj/structure/terminal/mc_salvage{dir = 8; pixel_y = 4; pixel_x = -5},/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "F" = (/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
 "G" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/open/floor/almayer{icon_state = "silverfull"},/area/shuttle/ert)
 "H" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "I" = (/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
-"J" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
-"K" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/hot_drink,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
+"J" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
+"K" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/hot_drink,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "L" = (/obj/structure/window/framed/almayer/hull,/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "M" = (/obj/docking_port/mobile/emergency_response/uacm_ovpst_salvage_tug,/turf/template_noop,/area/template_noop)
-"O" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
+"N" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged,/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
+"O" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "P" = (/obj/structure/salvage/recycler_base{pixel_y = 0},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
 "Q" = (/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
-"R" = (/obj/structure/bed/chair/comfy/black{dir = 1},/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "silverfull"},/area/shuttle/ert)
+"R" = (/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "T" = (/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
-"U" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
+"U" = (/obj/structure/bed/chair/comfy/black{dir = 1},/obj/structure/machinery/light,/turf/open/floor/almayer{icon_state = "silverfull"},/area/shuttle/ert)
 "V" = (/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
 "W" = (/obj/effect/landmark/late_join,/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
 "X" = (/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
@@ -43,20 +47,20 @@
 
 (1,1,1) = {"
 ooLLooHTooLLoo
-LwuuVfFFnIxxpL
+LwuuVNFFqIxxpL
 LuVVVXWzXIIIxL
+ojFFFFFFFFFFio
 oFFFFFFFFFFFFo
-oFFFFFFFFFFFFo
-LeJaaXFFXQQODL
+LeaaaXFFXQQQDL
 LkeeanFFfQDDtL
 oooooodToooooo
-rLXsXXFFXXXKLr
+rLmsXmFFmXXKLr
 rLGGGGFFTTTALr
-rLGRGGFFTUTZLr
-rLGGGGFFTTbELr
+rLGGGGFFTTTZLr
+rLUGGUFFRTbELr
 roooooyTooooor
 rrovPvXXvPvorr
-rrTXmFFFFmXTrr
-rrgXFFXXFFXgrr
+rrTXFFFFFFXTrr
+rrgOFJXXJFOgrr
 MrooooYToooorr
 "}

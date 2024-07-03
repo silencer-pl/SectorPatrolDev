@@ -13,7 +13,7 @@
 	desc = "A simple speker and microphone, tuned into local radio channels."
 	icon_state = "mcom_headset"
 	initial_keys = list(/obj/item/device/encryptionkey/pst_standard)
-	volume = RADIO_VOLUME_RAISED
+	volume = RADIO_VOLUME_QUIET
 
 /obj/item/device/radio/headset/uacm/pst_extended
 	name = "radio headset"

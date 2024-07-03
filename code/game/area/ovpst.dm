@@ -25,3 +25,12 @@
 /area/ovpst/airlock/ele_d_drm
 
 /area/ovpst/airlock/ele_d_pin
+
+/area/approach
+	name = "The Outer Veil Primary Supply Terminal - Approach"
+	has_gravity = 0
+	weather_enabled = 0
+	requires_power = 0
+	unlimited_power = 1
+	icon = 'icons/turf/area_almayer.dmi'
+	icon_state = "almayer"

@@ -2,7 +2,6 @@
 	name = "Deep Space, Outer Veil PST approach."
 	dir = NORTH
 	id = "ovpst_starter"
-	roundstart_template = /datum/map_template/shuttle/uacm_ovpst_salvage_tug
 	width = 30
 	height = 30
 
@@ -223,6 +222,7 @@
 	name = "OV-PST Test Crew Salvage Pen Docking Area"
 	dir = NORTH
 	id = "ovpst_tc_pen"
+	roundstart_template = /datum/map_template/shuttle/uacm_ovpst_salvage_tug
 	width = 14
 	height = 17
 

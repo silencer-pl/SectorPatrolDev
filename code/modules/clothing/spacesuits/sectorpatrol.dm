@@ -13,6 +13,7 @@
 	desc = "A dark colored compression suit with a closed air system permanently attached."
 	desc_lore = "These prototype suits are created from advanced polymers and resins on board the OV-PST and offer unparalleled flexibility and safety while operating in zero gravity and airless environments. The Liquid Data enabled 'cells' of the suit stretch and contract to suit the situation, as controlled by a small trace of intelligence left in a LD concentrated storage unit located around the top-back of the suit. "
 	icon = 'icons/sectorpatrol/spacesuit/icon/spacesuit.dmi'
+	slowdown = 0
 	icon_state = "tc_spacesuit"
 	item_icons = list(
 		WEAR_JACKET = 'icons/sectorpatrol/spacesuit/onmob/spacesuit.dmi'

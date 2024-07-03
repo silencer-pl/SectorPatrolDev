@@ -891,6 +891,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	salvage_contents["alloy"] = 0
 	icon = 'icons/sectorpatrol/salvage/turfs.dmi'
 	icon_state = "empty"
+	opacity = 0
+	density = 0
 	plane = SPACE_PLANE
 	update_icon()
 	INVOKE_ASYNC(decon_effect, TYPE_PROC_REF(/obj/item/effect/decon_shimmer/decon_item, delete_with_anim))

@@ -350,7 +350,6 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 	var/obj/effect/alien/resin/special/pylon/endgame/new_pylon = new(cluster_loc, linked_hive)
 	new_pylon.node.children = held_children_weeds
-
 	for(var/obj/effect/alien/weeds/weed in new_pylon.node.children)
 		weed.parent = new_pylon.node
 		weed.spread_on_semiweedable = TRUE

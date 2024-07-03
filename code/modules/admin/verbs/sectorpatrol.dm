@@ -235,7 +235,7 @@
 	if(GLOB.start_narration_body == null) GLOB.start_narration_body = oldvalue
 
 	oldvalue = GLOB.start_narration_footer
-	GLOB.start_narration_foote = tgui_input_text(usr, message = "Start Narration Footer:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
+	GLOB.start_narration_footer = tgui_input_text(usr, message = "Start Narration Footer:", title = "Narration Entry", default = "[GLOB.start_narration_footer]", max_length = MAX_BOOK_MESSAGE_LEN, multiline = TRUE, timeout = 0)
 	if(GLOB.start_narration_footer == null) GLOB.start_narration_footer = oldvalue
 
 	oldvalue = GLOB.end_narration_header

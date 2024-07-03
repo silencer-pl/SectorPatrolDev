@@ -52,6 +52,28 @@
 		list("OV-PST Hyperprotein All-In-One Meal", 50, /obj/item/reagent_container/food/snacks/mre_pack/uacm, VENDOR_ITEM_REGULAR),
 	)
 
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged
+	name = "Nondescript warm food dispenser"
+	desc = "A warm food dispenser seemingly stripped of any branding."
+	desc_lore = "Dispensers in this so-called 'raw' form are almost exclusively produced and sold by a small group of corporations operating out of their own modest sized arcology on Mars. There is a cutthroat side to warm food and drink dispensing machines that few outside of the Corporate fold are aware of but since the PST seems to have access to a blueprint to produce one, someone down the line seems to have been able to make a deal with the conglomerate. "
+	icon = 'icons/obj/structures/machinery/vending_sp.dmi'
+	icon_state = "food"
+	hackable = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	wrenchable = FALSE
+	vend_delay = 28
+	deny_delay = 20
+
+/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food/populate_product_list(scale)
+	listed_products = list(
+		list("UACM OV-PST WARM FOOD DISPENSER", -1, null, null),
+		list("Classic burger", 50, /obj/item/reagent_container/food/snacks/packaged_burger, VENDOR_ITEM_REGULAR),
+		list("Spicy burrito", 50, /obj/item/reagent_container/food/snacks/packaged_burrito, VENDOR_ITEM_REGULAR),
+		list("Stadium hotdog", 50, /obj/item/reagent_container/food/snacks/packaged_hdogs, VENDOR_ITEM_REGULAR),
+		list("This device was produced with permission from Corporate Pattern Blueprint ADA-1322A-G.", -1, null, null),
+	)
+
 /obj/item/reagent_container/food/drinks/coffee/uacm
 	desc = "A brown, thick paper cup with a hot beverage inside, complete with a spill proof lid and a cardboard straw. 100% recyclable, including the liquid inside. The coffee smells bland, but has a decent, medium roast flavor and a decent kick to it."
 	desc_lore = "OV-PST coffee is not grown, but rather manufactured as a compound that is injected into recycled water, then warmed up after careful blending. This is likely why the coffee ends up smelling more like bad water, however the lab-perfected taste tends to make up for this at least somewhat."

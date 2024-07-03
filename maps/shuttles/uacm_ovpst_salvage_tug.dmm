@@ -1,12 +1,15 @@
 "a" = (/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
+"b" = (/obj/structure/bed/chair/comfy/black{dir = 4},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "d" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "e" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
+"f" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/food_prepackaged,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "g" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'; dir = 1; locked = 1; id = "starboard_door"},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "k" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
 "m" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
+"n" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/soda,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "o" = (/turf/closed/wall/almayer/outer,/area/shuttle/ert)
 "p" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
-"r" = (/turf/template_noop,/area/shuttle/ert)
+"r" = (/turf/template_noop,/area/template_noop)
 "s" = (/obj/structure/eventterminal/briefing_display{pixel_y = 32; pixel_x = 16},/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "t" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/salvage,/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
 "u" = (/obj/effect/landmark/start/basepc,/turf/open/floor/almayer{icon_state = "redfull"},/area/shuttle/ert)
@@ -23,8 +26,9 @@
 "H" = (/obj/structure/machinery/door/airlock/multi_tile/uacm/general/admin{icon = 'icons/obj/structures/doors/2x1almayerdoor.dmi'},/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
 "I" = (/turf/open/floor/almayer{icon_state = "orangefull"},/area/shuttle/ert)
 "J" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "emeraldfull"; dir = 1},/area/shuttle/ert)
+"K" = (/obj/structure/machinery/cm_vending/sorted/sectorpatrol/hot_drink,/turf/open/floor/almayer{icon_state = "plating_catwalk"},/area/shuttle/ert)
 "L" = (/obj/structure/window/framed/almayer/hull,/turf/open/floor/almayer{icon_state = "blackfull"; dir = 4},/area/shuttle/ert)
-"M" = (/obj/docking_port/mobile/emergency_response/uacm_ovpst_salvage_tug,/turf/template_noop,/area/shuttle/ert)
+"M" = (/obj/docking_port/mobile/emergency_response/uacm_ovpst_salvage_tug,/turf/template_noop,/area/template_noop)
 "O" = (/obj/structure/machinery/light/marker/admin{brightness = 12},/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
 "P" = (/obj/structure/salvage/recycler_base{pixel_y = 0},/turf/open/floor/almayer{icon_state = "plate"},/area/shuttle/ert)
 "Q" = (/turf/open/floor/almayer{icon_state = "bluefull"},/area/shuttle/ert)
@@ -39,17 +43,17 @@
 
 (1,1,1) = {"
 ooLLooHTooLLoo
-LwuuVXFFXIxxpL
+LwuuVfFFnIxxpL
 LuVVVXWzXIIIxL
 oFFFFFFFFFFFFo
 oFFFFFFFFFFFFo
 LeJaaXFFXQQODL
-LkeeaXFFXQDDtL
+LkeeanFFfQDDtL
 oooooodToooooo
-rLXsXXFFXXXXLr
+rLXsXXFFXXXKLr
 rLGGGGFFTTTALr
 rLGRGGFFTUTZLr
-rLGGGGFFTTTELr
+rLGGGGFFTTbELr
 roooooyTooooor
 rrovPvXXvPvorr
 rrTXmFFFFmXTrr

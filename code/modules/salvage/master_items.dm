@@ -289,8 +289,15 @@
 	qdel(src)
 	return
 
+/obj/structure/salvage/proc/useblink()
+	var/current_color = color
+	color = "#acacac"
+	sleep(3)
+	color = current_color
+
 /obj/structure/salvage/proc/salvage_process_decon_generate_av(tool = null)
 	if(tool == null) return
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/,useblink))
 	var/av_to_play = tool
 	switch(av_to_play)
 		if(TRAIT_TOOL_SCREWDRIVER)
@@ -597,8 +604,15 @@
 	salvage_tiles_recycled = 1
 	return
 
+/turf/open/salvage/proc/useblink()
+	var/current_color = color
+	color = "#acacac"
+	sleep(3)
+	color = current_color
+
 /turf/open/salvage/proc/salvage_process_decon_generate_av(tool = null)
 	if(tool == null) return
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/turf/open/salvage/,useblink))
 	var/av_to_play = tool
 	switch(av_to_play)
 		if(TRAIT_TOOL_SCREWDRIVER)

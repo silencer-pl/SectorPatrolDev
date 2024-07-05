@@ -2,7 +2,6 @@
     "map_path": "map_files/Neroid",
     "map_file": "Neroid.dmm",
     "webmap_url": "Neroid",
-    "weather_holder": "/datum/weather_ss_map_holder/lv624",
     "map_name": "The Neroid Sector",
     "survivor_types": [
         "/datum/equipment_preset/survivor/civilian",

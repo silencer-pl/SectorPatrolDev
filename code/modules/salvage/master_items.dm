@@ -76,7 +76,7 @@
 		GLOB.salvaging_total_resin += salvage_contents["resin"]
 		GLOB.salvaging_total_alloy += salvage_contents["alloy"]
 		GLOB.salvaging_items_objects += src
-		if(salvage_intel_item) GLOB.salvaging_intel_items += 1
+		if(salvage_intel_item) GLOB.salvaging_total_intel_items += 1
 		var/area/currentarea = get_area(src)
 		if(currentarea.salvage_area_tag != null)
 			salvage_area_tag = currentarea.salvage_area_tag
@@ -184,6 +184,7 @@
 	var/salvage_big_item = 0 //If 1, restricts tool usage to specific item
 	var/salvage_steps = 0
 	var/salvage_current_step = 1
+	var/salvage_in_use
 	var/no_salvage = 0
 	var/salvage_area_tag = "default"
 	var/salvage_container_tag
@@ -388,11 +389,14 @@
 /obj/structure/salvage/proc/salvage_process_decon()
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
 	salvage_process_decon_generate_av(tool = salvage_decon_array[1][salvage_current_step])
+	salvage_in_use = 1
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
+		salvage_in_use = 0
 		salvage_current_step += 1
 		salvage_return_step_text()
 		return 1
+	salvage_in_use = 0
 	return 0
 
 /obj/structure/salvage/proc/salvage_play_message()
@@ -411,7 +415,7 @@
 			talkas("Infomration retrieved. Data cache pulse sent. This device now may be deconstructed.")
 			hackable = 3
 			if(hackable_message) INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/salvage/, salvage_play_message))
-			GLOB.salvaging_intel_items += 1
+			GLOB.salvaging_intel_hacks += 1
 			return 1
 		if(2)
 			to_chat(usr, SPAN_INFO("This device is already being hacked."))
@@ -441,7 +445,7 @@
 			nozzle.talkas("Error: Air canister depleted. Please recharge at nearest charging station.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
 			return
-		if(salvage_current_step < salvage_steps)
+		if(salvage_current_step <= salvage_steps)
 			nozzle.talkas("Error: Unloosened fastening detected. Salvage will be suboptimal.")
 			nozzle.talkas("Error: Safety mode engaged. Action disallowed.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
@@ -457,6 +461,9 @@
 			return
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This object is ready for salvaging and does not need any further tinkering."))
+		return
+	if(salvage_in_use == 1)
+		to_chat(usr, SPAN_INFO("Someone is already working on this."))
 		return
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))
@@ -512,6 +519,7 @@
 	var/list/salvage_decon_array //Alternatively just present a full array, with TRAIT_TOOL / INTENT_ pairs in each row. Presence of a decon array will make mapinit ignore the keyword, even if its set.
 	var/salvage_steps = 0
 	var/salvage_current_step = 1
+	var/salvage_in_use
 	no_salvage = 0
 	var/desc_affix
 	var/desc_lore_affix
@@ -698,11 +706,14 @@
 /turf/open/salvage/proc/salvage_process_decon()
 	to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "starting")))
 	salvage_process_decon_generate_av(tool = salvage_decon_array[1][salvage_current_step])
+	salvage_in_use = 1
 	if(do_after(usr, (CRAFTING_DELAY_NORMAL * usr.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		salvage_in_use = 0
 		to_chat(usr, SPAN_INFO(salvage_process_decon_generate_text(text = salvage_decon_array[1][salvage_current_step], state = "finished")))
 		salvage_current_step += 1
 		salvage_return_step_text()
 		return 1
+	salvage_in_use = 0
 	return 0
 
 /turf/open/salvage/attackby(obj/item/W, mob/user)
@@ -726,7 +737,7 @@
 			nozzle.talkas("Error: Air canister depleted. Please recharge at nearest charging station.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
 			return
-		if(salvage_current_step < salvage_steps)
+		if(salvage_current_step <= salvage_steps)
 			nozzle.talkas("Error: Unloosened fastening detected. Salvage will be suboptimal.")
 			nozzle.talkas("Error: Safety mode engaged. Action disallowed.")
 			playsound(nozzle, 'sound/machines/terminal_error.ogg', 25)
@@ -735,6 +746,9 @@
 		return
 	if(salvage_current_step > salvage_steps)
 		to_chat(usr, SPAN_INFO("This floor is ready for salvaging and does not need any further tinkering."))
+		return
+	if(salvage_in_use == 1)
+		to_chat(usr, SPAN_INFO("Someone is already working on this."))
 		return
 	if(salvage_decon_array && salvage_current_step <= salvage_steps)
 		if(HAS_TRAIT(W, salvage_decon_array[1][salvage_current_step]))

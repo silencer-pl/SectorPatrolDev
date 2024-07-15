@@ -563,3 +563,4 @@
 	desc = "A standard issue flashlight made from light weight plastics. A UACM logo and serial number are engraved at its base."
 	desc_lore = "Flashlights are critical during power malfunctions, as not much can be done without seeing anything and there are precious few light sources on spaceships that are not externally powered. Batteries used on these lights typically last for days of continuous use and most standard operation procedures call for recharging them between each trip or even use. Artificial light is useless against the consuming 'reverse-light' of deep space so this flashlight will be useless if that specific form of energy manages to find its way onto a spacecraft."
 	item_serial_distance = SERIAL_ITEM_SIZE_CLOSE
+	flags_item = NOBLUDGEON

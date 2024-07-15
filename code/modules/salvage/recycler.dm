@@ -290,18 +290,20 @@
 	if(metal_to_rem) GLOB.salvaging_total_metal -= metal_to_rem
 	if(resin_to_rem) GLOB.salvaging_total_resin -= resin_to_rem
 	if(alloy_to_rem) GLOB.salvaging_total_alloy -= alloy_to_rem
+	GLOB.salvaging_total_ldpol -= ((metal_to_rem + resin_to_rem + alloy_to_rem) / 5)
 	GLOB.salvaging_intel_items += 1
 	return 1
 
 
 /obj/structure/salvage/intel_dropoff/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/salvage/))
-		var/obj/item/salvage/processed_item
-		if (processed_item.salvage_intel_item == FALSE)
+		var/obj/item/salvage/processed_item = W
+		if(processed_item.salvage_intel_item == FALSE)
 			to_chat(usr, SPAN_INFO("There does not seem to be anything important to process."))
 			return
 		if(process_intel(metal = processed_item.salvage_contents["metal"], resin = processed_item.salvage_contents["resin"], alloy = processed_item.salvage_contents["alloy"]) == 1)
 			qdel(processed_item)
+			talkas("Intelligence processed.")
 			return
 
 // Extra gear: Pouches etc as needed

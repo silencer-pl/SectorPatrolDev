@@ -2,8 +2,8 @@
 
 /obj/structure/terminal/briefing
 	name = "briefing display"
-	desc = "This is a master item. It should not be placed anywhere in the game world."
-	desc_lore = "If you have the time, please consider reporting this as a bug."
+	desc = "A large-scale display, safely mounted inside a slot made in the hull of the ship"
+	desc_lore = "Computer displays on most ships tend to be adjusted for single colored text, initially due to lack of technology that allowed for better quality displays to survive out in space. Over time this became more a habit than anything else, as evidenced by PDAs which do not limit themselves in terms of display capabilities. Large scale displays such as this one have resisted over a hundred years' worth of technological progress and still reign supreme across human space ships. Truly, you are looking at a classic. For better or worse."
 	icon = 'icons/obj/structures/machinery/displaymonitor.dmi'
 	icon_state = "off"
 	terminal_id = "briefing"

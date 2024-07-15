@@ -78,7 +78,7 @@
 			terminal_display_line("ALLOYS")
 			terminal_display_line("[GLOB.resources_alloy] / [GLOB.salvaging_total_alloy]")
 			terminal_display_line("LD-POLYMER")
-			terminal_display_line("[(GLOB.resources_metal + GLOB.resources_resin + GLOB.resources_alloy) / 5] / [GLOB.salvaging_total_ldpol]")
+			terminal_display_line("[GLOB.resources_ldpol] / [GLOB.salvaging_total_ldpol]")
 	// Multi word commands start here. A little hacky, but will do. Essentially cuts the ammount of expected letters for the command and if that passes, passes the whole command to a separate parser that does the work. Use case can probably be defived form len or soemthing, but I really dont feel like calculating that atm :P
 		else
 			switch(cut_string_to_parse)

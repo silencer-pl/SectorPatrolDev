@@ -134,6 +134,7 @@
 			I["customizable_desc"] << obj.customizable_desc
 			I["customizable_desc_lore"] << obj.customizable_desc_lore
 			I["dorms_PrimaryStorage"] << obj.dorms_PrimaryStorage
+			I["dorms_ItemOwner"] << obj.dorms_ItemOwner
 	I.cd = "/general"
 	I["item_index_max"] << item_index
 	to_chat(world, SPAN_BOLDWARNING("Object data saved."))
@@ -192,6 +193,8 @@
 		I["customizable_desc"] >> newitem.customizable_desc
 		I["customizable_desc_lore"] >> newitem.customizable_desc_lore
 		I["dorms_PrimaryStorage"] >> newitem.dorms_PrimaryStorage
+		I["dorms_ItemOwner"] >> newitem.dorms_ItemOwner
+		newitem.PersistantObject = TRUE
 		newitem.update_icon()
 		newitem.update_custom_descriptions()
 		if (newitem.dorms_PrimaryStorage == 1) newitem.update_dorm_storage()
@@ -397,3 +400,7 @@
 		S.cd = "/[dorm_tag]"
 		S["dorm_owner_name"] >> T.dorm_owner_name
 	to_chat(world, SPAN_BOLDWARNING("Dorms data loaded."))
+	to_chat(world, SPAN_BOLDWARNING("Moving Claimed Objects into designated Primary Storage lockers..."))
+	for(var/obj/objects in world)
+		if (objects.dorms_ItemOwner) objects.move_to_primary_dorm_locker()
+	to_chat(world, SPAN_BOLDWARNING("Dorm data load complete!"))

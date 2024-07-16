@@ -1774,6 +1774,7 @@
 #include "code\modules\desert_dam\motion_sensor\sensortower.dm"
 #include "code\modules\discord\discord_embed.dm"
 #include "code\modules\dorms\dorms.dm"
+#include "code\modules\dorms\dorms_areas.dm"
 #include "code\modules\droppod\container_droppod.dm"
 #include "code\modules\droppod\droppod_ui.dm"
 #include "code\modules\dropships\attach_points\attach_point.dm"

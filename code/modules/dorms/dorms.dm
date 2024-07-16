@@ -14,9 +14,11 @@
 
 /obj/structure/dorm_button/proc/update_owner() // Copies owner to area. Copies area tag as a failsafe as well so saving reflects in round changes.
 	var/area/ovpst/dorm/area = get_area(src)
+	area.dorm_id_tag = dorm_id_tag
 	if(dorm_owner_name == null)
 		area.dorm_owner_name = null
 		area.dorm_id_tag = initial(area.dorm_id_tag)
+		dorm_id_tag = area.dorm_id_tag
 		area.dorm_primary_storage = null
 		return
 	area.dorm_owner_name = dorm_owner_name

@@ -191,6 +191,7 @@
 		if (usr.name == area.dorm_owner_name)
 			if (area.dorm_primary_storage == null)
 				update_dorm_storage()
+				dorms_PrimaryStorage = 1
 				to_chat(usr, SPAN_INFO("Success. All custom items will be stored in this locker for the owner of the room."))
 				return
 			else

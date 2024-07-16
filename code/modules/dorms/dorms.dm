@@ -62,6 +62,8 @@
 			if(dorm_owner_name == usr.name)
 				var/area/ovpst/dorm/area = get_area(src)
 				if(area.dorm_primary_storage)
+					var/obj/storage_object = area.dorm_primary_storage
+					storage_object.dorms_PrimaryStorage = 0
 					area.dorm_primary_storage = initial(area.dorm_primary_storage)
 					to_chat(usr, SPAN_INFO("Primary Storage unclaimed."))
 					return
@@ -85,8 +87,4 @@
 	var/dorm_owner_name // Set from the buttons and will be overriden by them in game.
 	var/dorm_id_tag = "default" // USE UNIQUE AREA DEFINITIONS FOR EACH DORM. Set from the buttons and will be overriden by them in game.
 	var/dorm_primary_storage
-
-/area/ovpst/dorm/proc/dorm_clear_owner()
-
-
 

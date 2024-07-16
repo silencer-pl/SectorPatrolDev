@@ -42,6 +42,8 @@
 	var/customizable = 0 //Checked by the customizers to escape Sector Patrol 'approved' drip
 	var/customizable_desc
 	var/customizable_desc_lore
+	// Sector Patorl Dorms - Vars related to dorm control loading and saving
+	var/dorms_PrimaryStorage = 0
 
 
 /obj/Initialize(mapload, ...)
@@ -489,3 +491,9 @@
 		desc_lore = "<p>[initial(desc_lore)]</p><p>[customizable_desc_lore]</p>"
 	if (customizable_desc_lore == null)
 		desc_lore = "[initial(desc_lore)]"
+
+//Dorms
+//Prmary storage update function called while loading
+/obj/proc/update_dorm_storage() // updates areas storage ref to src
+	var/area/ovpst/dorm/area = get_area(src)
+	area.dorm_primary_storage = src

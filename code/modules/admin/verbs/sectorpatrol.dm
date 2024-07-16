@@ -133,6 +133,7 @@
 			I["customizable"] << obj.customizable
 			I["customizable_desc"] << obj.customizable_desc
 			I["customizable_desc_lore"] << obj.customizable_desc_lore
+			I["dorms_PrimaryStorage"] << obj.dorms_PrimaryStorage
 	I.cd = "/general"
 	I["item_index_max"] << item_index
 	to_chat(world, SPAN_BOLDWARNING("Object data saved."))
@@ -190,8 +191,10 @@
 		I["customizable"] >> newitem.customizable
 		I["customizable_desc"] >> newitem.customizable_desc
 		I["customizable_desc_lore"] >> newitem.customizable_desc_lore
+		I["dorms_PrimaryStorage"] >> newitem.dorms_PrimaryStorage
 		newitem.update_icon()
 		newitem.update_custom_descriptions()
+		if (newitem.dorms_PrimaryStorage == 1) newitem.update_dorm_storage()
 	to_chat(world, SPAN_BOLDWARNING("Object data loaded."))
 	to_chat(world, SPAN_BOLDWARNING("Persistancy load complete. You may resume playing."))
 

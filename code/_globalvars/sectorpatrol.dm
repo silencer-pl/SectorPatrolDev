@@ -55,3 +55,9 @@ GLOBAL_LIST_EMPTY(salvaging_turfs_all)
 GLOBAL_LIST_EMPTY(salvaging_turfs_open)
 
 GLOBAL_LIST_EMPTY(salvaging_active_spikes)
+
+// Dorms and realted
+
+GLOBAL_LIST_EMPTY(dorms_button_list)
+
+GLOBAL_LIST_EMPTY(dorms_name_list)

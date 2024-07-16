@@ -85,7 +85,7 @@
 
 /client/proc/cmd_save_turfs()
 
-	set name = "Save Turfs and Objects"
+	set name = "Persistancy Save - Turfs and Objects"
 	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -140,7 +140,7 @@
 
 /client/proc/cmd_load_turfs()
 
-	set name = "Load Turfs and Objects"
+	set name = "Persistancy Load - Turfs and Objects"
 	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -248,7 +248,7 @@
 
 /client/proc/cmd_save_general()
 
-	set name = "Save General Status"
+	set name = "Persistancy - Save General Status"
 	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -293,8 +293,8 @@
 
 /client/proc/cmd_save_cargo()
 
-	set name = "Save Cargo Status"
-	set category = "Admin.Peristancy"
+	set name = "Persistancy - Save Cargo Status"
+	set category = "Admin.SectorPatrol"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
 		to_chat(src, "Only administrators may use this command.")
@@ -309,7 +309,7 @@
 
 /client/proc/cmd_load_cargo()
 
-	set name = "Load Cargo Status"
+	set name = "Persistancy - Load Cargo Status"
 	set category = "Admin.Peristancy"
 
 	if (!admin_holder || !(admin_holder.rights & R_MOD))
@@ -323,8 +323,22 @@
 	G["alloy"] >> GLOB.testcrew_alloy
 	to_chat(src, SPAN_BOLDWARNING("Data Stores Loaded."))
 
+/client/proc/cmd_set_cargo()
+
+	set name = "Set Cargo Status"
+	set category = "Admin.Peristancy"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	tgui_input_number(usr, "Enter LDPol Store value", "LDPol", GLOB.testcrew_ldpol, timeout = 0)
+	tgui_input_number(usr, "Enter Metal Store value", "Metal", GLOB.testcrew_metal, timeout = 0)
+	tgui_input_number(usr, "Enter Resin Store value", "Resin", GLOB.testcrew_resin, timeout = 0)
+	tgui_input_number(usr, "Enter Alloy Store value", "Alloy", GLOB.testcrew_alloy, timeout = 0)
+
 /client/proc/cmd_show_resources()
-	set name = "Map and Total Resource Info"
+	set name = "View Map and Total Resource Info"
 	set category = "Admin.SectorPatrol"
 
 	if(!check_rights(R_ADMIN|R_DEBUG))
@@ -344,3 +358,39 @@
 	to_chat(src, narrate_body("Resin - [GLOB.resources_alloy] / [GLOB.salvaging_total_alloy]"))
 	to_chat(src, narrate_body("Intel - [GLOB.salvaging_intel_items] / [GLOB.salvaging_total_intel_items]"))
 	to_chat(src, narrate_body("Hacks - [GLOB.salvaging_intel_hacks] / [GLOB.salvaging_total_intel_hacks]"))
+
+/client/proc/cmd_save_dorms()
+
+	set name = "Persistancy Save - Dorms"
+	set category = "Admin.Peristancy"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+	to_chat(world, SPAN_BOLDWARNING("Saving dorms data..."))
+	sleep(5)
+	var/savefile/S = new("data/persistance/ovpst_dorms.sav")
+	var/dorm_tag
+	for(var/obj/structure/dorm_button/T in GLOB.dorms_button_list)
+		dorm_tag = T.dorm_id_tag
+		S.cd = "/[dorm_tag]"
+		S["dorm_owner_name"] << T.dorm_owner_name
+	to_chat(world, SPAN_BOLDWARNING("Dorms data saved."))
+
+/client/proc/cmd_load_dorms()
+
+	set name = "Persistancy Load - Dorms"
+	set category = "Admin.Peristancy"
+
+	if (!admin_holder || !(admin_holder.rights & R_MOD))
+		to_chat(src, "Only administrators may use this command.")
+		return
+	to_chat(world, SPAN_BOLDWARNING("Loading dorms data..."))
+	sleep(5)
+	var/savefile/S = new("data/persistance/ovpst_dorms.sav")
+	var/dorm_tag
+	for(var/obj/structure/dorm_button/T in GLOB.dorms_button_list)
+		dorm_tag = T.dorm_id_tag
+		S.cd = "/[dorm_tag]"
+		S["dorm_owner_name"] >> T.dorm_owner_name
+	to_chat(world, SPAN_BOLDWARNING("Dorms data loaded."))

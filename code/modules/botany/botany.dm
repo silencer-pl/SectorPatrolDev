@@ -23,6 +23,7 @@
 		"fertilizer" = "empty",
 		"additional" = "empty",
 		"cycle" = 0,
+		"loud" = 1,
 		)
 	var/list/botany_factors = list(
 		"yield" = 0,
@@ -36,21 +37,57 @@
 	switch(botany_tray["cycle"])
 		if (1)
 			update_icon()
-			talkas("Rapid growth process started. Please add any fertalizer and additives beofre the first cycle completes.")
+			if(botany_tray["loud"] == 1) talkas("Rapid growth process started. Please add any fertalizer and additives beofre the first cycle completes.")
 			return
 		if(2)
 			switch(botany_tray["fertilizer"])
 				if("XQuality","XRapidGrowth")
 					botany_tray["plant_type"] = "spoiled"
 					botany_tray["cycle"] = 5
-					update_icon()
-					talkas("Error. Unexpected reaction to fertalizer detected. Bad proportions expected. Crop lost.")
-					return
+					if(botany_tray["loud"] == 1) talkas("Error. Unexpected reaction to fertalizer detected. Bad proportions expected. Crop lost.")
+				if("empty")
+					botany_factors["yield"] -= 1
+					botany_factors["quality"] -= 1
+					botany_factors["cycle_time"] += 100
+				if("Quality")
+					botany_factors["quality"] += 1
+					botany_factors["cycle_time"] += round(0.25 * botany_factors["cycle_time"])
+				if("2Quality")
+					botany_factors["yield"] -= round(0.75 * botany_factors["yield"])
+					botany_factors["quality"] += 2
+					botany_factors["cycle_time"] += round(0.5 * botany_factors["cycle_time"])
+				if("RapidGrowth")
+					botany_factors["yield"] -= round (0.25 * botany_factors["yield"])
+					botany_factors["cycle_time"] -= round(0.25 * botany_factors["cycle_time"])
+				if("2RapidGrowth")
+					botany_factors["yield"] -= round (0.5 * botany_factors["yield"])
+					botany_factors["cycle_time"] -= round(0.5 * botany_factors["cycle_time"])
+				if("3RapidGrowth")
+					botany_factors["yield"] -= round (0.5 * botany_factors["yield"])
+					botany_factors["quality"] -= 1
+					botany_factors["cycle_time"] -= round(0.75 * botany_factors["cycle_time"])
+			botany_tray["fertilizer"] = "empty"
+			if(botany_factors["additive"] != botany_tray["additional"])
+				botany_factors["yield"] -= 1
+				botany_factors["quality"] -= 1
+			botany_tray["additional"] = "empty"
+		if(3)
+			if(botany_tray["loud"] == 1)
+				emoteas("Beeps loudly")
+				talkas("Final growth stage active. Aftercare inspection recommended.")
+		if(4)
+			if(botany_factors["aftercare"] != "none")
+				botany_factors["yield"] -= 1
+				botany_factors["quality"] -= 1
+			talkas("Growth complete. Plant ready for harvest.")
+	update_icon()
+
 
 /obj/structure/botany/tray/proc/botany_cycle_loop()
 	while(botany_tray["cycle"] <= 4)
 		sleep(botany_factors["cycle_time"])
 		botany_tray["cycle"] += 1
+		botany_process_growth()
 
 /obj/structure/botany/tray/proc/add_component(component_name = null)
 	var/component_to_add = component_name

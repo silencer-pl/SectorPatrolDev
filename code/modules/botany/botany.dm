@@ -1,20 +1,55 @@
+/obj/item/botany/seed_packet
+	name = "seed packet master item"
+	desc = "Master item - should not be in game"
+	icon = 'icons/sp_default.dmi'
+	icon_state = "default"
+	var/list/botany_plant_data = list(
+		"name" = "default",
+		"yield" = 5,
+		"additive" = "none",
+		"aftercare" = "none",
+		"repeating" = 0,
+		)
+
 /obj/structure/botany/tray
 	name = "Botany Tray Master Item"
 	desc = "This is a general item that hides all the botany mechanics in-code. It should not be in the game."
 	desc_lore = "This will be redundant soon and I shoudnt really be doing this anymore. The lore_desc, not the master item."
 	icon = 'icons/sp_default.dmi'
 	icon_state = "default"
+	langchat_color = "#52f35a"
 	var/list/botany_tray = list(
 		"plant_type" = "empty",
 		"fertilizer" = "empty",
 		"additional" = "empty",
 		"cycle" = 0,
-		"cycle_time" = 150,
 		)
+	var/list/botany_factors = list(
+		"yield" = 0,
+		"quality" = 0,
+		"additive" = "none",
+		"aftercare" = "none",
+		"cycle_time" = 200,
+		)
+
+/obj/structure/botany/tray/proc/botany_process_growth()
+	switch(botany_tray["cycle"])
+		if (1)
+			update_icon()
+			talkas("Rapid growth process started. Please add any fertalizer and additives beofre the first cycle completes.")
+			return
+		if(2)
+			switch(botany_tray["fertilizer"])
+				if("XQuality","XRapidGrowth")
+					botany_tray["plant_type"] = "spoiled"
+					botany_tray["cycle"] = 5
+					update_icon()
+					talkas("Error. Unexpected reaction to fertalizer detected. Bad proportions expected. Crop lost.")
+					return
 
 /obj/structure/botany/tray/proc/botany_cycle_loop()
 	while(botany_tray["cycle"] <= 4)
-		sleep(botany_tray["cycle_time"])
+		sleep(botany_factors["cycle_time"])
 		botany_tray["cycle"] += 1
 
 /obj/structure/botany/tray/proc/add_component(component_name = null)
@@ -62,7 +97,7 @@
 
 /obj/structure/botany/tray/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/botany/fertilizer))
-		var/obj/item/botany/fertilizer/C
+		var/obj/item/botany/fertilizer/C = W
 		if(C.botany_fertilizer_type == null || C.botany_fertilizer_uses < 1)
 			to_chat(usr, SPAN_WARNING("The tray buzzes. The container seems to be empty."))
 			playsound(src, 'sound/machines/terminal_error.ogg', 25)
@@ -73,7 +108,7 @@
 		return
 
 	if(istype(W, /obj/item/botany/additive))
-		var/obj/item/botany/additive/C
+		var/obj/item/botany/additive/C = W
 		if(C.botany_additive_type == null || C.botany_additive_uses < 1)
 			to_chat(usr, SPAN_WARNING("You push on the trigger but nothing happens."))
 			playsound(src, 'sound/machines/terminal_error.ogg', 25)
@@ -81,6 +116,20 @@
 		to_chat(src, "You spray an even ammount of additive onto the tray.")
 		playsound(src, 'sound/effects/spray.ogg', 25)
 		add_component(component_name = C.botany_additive_type)
+		return
+
+	if(istype(W, /obj/item/botany/seed_packet))
+		if(botany_tray["plant_type"] != "empty")
+			to_chat(usr, SPAN_WARNING("This tray already has growing in it. To restart it, use a fresh bioturf package on the tray."))
+			return
+		var/obj/item/botany/seed_packet/P = W
+		botany_tray["plant_type"] = P.botany_plant_data["name"]
+		botany_factors["yield"] = P.botany_plant_data["yield"]
+		botany_factors["additive"] = P.botany_plant_data["additive"]
+		botany_factors["aftercare"] = P.botany_plant_data["aftercare"]
+		update_icon()
+		to_chat(usr, SPAN_INFO("You plant the seeds in the tray."))
+		qdel(P)
 		return
 
 /obj/structure/botany/tray/standard

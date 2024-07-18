@@ -1,12 +1,3 @@
-/obj/item/botany/fertilizer
-	name = "OV-PST bioturf storage device"
-	desc = "A metal cylinder, smooth to the touch. Has a visible port at its bottom."
-	desc_lore = "Like the trays they fit into, these containers follow a heavily modified corporate design and have been co-developed with PST Engineers with the help of the Harvest Star Conglomerate, a small group of farming and farming equipment-oriented corporations based in the Neroid Sector. The mixture transported in the container is grown somewhere on the PST and is a special kind of bioorganic compound accelerating plant growth. Water is also present, with programmed crystalline structures which can further be additionally programmed by adding fertilizer and other compounds and assists in repairing the plants during their rapid growth."
-	icon = 'icons/sectorpatrol/botany/items/prep_items.dmi'
-	icon_state = "fertilizer_tank_empty"
-	var/botany_fertilizer_type
-	var/botany_fertilizer_uses = 0
-
 /obj/structure/botany/tray
 	name = "Botany Tray Master Item"
 	desc = "This is a general item that hides all the botany mechanics in-code. It should not be in the game."
@@ -34,3 +25,14 @@
 	icon = 'icons/sectorpatrol/botany/structures/tray.dmi'
 	icon_state = "tray"
 
+/obj/structure/botany/tray/standard/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/botany/fertilizer))
+		var/obj/item/botany/fertilizer/C
+		if(C.botany_fertilizer_type == null || C.botany_fertilizer_uses < 1)
+			to_chat(usr, SPAN_WARNING("The tray buzzes. The container seems to be empty."))
+			playsound(src, 'sound/machines/terminal_error.ogg', 25)
+			return
+		to_chat(src, "You connect the tank to the tray and let it inject a dose of fertilizer.")
+		playsound(src, 'sound/effects/spray.ogg', 25)
+		botany_tray["fertilizer"] = C.botany_fertilizer_type
+		return

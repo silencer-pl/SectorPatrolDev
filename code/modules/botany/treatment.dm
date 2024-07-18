@@ -40,7 +40,51 @@
 			if("Quality")
 				C.botany_fertilizer_type = "Quality"
 			if("Rapid Growth")
-				C.botany_fertilizer_type = "Rapid Growth"
+				C.botany_fertilizer_type = "RapidGrowth"
+		C.update_icon()
+		return
+	return
+
+/obj/item/botany/additive
+	name = "spray bottle"
+	desc = "A small container with a top suitable for dispersal after pushing a button."
+	desc_lore = "The only real improvements OV-PST manufactured dispersal containers have over their regular counter part is that they come with a standardized, preset trigger which precisely controls how much liquid is dispensed per pump. This may be particularly useful in tasks that require specific liquid concentrations."
+	icon = 'icons/sectorpatrol/botany/items/prep_items.dmi'
+	icon_state = "add_tank_empty"
+	var/botany_additive_type
+	var/botany_additive_uses = 0
+	var/botany_additive_uses_max = 20
+
+/obj/item/botany/additive/update_icon()
+	if(botany_additive_uses < (0.25 * botany_additive_uses_max) && botany_additive_uses > 1)
+		icon_state = "add_tank_empty"
+	if(botany_additive_uses < 1)
+		icon_state = "add_tank_low"
+	else
+		icon_state = "add_tank_full"
+	. = ..()
+
+/obj/structure/botany/additive_refill
+	name = "wall mounted additive dispenser"
+	desc = "A wall mounted dispneser with a nozzle that can be used to secure a spray bottle to it."
+	desc_lore = "Unlike their biomass counterparts, there really isn’t that much to be said about various forms of pest control that can be acquired from this machine. One thing to keep in mind is that additives tend to react unexpectedly when used combined with excessive fertilizer boosting, potentially creating unique plant strains."
+	icon = 'icons/sectorpatrol/botany/structures/vendor.dmi'
+	icon_state = "additional"
+
+/obj/structure/botany/additive_refill/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/botany/additive))
+		var/obj/item/botany/additive/C = W
+		var/picked_additive = tgui_input_list(usr, "You attach the bottle to the dispensers nozzle. Select which additive to fill it with.", "Select fertilizer", list("Pesticide", "Fungicide", "Herbicide"))
+		to_chat(usr, SPAN_INFO("The dispenser recycles any leftover liquid and refills the bottle with the new contents."))
+		playsound(src, 'sound/effects/spray.ogg', 25)
+		C.botany_additive_uses = C.botany_additive_uses_max
+		switch(picked_additive)
+			if("Pesticide")
+				C.botany_additive_type = "Pesticide"
+			if("Fungicide")
+				C.botany_additive_type = "Fungicide"
+			if("Herbicide")
+				C.botany_additive_type = "Herbicide"
 		C.update_icon()
 		return
 	return

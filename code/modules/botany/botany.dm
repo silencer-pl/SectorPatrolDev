@@ -1,7 +1,8 @@
 /obj/item/botany/seed_packet
 	name = "seed packet master item"
 	desc = "Master item - should not be in game"
-	icon = 'icons/sp_default.dmi'
+	desc_lore = "These packets are part of the sustainability system being co-developed by the PST and the Harvest Star Conglomerate. These packets contain seeds suspended in a special nutrition jelly which also contains basic LD instructions for the active elements in the bioturf mixture used in the trays."
+	icon = 'icons/sectorpatrol/botany/plants.dmi'
 	icon_state = "default"
 	var/list/botany_plant_data = list(
 		"name" = "default",
@@ -18,6 +19,7 @@
 	icon = 'icons/sp_default.dmi'
 	icon_state = "default"
 	langchat_color = "#52f35a"
+	var/plant_icon = 'icons/sectorpatrol/botany/plants.dmi'
 	var/list/botany_tray = list(
 		"plant_type" = "empty",
 		"fertilizer" = "empty",
@@ -32,6 +34,11 @@
 		"aftercare" = "none",
 		"cycle_time" = 200,
 		)
+
+/obj/structure/botany/tray/update_icon()
+	overlays = null
+	overlays += image(icon, src, "[icon_state]")
+	if(botany_tray["plant_type"] != "empty")overlays += image(plant_icon, src, "[icon_state]_grow[botany_tray["cycle"]]")
 
 /obj/structure/botany/tray/proc/botany_process_growth()
 	switch(botany_tray["cycle"])
@@ -74,7 +81,7 @@
 		if(3)
 			if(botany_tray["loud"] == 1)
 				emoteas("Beeps loudly")
-				talkas("Final growth stage active. Aftercare inspection recommended.")
+				talkas("Entering final growth stages. Aftercare inspection recommended.")
 		if(4)
 			if(botany_factors["aftercare"] != "none")
 				botany_factors["yield"] -= 1

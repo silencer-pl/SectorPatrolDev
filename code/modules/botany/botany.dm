@@ -25,9 +25,20 @@
 	var/tool_used = tool_type
 	switch(tool_used)
 		if("rake")
-			to_chat(usr, SPAN_INFO("You rake though the biomass in the tray, removing visibly clumped pieces and discarding them. The plant seems to get quickly healthier."))
-			playsound(src, 'sound/effects/vegetation_walk_0.ogg')
-			return
+			to_chat(usr, SPAN_INFO("You rake though the biomass in the tray, removing visibly clumped pieces and discarding them."))
+			playsound(src, 'sound/effects/vegetation_walk_0.ogg', 25)
+		if("spray")
+			to_chat(usr, SPAN_INFO("You spray the plant with the solution. The fluid seems to be rapidly absorbed by the pant."))
+			playsound(src, 'sound/effects/refill.ogg', 25)
+		if("spade")
+			to_chat(usr, SPAN_INFO("You dig out the plant from the biomass and remove excess and dead roots, then put it back in and cover the roots with the biomass again."))
+			playsound(src, 'sound/effects/vegetation_walk_0.ogg', 25)
+		if("snips")
+			to_chat(usr, SPAN_INFO("You snip off excess or dead parts of the plant and discard them into the biomass."))
+			playsound(src, 'sound/items/Screwdriver2.ogg', 25)
+		if("cutter")
+			to_chat(usr, SPAN_INFO("You cut notches into the plant using the blade in regular intervals."))
+			playsound(src, 'sound/effects/vegetation_hit.ogg', 25)
 
 /obj/structure/botany/tray
 	name = "Botany Tray Master Item"
@@ -188,8 +199,10 @@
 		botany_factors["yield"] = P.botany_plant_data["yield"]
 		botany_factors["additive"] = P.botany_plant_data["additive"]
 		botany_factors["aftercare"] = P.botany_plant_data["aftercare"]
-		update_icon()
 		to_chat(usr, SPAN_INFO("You plant the seeds in the tray."))
+		botany_tray["cycle"] = 1
+		botany_process_growth()
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/botany/tray/, botany_cycle_loop))
 		qdel(P)
 		return
 
@@ -202,8 +215,11 @@
 			to_chat(usr, SPAN_WARNING("There is no reason to use this tool on this plant right now."))
 			return
 		if(botany_factors["aftercare"] == tool.botany_aftercare_type)
-			tool.use_fx(tool_type = tool.botany_aftercare_type)
-			botany_factors["aftercare"] = "none"
+			if(botany_tray["cycle"] > 2)
+				tool.use_fx(tool_type = tool.botany_aftercare_type)
+				botany_factors["aftercare"] = "none"
+			else
+				to_chat(usr, SPAN_WARNING("There is no reason to use this tool on this plant right now."))
 			return
 
 /obj/structure/botany/tray/standard

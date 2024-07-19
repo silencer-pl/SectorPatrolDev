@@ -88,3 +88,10 @@
 		C.update_icon()
 		return
 	return
+
+/obj/item/botany/bioturf_refill
+	name = "OV-PST bioturf refill bag"
+	desc = "A green bag made from a tough, airtight material. Has a prominent logo showing several wheat stalks printed in its center.."
+	desc_lore = "PST Bioturf is a mixture of pretreated dirt mixed with water with programmed LD crystalline structures and housing a colony of lifeforms printed in one of the PST's 'biogenerators', essentially 3d printers capable of creating simple organisms. These lifeforms interface with instructions in seed packets, and fertilizer treatments and utilize the PST's latent energy streams to drastically increase the speed a plant is cultivated in. Both the PST Engineers and the corporate scientists working on this project see this solution as a way of making each and every colony in the Neroid Sector and through it in the known galaxy truly self sufficient and free from exploitation when it comes to feeding its inhabitants."
+	icon = 'icons/sectorpatrol/botany/items/prep_items.dmi'
+	icon_state = "bioturf_bag"

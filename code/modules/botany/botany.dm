@@ -10,7 +10,27 @@
 		"additive" = "none",
 		"aftercare" = "none",
 		"repeating" = 0,
+		"regrows" = 0,
 		)
+
+/obj/item/reagent_container/food/snacks/produce/
+	name = "procude master item"
+	desc = "not meant to be used in the game world"
+	desc_lore = "Natural produce is typically only available in dried or otherwise long term preserved form and even that is a rare delicacy, so having access to produce that seems to be grown to order feels a little bit out of this world. The realization that this piece of produce was grown with the help of Liquid Data enabled organisms, created from scratch in the depths of the PST may not help alleviate those concerns. There is little denying the outcome, however. Should one taste it and providing all conditions were kept nominal during growing the produce, one could not tell the difference between a PST grown food and one grown back on Earth or its myriad colonies. "
+	icon = 'icons/sectorpatrol/botany/plants.dmi'
+	icon_state = "default"
+	var/list/produce_properties = list( // For cooking and eating. Copy whole block and edit as needed. Messing with quality will make things wierd, but is supported. These values will override any single vars that they touch (and are likely named the same as); "type" overrites icon_state, but icon_state should also be set for individual positions for the sake of mappers and vendor icons.
+		"quality" = 0,
+		"type" = "default",
+		"nutriment" = 5,
+		"bitesize" = 1,
+		)
+
+/obj/item/reagent_container/food/snacks/produce/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", produce_properties["nutriment"])
+	bitesize = produce_properties["bitesize"]
+	icon_state = produce_properties["type"]
 
 /obj/item/botany/tool
 	name = "A real botany tool master item"
@@ -48,25 +68,27 @@
 	icon_state = "default"
 	langchat_color = "#52f35a"
 	var/plant_icon = 'icons/sectorpatrol/botany/plants.dmi'
-	var/list/botany_tray = list(
+	var/list/botany_tray = list( // Factors from inside the tray. Changed by adding stuff to it. Should persist between crops unless drained or used up during regular process.
 		"plant_type" = "empty",
 		"fertilizer" = "empty",
 		"additional" = "empty",
 		"cycle" = 0,
 		"loud" = 1,
 		)
-	var/list/botany_factors = list(
+	var/list/botany_factors = list( //Maleable factors of the crop derived from seeds. This can be affected by a myriad of ways and is the "mutable" aspect of botany.
 		"yield" = 0,
 		"quality" = 0,
 		"additive" = "none",
 		"aftercare" = "none",
+		"aftercare_repeating" = "none",
 		"cycle_time" = 200,
+		"regrows" = 0,
 		)
 
 /obj/structure/botany/tray/update_icon()
 	overlays = null
 	overlays += image(icon, src, "[icon_state]")
-	if(botany_tray["plant_type"] != "empty")overlays += image(plant_icon, src, "[icon_state]_grow[botany_tray["cycle"]]")
+	if(botany_tray["plant_type"] != "empty")overlays += image(plant_icon, src, "[botany_tray["plant_type"]]_grow[botany_tray["cycle"]]")
 
 /obj/structure/botany/tray/proc/botany_process_growth()
 	switch(botany_tray["cycle"])
@@ -167,7 +189,23 @@
 		if("Herbicide")
 			botany_tray["additional"] = "Herbicide"
 
+/obj/structure/botany/tray/proc/clear_tray()
+	botany_tray["plant_type"] = "empty"
+	botany_tray["fertilizer"] = "empty"
+	botany_tray["additional"] = "empty"
+	botany_tray["cycle"] = 0
+	botany_factors["yield"] = 0
+	botany_factors["quality"] = 0
+	botany_factors["additive"] = "none"
+	botany_factors["aftercare"] = "none"
+	botany_factors["aftercare_repeating"] = "none"
+	botany_factors["cycle_time"] = 200
+	update_icon()
+
 /obj/structure/botany/tray/attackby(obj/item/W, mob/user)
+	if(!istype(W, /obj/item/botany/fertilizer) || !istype(W, /obj/item/botany/additive) || !istype(W, /obj/item/botany/seed_packet) || !istype(W, /obj/item/botany/tool) || !istype(W, /obj/item/botany/bioturf_refill))
+		to_chat(usr, SPAN_INFO("You have no idea how to use these two together."))
+
 	if(istype(W, /obj/item/botany/fertilizer))
 		var/obj/item/botany/fertilizer/C = W
 		if(C.botany_fertilizer_type == null || C.botany_fertilizer_uses < 1)
@@ -199,6 +237,9 @@
 		botany_factors["yield"] = P.botany_plant_data["yield"]
 		botany_factors["additive"] = P.botany_plant_data["additive"]
 		botany_factors["aftercare"] = P.botany_plant_data["aftercare"]
+		if(P.botany_plant_data["regrows"] == 1)
+			botany_factors["aftercare_repeating"] = P.botany_plant_data["aftercare"]
+			botany_factors["regrows"] = 1
 		to_chat(usr, SPAN_INFO("You plant the seeds in the tray."))
 		botany_tray["cycle"] = 1
 		botany_process_growth()
@@ -220,6 +261,55 @@
 				botany_factors["aftercare"] = "none"
 			else
 				to_chat(usr, SPAN_WARNING("There is no reason to use this tool on this plant right now."))
+			return
+
+	if(istype(W, /obj/item/botany/bioturf_refill))
+		user.visible_message(SPAN_NOTICE("[user] starts to reset the tray."), SPAN_INFO("You start to reset the tray."), SPAN_WARNING("You hear something tear and a sound of shifting ground."))
+		if(do_after(user, 50, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/item/botany/bioturf_refill/bag = W
+			playsound(src, 'sound/effects/squelch1.ogg', 25)
+			clear_tray()
+			qdel(bag)
+			return
+		return
+
+
+/obj/structure/botany/tray/proc/drop_produce()
+	var/ammount_to_drop = botany_factors["yield"]
+	if(botany_factors["regrows"] == 1) to_chat(usr, SPAN_INFO("You gather the produce from the plant and the plant restarts its production cycle. It will need aftercare again."))
+	if(botany_factors["regrows"] == 0) to_chat(usr, SPAN_INFO("You gather the produce from the plant. The tray should be reset with a bioturf and replanted."))
+	while (ammount_to_drop >= 1)
+		switch(botany_tray["plant_type"])
+			if("berry")
+				new /obj/item/reagent_container/food/snacks/produce/berry(get_turf(usr))
+				ammount_to_drop -= 1
+
+/obj/structure/botany/tray/attack_hand(mob/user)
+	if(user.a_intent == INTENT_HELP)
+		if(botany_tray["cycle"] >= 6)
+			to_chat(usr, SPAN_INFO("This crop has been harvested and is not renewable. The tray should be reset using a bioturf bag."))
+			return
+		if(botany_tray["cycle"] == 5)
+			if(botany_tray["plant_type"] == "spoiled")
+				to_chat(usr, SPAN_WARNING("The crop is spoiled and there is nothing to gather. You can safely replace the whole mixture with fresh bioturf by using a bioturf bag on the tray."))
+				return
+			drop_produce()
+			if(botany_factors["regrows"] == 1)
+				botany_factors["aftercare"] = botany_factors["aftercare_repeating"]
+				botany_tray["cycle"] = 2
+				update_icon()
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/botany/tray/, botany_cycle_loop))
+				return
+			botany_tray["cycle"] += 1
+			return
+	if(user.a_intent == INTENT_GRAB)
+		if(botany_tray["loud"] == 1)
+			to_chat(usr, SPAN_INFO("You turn the speaker on the tray off."))
+			botany_tray["loud"] = 0
+			return
+		if(botany_tray["loud"] == 0)
+			to_chat(usr, SPAN_INFO("You turn the speaker on the tray on."))
+			botany_tray["loud"] = 1
 			return
 
 /obj/structure/botany/tray/standard

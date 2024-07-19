@@ -13,3 +13,14 @@
 		"aftercare" = "Prune",
 		"repeating" = 0,
 		)
+
+/obj/item/reagent_container/food/snacks/produce/berry
+	name = "berries"
+	desc = "a handfull of multicolored berries"
+	icon_state = "berry"
+	produce_properties = list(
+		"quality" = 0,
+		"type" = "berry",
+		"nutriment" = 5,
+		"bitesize" = 1,
+		)

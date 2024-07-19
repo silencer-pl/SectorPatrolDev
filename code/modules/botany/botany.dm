@@ -12,6 +12,23 @@
 		"repeating" = 0,
 		)
 
+/obj/item/botany/tool
+	name = "A real botany tool master item"
+	desc = "I swear I'm not deteriorating. Anyway, master item, should not be in game, blah blah."
+	desc_lore = "Botany requires a light touch and so the tools used in the pruning, raking, cutting and otherwise caring for plants made on the PST reflect this by typically being smaller, lighter and generally more precision oriented than their 'big' counterparts. Like everything related to the cycle of botany on board the PST, these tools were also co-designed by the Harvest Star Conglomerate."
+	icon = 'icons/sectorpatrol/botany/items/prep_items.dmi'
+	icon_state = "default"
+	var/botany_aftercare_type = "default"
+
+/obj/item/botany/tool/proc/use_fx(tool_type = null)
+	if(tool_type == null) return
+	var/tool_used = tool_type
+	switch(tool_used)
+		if("rake")
+			to_chat(usr, SPAN_INFO("You rake though the biomass in the tray, removing visibly clumped pieces and discarding them. The plant seems to get quickly healthier."))
+			playsound(src, 'sound/effects/vegetation_walk_0.ogg')
+			return
+
 /obj/structure/botany/tray
 	name = "Botany Tray Master Item"
 	desc = "This is a general item that hides all the botany mechanics in-code. It should not be in the game."
@@ -175,6 +192,19 @@
 		to_chat(usr, SPAN_INFO("You plant the seeds in the tray."))
 		qdel(P)
 		return
+
+	if(istype(W, /obj/item/botany/tool))
+		var/obj/item/botany/tool/tool = W
+		if(botany_tray["plant_type"] == "empty")
+			to_chat(usr, SPAN_WARNING("There is nothing growing in this tray."))
+			return
+		if(botany_factors["aftercare"] != tool.botany_aftercare_type)
+			to_chat(usr, SPAN_WARNING("There is no reason to use this tool on this plant right now."))
+			return
+		if(botany_factors["aftercare"] == tool.botany_aftercare_type)
+			tool.use_fx(tool_type = tool.botany_aftercare_type)
+			botany_factors["aftercare"] = "none"
+			return
 
 /obj/structure/botany/tray/standard
 

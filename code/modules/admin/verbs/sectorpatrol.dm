@@ -228,6 +228,10 @@
 	GLOB.ingame_location = tgui_input_text(usr, message = "Enter Location to display:", title = "Location Entry", default = "[GLOB.ingame_location]", timeout = 0)
 	if(GLOB.ingame_location == null) GLOB.ingame_location = oldvalue
 
+	oldvalue = GLOB.ingame_current_system
+	GLOB.ingame_current_system = tgui_input_text(usr, message = "Enter System to display:", title = "Star System Entry", default = "[GLOB.ingame_current_system]", timeout = 0)
+	if(GLOB.ingame_current_system == null) GLOB.ingame_current_system = oldvalue
+
 	oldvalue = GLOB.ingame_mission_type
 	GLOB.ingame_mission_type = tgui_input_text(usr, message = "Enter Mission Type:", title = "Mission Type Entry", default = "[GLOB.ingame_mission_type]", timeout = 0)
 	if(GLOB.ingame_mission_type == null) GLOB.ingame_mission_type = oldvalue
@@ -267,6 +271,7 @@
 	G["Time"] << saved_time
 	G["Mission_Control_Hello"] << GLOB.mission_control_hello
 	G["Location"] << GLOB.ingame_location
+	G["ingame_current_system"] << GLOB.ingame_current_system
 	G["Mission_Type"] << GLOB.ingame_mission_type
 	G["start_narration_header"] << GLOB.start_narration_header
 	G["start_narration_footer"] << GLOB.start_narration_footer
@@ -289,6 +294,7 @@
 	G["Time"] >> GLOB.ingame_time
 	G["Mission_Control_Hello"] >> GLOB.mission_control_hello
 	G["Location"] >> GLOB.ingame_location
+	G["ingame_current_system"] >> GLOB.ingame_current_system
 	G["Mission_Type"] >> GLOB.ingame_mission_type
 	G["start_narration_header"] >> GLOB.start_narration_header
 	G["start_narration_footer"] >> GLOB.start_narration_footer

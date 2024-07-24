@@ -15,10 +15,10 @@
 		)
 
 /obj/structure/shiptoship_master/proc/populate_alpha()
-	add_entity (entity_type = 0, x = 10, y = 10, name = "UAS Flies Straight", type = "Testing Vessel", vector_x = 4, vector_y = -4, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5)
-	add_entity (entity_type = 0, x = 30, y = 30, name = "UAS Bumps Into Things", type = "Testing Vessel", vector_x = 5, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5)
-	add_entity (entity_type = 0, x = 35, y = 30, name = "UAS Just Sits There", type = "Testing Vessel", vector_x = 0, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5)
-	add_entity (entity_type = 0, x = 99, y = 99, name = "UAS Hungers For The Void", type = "Testing Vessel", vector_x = 3, vector_y = 2, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5)
+	add_entity (entity_type = 0, x = 10, y = 10, name = "UAS Flies Straight", type = "Testing Vessel", vector_x = 4, vector_y = -4, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 30, y = 30, name = "UAS Bumps Into Things", type = "Testing Vessel", vector_x = 5, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 35, y = 30, name = "UAS Just Sits There", type = "Testing Vessel", vector_x = 0, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 99, y = 99, name = "UAS Hungers For The Void", type = "Testing Vessel", vector_x = 3, vector_y = 2, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.
@@ -31,17 +31,40 @@
 					"id_tag" = "none",
 					"faction" = "none",
 					"status" = "none",
-					"damage" = 0,
+					"damage" = list(
+						"HP" = 0,
+						"engine" = 0,
+						"systems" = 0,
+						"weapons" = 0,
+						"hull" = 0,
+						),
 					"shield" = 0,
 					"name" = "none",
 					"type" = "none",
 					"vector" = list("x" = 0, "y" = 0,"speed" = 0,),
+					"system" = list(
+						"has_moved" = 0,
+						"movement_left" = 0,
+						"processed_movement" = 0,
+						"repairs_left" = 0,
+						"salvos_max" = 0,
+						"salvos_left" = 0,
+						),
 					),
 				"missle" = list(
 					"id_tag" = "none",
-					"target" = list("x" = 0, "y" = 0,),
+					"type" = "none",
+					"target" = list("x" = 0, "y" = 0, "tag" = "none"),
 					"speed" = 0,
-					"warhead" = "none",
+					"warhead" = list(
+						"type" = "none",
+						"payload" = 0,
+						),
+					"system" = list(
+						"processed_movement" = 0,
+						"derived_vector_x" = 0,
+						"derived_vector_y" = 0,
+						),
 					),
 				"other" = list(
 					"special_id" = "none",
@@ -49,15 +72,6 @@
 					"special_type" = "none",
 					"special_flavor" = "none",
 					),
-				"system" = list(
-					"has_moved" = 0,
-					"movement_left" = 0,
-					"processed_movement" = 0,
-					"has_repapired" = 0,
-					"repairs_left" = 0,
-					"has_fired" = 0,
-					"salvos_left" = 0,
-					)
 				)
 			current_x += 1
 		current_x = 1
@@ -74,7 +88,7 @@
 			populate_alpha()
 			GLOB.sector_map_initialized = 1
 
-/obj/structure/shiptoship_master/proc/add_entity (entity_type = 0, x = 1, y = 1, name = "none", type = "none", vector_x = 0, vector_y = 0, ship_status = "none", ship_faction = "none", ship_damage = 0, ship_shield = 0, ship_speed = 0) // 0 ships, 1 missles
+/obj/structure/shiptoship_master/proc/add_entity (entity_type = 0, x = 1, y = 1, name = "none", type = "none", vector_x = 0, vector_y = 0, ship_status = "none", ship_faction = "none", ship_damage = 0, ship_shield = 0, ship_speed = 0, salvos = 0, warhead_type = "none", warhead_payload = 0, target_tag = "none") // 0 ships, 1 missles
 	var/coord_x = x
 	var/coord_y = y
 	var/name_to_apply = name
@@ -86,6 +100,10 @@
 	var/shield_to_apply = ship_shield
 	var/damage_to_apply = ship_damage
 	var/speed_to_apply = ship_speed
+	var/salvos_to_apply = salvos
+	var/warhead_to_apply = warhead_type
+	var/payload_to_apply = warhead_payload
+	var/target_tag_to_apply = target_tag
 	if(entity_type == 0)
 		sector_map[coord_x][coord_y]["ship"]["name"] = name_to_apply
 		sector_map[coord_x][coord_y]["ship"]["faction"] = faction_to_apply
@@ -96,19 +114,41 @@
 		sector_map[coord_x][coord_y]["ship"]["vector"]["y"] = vector_y_to_apply
 		sector_map[coord_x][coord_y]["ship"]["vector"]["speed"] = speed_to_apply
 		sector_map[coord_x][coord_y]["ship"]["status"] = status_to_apply
-		sector_map[coord_x][coord_y]["ship"]["damage"] = damage_to_apply
+		sector_map[coord_x][coord_y]["ship"]["damage"]["HP"] = damage_to_apply
 		sector_map[coord_x][coord_y]["ship"]["shield"] = shield_to_apply
+		sector_map[coord_x][coord_y]["ship"]["system"]["salvos_max"] = salvos_to_apply
 		return
 	if(entity_type == 1)
 		sector_map[coord_x][coord_y]["missle"]["speed"] = name_to_apply
+		sector_map[coord_x][coord_y]["missle"]["type"] = type_to_apply
 		sector_map[coord_x][coord_y]["missle"]["id_tag"] = "MSL-[GLOB.sector_map_id_tag]"
 		GLOB.sector_map_id_tag += 1
-		sector_map[coord_x][coord_y]["missle"]["warhead"] = type_to_apply
+		sector_map[coord_x][coord_y]["missle"]["warhead"]["type"] = warhead_to_apply
+		sector_map[coord_x][coord_y]["missle"]["warhead"]["payload"] = payload_to_apply
 		sector_map[coord_x][coord_y]["missle"]["target"]["x"] = vector_x_to_apply
 		sector_map[coord_x][coord_y]["missle"]["target"]["y"] = vector_y_to_apply
+		sector_map[coord_x][coord_y]["missle"]["target"]["tag"] = target_tag_to_apply
 		return
 
-/obj/structure/shiptoship_master/proc/rem_entity(type = null, id = null, coord_x = 0, coord_y = 0, wipe_specials = 1) // pass type block as id for coord deletion, in the edge cases where specials shoudl persist, use wipe_specials = 0
+/obj/structure/shiptoship_master/proc/BoundaryAdjust(value = 0, type = 0) // type = 1 for 0, 2 for x max, 3 for y max
+	switch(type)
+		if(1)
+			if(value <= 0)
+				return 1
+			if(value > 0)
+				return value
+		if(2)
+			if(value > GLOB.sector_map_x)
+				return GLOB.sector_map_x
+			if(value <= GLOB.sector_map_x)
+				return value
+		if(3)
+			if(value > GLOB.sector_map_y)
+				return GLOB.sector_map_y
+			if(value <= GLOB.sector_map_y)
+				return value
+
+/obj/structure/shiptoship_master/proc/rem_entity(type = null, id = null, coord_x = 0, coord_y = 0) // pass type block as id for coord deletion, in the edge cases where specials shoudl persist, use wipe_specials = 0
 	var/selected_type = type
 	var/tag_to_remove = id
 	if(selected_type == "special") tag_to_remove = selected_type
@@ -124,33 +164,34 @@
 					sector_map[current_x][current_y]["ship"]["type"] = "none"
 					sector_map[current_x][current_y]["ship"]["faction"] = "none"
 					sector_map[current_x][current_y]["ship"]["status"] = "none"
-					sector_map[current_x][current_y]["ship"]["damage"] = 0
+					sector_map[current_x][current_y]["ship"]["damage"]["HP"] = 0
+					sector_map[current_x][current_y]["ship"]["damage"]["engine"] = 0
+					sector_map[current_x][current_y]["ship"]["damage"]["systems"] = 0
+					sector_map[current_x][current_y]["ship"]["damage"]["weapons"] = 0
+					sector_map[current_x][current_y]["ship"]["damage"]["hull"] = 0
 					sector_map[current_x][current_y]["ship"]["shield"] = 0
 					sector_map[current_x][current_y]["ship"]["vector"]["x"] = 0
 					sector_map[current_x][current_y]["ship"]["vector"]["y"] = 0
 					sector_map[current_x][current_y]["ship"]["vector"]["speed"] = 0
-					if(wipe_specials == 1)
-						sector_map[current_x][current_y]["system"]["has_moved"] = 0
-						sector_map[current_x][current_y]["system"]["movement_left"] = 0
-						sector_map[current_x][current_y]["system"]["processed_movement"] = 0
-						sector_map[current_x][current_y]["system"]["has_repapired"] = 0
-						sector_map[current_x][current_y]["system"]["repairs_left"] = 0
-						sector_map[current_x][current_y]["system"]["has_fired"] = 0
-						sector_map[current_x][current_y]["system"]["salvos_left"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["has_moved"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["movement_left"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["repairs_left"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["salvos_max"] = 0
+					sector_map[current_x][current_y]["ship"]["system"]["salvos_left"] = 0
 				if(sector_map[current_x][current_y]["missle"]["id_tag"] == tag_to_remove)
-					sector_map[current_x][current_y]["missle"]["warhead"] = "none"
+					sector_map[current_x][current_y]["missle"]["warhead"]["type"] = "none"
+					sector_map[current_x][current_y]["missle"]["warhead"]["patload"] = 0
 					sector_map[current_x][current_y]["missle"]["id_tag"] = "none"
+					sector_map[current_x][current_y]["missle"]["type"] = "none"
 					sector_map[current_x][current_y]["missle"]["speed"] = 0
 					sector_map[current_x][current_y]["missle"]["target"]["x"] = 0
 					sector_map[current_x][current_y]["missle"]["target"]["y"] = 0
-					if(wipe_specials == 1)
-						sector_map[current_x][current_y]["system"]["has_moved"] = 0
-						sector_map[current_x][current_y]["system"]["movement_left"] = 0
-						sector_map[current_x][current_y]["system"]["processed_movement"] = 0
-						sector_map[current_x][current_y]["system"]["has_repapired"] = 0
-						sector_map[current_x][current_y]["system"]["repairs_left"] = 0
-						sector_map[current_x][current_y]["system"]["has_fired"] = 0
-						sector_map[current_x][current_y]["system"]["salvos_left"] = 0
+					sector_map[current_x][current_y]["missle"]["target"]["tag"] = "none"
+					sector_map[current_x][current_y]["missle"]["system"]["processed_movement"] = 0
+					sector_map[current_x][current_y]["missle"]["system"]["derived_vector_x"] = 0
+					sector_map[current_x][current_y]["missle"]["system"]["derived_vector_y"] = 0
+
 				current_x += 1
 			current_x = 1
 			current_y += 1
@@ -164,47 +205,49 @@
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["type"] = "none"
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["faction"] = "none"
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["status"] = "none"
-			sector_map[x_to_remove][y_to_remove][tag_to_remove]["damage"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["damage"]["HP"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["damage"]["engine"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["damage"]["systems"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["damage"]["weapons"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["damage"]["hull"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["shield"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["vector"]["x"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["vector"]["y"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["vector"]["speed"] = 0
-			if(wipe_specials == 1)
-				sector_map[x_to_remove][y_to_remove]["system"]["has_moved"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["movement_left"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["processed_movement"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["has_repapired"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["repairs_left"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["has_fired"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["salvos_left"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["has_moved"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["movement_left"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["processed_movement"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["repairs_left"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["salvos_max"] = 0
+			sector_map[x_to_remove][y_to_remove]["ship"]["system"]["salvos_left"] = 0
 			return
 		if(tag_to_remove == "missle")
-			sector_map[x_to_remove][y_to_remove][tag_to_remove]["warhead"] = "none"
+			sector_map[x_to_remove][y_to_remove][tag_to_remove]["warhead"]["type"] = "none"
+			sector_map[x_to_remove][y_to_remove][tag_to_remove]["warhead"]["payload"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["id_tag"] = "none"
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["speed"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["target"]["x"] = 0
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["target"]["y"] = 0
-			if(wipe_specials == 1)
-				sector_map[x_to_remove][y_to_remove]["system"]["has_moved"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["movement_left"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["processed_movement"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["has_repapired"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["repairs_left"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["has_fired"] = 0
-				sector_map[x_to_remove][y_to_remove]["system"]["salvos_left"] = 0
+			sector_map[x_to_remove][y_to_remove][tag_to_remove]["target"]["tag"] = 0
+			sector_map[x_to_remove][y_to_remove]["missle"]["type"] = "none"
+			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["processed_movement"] = 0
+			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["derived_vector_x"] = 0
+			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["derived_vector_y"] = 0
 			return
 	if(selected_type == "special")
 		var/current_x = 1
 		var/current_y = 1
 		while (current_y <= GLOB.sector_map_y)
 			while(current_x < GLOB.sector_map_x)
-				sector_map[current_x][current_y]["system"]["has_moved"] = 0
-				sector_map[current_x][current_y]["system"]["movement_left"] = 0
-				sector_map[current_x][current_y]["system"]["processed_movement"] = 0
-				sector_map[current_x][current_y]["system"]["has_repapired"] = 0
-				sector_map[current_x][current_y]["system"]["repairs_left"] = 0
-				sector_map[current_x][current_y]["system"]["has_fired"] = 0
-				sector_map[current_x][current_y]["system"]["salvos_left"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["has_moved"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["movement_left"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["repairs_left"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["salvos_max"] = 0
+				sector_map[current_x][current_y]["ship"]["system"]["salvos_left"] = 0
+				sector_map[current_x][current_y]["missle"]["system"]["processed_movement"] = 0
+				sector_map[current_x][current_y]["missle"]["system"]["derived_vector_x"] = 0
+				sector_map[current_x][current_y]["missle"]["system"]["derived_vector_y"] = 0
 				current_x += 1
 			current_x = 1
 			current_y += 1
@@ -260,6 +303,69 @@
 		if("regular_move")
 			round_history_current.Add("The <b>[log_source_to_add]</b> arrives at its destination at coordinates <b>([x_to_move],[y_to_move])</b>.")
 			return
+		if("missle_collision")
+			round_history_current.Add("Projectiles [log_source_to_add] and [log_target_to_add] detonate each other as they leapfrog out of Hyperspace in close proximity.")
+			return
+		if("missle_move")
+			round_history_current.Add("Projectile [log_source_to_add] leapfrogs to coordinates ([x_to_move],[y_to_move]).")
+			return
+		if("missle_near_target")
+			round_history_current.Add("The projectile will reach its target next round!")
+			return
+		if("missle_homing_bad_target")
+			round_history_current.Add("Projectile [log_source_to_add] fails to find its target. The projectile is lost.")
+			return
+		if("warhead_homing")
+			round_history_current.Add("Projectile [log_source_to_add] arrives at its destination and looks for a new target...")
+			return
+		if("warhead_hit")
+			round_history_current.Add("Projectile [log_source_to_add] strikes a target!")
+			return
+		if("hit_shield")
+			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its shields!")
+			return
+		if("shield_break")
+			round_history_current.Add("The shield breaks!")
+			return
+		if("hit_engine")
+			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its engines!")
+			return
+		if("hit_systems")
+			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its systems!")
+			return
+		if("hit_weapons")
+			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its weapons!")
+			return
+		if("hit_hull")
+			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its hull!")
+			return
+		if("destroy_complete")
+			round_history_current.Add("The [log_source_to_add] suffers cascading failure from multiple systems and is torn apart in the resulting explosions.")
+			return
+		if("destroy_engine")
+			round_history_current.Add("The engine of the [log_source_to_add] ruptures and explodes, discharging its Twilight Paradox cells and leaving the ship adrift. The ship launches its escape pods.")
+			return
+		if("destroy_systems")
+			round_history_current.Add("The systems of the [log_source_to_add] suffer from a cascading discharge and fail one by one. With its transponder and engine controls fried, the ship is coffin adrift in the void and launches its escape pods.")
+			return
+		if("destroy_weapons")
+			round_history_current.Add("After suffering a direct hit, the ammo stores of the [log_source_to_add] explode, killing everyone nearby. With a significant part of its hull now gone, the ship's fate is sealed. The surviving crew evacuates. ")
+			return
+		if("destroy_hull")
+			round_history_current.Add("The hull of the [log_source_to_add] ruptures and a significant part of the ship is detached. Anyone nearby is dead, and the remaining crewmembers are now adrift in a derelict coffin. Some reach the escape pods.")
+			return
+		if("missle_hit_splash")
+			round_history_current.Add("Projectile [log_source_to_add] is anihilated in an explosion!")
+			return
+		if("explosive_splash")
+			round_history_current.Add("Projectile [log_source_to_add] explodes at coordinates ([x_to_move],[y_to_move]) with a power of [log_target_to_add]!")
+			return
+		if("warhead_miss")
+			round_history_current.Add("Projectile [log_source_to_add] fails to hit anything at coordinates ([x_to_move],[y_to_move] and flies off into the void.")
+			return
+		if("nuclear_hit")
+			round_history_current.Add("Projectile [log_source_to_add] reaches its target at coordinates ([x_to_move],[y_to_move]). The [log_target_to_add] and its crew perishes in a nuclear blast.")
+			return
 
 /obj/structure/shiptoship_master/proc/move_on_map(type_to_move = null, origin_x = 0, origin_y = 0, target_x = 0, target_y = 0) // Actually move the ship on grid. Will account for boudaries and "bump" ships away form them, at cost of losing all velocity. Different formulas are used for ships and projectiles, so make sure to pass the right type. For type "ship", pass ship vector as destination_x/y
 	var/selected_type = type_to_move
@@ -289,15 +395,78 @@
 			sector_map[final_x][final_y][selected_type]["type"] = sector_map[move_starting_x][move_starting_y][selected_type]["type"]
 			sector_map[final_x][final_y][selected_type]["faction"] = sector_map[move_starting_x][move_starting_y][selected_type]["faction"]
 			sector_map[final_x][final_y][selected_type]["status"] = sector_map[move_starting_x][move_starting_y][selected_type]["status"]
-			sector_map[final_x][final_y][selected_type]["damage"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]
+			sector_map[final_x][final_y][selected_type]["damage"]["HP"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]["HP"]
+			sector_map[final_x][final_y][selected_type]["damage"]["engine"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]["engine"]
+			sector_map[final_x][final_y][selected_type]["damage"]["systems"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]["systems"]
+			sector_map[final_x][final_y][selected_type]["damage"]["weapons"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]["weapons"]
+			sector_map[final_x][final_y][selected_type]["damage"]["hull"] = sector_map[move_starting_x][move_starting_y][selected_type]["damage"]["hull"]
 			sector_map[final_x][final_y][selected_type]["shield"] = sector_map[move_starting_x][move_starting_y][selected_type]["shield"]
 			sector_map[final_x][final_y][selected_type]["vector"]["x"] = sector_map[move_starting_x][move_starting_y][selected_type]["vector"]["x"]
 			sector_map[final_x][final_y][selected_type]["vector"]["y"] = sector_map[move_starting_x][move_starting_y][selected_type]["vector"]["y"]
 			sector_map[final_x][final_y][selected_type]["vector"]["speed"] = sector_map[move_starting_x][move_starting_y][selected_type]["vector"]["speed"]
-			sector_map[final_x][final_y]["system"]["processed_movement"] = 1
+			sector_map[final_x][final_y][selected_type]["system"]["has_moved"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["has_moved"]
+			sector_map[final_x][final_y][selected_type]["system"]["movement_left"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["movement_left"]
+			sector_map[final_x][final_y][selected_type]["system"]["processed_movement"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["processed_movement"]
+			sector_map[final_x][final_y][selected_type]["system"]["repairs_left"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["repairs_left"]
+			sector_map[final_x][final_y][selected_type]["system"]["salvos_max"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["salvos_max"]
+			sector_map[final_x][final_y][selected_type]["system"]["salvos_left"] = sector_map[move_starting_x][move_starting_y][selected_type]["system"]["salvos_left"]
+			sector_map[final_x][final_y][selected_type]["system"]["processed_movement"] = 1
 			rem_entity(type = "coord", id = selected_type, coord_x = move_starting_x, coord_y = move_starting_y)
 			log_round_history(event = "regular_move", log_source = sector_map[final_x][final_y][selected_type]["name"], log_dest_x = final_x, log_dest_y = final_y)
 			return 1
+		if("missle")
+			sector_map[move_target_x][move_target_y][selected_type]["id_tag"] = sector_map[move_starting_x][move_starting_y][selected_type]["id_tag"]
+			sector_map[move_target_x][move_target_y][selected_type]["type"] = sector_map[move_starting_x][move_starting_y][selected_type]["type"]
+			sector_map[move_target_x][move_target_y][selected_type]["target"]["x"] = sector_map[move_starting_x][move_starting_y][selected_type]["target"]["x"]
+			sector_map[move_target_x][move_target_y][selected_type]["target"]["y"] = sector_map[move_starting_x][move_starting_y][selected_type]["target"]["y"]
+			sector_map[move_target_x][move_target_y][selected_type]["target"]["tag"] = sector_map[move_starting_x][move_starting_y][selected_type]["target"]["tag"]
+			sector_map[move_target_x][move_target_y][selected_type]["speed"] = sector_map[move_starting_x][move_starting_y][selected_type]["speed"]
+			sector_map[move_target_x][move_target_y][selected_type]["warhead"]["type"] = sector_map[move_starting_x][move_starting_y][selected_type]["warhead"]["type"]
+			sector_map[move_target_x][move_target_y][selected_type]["warhead"]["payload"] = sector_map[move_starting_x][move_starting_y][selected_type]["warhead"]["payload"]
+			sector_map[move_target_x][move_target_y][selected_type]["system"]["processed_movement"] = 1
+			rem_entity(type = "coord", id = selected_type, coord_x = move_starting_x, coord_y = move_starting_y)
+			log_round_history(event = "missle_move", log_source = "[sector_map[move_target_x][move_target_y][selected_type]["type"]] [sector_map[move_target_x][move_target_y][selected_type]["id_tag"]]", log_dest_x = move_target_x, log_dest_y = move_target_y)
+			return 1
+
+
+
+/obj/structure/shiptoship_master/proc/MissleReTarget(missle_x = 0, missle_y = 0, missle_range = 0, x = 0, y = 0, id_tag = "none", quiet = 0)
+	var/range_to_scan = missle_range
+	var/missle_origin_x = missle_x
+	var/missle_origin_y = missle_y
+	var/x_to_scan = x
+	var/y_to_scan = y
+	var/id_tag_to_scan = id_tag
+	if(range_to_scan == 0 || x_to_scan == 0 || y_to_scan == 0 || missle_origin_x == 0 || missle_origin_y == 0) return
+	var/x_to_scan_min = BoundaryAdjust(value = (x_to_scan - range_to_scan), type = 1)
+	var/y_to_scan_min = BoundaryAdjust(value = (y_to_scan - range_to_scan), type = 1)
+	var/x_to_scan_max = BoundaryAdjust(value = (x_to_scan + range_to_scan), type = 2)
+	var/y_to_scan_max = BoundaryAdjust(value = (y_to_scan + range_to_scan), type = 3)
+	var/scan_target_x = x_to_scan_min
+	var/scan_target_y = y_to_scan_min
+	var/scanning_complete = 0
+	while(scan_target_y <= y_to_scan_max)
+		while(scan_target_x <= x_to_scan_max)
+			if(id_tag_to_scan != "none")
+				if(sector_map[scan_target_x][scan_target_y]["ship"]["id_tag"] == id_tag_to_scan)
+					sector_map[missle_origin_x][missle_origin_y]["missle"]["target"]["x"] = scan_target_x
+					sector_map[missle_origin_x][missle_origin_y]["missle"]["target"]["y"] = scan_target_y
+					scanning_complete = 1
+			if(sector_map[scan_target_x][scan_target_y]["ship"]["id_tag"] != "none")
+				sector_map[missle_origin_x][missle_origin_y]["missle"]["target"]["x"] = scan_target_x
+				sector_map[missle_origin_x][missle_origin_y]["missle"]["target"]["y"] = scan_target_y
+				scanning_complete = 1
+			if(scanning_complete == 1) break
+			scan_target_x += 1
+		if(scanning_complete == 1) break
+		scan_target_x = x_to_scan_min
+		scan_target_y += 1
+	if(scanning_complete == 1) sector_map[missle_origin_x][missle_origin_y]["missle"]["system"]["processed_movement"] = 1
+	if(scanning_complete == 0)
+		if(quiet == 0)log_round_history (event = "missle_homing_bad_target", log_source = "[sector_map[missle_origin_x][missle_origin_y]["missle"]]["type"]] [sector_map[missle_origin_x][missle_origin_y]["missle"]["id_tag"]]")
+		rem_entity(type = "coord", id = "missle", coord_x = missle_origin_x, coord_y = missle_origin_y)
+	return 1
+
 
 /obj/structure/shiptoship_master/proc/CheckCollision(type = null, x = null, y = null)
 	var/x_to_check = x
@@ -390,32 +559,249 @@
 	GLOB.combat_round += 1
 	rem_entity(type = "special")
 
+/obj/structure/shiptoship_master/proc/MissleVector(start_x = 0, start_y = 0, target_x = 0, target_y = 0, speed = 0, only_test = 0)
+	var/missle_x = start_x
+	var/missle_y = start_y
+	var/missle_target_x = target_x
+	var/missle_target_y = target_y
+	var/missle_speed = speed
+	var/missle_displacement = round((missle_speed / 2),1)
+	if(missle_x == 0 || missle_y == 0 || missle_speed == 0 || missle_target_x == 0 || missle_target_y == 0) return
+	var/distance_x = abs(target_x - start_x)
+	var/distance_y = abs(target_y - start_y)
+	if((distance_x + distance_y) <= missle_speed) return "in_range"
+	if(only_test == 0)
+		if((distance_x - missle_displacement) > 0)
+			if((missle_target_x - missle_x) > 0)
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = missle_displacement
+			if((missle_target_x - missle_x) < 0)
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = 0 - missle_displacement
+		if((distance_x - missle_displacement) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = distance_x
+		if((distance_y - missle_displacement) > 0)
+			if((missle_target_y - missle_x) > 0)
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = missle_displacement
+			if((missle_target_y - missle_x) < 0)
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = 0 - missle_displacement
+		if((distance_y - missle_displacement) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = distance_y
+		return 1
+	return 0
+
+/obj/structure/shiptoship_master/proc/DestructionCheck(x = 0, y = 0)
+	var/x_to_destroy = x
+	var/y_to_destroy = y
+	if(x_to_destroy == 0 || y_to_destroy == 0) return
+	var/damage_engine = sector_map[x_to_destroy][y_to_destroy]["ship"]["damage"]["engine"]
+	var/damage_systems = sector_map[x_to_destroy][y_to_destroy]["ship"]["damage"]["systems"]
+	var/damage_weapons = sector_map[x_to_destroy][y_to_destroy]["ship"]["damage"]["weapons"]
+	var/damage_hull = sector_map[x_to_destroy][y_to_destroy]["ship"]["damage"]["hull"]
+	var/damage_to_check = damage_engine + damage_systems + damage_weapons + damage_hull
+	if(damage_to_check >= sector_map[x_to_destroy][y_to_destroy]["ship"]["damage"]["HP"])
+		if(damage_engine > damage_systems && damage_engine > damage_weapons && damage_engine > damage_hull)
+			log_round_history(event = "destroy_engine", log_source = sector_map[x_to_destroy][y_to_destroy]["ship"]["name"])
+			rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
+			return
+		if(damage_systems > damage_engine && damage_systems > damage_weapons && damage_systems > damage_hull)
+			log_round_history(event = "destroy_systems", log_source = sector_map[x_to_destroy][y_to_destroy]["ship"]["name"])
+			rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
+			return
+		if(damage_weapons > damage_systems && damage_weapons > damage_engine && damage_weapons > damage_hull)
+			log_round_history(event = "destroy_weapons", log_source = sector_map[x_to_destroy][y_to_destroy]["ship"]["name"])
+			rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
+			return
+		if(damage_hull > damage_systems && damage_hull > damage_weapons && damage_hull > damage_engine)
+			log_round_history(event = "destroy_hull", log_source = sector_map[x_to_destroy][y_to_destroy]["ship"]["name"])
+			rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
+			return
+		log_round_history(event = "destroy_complete", log_source = sector_map[x_to_destroy][y_to_destroy]["ship"]["name"])
+		rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
+		return
+
+/obj/structure/shiptoship_master/proc/ProcessSplashDamage(ammount = 0, x = 0, y = 0)
+	var/ship_splash_damage_payload = ammount
+	var/x_to_splash_damage = x
+	var/y_to_splash_damage = y
+	if(ship_splash_damage_payload == 0||x_to_splash_damage == 0||y_to_splash_damage == 0) return
+	var/x_to_splash_damage_max = BoundaryAdjust(value = (x_to_splash_damage + (ship_splash_damage_payload - 1)), type = 2)
+	var/x_to_splash_damage_min = BoundaryAdjust(value = (x_to_splash_damage - (ship_splash_damage_payload + 1)), type = 1)
+	var/y_to_splash_damage_max = BoundaryAdjust(value = (y_to_splash_damage + (ship_splash_damage_payload - 1)), type = 3)
+	var/y_to_splash_damage_min = BoundaryAdjust(value = (y_to_splash_damage - (ship_splash_damage_payload + 1)), type = 1)
+	if(sector_map[x_to_splash_damage][y_to_splash_damage]["ship"]["id_tag"] != "none")
+		ProcessDamage(ammount = ship_splash_damage_payload, x = x_to_splash_damage, y = y_to_splash_damage)
+	var/current_x_splash = x_to_splash_damage + 1
+	var/current_y_splash = y_to_splash_damage
+	while(current_x_splash < x_to_splash_damage_max)
+		while(current_y_splash < y_to_splash_damage_max)
+			if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
+				ProcessDamage(ammount = (ship_splash_damage_payload - (current_x_splash - x_to_splash_damage)), x = current_x_splash, y = current_y_splash)
+			if(sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"] != "none")
+				log_round_history(event = "missle_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missle"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"]]")
+				rem_entity(type = "coord", id = "missle", coord_x = current_x_splash, coord_y = current_y_splash)
+			current_y_splash += 1
+		current_x_splash += 1
+	current_x_splash = x_to_splash_damage - 1
+	current_y_splash = y_to_splash_damage
+	while(current_x_splash > x_to_splash_damage_min)
+		while(current_y_splash > y_to_splash_damage_min)
+			if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
+				ProcessDamage(ammount = (ship_splash_damage_payload - (x_to_splash_damage - current_x_splash)), x = current_x_splash, y = current_y_splash)
+			if(sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"] != "none")
+				log_round_history(event = "missle_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missle"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"]]")
+				rem_entity(type = "coord", id = "missle", coord_x = current_x_splash, coord_y = current_y_splash)
+			current_y_splash -= 1
+		current_x_splash -= 1
+	return 1
+
+
+/obj/structure/shiptoship_master/proc/ProcessDamage(ammount = 0, x = 0, y = 0)
+	var/ship_damage_payload = ammount
+	var/x_to_damage = x
+	var/y_to_damage = y
+	if(ship_damage_payload == 0||x_to_damage == 0||y_to_damage == 0) return
+	if(sector_map[x_to_damage][y_to_damage]["ship"]["shield"] > 0)
+		log_round_history(event = "hit_shield", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+		sector_map[x_to_damage][y_to_damage]["ship"]["shield"] -= ship_damage_payload
+		if(sector_map[x_to_damage][y_to_damage]["ship"]["shield"] <= 0)
+			sector_map[x_to_damage][y_to_damage]["ship"]["shield"] = 0
+			log_round_history(event = "shield_break")
+		return 1
+	var/damage_roulette = rand(1,4)
+	switch(damage_roulette)
+		if("1")
+			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["engine"] += ship_damage_payload
+			log_round_history(event = "hit_engine", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+		if("2")
+			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["systems"] += ship_damage_payload
+			log_round_history(event = "hit_systems", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+		if("3")
+			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["weapons"] += ship_damage_payload
+			log_round_history(event = "hit_weapons", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+		if("4")
+			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["hull"] += ship_damage_payload
+			log_round_history(event = "hit_hull", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+	if(sector_map[x_to_damage][y_to_damage]["ship"]["status"] != "Player") DestructionCheck(x = x_to_damage, y = y_to_damage)
+	return 1
+
+/obj/structure/shiptoship_master/proc/MissleColide(arriving_missle_x = 0, arriving_missle_y = 0, other_missle_x = 0, other_missle_y = 0)
+	var/missle1_x = arriving_missle_x
+	var/missle1_y = arriving_missle_y
+	var/missle2_x = other_missle_x
+	var/missle2_y = other_missle_x
+	if(missle1_x == 0 || missle1_y == 0 || missle2_x == 0 || missle2_y == 0) return
+	log_round_history(event = "missle_collision", log_source = "[sector_map[missle1_x][missle1_y]["missle"]["type"]] - [sector_map[missle1_x][missle1_y]["missle"]["id_tag"]]", log_target = "[sector_map[missle2_x][missle2_y]["missle"]["type"]] - [sector_map[missle2_x][missle2_y]["missle"]["id_tag"]]")
+	rem_entity(type = "coord", id = "missle", coord_x = arriving_missle_x, coord_y = arriving_missle_y)
+	rem_entity(type = "coord", id = "missle", coord_x = missle2_x, coord_y = missle2_y)
+
+/obj/structure/shiptoship_master/proc/MissleWarhead(target_x = 0, target_y = 0, origin_x = 0, origin_y = 0)
+	var/x_to_explode = target_x
+	var/y_to_explode = target_y
+	var/exploding_missle_x = origin_x
+	var/exploding_missle_y = origin_y
+	if(x_to_explode == 0 || y_to_explode == 0 || exploding_missle_x == 0 || exploding_missle_y == 0) return
+	switch(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["type"])
+		if("Homing")
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] == "none")
+				log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+				MissleReTarget(missle_x = exploding_missle_x, missle_y = exploding_missle_y, missle_range = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["speed"], x = x_to_explode, y = y_to_explode, id_tag = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"], quiet = 0)
+				return 1
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] != "none")
+				if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"] == "none")
+					log_round_history(event = "warhead_hit", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+					if(ProcessDamage(ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"], x = x_to_explode, y = y_to_explode) == 1)
+						rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+						return 1
+				if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"] != "none")
+					if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"] == sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"])
+						if(ProcessDamage(ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"], x = x_to_explode, y = y_to_explode) == 1)
+							rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+							return 1
+					if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"] != sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"])
+						log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+						MissleReTarget(missle_x = exploding_missle_x, missle_y = exploding_missle_y, missle_range = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["speed"], x = x_to_explode, y = y_to_explode, id_tag = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"], quiet = 0)
+						return 1
+		if("Explosive")
+			if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] == 1)
+				log_round_history(event = "explosive_splash", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_target = "sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
+				ProcessSplashDamage(ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"], x = x_to_explode, y = y_to_explode)
+			if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] == 0) sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] = 1
+			return 1
+		if("Direct")
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] != "none")
+				log_round_history(event = "warhead_hit", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+				if(ProcessDamage(ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"], x = x_to_explode, y = y_to_explode) == 1)
+					rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+					return 1
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] == "none")
+				log_round_history(event = "warhead_miss", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
+				rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+				return 1
+		if("Nuclear")
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] != "none")
+				log_round_history(event = "nuclear_hit", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_target = sector_map[x_to_explode][y_to_explode]["ship"]["name"], log_dest_x = x_to_explode, log_dest_y = y_to_explode)
+				rem_entity(type = "coord", id = "ship", coord_x = x_to_explode, coord_y = y_to_explode)
+				rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+				return 1
+			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] == "none")
+				log_round_history(event = "warhead_miss", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
+				rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+				return 1
 
 /obj/structure/shiptoship_master/proc/ProcessMovement(type = null)
 	var/type_to_process = type
 	if(type_to_process == null) return
+	var/destination_x = 0
+	var/destination_y = 0
+	var/current_x = 1
+	var/current_y = 1
 	if(type_to_process == "ship")
-		var/destination_x = 0
-		var/destination_y = 0
-		var/current_x = 1
-		var/current_y = 1
 		while (current_y <= GLOB.sector_map_y)
 			while(current_x <= GLOB.sector_map_x)
 				if(sector_map[current_x][current_y][type_to_process]["id_tag"] != "none")
-					if(sector_map[current_x][current_y]["system"]["processed_movement"] != 1)
+					if(sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] != 1)
 						destination_x = current_x + sector_map[current_x][current_y][type_to_process]["vector"]["x"]
 						destination_y = current_y + sector_map[current_x][current_y][type_to_process]["vector"]["y"]
-						if((destination_x != current_x) || (destination_y != current_y))
+						if((destination_x != current_x) && (destination_y != current_y))
 							if(CheckCollision(type = type_to_process, x = destination_x, y = destination_y) == 1)
-								log_round_history(event = "collision", log_source = sector_map[current_x][current_y][type_to_process]["name"], log_target = sector_map[destination_x][current_y][type_to_process]["name"],log_dest_x = destination_x, log_dest_y = destination_y)
-								CollisionMove(move_source_x = current_x, move_source_y = current_y, move_destination_x = destination_x, move_destination_y = destination_y)
+								if(sector_map[destination_x][destination_y][type_to_process]["system"]["processed_movement"] == 1)
+									log_round_history(event = "collision", log_source = sector_map[current_x][current_y][type_to_process]["name"], log_target = sector_map[destination_x][current_y][type_to_process]["name"],log_dest_x = destination_x, log_dest_y = destination_y)
+									CollisionMove(move_source_x = current_x, move_source_y = current_y, move_destination_x = destination_x, move_destination_y = destination_y)
 							if(CheckCollision(type = type_to_process, x = destination_x, y = destination_y) == 0)
 								move_on_map(type_to_move = type_to_process, origin_x = current_x, origin_y = current_y, target_x = sector_map[current_x][current_y][type_to_process]["vector"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["vector"]["y"])
+						if((destination_x == current_x) && (destination_y == current_y))
+							sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] = 1
 				current_x += 1
 			current_x = 1
 			current_y += 1
-	return 1
-
+		return 1
+	if(type_to_process == "missle")
+		while(current_y <= GLOB.sector_map_y)
+			while(current_x <= GLOB.sector_map_x)
+				if(sector_map[current_x][current_y][type_to_process]["id_tag"] != "none")
+					switch(MissleVector(start_x = current_x, start_y = current_y, target_x = sector_map[current_x][current_y][type_to_process]["target"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["target"]["y"], speed = sector_map[current_x][current_y][type_to_process]["speed"]))
+						if(1)
+							if(sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] == 0)
+								destination_x = current_x + sector_map[current_x][current_y][type_to_process]["system"]["derived_vector_x"]
+								destination_y = current_y + sector_map[current_x][current_y][type_to_process]["system"]["derived_vector_y"]
+								switch(CheckCollision(type = "missle", x = destination_x, y = destination_y))
+									if(1)
+										if(sector_map[destination_x][destination_y][type_to_process]["system"]["processed_movement"] == 1)
+											MissleColide(arriving_missle_x = current_x, arriving_missle_y = current_y, other_missle_x = destination_x, other_missle_y = destination_y)
+									if(0)
+										if(move_on_map(type_to_move = type_to_process, origin_x = current_x, origin_y = current_y, target_x = destination_x, target_y = destination_y) == 1)
+											if(sector_map[destination_x][destination_y][type_to_process]["missle"]["type"] == "PST-ATCM")
+												if(sector_map[destination_x][destination_y][type_to_process]["missle"]["target"]["tag"] != "none")
+													MissleReTarget(missle_x = current_x, missle_y = current_y, missle_range = (GLOB.sector_map_x + GLOB.sector_map_y), x = (GLOB.sector_map_x / 2), y = (GLOB.sector_map_y / 2), id_tag = sector_map[current_x][current_y][type_to_process]["target"]["tag"])
+												if(sector_map[destination_x][destination_y][type_to_process]["missle"]["target"]["tag"] == "none")
+													log_round_history (event = "missle_homing_bad_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
+													rem_entity(type = "coord", id = type_to_process, coord_x = current_x, coord_y = current_y)
+											if(MissleVector(start_x = destination_x, start_y = destination_y, target_x = sector_map[destination_x][destination_y][type_to_process]["target"]["x"], target_y = sector_map[destination_x][destination_y][type_to_process]["target"]["y"], speed = sector_map[destination_x][destination_y][type_to_process]["speed"], only_test = 1) == "in_range")
+												log_round_history(event = "missle_near_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
+						if("in_range")
+							if(sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] == 1)
+								MissleWarhead(target_x = sector_map[current_x][current_y][type_to_process]["target"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["target"]["y"], origin_x = current_x, origin_y = current_y)
+							if(sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] == 0) sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] = 1
+				current_x += 1
+			current_x = 1
+			current_y += 1
 
 /obj/structure/shiptoship_master/proc/scan_entites(category = 0, output_format = 0) // category = 0 for ships, 1 for missles, 2 for specials. format = 0 text for screen display/ref lists. 1 creates buttons with references.
 	var/list/current_entites = list()
@@ -426,13 +812,13 @@
 			if(category == 0)
 				if(sector_map[current_x][current_y]["ship"]["id_tag"] != "none")
 					if(output_format == 0)
-						current_entites.Add("([current_x],[current_y])<b> - [sector_map[current_x][current_y]["ship"]["id_tag"]]</b><br><b>[sector_map[current_x][current_y]["ship"]["name"]]</b> - [sector_map[current_x][current_y]["ship"]["type"]] <br><b>VECTOR:</b> [sector_map[current_x][current_y]["ship"]["vector"]["x"]],[sector_map[current_x][current_y]["ship"]["vector"]["y"]] |<b> STATUS: </b>[sector_map[current_x][current_y]["ship"]["status"]] |<b> D:</b>[sector_map[current_x][current_y]["ship"]["damage"]] | <b>S:</b>[sector_map[current_x][current_y]["ship"]["shield"]]")
+						current_entites.Add("([current_x],[current_y])<b> - [sector_map[current_x][current_y]["ship"]["id_tag"]]</b><br><b>[sector_map[current_x][current_y]["ship"]["name"]]</b> - [sector_map[current_x][current_y]["ship"]["type"]] <br><b>VECTOR:</b> [sector_map[current_x][current_y]["ship"]["vector"]["x"]],[sector_map[current_x][current_y]["ship"]["vector"]["y"]] |<b> STATUS: </b>[sector_map[current_x][current_y]["ship"]["status"]] |<b> D:</b>[sector_map[current_x][current_y]["ship"]["damage"]["HP"]] | <b>S:</b>[sector_map[current_x][current_y]["ship"]["shield"]]")
 					if(output_format == 1)
 						current_entites.Add(sector_map[current_x][current_y]["ship"]["id_tag"])
 			if(category == 1)
 				if(sector_map[current_x][current_y]["missle"]["id_tag"] != "none")
 					if(output_format == 0)
-						current_entites.Add("([current_x],[current_y])<b> - [sector_map[current_x][current_y]["missle"]["id_tag"]]</b> - [sector_map[current_x][current_y]["missle"]["warhead"]]<br>TARGET: <b>([sector_map[current_x][current_y]["missle"]["target"]["x"]],[sector_map[current_x][current_y]["missle"]["target"]["y"]])</b> | <b>SPEED:</b> [sector_map[current_x][current_y]["missle"]["speed"]]")
+						current_entites.Add("([current_x],[current_y])<b> - [sector_map[current_x][current_y]["missle"]["id_tag"]]</b> - [sector_map[current_x][current_y]["missle"]["warhead"]["type"]]<br>TARGET: <b>([sector_map[current_x][current_y]["missle"]["target"]["x"]],[sector_map[current_x][current_y]["missle"]["target"]["y"]])</b> | <b>SPEED:</b> [sector_map[current_x][current_y]["missle"]["speed"]]")
 					if(output_format == 1)
 						current_entites.Add(sector_map[current_x][current_y]["missle"]["id_tag"])
 			current_x += 1
@@ -449,8 +835,8 @@
 	var/ship_to_move_x = x
 	var/ship_to_move_y = y
 	if(ship_to_move_x == null || ship_to_move_y == null) return
-	if(sector_map[ship_to_move_x][ship_to_move_y]["system"]["has_moved"] == 0 && sector_map[ship_to_move_x][ship_to_move_y]["system"]["movement_left"] == 0)
-		sector_map[ship_to_move_x][ship_to_move_y]["system"]["movement_left"] = sector_map[ship_to_move_x][ship_to_move_y]["ship"]["vector"]["speed"]
+	if(sector_map[ship_to_move_x][ship_to_move_y]["ship"]["system"]["has_moved"] == 0 && sector_map[ship_to_move_x][ship_to_move_y]["ship"]["system"]["movement_left"] == 0)
+		sector_map[ship_to_move_x][ship_to_move_y]["ship"]["system"]["movement_left"] = sector_map[ship_to_move_x][ship_to_move_y]["ship"]["vector"]["speed"]
 	variable_storage["stored_x"] = ship_to_move_x
 	variable_storage["stored_y"] = ship_to_move_y
 	var/terminal_html ={"<!DOCTYPE html>
@@ -475,7 +861,7 @@
 	[sector_map[ship_to_move_x][ship_to_move_y]["ship"]["name"]]<br>Vector: ([sector_map[ship_to_move_x][ship_to_move_y]["ship"]["vector"]["x"]],[sector_map[ship_to_move_x][ship_to_move_y]["ship"]["vector"]["y"]])
 	</p>
 	<p>
-	<a href='?src=\ref[src];ship_control=y_plus'>+Y</a><br><a href='?src=\ref[src];ship_control=x_minus'>-X</a> | [sector_map[ship_to_move_x][ship_to_move_y]["system"]["movement_left"]] | <a href='?src=\ref[src];ship_control=x_plus'>+X</a><br><a href='?src=\ref[src];ship_control=y_minus'>-Y</a>
+	<a href='?src=\ref[src];ship_control=y_plus'>+Y</a><br><a href='?src=\ref[src];ship_control=x_minus'>-X</a> | [sector_map[ship_to_move_x][ship_to_move_y]["ship"]["system"]["movement_left"]] | <a href='?src=\ref[src];ship_control=x_plus'>+X</a><br><a href='?src=\ref[src];ship_control=y_minus'>-Y</a>
 	</p>
 	<p>
 	<a href='?src=\ref[src];ship_control=close'>EXIT</a>
@@ -542,11 +928,37 @@
 				MasterControl()
 				return
 			if("damage")
-				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]
-				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = tgui_input_number(usr, "Pick Damage value","DAM Entry", default = 0,  min_value = 0, timeout = 0)
-				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = mod_original_value
-				MasterControl()
-				return
+				switch(tgui_input_list(usr, "Which Type of Damage?", "DAM Selector",list("HP", "engine", "systems", "weapons", "hull"), timeout = 0))
+					if("HP")
+						mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["HP"]
+						sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["HP"] = tgui_input_number(usr, "Pick HP value","DAM Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+						if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["HP"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["HP"] = mod_original_value
+						MasterControl()
+						return
+					if("engine")
+						mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["engine"]
+						sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["engine"] = tgui_input_number(usr, "Pick engine value","DAM Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+						if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["engine"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["engine"] = mod_original_value
+						MasterControl()
+						return
+					if("systems")
+						mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["systems"]
+						sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["systems"] = tgui_input_number(usr, "Pick systems value","DAM Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+						if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["systems"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["systems"] = mod_original_value
+						MasterControl()
+						return
+					if("HP")
+						mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["weapons"]
+						sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["weapons"] = tgui_input_number(usr, "Pick weapons value","DAM Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+						if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["weapons"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["weapons"] = mod_original_value
+						MasterControl()
+						return
+					if("HP")
+						mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["hull"]
+						sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["hull"] = tgui_input_number(usr, "Pick hull value","DAM Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+						if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["hull"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["hull"] = mod_original_value
+						MasterControl()
+						return
 			if("shield")
 				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]
 				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = tgui_input_number(usr, "Pick Shield value","SHLD Entry", default = 0,  min_value = 0, timeout = 0)
@@ -569,6 +981,41 @@
 				else
 					open_movement_console(x = mod_tag_x, y = mod_tag_y)
 					return
+	if(mod_entity_type == "missle")
+		switch(mod_entity_prop)
+			if("type")
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = tgui_input_text(usr, "Enter Projectile Type, a generic name of the missle model", "TYPE Entry", timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = mod_original_value
+				MasterControl()
+				return
+			if("speed")
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = tgui_input_number(usr, "Pick speed value","SPD Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop] = mod_original_value
+				MasterControl()
+				return
+			if("target")
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["x"]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["x"] = tgui_input_number(usr, "Enter Target X","Target Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["x"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["x"] = mod_original_value
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["y"]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["y"] = tgui_input_number(usr, "Enter Target Y","Target Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["y"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["y"] = mod_original_value
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["tag"]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["tag"] = tgui_input_text(usr, "Enter Target Tag", "Target Entry", timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["tag"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["tag"] = mod_original_value
+				return
+			if("warhead")
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["type"]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["type"] = tgui_input_text(usr, "Enter Warhead Type", "Warhead Entry", timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["type"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["type"] = mod_original_value
+				mod_original_value = sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["payload"]
+				sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["payload"] = tgui_input_number(usr, "Enter Warhead Payload","Payload Entry", default = mod_original_value,  min_value = 0, timeout = 0)
+				if (sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["payload"] == null) sector_map[mod_tag_x][mod_tag_y][mod_entity_type][mod_entity_prop]["payload"] = mod_original_value
+				return
+
+
 
 /obj/structure/shiptoship_master/proc/MasterControl()
 	if(variable_storage["stored_x"] != 0) variable_storage["stored_x"] = 0
@@ -640,7 +1087,7 @@
 				if(faction_to_enter == null) faction_to_enter = "UNKW"
 				var/status_to_enter = tgui_input_text(usr, "Enter ship status", "STATUS Entry", timeout = 0)
 				if(status_to_enter == null) status_to_enter = "Unknown"
-				var/damage_to_enter = tgui_input_number(usr, "Pick Damage value","DAM Entry", default = 0,  min_value = 0, timeout = 0)
+				var/damage_to_enter = tgui_input_number(usr, "Pick HP value","HP Entry", default = 0,  min_value = 0, timeout = 0)
 				if(damage_to_enter == null) damage_to_enter = 0
 				var/shield_to_enter = tgui_input_number(usr, "Pick value of shield", "SHLD Entry", default = 0,  min_value = 0, timeout = 0)
 				if(shield_to_enter == null) shield_to_enter = 0
@@ -650,7 +1097,9 @@
 				if(vector_y_to_enter == null) vector_y_to_enter = 0
 				var/speed_to_enter = tgui_input_number(usr, "Pick speed", "Speed", default = 0 ,min_value = 0, timeout = 0)
 				if(speed_to_enter == null)speed_to_enter = 0
-				add_entity(entity_type = 0, x = coordinate_x, y = coordinate_y, name = name_to_enter, type = type_to_enter, vector_x = vector_x_to_enter, vector_y = vector_y_to_enter, ship_status = status_to_enter, ship_faction = faction_to_enter, ship_damage = damage_to_enter, ship_shield = shield_to_enter, ship_speed = speed_to_enter)
+				var/salvos_to_enter = tgui_input_number(usr, "Pick max ammount of salvos per round", "Max_salvos", default = 0 ,min_value = 0, timeout = 0)
+				if(salvos_to_enter == null)salvos_to_enter = 0
+				add_entity(entity_type = 0, x = coordinate_x, y = coordinate_y, name = name_to_enter, type = type_to_enter, vector_x = vector_x_to_enter, vector_y = vector_y_to_enter, ship_status = status_to_enter, ship_faction = faction_to_enter, ship_damage = damage_to_enter, ship_shield = shield_to_enter, ship_speed = speed_to_enter, salvos = salvos_to_enter)
 				to_chat(usr, SPAN_INFO("Entity Added."))
 				MasterControl()
 				return
@@ -666,13 +1115,17 @@
 					return
 				var/name_to_enter = tgui_input_number(usr, "Enter Missle Speed", "SPEED Entry", timeout = 0)
 				if(name_to_enter == null) name_to_enter = "Unknown"
-				var/type_to_enter = tgui_input_text(usr, "Enter warhead type", "WARHEAD Entry", timeout = 0)
+				var/type_to_enter = tgui_input_text(usr, "Enter Missle Type", "TYPE Entry", timeout = 0)
 				if(type_to_enter == null) type_to_enter = "Unknown"
+				var/warhead_to_enter = tgui_input_text(usr, "Enter warhead type", "WARHEAD Entry", timeout = 0)
+				if(warhead_to_enter == null) warhead_to_enter = "Unknown"
 				var/vector_x_to_enter = tgui_input_number(usr, "Pick X coord of target", "Target - X", default = 0,max_value = 1000 ,min_value = -1000, timeout = 0)
 				if(vector_x_to_enter == null) vector_x_to_enter = 0
 				var/vector_y_to_enter = tgui_input_number(usr, "Pick Y coord of target", "Target - Y", default = 0,max_value = 1000 ,min_value = -1000, timeout = 0)
 				if(vector_y_to_enter == null) vector_y_to_enter = 0
-				add_entity(entity_type = 1, x = coordinate_x, y = coordinate_y, name = name_to_enter, type = type_to_enter, vector_x = vector_x_to_enter, vector_y = vector_y_to_enter)
+				var/target_tag_to_enter = tgui_input_list(usr, "Select a target Tag", "Tag Ship", scan_entites(category = 0, output_format = 1), timeout = 0)
+				if(target_tag_to_enter == null) target_tag_to_enter = "none"
+				add_entity(entity_type = 1, x = coordinate_x, y = coordinate_y, name = name_to_enter, type = type_to_enter, vector_x = vector_x_to_enter, vector_y = vector_y_to_enter, warhead_type = warhead_to_enter, target_tag = target_tag_to_enter)
 				to_chat(usr, SPAN_INFO("Entity Added."))
 				MasterControl()
 				return
@@ -681,13 +1134,13 @@
 			if("ship")
 				var/id_to_remove = tgui_input_list(usr, "Which ship Entity to remove?", "Rem Ship", scan_entites(category = 0, output_format = 1), timeout = 0)
 				if(id_to_remove == null) return
-				rem_entity(type = "id", id = id_to_remove, wipe_specials = 1)
+				rem_entity(type = "id", id = id_to_remove)
 				MasterControl()
 				return
 			if("missle")
 				var/id_to_remove = tgui_input_list(usr, "Which ship Entity to remove?", "Rem Ship", scan_entites(category = 1, output_format = 1), timeout = 0)
 				if(id_to_remove == null) return
-				rem_entity(type = "id", id = id_to_remove, wipe_specials = 1)
+				rem_entity(type = "id", id = id_to_remove)
 				MasterControl()
 				return
 	if(href_list["modify_entity"])
@@ -697,26 +1150,40 @@
 				var/modify_value = tgui_input_list(usr, "Select a Ship Entity Property to Edit", "Mod Entity", list("name","faction","id_tag","type","status","damage","shield","vector"), timeout = 0)
 				mod_entity(entity_type = "ship", entity_tag = modify_id, entity_property = modify_value)
 				return
+			if("missle")
+				var/modify_id = tgui_input_list(usr, "Select a Missle Entity to Edit", "Mod Entity", scan_entites(category = 1, output_format = 1), timeout = 0)
+				var/modify_value = tgui_input_list(usr, "Select a Missle Entity Property to Edit", "Mod Entity", list("type","target","speed","warhead"), timeout = 0)
+				mod_entity(entity_type = "missle", entity_tag = modify_id, entity_property = modify_value)
+				return
 	if(href_list["end_turn"])
 		if(tgui_input_list(usr, "Advance Turn?", "Advancing Turn", list("Yes", "No"), timeout = 0) == "No")
 			MasterControl()
 			return
 		to_chat(world, SPAN_INFO("Advancing turn in 5 seconds!"))
 		sleep(50)
+		var/len_to_test = round_history_current.len
 		if(ProcessMovement(type = "ship") == 1)
-			DisplayAndCycleSpaceRoundLog()
-			to_chat(world,SPAN_INFO("Round advanced."))
-			return
+			while(len_to_test != round_history_current.len)
+				len_to_test = round_history_current.len
+				ProcessMovement(type = "ship")
+		len_to_test = round_history_current.len
+		if(ProcessMovement(type = "missle") == 1)
+			while(len_to_test != round_history_current.len)
+				len_to_test = round_history_current.len
+				ProcessMovement(type = "missle")
+		DisplayAndCycleSpaceRoundLog()
+		to_chat(world,SPAN_INFO("Round advanced."))
+		return
 	switch(href_list["ship_control"])
 		if("y_plus")
 			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["y"] >= sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["speed"])
 				to_chat(usr,SPAN_WARNING("Error: Maxium velocity reached. Safeguards in place. Acceleration denied."))
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] = 1
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] > 0)
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] = 1
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] > 0)
 				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["y"] += 1
-				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] -= 1
+				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] -= 1
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
 		if("y_minus")
@@ -725,10 +1192,10 @@
 				to_chat(usr,SPAN_WARNING("Error: Maxium velocity reached. Safeguards in place. Acceleration denied."))
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] = 1
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] > 0)
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] = 1
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] > 0)
 				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["y"] -= 1
-				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] -= 1
+				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] -= 1
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
 		if("x_plus")
@@ -736,10 +1203,10 @@
 				to_chat(usr,SPAN_WARNING("Error: Maxium velocity reached. Safeguards in place. Acceleration denied."))
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] = 1
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] > 0)
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] = 1
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] > 0)
 				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["x"] += 1
-				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] -= 1
+				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] -= 1
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
 		if("x_minus")
@@ -748,10 +1215,10 @@
 				to_chat(usr,SPAN_WARNING("Error: Maxium velocity reached. Safeguards in place. Acceleration denied."))
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["has_moved"] = 1
-			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] > 0)
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] == 0) sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["has_moved"] = 1
+			if(sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] > 0)
 				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["vector"]["x"] -= 1
-				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["system"]["movement_left"] -= 1
+				sector_map[variable_storage["stored_x"]][variable_storage["stored_y"]]["ship"]["system"]["movement_left"] -= 1
 				open_movement_console(x = variable_storage["stored_x"], y = variable_storage["stored_y"])
 				return
 		if("close")

@@ -14,22 +14,17 @@
 		"stored_tag" = 0,
 		)
 /obj/structure/shiptoship_master/proc/populate_alpha()
-	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS The Futility of War", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 13, y = 13, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 13, y = 12, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 12, y = 13, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 0, x = 34, y = 34, name = "UAS Noble Sacrifice", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 33, y = 33, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 33, y = 32, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 32, y = 33, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 0, x = 64, y = 64, name = "UAS Gets Hit A Lot", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 63, y = 63, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 63, y = 62, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 62, y = 63, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 0, x = 94, y = 94, name = "UAS Gets Hit A Lot", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 93, y = 93, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 93, y = 92, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
-	add_entity (entity_type = 1, x = 92, y = 93, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS Ow, Ow, Stop", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 13, y = 13, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 13, y = 12, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 12, y = 13, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 12, y = 12, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 15, y = 14, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 15, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 14, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 10, y = 11, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 16, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 1, x = 10, y = 10, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.
@@ -73,6 +68,7 @@
 						),
 					"system" = list(
 						"processed_movement" = 0,
+						"has_moved" = 0,
 						"derived_vector_x" = 0,
 						"derived_vector_y" = 0,
 						),
@@ -201,6 +197,7 @@
 					sector_map[current_x][current_y]["missle"]["target"]["y"] = 0
 					sector_map[current_x][current_y]["missle"]["target"]["tag"] = "none"
 					sector_map[current_x][current_y]["missle"]["system"]["processed_movement"] = 0
+					sector_map[current_x][current_y]["missle"]["system"]["has_moved"] = 0
 					sector_map[current_x][current_y]["missle"]["system"]["derived_vector_x"] = 0
 					sector_map[current_x][current_y]["missle"]["system"]["derived_vector_y"] = 0
 
@@ -243,6 +240,7 @@
 			sector_map[x_to_remove][y_to_remove][tag_to_remove]["target"]["tag"] = 0
 			sector_map[x_to_remove][y_to_remove]["missle"]["type"] = "none"
 			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["processed_movement"] = 0
+			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["has_moved"] = 0
 			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["derived_vector_x"] = 0
 			sector_map[x_to_remove][y_to_remove]["missle"]["system"]["derived_vector_y"] = 0
 			return
@@ -258,6 +256,7 @@
 				sector_map[current_x][current_y]["ship"]["system"]["salvos_max"] = 0
 				sector_map[current_x][current_y]["ship"]["system"]["salvos_left"] = 0
 				sector_map[current_x][current_y]["missle"]["system"]["processed_movement"] = 0
+				sector_map[current_x][current_y]["missle"]["system"]["has_moved"] = 0
 				sector_map[current_x][current_y]["missle"]["system"]["derived_vector_x"] = 0
 				sector_map[current_x][current_y]["missle"]["system"]["derived_vector_y"] = 0
 				current_x += 1
@@ -442,6 +441,7 @@
 			sector_map[move_target_x][move_target_y][selected_type]["warhead"]["type"] = sector_map[move_starting_x][move_starting_y][selected_type]["warhead"]["type"]
 			sector_map[move_target_x][move_target_y][selected_type]["warhead"]["payload"] = sector_map[move_starting_x][move_starting_y][selected_type]["warhead"]["payload"]
 			sector_map[move_target_x][move_target_y][selected_type]["system"]["processed_movement"] = 1
+			sector_map[move_target_x][move_target_y][selected_type]["system"]["has_moved"] = 1
 			rem_entity(type = "coord", id = selected_type, coord_x = move_starting_x, coord_y = move_starting_y)
 			log_round_history(event = "missle_move", log_source = "[sector_map[move_target_x][move_target_y][selected_type]["type"]] [sector_map[move_target_x][move_target_y][selected_type]["id_tag"]]", log_dest_x = move_target_x, log_dest_y = move_target_y)
 			return 1
@@ -479,7 +479,9 @@
 		if(scanning_complete == 1) break
 		scan_target_x = x_to_scan_min
 		scan_target_y += 1
-	if(scanning_complete == 1) sector_map[missle_origin_x][missle_origin_y]["missle"]["system"]["processed_movement"] = 1
+	if(scanning_complete == 1)
+		sector_map[missle_origin_x][missle_origin_y]["missle"]["system"]["processed_movement"] = 1
+		sector_map[missle_origin_x][missle_origin_y]["missle"]["system"]["has_moved"] = 1
 	if(scanning_complete == 0)
 		if(quiet == 0)log_round_history(event = "missle_homing_bad_target", log_source = "[sector_map[missle_origin_x][missle_origin_y]["missle"]["type"]] - [sector_map[missle_origin_x][missle_origin_y]["missle"]["id_tag"]]")
 		rem_entity(type = "coord", id = "missle", coord_x = missle_origin_x, coord_y = missle_origin_y)
@@ -816,7 +818,8 @@
 												log_round_history(event = "missle_near_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
 						if("in_range")
 							if(sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] == 1)
-								MissleWarhead(target_x = sector_map[current_x][current_y][type_to_process]["target"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["target"]["y"], origin_x = current_x, origin_y = current_y)
+								if(sector_map[current_x][current_y][type_to_process]["system"]["has_moved"] != 1)
+									MissleWarhead(target_x = sector_map[current_x][current_y][type_to_process]["target"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["target"]["y"], origin_x = current_x, origin_y = current_y)
 							if(sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] == 0) sector_map[current_x][current_y][type_to_process]["system"]["processed_movement"] = 1
 				current_x += 1
 			current_x = 1
@@ -1186,7 +1189,6 @@
 			while(len_to_test != round_history_current.len)
 				len_to_test = round_history_current.len
 				ProcessMovement(type = "ship")
-		log_round_history(event = "missle_move")
 		len_to_test = round_history_current.len
 		if(ProcessMovement(type = "missle") == 1)
 			while(len_to_test != round_history_current.len)

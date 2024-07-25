@@ -14,17 +14,7 @@
 		"stored_tag" = 0,
 		)
 /obj/structure/shiptoship_master/proc/populate_alpha()
-	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS Ow, Ow, Stop", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 13, y = 13, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 13, y = 12, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 12, y = 13, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 12, y = 12, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 15, y = 14, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 15, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 14, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 10, y = 11, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 16, y = 15, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
-	add_entity (entity_type = 1, x = 10, y = 10, missle_speed = 15, type = "Makeshift Unguided Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 2)
+	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS Tester", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.

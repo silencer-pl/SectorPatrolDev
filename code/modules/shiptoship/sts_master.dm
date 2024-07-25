@@ -13,12 +13,23 @@
 		"stored_y" = 0,
 		"stored_tag" = 0,
 		)
-
 /obj/structure/shiptoship_master/proc/populate_alpha()
-	add_entity (entity_type = 0, x = 10, y = 10, name = "UAS Flies Straight", type = "Testing Vessel", vector_x = 4, vector_y = -4, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 30, y = 30, name = "UAS Bumps Into Things", type = "Testing Vessel", vector_x = 5, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 35, y = 30, name = "UAS Just Sits There", type = "Testing Vessel", vector_x = 0, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 99, y = 99, name = "UAS Hungers For The Void", type = "Testing Vessel", vector_x = 3, vector_y = 2, ship_status = "Operational", ship_faction = "UACM", ship_damage = 0, ship_shield = 5, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS The Futility of War", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 13, y = 13, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 13, y = 12, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 12, y = 13, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 15, vector_y = 15, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 0, x = 34, y = 34, name = "UAS Noble Sacrifice", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 33, y = 33, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 33, y = 32, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 32, y = 33, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 35, vector_y = 35, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 0, x = 64, y = 64, name = "UAS Gets Hit A Lot", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 63, y = 63, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 63, y = 62, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 62, y = 63, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 65, vector_y = 65, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 0, x = 94, y = 94, name = "UAS Gets Hit A Lot", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 3, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 93, y = 93, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 93, y = 92, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
+	add_entity (entity_type = 1, x = 92, y = 93, missle_speed = 10, type = "UPP AKM-H Type-2 Missle",  vector_x = 95, vector_y = 95, warhead_type = "Direct", warhead_payload = 3)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.
@@ -88,7 +99,7 @@
 			populate_alpha()
 			GLOB.sector_map_initialized = 1
 
-/obj/structure/shiptoship_master/proc/add_entity (entity_type = 0, x = 1, y = 1, name = "none", type = "none", vector_x = 0, vector_y = 0, ship_status = "none", ship_faction = "none", ship_damage = 0, ship_shield = 0, ship_speed = 0, salvos = 0, warhead_type = "none", warhead_payload = 0, target_tag = "none") // 0 ships, 1 missles
+/obj/structure/shiptoship_master/proc/add_entity (entity_type = 0, x = 1, y = 1, name = "none", type = "none", vector_x = 0, vector_y = 0, ship_status = "none", ship_faction = "none", ship_damage = 0, ship_shield = 0, ship_speed = 0, salvos = 0, warhead_type = "none", warhead_payload = 0, target_tag = "none", missle_speed = 0) // 0 ships, 1 missles
 	var/coord_x = x
 	var/coord_y = y
 	var/name_to_apply = name
@@ -104,6 +115,7 @@
 	var/warhead_to_apply = warhead_type
 	var/payload_to_apply = warhead_payload
 	var/target_tag_to_apply = target_tag
+	var/missle_speed_to_apply = missle_speed
 	if(entity_type == 0)
 		sector_map[coord_x][coord_y]["ship"]["name"] = name_to_apply
 		sector_map[coord_x][coord_y]["ship"]["faction"] = faction_to_apply
@@ -119,7 +131,7 @@
 		sector_map[coord_x][coord_y]["ship"]["system"]["salvos_max"] = salvos_to_apply
 		return
 	if(entity_type == 1)
-		sector_map[coord_x][coord_y]["missle"]["speed"] = name_to_apply
+		sector_map[coord_x][coord_y]["missle"]["speed"] = missle_speed_to_apply
 		sector_map[coord_x][coord_y]["missle"]["type"] = type_to_apply
 		sector_map[coord_x][coord_y]["missle"]["id_tag"] = "MSL-[GLOB.sector_map_id_tag]"
 		GLOB.sector_map_id_tag += 1
@@ -304,67 +316,73 @@
 			round_history_current.Add("The <b>[log_source_to_add]</b> arrives at its destination at coordinates <b>([x_to_move],[y_to_move])</b>.")
 			return
 		if("missle_collision")
-			round_history_current.Add("Projectiles [log_source_to_add] and [log_target_to_add] detonate each other as they leapfrog out of Hyperspace in close proximity.")
+			round_history_current.Add("Projectiles <b>[log_source_to_add]</b> and <b>[log_target_to_add]</b> <b>detonate each other</b> as they leapfrog out of Hyperspace in close proximity.")
 			return
 		if("missle_move")
-			round_history_current.Add("Projectile [log_source_to_add] leapfrogs to coordinates ([x_to_move],[y_to_move]).")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> leapfrogs to coordinates <b>([x_to_move],[y_to_move])</b>.")
 			return
 		if("missle_near_target")
-			round_history_current.Add("The projectile will reach its target next round!")
+			round_history_current.Add("The projectile <b>will reach its target next round!</b>")
 			return
 		if("missle_homing_bad_target")
-			round_history_current.Add("Projectile [log_source_to_add] fails to find its target. The projectile is lost.")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> fails to find its target. <b>The projectile is lost.</b>")
 			return
 		if("warhead_homing")
-			round_history_current.Add("Projectile [log_source_to_add] arrives at its destination and looks for a new target...")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> arrives at its destination and <b>looks for a new target...</b>")
 			return
 		if("warhead_hit")
-			round_history_current.Add("Projectile [log_source_to_add] strikes a target!")
+			round_history_current.Add("Projectile <b>[log_source_to_add] strikes a target!</b>")
 			return
 		if("hit_shield")
-			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its shields!")
+			round_history_current.Add("The <b>[log_source_to_add]</b> takes <b>[x_to_move] damage</b> to its shields!")
 			return
 		if("shield_break")
-			round_history_current.Add("The shield breaks!")
+			round_history_current.Add("<b>The shield breaks!</b>")
 			return
 		if("hit_engine")
-			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its engines!")
+			round_history_current.Add("The <b>[log_source_to_add]</b> takes <b>[x_to_move] damage</b> to its engines!")
 			return
 		if("hit_systems")
-			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its systems!")
+			round_history_current.Add("The <b>[log_source_to_add]</b> takes <b>[x_to_move] damage</b> to its systems!")
 			return
 		if("hit_weapons")
-			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its weapons!")
+			round_history_current.Add("The <b>[log_source_to_add]</b> takes <b>[x_to_move] damage</b> to its weapons!")
 			return
 		if("hit_hull")
-			round_history_current.Add("The [log_source_to_add] takes [x_to_move] damage to its hull!")
+			round_history_current.Add("The <b>[log_source_to_add]</b> takes <b>[x_to_move] damage</b> to its hull!")
 			return
 		if("destroy_complete")
-			round_history_current.Add("The [log_source_to_add] suffers cascading failure from multiple systems and is torn apart in the resulting explosions.")
+			round_history_current.Add("The <b>[log_source_to_add]</b> suffers cascading failure from multiple systems and is <b>torn apart in the resulting explosions!</b> There are no survivors.")
 			return
 		if("destroy_engine")
-			round_history_current.Add("The engine of the [log_source_to_add] ruptures and explodes, discharging its Twilight Paradox cells and leaving the ship adrift. The ship launches its escape pods.")
+			round_history_current.Add("The engine of the <b>[log_source_to_add]</b> ruptures and explodes, discharging its Twilight Paradox cells and <b>leaving the ship adrift.</b> The ship launches its escape pods.")
 			return
 		if("destroy_systems")
-			round_history_current.Add("The systems of the [log_source_to_add] suffer from a cascading discharge and fail one by one. With its transponder and engine controls fried, the ship is coffin adrift in the void and launches its escape pods.")
+			round_history_current.Add("The systems of the <b>[log_source_to_add]</b> suffer from a cascading discharge and fail one by one. With its transponder and engine controls fried, <b>the ship is coffin adrift in the void</b> and launches its escape pods.")
 			return
 		if("destroy_weapons")
-			round_history_current.Add("After suffering a direct hit, the ammo stores of the [log_source_to_add] explode, killing everyone nearby. With a significant part of its hull now gone, the ship's fate is sealed. The surviving crew evacuates. ")
+			round_history_current.Add("After suffering a direct hit, the ammo stores of the <b>[log_source_to_add]</b> explode, killing anyone nearby. <b>With a significant part of its hull now gone, the ship's fate is sealed.</b> The surviving crew evacuates. ")
 			return
 		if("destroy_hull")
-			round_history_current.Add("The hull of the [log_source_to_add] ruptures and a significant part of the ship is detached. Anyone nearby is dead, and the remaining crewmembers are now adrift in a derelict coffin. Some reach the escape pods.")
+			round_history_current.Add("The hull of the <b>[log_source_to_add]</b> ruptures and <b>a significant part of the ship is detached.</b> Anyone who was nearby is dead, and the remaining crewmembers are now adrift in a derelict coffin. Some reach the escape pods.")
 			return
 		if("missle_hit_splash")
-			round_history_current.Add("Projectile [log_source_to_add] is anihilated in an explosion!")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> is <b>anihilated in an explosion!</b>")
 			return
 		if("explosive_splash")
-			round_history_current.Add("Projectile [log_source_to_add] explodes at coordinates ([x_to_move],[y_to_move]) with a power of [log_target_to_add]!")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> explodes at coordinates <b>([x_to_move],[y_to_move])!</b>")
 			return
 		if("warhead_miss")
-			round_history_current.Add("Projectile [log_source_to_add] fails to hit anything at coordinates ([x_to_move],[y_to_move] and flies off into the void.")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> fails to hit anything at coordinates <b>([x_to_move],[y_to_move])</b> and flies off into the void.")
 			return
 		if("nuclear_hit")
-			round_history_current.Add("Projectile [log_source_to_add] reaches its target at coordinates ([x_to_move],[y_to_move]). The [log_target_to_add] and its crew perishes in a nuclear blast.")
+			round_history_current.Add("Projectile <b>[log_source_to_add]</b> reaches its target at coordinates <b>([x_to_move],[y_to_move])</b>. The <b>[log_target_to_add] and its crew perishes in a nuclear blast!</b>")
+			return
+		if("ship_move")
+			round_history_current.Add("<b>SHIP MOVEMENT:</b><hr>")
+			return
+		if("missle_move")
+			round_history_current.Add("<b>PROJECTILE MOVEMENT AND DETONATION:</b><hr>")
 			return
 
 /obj/structure/shiptoship_master/proc/move_on_map(type_to_move = null, origin_x = 0, origin_y = 0, target_x = 0, target_y = 0) // Actually move the ship on grid. Will account for boudaries and "bump" ships away form them, at cost of losing all velocity. Different formulas are used for ships and projectiles, so make sure to pass the right type. For type "ship", pass ship vector as destination_x/y
@@ -463,7 +481,7 @@
 		scan_target_y += 1
 	if(scanning_complete == 1) sector_map[missle_origin_x][missle_origin_y]["missle"]["system"]["processed_movement"] = 1
 	if(scanning_complete == 0)
-		if(quiet == 0)log_round_history (event = "missle_homing_bad_target", log_source = "[sector_map[missle_origin_x][missle_origin_y]["missle"]]["type"]] [sector_map[missle_origin_x][missle_origin_y]["missle"]["id_tag"]]")
+		if(quiet == 0)log_round_history(event = "missle_homing_bad_target", log_source = "[sector_map[missle_origin_x][missle_origin_y]["missle"]["type"]] - [sector_map[missle_origin_x][missle_origin_y]["missle"]["id_tag"]]")
 		rem_entity(type = "coord", id = "missle", coord_x = missle_origin_x, coord_y = missle_origin_y)
 	return 1
 
@@ -664,22 +682,23 @@
 			sector_map[x_to_damage][y_to_damage]["ship"]["shield"] = 0
 			log_round_history(event = "shield_break")
 		return 1
-	var/damage_roulette = rand(1,4)
-	switch(damage_roulette)
-		if("1")
-			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["engine"] += ship_damage_payload
-			log_round_history(event = "hit_engine", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
-		if("2")
-			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["systems"] += ship_damage_payload
-			log_round_history(event = "hit_systems", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
-		if("3")
-			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["weapons"] += ship_damage_payload
-			log_round_history(event = "hit_weapons", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
-		if("4")
-			sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["hull"] += ship_damage_payload
-			log_round_history(event = "hit_hull", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
-	if(sector_map[x_to_damage][y_to_damage]["ship"]["status"] != "Player") DestructionCheck(x = x_to_damage, y = y_to_damage)
-	return 1
+	if(sector_map[x_to_damage][y_to_damage]["ship"]["shield"] == 0)
+		var/damage_roulette = rand(1,4)
+		switch(damage_roulette)
+			if(1)
+				sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["engine"] += ship_damage_payload
+				log_round_history(event = "hit_engine", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+			if(2)
+				sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["systems"] += ship_damage_payload
+				log_round_history(event = "hit_systems", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+			if(3)
+				sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["weapons"] += ship_damage_payload
+				log_round_history(event = "hit_weapons", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+			if(4)
+				sector_map[x_to_damage][y_to_damage]["ship"]["damage"]["hull"] += ship_damage_payload
+				log_round_history(event = "hit_hull", log_source = sector_map[x_to_damage][y_to_damage]["ship"]["name"], log_dest_x = ship_damage_payload)
+		if(sector_map[x_to_damage][y_to_damage]["ship"]["status"] != "Player") DestructionCheck(x = x_to_damage, y = y_to_damage)
+		return 1
 
 /obj/structure/shiptoship_master/proc/MissleColide(arriving_missle_x = 0, arriving_missle_y = 0, other_missle_x = 0, other_missle_y = 0)
 	var/missle1_x = arriving_missle_x
@@ -787,11 +806,11 @@
 											MissleColide(arriving_missle_x = current_x, arriving_missle_y = current_y, other_missle_x = destination_x, other_missle_y = destination_y)
 									if(0)
 										if(move_on_map(type_to_move = type_to_process, origin_x = current_x, origin_y = current_y, target_x = destination_x, target_y = destination_y) == 1)
-											if(sector_map[destination_x][destination_y][type_to_process]["missle"]["type"] == "PST-ATCM")
-												if(sector_map[destination_x][destination_y][type_to_process]["missle"]["target"]["tag"] != "none")
+											if(sector_map[destination_x][destination_y][type_to_process]["type"] == "PST-ATCM")
+												if(sector_map[destination_x][destination_y][type_to_process]["target"]["tag"] != "none")
 													MissleReTarget(missle_x = current_x, missle_y = current_y, missle_range = (GLOB.sector_map_x + GLOB.sector_map_y), x = (GLOB.sector_map_x / 2), y = (GLOB.sector_map_y / 2), id_tag = sector_map[current_x][current_y][type_to_process]["target"]["tag"])
-												if(sector_map[destination_x][destination_y][type_to_process]["missle"]["target"]["tag"] == "none")
-													log_round_history (event = "missle_homing_bad_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
+												if(sector_map[destination_x][destination_y][type_to_process]["target"]["tag"] == "none")
+													log_round_history (event = "missle_homing_bad_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] - [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
 													rem_entity(type = "coord", id = type_to_process, coord_x = current_x, coord_y = current_y)
 											if(MissleVector(start_x = destination_x, start_y = destination_y, target_x = sector_map[destination_x][destination_y][type_to_process]["target"]["x"], target_y = sector_map[destination_x][destination_y][type_to_process]["target"]["y"], speed = sector_map[destination_x][destination_y][type_to_process]["speed"], only_test = 1) == "in_range")
 												log_round_history(event = "missle_near_target", log_source = "[sector_map[destination_x][destination_y][type_to_process]["type"]] [sector_map[destination_x][destination_y][type_to_process]["id_tag"]]")
@@ -1161,16 +1180,22 @@
 			return
 		to_chat(world, SPAN_INFO("Advancing turn in 5 seconds!"))
 		sleep(50)
+		log_round_history(event = "ship_move")
 		var/len_to_test = round_history_current.len
 		if(ProcessMovement(type = "ship") == 1)
 			while(len_to_test != round_history_current.len)
 				len_to_test = round_history_current.len
 				ProcessMovement(type = "ship")
+		log_round_history(event = "missle_move")
 		len_to_test = round_history_current.len
 		if(ProcessMovement(type = "missle") == 1)
 			while(len_to_test != round_history_current.len)
 				len_to_test = round_history_current.len
 				ProcessMovement(type = "missle")
+		len_to_test = 0
+		while(len_to_test != round_history_current.len)
+			len_to_test = round_history_current.len
+			ProcessMovement(type = "missle")
 		DisplayAndCycleSpaceRoundLog()
 		to_chat(world,SPAN_INFO("Round advanced."))
 		return

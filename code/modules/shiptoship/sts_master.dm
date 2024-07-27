@@ -15,6 +15,15 @@
 		)
 /obj/structure/shiptoship_master/proc/populate_alpha()
 	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS Tester", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 30, y = 30, name = "UAS Moves Around", type = "Testing Vessel", vector_x = 3, vector_y = -3, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 50, y = 50, name = "UAS Gets hit and Blows Up", type = "Testing Vessel", vector_x = 2, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 1, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 99, y = 1, name = "UAS Nuked", type = "Testing Vessel", vector_x = 1, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 60, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
+	add_entity (entity_type = 1, x = 59, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
+	add_entity (entity_type = 1, x = 61, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
+	add_entity (entity_type = 1, x = 60, y = 49, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
+	add_entity (entity_type = 1, x = 98, y = 98, type = "Nuke", vector_x = 100, vector_y = 1, warhead_type = "Nuclear", warhead_payload = 10, missle_speed = 20)
+	add_entity (entity_type = 1, x = 1, y = 1, type = "Flies along the edge", vector_x = 1, vector_y = 100, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.
@@ -291,6 +300,8 @@
 	if(event_to_add == null) return
 	if(log_source_to_add == null) log_source_to_add = "Unidentified"
 	if(log_target_to_add == null) log_target_to_add = "Unidentified"
+	for(var/obj/structure/shiptoship_master/ship_missioncontrol/shipmc in world)
+		shipmc.WriteToShipLog(shiplog_event = event_to_add, shiplog_dest_x = x_to_move, shiplog_dest_y = y_to_move)
 	switch(event_to_add)
 		if("collision")
 			round_history_current.Add("The <b>[log_source_to_add]</b> barely avoided <b>a collision</b> with the <b>[log_target_to_add]!</b>")
@@ -385,8 +396,8 @@
 		if("ship")
 			var/final_x = move_starting_x + move_target_x
 			var/final_y = move_starting_y + move_target_y
-			if(final_x > GLOB.sector_map_x || final_x < 0 || final_y < 0 || final_y > GLOB.sector_map_y)
-				log_round_history(event = "collision_boundary", log_source = sector_map[move_starting_x][move_starting_y][selected_type]["name"])
+			if(final_x > GLOB.sector_map_x || final_x < 1 || final_y < 1 || final_y > GLOB.sector_map_y)
+				log_round_history(event = "collision_boundary", log_source = sector_map[move_starting_x][move_starting_y][selected_type]["name"], log_dest_x = final_x, log_dest_y = final_y)
 				sector_map[move_starting_x][move_starting_y][selected_type]["vector"]["x"] = 0
 				sector_map[move_starting_x][move_starting_y][selected_type]["vector"]["y"] = 0
 				if(final_x > GLOB.sector_map_x)
@@ -575,24 +586,25 @@
 	var/missle_target_x = target_x
 	var/missle_target_y = target_y
 	var/missle_speed = speed
-	var/missle_displacement = round((missle_speed / 2),1)
+	var/missle_displacement_x = missle_speed / 2
+	var/missle_displacement_y = floor(missle_speed / 2)
 	if(missle_x == 0 || missle_y == 0 || missle_speed == 0 || missle_target_x == 0 || missle_target_y == 0) return
 	var/distance_x = abs(target_x - start_x)
 	var/distance_y = abs(target_y - start_y)
 	if((distance_x + distance_y) <= missle_speed) return "in_range"
 	if(only_test == 0)
-		if((distance_x - missle_displacement) > 0)
+		if((distance_x - missle_displacement_x) > 0)
 			if((missle_target_x - missle_x) > 0)
-				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = missle_displacement
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = missle_displacement_x
 			if((missle_target_x - missle_x) < 0)
-				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = 0 - missle_displacement
-		if((distance_x - missle_displacement) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = distance_x
-		if((distance_y - missle_displacement) > 0)
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = 0 - missle_displacement_x
+		if((distance_x - missle_displacement_x) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_x"] = distance_x
+		if((distance_y - missle_displacement_y) > 0)
 			if((missle_target_y - missle_x) > 0)
-				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = missle_displacement
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = missle_displacement_y
 			if((missle_target_y - missle_x) < 0)
-				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = 0 - missle_displacement
-		if((distance_y - missle_displacement) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = distance_y
+				sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = 0 - missle_displacement_y
+		if((distance_y - missle_displacement_y) <= 0 ) sector_map[missle_x][missle_y]["missle"]["system"]["derived_vector_y"] = distance_y
 		return 1
 	return 0
 
@@ -637,28 +649,19 @@
 	var/y_to_splash_damage_min = BoundaryAdjust(value = (y_to_splash_damage - (ship_splash_damage_payload + 1)), type = 1)
 	if(sector_map[x_to_splash_damage][y_to_splash_damage]["ship"]["id_tag"] != "none")
 		ProcessDamage(ammount = ship_splash_damage_payload, x = x_to_splash_damage, y = y_to_splash_damage)
-	var/current_x_splash = x_to_splash_damage + 1
-	var/current_y_splash = y_to_splash_damage
+	var/current_x_splash = x_to_splash_damage_min
+	var/current_y_splash = y_to_splash_damage_min
 	while(current_x_splash < x_to_splash_damage_max)
 		while(current_y_splash < y_to_splash_damage_max)
-			if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
-				ProcessDamage(ammount = (ship_splash_damage_payload - (current_x_splash - x_to_splash_damage)), x = current_x_splash, y = current_y_splash)
-			if(sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"] != "none")
-				log_round_history(event = "missle_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missle"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"]]")
-				rem_entity(type = "coord", id = "missle", coord_x = current_x_splash, coord_y = current_y_splash)
+			var/damage_to_splash = ship_splash_damage_payload - (abs(y_to_splash_damage - current_y_splash) + abs(x_to_splash_damage - current_x_splash))
+			if(damage_to_splash > 0)
+				if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
+					ProcessDamage(ammount = damage_to_splash, x = current_x_splash, y = current_y_splash)
+				if(sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"] != "none")
+					log_round_history(event = "missle_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missle"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"]]")
+					rem_entity(type = "coord", id = "missle", coord_x = current_x_splash, coord_y = current_y_splash)
 			current_y_splash += 1
 		current_x_splash += 1
-	current_x_splash = x_to_splash_damage - 1
-	current_y_splash = y_to_splash_damage
-	while(current_x_splash > x_to_splash_damage_min)
-		while(current_y_splash > y_to_splash_damage_min)
-			if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
-				ProcessDamage(ammount = (ship_splash_damage_payload - (x_to_splash_damage - current_x_splash)), x = current_x_splash, y = current_y_splash)
-			if(sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"] != "none")
-				log_round_history(event = "missle_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missle"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missle"]["id_tag"]]")
-				rem_entity(type = "coord", id = "missle", coord_x = current_x_splash, coord_y = current_y_splash)
-			current_y_splash -= 1
-		current_x_splash -= 1
 	return 1
 
 
@@ -696,9 +699,9 @@
 	var/missle1_x = arriving_missle_x
 	var/missle1_y = arriving_missle_y
 	var/missle2_x = other_missle_x
-	var/missle2_y = other_missle_x
+	var/missle2_y = other_missle_y
 	if(missle1_x == 0 || missle1_y == 0 || missle2_x == 0 || missle2_y == 0) return
-	log_round_history(event = "missle_collision", log_source = "[sector_map[missle1_x][missle1_y]["missle"]["type"]] - [sector_map[missle1_x][missle1_y]["missle"]["id_tag"]]", log_target = "[sector_map[missle2_x][missle2_y]["missle"]["type"]] - [sector_map[missle2_x][missle2_y]["missle"]["id_tag"]]")
+	log_round_history(event = "missle_collision", log_source = "[sector_map[missle1_x][missle1_y]["missle"]["type"]] - [sector_map[missle1_x][missle1_y]["missle"]["id_tag"]]", log_target = "[sector_map[missle2_x][missle2_y]["missle"]["type"]] - [sector_map[missle2_x][missle2_y]["missle"]["id_tag"]]", log_dest_x = missle2_x, log_dest_y = missle2_y)
 	rem_entity(type = "coord", id = "missle", coord_x = arriving_missle_x, coord_y = arriving_missle_y)
 	rem_entity(type = "coord", id = "missle", coord_x = missle2_x, coord_y = missle2_y)
 
@@ -711,7 +714,7 @@
 	switch(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["type"])
 		if("Homing")
 			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] == "none")
-				log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+				log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
 				MissleReTarget(missle_x = exploding_missle_x, missle_y = exploding_missle_y, missle_range = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["speed"], x = x_to_explode, y = y_to_explode, id_tag = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"], quiet = 0)
 				return 1
 			if(sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"] != "none")
@@ -726,13 +729,15 @@
 							rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
 							return 1
 					if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"] != sector_map[x_to_explode][y_to_explode]["ship"]["id_tag"])
-						log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]")
+						log_round_history(event = "warhead_homing", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
 						MissleReTarget(missle_x = exploding_missle_x, missle_y = exploding_missle_y, missle_range = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["speed"], x = x_to_explode, y = y_to_explode, id_tag = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["target"]["tag"], quiet = 0)
 						return 1
 		if("Explosive")
 			if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] == 1)
 				log_round_history(event = "explosive_splash", log_source = "[sector_map[exploding_missle_x][exploding_missle_y]["missle"]["type"]] - [sector_map[exploding_missle_x][exploding_missle_y]["missle"]["id_tag"]]", log_target = "sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"]", log_dest_x = x_to_explode, log_dest_y = y_to_explode)
-				ProcessSplashDamage(ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"], x = x_to_explode, y = y_to_explode)
+				var/splash_passed_ammount = sector_map[exploding_missle_x][exploding_missle_y]["missle"]["warhead"]["payload"]
+				rem_entity(type = "coord", id = "missle", coord_x = exploding_missle_x, coord_y = exploding_missle_y)
+				ProcessSplashDamage(ammount = splash_passed_ammount, x = x_to_explode, y = y_to_explode)
 			if(sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] == 0) sector_map[exploding_missle_x][exploding_missle_y]["missle"]["system"]["processed_movement"] = 1
 			return 1
 		if("Direct")
@@ -770,15 +775,15 @@
 					if(sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] != 1)
 						destination_x = current_x + sector_map[current_x][current_y][type_to_process]["vector"]["x"]
 						destination_y = current_y + sector_map[current_x][current_y][type_to_process]["vector"]["y"]
-						if((destination_x != current_x) && (destination_y != current_y))
+						if((sector_map[current_x][current_y][type_to_process]["vector"]["x"] + sector_map[current_x][current_y][type_to_process]["vector"]["y"]) != 0)
 							if(CheckCollision(type = type_to_process, x = destination_x, y = destination_y) == 1)
 								if(sector_map[destination_x][destination_y][type_to_process]["system"]["processed_movement"] == 1)
 									log_round_history(event = "collision", log_source = sector_map[current_x][current_y][type_to_process]["name"], log_target = sector_map[destination_x][current_y][type_to_process]["name"],log_dest_x = destination_x, log_dest_y = destination_y)
 									CollisionMove(move_source_x = current_x, move_source_y = current_y, move_destination_x = destination_x, move_destination_y = destination_y)
 							if(CheckCollision(type = type_to_process, x = destination_x, y = destination_y) == 0)
 								move_on_map(type_to_move = type_to_process, origin_x = current_x, origin_y = current_y, target_x = sector_map[current_x][current_y][type_to_process]["vector"]["x"], target_y = sector_map[current_x][current_y][type_to_process]["vector"]["y"])
-						if((destination_x == current_x) && (destination_y == current_y))
-							sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] = 1
+					if((sector_map[current_x][current_y][type_to_process]["vector"]["x"] + sector_map[current_x][current_y][type_to_process]["vector"]["y"]) == 0)
+						sector_map[current_x][current_y]["ship"]["system"]["processed_movement"] = 1
 				current_x += 1
 			current_x = 1
 			current_y += 1

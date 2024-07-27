@@ -68,6 +68,7 @@ GLOBAL_LIST_EMPTY(dorms_name_list)
 
 GLOBAL_VAR_INIT(sector_map_x, 100)
 GLOBAL_VAR_INIT(sector_map_y, 100)
+GLOBAL_VAR_INIT(sector_map_sector_size, 10)
 GLOBAL_VAR_INIT(sector_map_initialized, 0)
 GLOBAL_VAR_INIT(sector_map_id_tag, 1)
 

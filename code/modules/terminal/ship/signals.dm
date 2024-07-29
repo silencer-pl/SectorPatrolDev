@@ -9,6 +9,7 @@
 	terminal_reserved_lines = 1
 	terminal_id = "_signals_control"
 	var/obj/structure/shiptoship_master/ship_missioncontrol/linked_master_console
+	var/probe_range = 3
 
 /obj/structure/terminal/signals_console/proc/LinkToShipMaster(master_console as obj)
 
@@ -38,8 +39,17 @@
 					terminal_display_line("While this link is unlikely to be exploited, the recepient is not compelled to answer or maintain comms.")
 				else
 					terminal_display_line("Error: HELP: [string] command not found. Use HELP with no arguments for a list of commands.")
-
-
+		if("PING")
+			var/commapos = findtext(string, ",")
+			if(commapos != 0)
+				commapos += 1
+				var/x_to_scan = text2num(copytext(string, 1, commapos))
+				var/y_to_scan = text2num(copytext(string, commapos))
+				if(x_to_scan != null & y_to_scan != null)
+					linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
+				if(x_to_scan == null) terminal_display_line("Error: Invalid x vector.")
+				if(y_to_scan == null) terminal_display_line("Error: Invalid y vector.")
+			if(commapos == 0) terminal_display_line("Error: Missing comma separator.")
 
 /obj/structure/terminal/signals_console/terminal_parse(str)
 	var/string_to_parse = uppertext(str)
@@ -63,14 +73,16 @@
 		var/tracked_position = 1
 		while(tracked_position <= length(string_to_parse))
 			var/type_to_parse = copytext(string_to_parse, 1, tracked_position + 1)
-			var/argument_to_parse = copytext(string_to_parse, tracked_position + 2)
+			var/argument_to_parse = trimtext(copytext(string_to_parse, tracked_position + 1))
 			terminal_advanced_parse(type = type_to_parse, string = argument_to_parse)
 			tracked_position += 1
 	if(starting_buffer_length == terminal_buffer.len) terminal_display_line("Error: Unknown command. Please use HELP for a list of available commands.")
 	terminal_input()
+	return "Parsing Loop End"
 
 /obj/structure/terminal/signals_console/attack_hand(mob/user)
 	terminal_display_line("Welcome, [usr.name].")
 	terminal_display()
 	terminal_display_line("Active Trackers: [linked_master_console.GetTrackingList(type = 1)]")
 	terminal_input()
+	return "Primary input loop end"

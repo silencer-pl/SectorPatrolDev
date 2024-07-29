@@ -14,16 +14,11 @@
 		"stored_tag" = 0,
 		)
 /obj/structure/shiptoship_master/proc/populate_alpha()
-	add_entity (entity_type = 0, x = 14, y = 14, name = "UAS Tester", type = "Testing Vessel", vector_x = 1, vector_y = 1, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 30, y = 30, name = "UAS Moves Around", type = "Testing Vessel", vector_x = 3, vector_y = -3, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 50, y = 50, name = "UAS Gets hit and Blows Up", type = "Testing Vessel", vector_x = 2, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 3, ship_shield = 1, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 0, x = 99, y = 1, name = "UAS Nuked", type = "Testing Vessel", vector_x = 1, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
-	add_entity (entity_type = 1, x = 60, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
-	add_entity (entity_type = 1, x = 59, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
-	add_entity (entity_type = 1, x = 61, y = 50, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
-	add_entity (entity_type = 1, x = 60, y = 49, type = "Hits Its Target", vector_x = 52, vector_y = 50, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
-	add_entity (entity_type = 1, x = 98, y = 98, type = "Nuke", vector_x = 100, vector_y = 1, warhead_type = "Nuclear", warhead_payload = 10, missle_speed = 20)
-	add_entity (entity_type = 1, x = 1, y = 1, type = "Flies along the edge", vector_x = 1, vector_y = 100, warhead_type = "Direct", warhead_payload = 1, missle_speed = 20)
+	add_entity (entity_type = 0, x = 40, y = 50, name = "UAS Tester", type = "Testing Vessel", vector_x = 0, vector_y = 0, ship_status = "Operational", ship_faction = "UACM", ship_damage = 10, ship_shield = 10, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 0, x = 50, y = 50, name = "Stands in Place", type = "Testing Vessel", vector_x = 3, vector_y = -3, ship_status = "Operational", ship_faction = "UPP", ship_damage = 10, ship_shield = 0, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 50, y = 50, type = "Direct Scanning Target", vector_x = 10, vector_y = 20, warhead_type = "Direct", warhead_payload = 3, missle_speed = 10)
+	add_entity (entity_type = 0, x = 50, y = 51, name = "UAS Moves Around", type = "Testing Vessel", vector_x = 3, vector_y = -3, ship_status = "Operational", ship_faction = "UPP", ship_damage = 10, ship_shield = 0, ship_speed = 5, salvos = 1)
+	add_entity (entity_type = 1, x = 49, y = 50, type = "Nuke", vector_x = 100, vector_y = 50, warhead_type = "Nuclear", warhead_payload = 100, missle_speed = 2)
 	to_chat(world, SPAN_INFO("Testing data loaded."))
 
 /obj/structure/shiptoship_master/proc/populate_map() // This proc sets up the formatting of each sector, so each additon needs to be reflected here, but most likely in its respective move and remove scripts as well.
@@ -266,7 +261,7 @@
 	var/x_to_check = x
 	var/y_to_check = y
 	if(x_to_check == null || y_to_check == null) return
-	if(x_to_check == 0 && y_to_check == 0) return
+	if(x_to_check == 0 && y_to_check == 0) return "None"
 	if(x_to_check < -1)
 		if(y_to_check > 1)
 			return "NW"

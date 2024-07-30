@@ -26,7 +26,6 @@
 		if(4)
 			ping_history.Add("<b>([pos_x],[pos_y])</b> | <b>Unknown Projectile</b> Bearing: [type] | Velocity: [speed]")
 
-
 /obj/structure/shiptoship_master/ship_missioncontrol/proc/ScannerPing(incoming_console as obj, probe_target_x = 0, probe_target_y = 0, range = 0)
 	var/obj/structure/terminal/signals_console/target_console = incoming_console
 	var/x_to_target_scan = target_console.linked_master_console.sector_map_data["x"] + probe_target_x
@@ -155,9 +154,61 @@
 			"x" = 0,
 			"y" = 0,
 			"id_tag" = "none",
-			"type" = "none",
 			)
 			current_row += 1
+
+/obj/structure/shiptoship_master/ship_missioncontrol/proc/TrackerCheck(id = null) //Checks tracker buffer, if no id is given, returns free tracker slot. If id is passed, returns the slot where a the given ID resides.
+	var/current_track_pos = 1
+	while (current_track_pos <= tracking_max)
+		if(tracking_list[current_track_pos]["id_tag"] != "none")
+			if(id != null)
+				if (tracking_list[current_track_pos]["id_tag"] == id) break
+			else
+				break
+		current_track_pos += 1
+	if(current_track_pos > tracking_max) current_track_pos = 0
+	return current_track_pos
+
+
+
+/obj/structure/shiptoship_master/ship_missioncontrol/proc/TrackerPing(incoming_console as obj, track_target_x = 0, track_target_y = 0)
+	var/obj/structure/terminal/signals_console/target_console = incoming_console
+	var/x_to_target_track = target_console.linked_master_console.sector_map_data["x"] + track_target_x
+	var/y_to_target_track = target_console.linked_master_console.sector_map_data["y"] + track_target_y
+	if(x_to_target_track < 1 || x_to_target_track > GLOB.sector_map_x)
+		target_console.terminal_display_line("Error: X coordinate outside of Twilight Boudary. Tracker lost.")
+		return 1
+	if(y_to_target_track < 1 || y_to_target_track > GLOB.sector_map_x)
+		target_console.terminal_display_line("Error: Y coordinate outside of Twilight Boudary. Tracker lost.")
+		return 1
+	if(sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"] != "none")
+		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"]) == 0)
+			if(TrackerCheck() != 0)
+				tracking_list[TrackerCheck()]["x"] = x_to_target_track
+				tracking_list[TrackerCheck()]["y"] = y_to_target_track
+				target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
+				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"]
+				return 1
+			else
+				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID. Tracker Lost.")
+				return 1
+	else
+		if(sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"] != "none")
+			if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]) == 0)
+				if(TrackerCheck() != 0)
+					tracking_list[TrackerCheck()]["x"] = x_to_target_track
+					tracking_list[TrackerCheck()]["y"] = y_to_target_track
+					target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
+					tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]
+					return 1
+				else
+					target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID.")
+					return 1
+		else
+			target_console.terminal_display_line("Error: No entity to track detected. Tracker lost.")
+			return 1
+
+
 
 
 /obj/structure/shiptoship_master/ship_missioncontrol/proc/FindShipOnMap() // Should only be called after setting up the sector map and putting a ship with a corssesponding ["name"] segment set to match
@@ -188,7 +239,7 @@
 	var/current_tracking_position = 1
 	while (current_tracking_position <= tracking_max)
 		if(tracking_list[current_tracking_position]["id_tag"] == "none") break
-		tracking_list_to_return.Add("<b>[sector_map[tracking_list[current_tracking_position]["x"]][tracking_list[current_tracking_position]["y"]][tracking_list[current_tracking_position]["type"]]["type"]]</b> - <b>([tracking_list[current_tracking_position]["x"]],[tracking_list[current_tracking_position]["y"]])")
+		tracking_list_to_return.Add("ID: [current_tracking_position] - <b>([tracking_list[current_tracking_position]["x"]],[tracking_list[current_tracking_position]["y"]])</b>")
 		current_tracking_position += 1
 	if(type == 1) return (current_tracking_position - 1)
 	if(tracking_list_to_return.len == 0) tracking_list_to_return.Add("No tracking active.")
@@ -235,34 +286,72 @@
 			text-align: center;
 			padding: 0em 1em;
 			}
+            .box {
+            border-style: solid;
+            }
+			.column {
+			float: left;
+			font-family: 'Lucida Grande', monospace;
+			font-size: 18px;
+			color: #ffffff;
+            text-align: center;
+			}
+
+			.left {
+			width: 30%;
+			}
+
+			.right {
+			width: 70%;
+			}
+            .row:after {
+            content: "";
+            display: table;
+            clear: both;
+            }
 			</style>
 			</head>
 			<body>
 			<div id="main_window">
+            <div class="box">
 			<p style="font-size: 120%;">
 			<b>UACM 2ND LOGISTICS<br>[sector_map_data["name"]]</b>
 			</p>
-			<p><hr></p>
+            </div>
+            <div class="box">
 			<p>
 			<b>COMMAND OVERVIEW:<br><br>Detailed logs are accessible through Mission Control terminal.<hr></b>
 			</p>
 			<p><b>Ship position:</b> Sector [SectorConversion(x = sector_map_data["x"], y = sector_map_data["y"])]</p>
-			<p><hr></p>
+            </div>
+            <div class="box">
 			<p><b>Communications Log:</b></p>
 			<p>[messages_to_display]</p>
-			<p><hr></p>
-			<p><b>Sonar Activity in following Sectors:</b></p>
-			<p>[sensor_to_display]</p>
-			<p><hr></p>
+            </div>
+			<div class="box">
+				<div class="row">
+					<div class="column left">
+						<div class="box">
+						<p><b>Sonar Report:</b></p>
+						<p>[sensor_to_display]</p>
+						</div>
+					</div>
+					<div class="column right">
+						<div class="box">
+						<p><b>Active Probe Pings:</b></p>
+						<p>[pings_to_display]</p>
+						</div>
+				</div>
+			</div>
+			</div>
+            <div class="box">
 			<p><b>Tracking Updates:</b></p>
 			<p>[tracking_to_display]</p>
-			<p><hr></p>
-			<p><b>Active Probe Pings:</b></p>
-			<p>[pings_to_display]</p>
-			<p><hr></p>
+            </div>
+            <div class="box">
 			<p><b>SHIP STATUS:</b></p>
 			<p>[status_to_display]</b></p>
-			<p><hr></p>
+            </div>
 			</div>
 			</body>
 			"}
@@ -281,19 +370,28 @@
 			text-align: center;
 			padding: 0em 1em;
 			}
+            .box {
+            border-style: solid;
+            }
 			</style>
 			</head>
 			<body>
 			<div id="main_window">
+			<div class="box">
 			<p style="font-size: 120%;">
 			<b>UACM 2ND LOGISTICS<br>[sector_map_data["name"]]<hr></b>
 			</p>
+			</div>
+			<div class="box">
 			<p>
 			<b>DETAILED SONAR LOG:</b>
 			</p>
 			<p>
 			- [detailed_sonar_to_display]
 			</p>
+			</div>
+			</div>
+			</body>
 			"}
 		if("ping")
 			display_html = {"<!DOCTYPE html>
@@ -309,20 +407,29 @@
 			color: #ffffff;
 			text-align: center;
 			padding: 0em 1em;
+            .box {
+            border-style: solid;
+            }
 			}
 			</style>
 			</head>
 			<body>
 			<div id="main_window">
+			<div class="box">
 			<p style="font-size: 120%;">
 			<b>UACM 2ND LOGISTICS<br>[sector_map_data["name"]]<hr></b>
 			</p>
+			</div>
+			<div class="box">
 			<p>
 			<b>DETAILED PING LOG:</b>
 			</p>
 			<p>
 			[detailed_ping_history]
 			</p>
+			</div>
+			</div>
+			</body>
 			"}
 	usr << browse(display_html,"window=ship_[screen_type]_[sector_map_data["name"]];display=1;size=800x800;border=5px;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
 	onclose(usr, "ship_[screen_type]_[sector_map_data["name"]]")

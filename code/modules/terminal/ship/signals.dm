@@ -16,7 +16,7 @@
 	linked_master_console = master_console
 	terminal_id = "[linked_master_console.sector_map_data["name"]][initial(terminal_id)]"
 	item_serial = "[uppertext(linked_master_console.sector_map_data["name"])][initial(item_serial)]"
-	terminal_header += "<center><b>"+ html_encode("[linked_master_console.sector_map_data["name"]] - SIGNALS CONTROL") + "</b><br>" + html_encode("UACM 2ND LOGISTICS") + "</center><hr>"
+	terminal_header += {"<div class="box"><p><center><b>"}+ html_encode("[linked_master_console.sector_map_data["name"]] - SIGNALS CONTROL") + {"</b><br>"} + html_encode("UACM 2ND LOGISTICS") + {"</center></p></div><div class="box_console">"}
 	reset_buffer()
 
 /obj/structure/terminal/signals_console/proc/terminal_advanced_parse(type = null, string = null)
@@ -41,15 +41,32 @@
 					terminal_display_line("Error: HELP: [string] command not found. Use HELP with no arguments for a list of commands.")
 		if("PING")
 			var/commapos = findtext(string, ",")
-			if(commapos != 0)
+			if(commapos == 0)
+				terminal_display_line("Error: Missing comma separator.")
+			else
 				commapos += 1
 				var/x_to_scan = text2num(copytext(string, 1, commapos))
 				var/y_to_scan = text2num(copytext(string, commapos))
-				if(x_to_scan != null & y_to_scan != null)
+				if(x_to_scan == null || y_to_scan == null)
+					if(x_to_scan == null) terminal_display_line("Error: Invalid x vector.")
+					if(y_to_scan == null) terminal_display_line("Error: Invalid y vector.")
+				else
 					linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
-				if(x_to_scan == null) terminal_display_line("Error: Invalid x vector.")
-				if(y_to_scan == null) terminal_display_line("Error: Invalid y vector.")
-			if(commapos == 0) terminal_display_line("Error: Missing comma separator.")
+		if("TRACK")
+			if(copytext(string, 1, 3) != " R")
+				var/commapos = findtext(string, ",")
+				if(commapos == 0)
+					terminal_display_line("Error: Missing comma separator.")
+				else
+					commapos += 1
+					var/x_to_track = text2num(copytext(string, 1, commapos))
+					var/y_to_track = text2num(copytext(string, commapos))
+					if(x_to_track == null || y_to_track == null)
+						if(x_to_track == null) terminal_display_line("Error: Invalid x vector.")
+						if(y_to_track == null) terminal_display_line("Error: Invalid y vector.")
+					else
+						linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
+
 
 /obj/structure/terminal/signals_console/terminal_parse(str)
 	var/string_to_parse = uppertext(str)

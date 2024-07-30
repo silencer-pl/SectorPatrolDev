@@ -38,22 +38,31 @@
 	<style>
 	body {
 	background-color:black;
-	}
+	width: calc(800px - 2em);
+    }
+    .box {
+    border-style: solid;
+    height: 66px;
+    }
+    .box_console {
+    border-style: solid;
+    height: 734px;
+    }
 	#terminal_text {
 	font-family: 'Courier New',
 	cursive, sans-serif;
 	color: #1bdd4b;
 	text-align: left;
-	padding: 0em 1em;
+	padding: 0em, 1em;
 	}
 	</style>
 	</head>
 	<body>
-	<div id="terminal_text">
-	<p>
+	<div id = "terminal_text">
 	[terminal_output]
 	</p>
 	</div>
+    </div>
 	</body>
 	"}
 	usr << browse(terminal_html,"window=[terminal_id];display=1;size=[terminal_window_size];border=5px;can_close=0;can_resize=0;can_minimize=0;titlebar=0")

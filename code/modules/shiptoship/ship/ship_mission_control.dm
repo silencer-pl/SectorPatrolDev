@@ -3,6 +3,7 @@
 	desc = "This definition contains critical code. Look for map specific instances down the line :p"
 	var/list/sector_map_data = list(
 		"name" = "none",
+		"id_tag" = "none,",
 		"initialized" = 0,
 		"x" = 0,
 		"y" = 0,
@@ -91,6 +92,39 @@
 	var/sector_to_return_y = floor(y_to_sectorconvert / (floor(GLOB.sector_map_y / GLOB.sector_map_sector_size)))
 	var/value_to_return = "[sector_to_return_x]-[sector_to_return_y]"
 	return value_to_return
+
+/obj/structure/shiptoship_master/ship_missioncontrol/proc/CommsLog(message_type = 0, message_source = null, message_to_add = null)
+	if(message_source == null || message_to_add == null) return
+	switch(message_type)
+		if(0)
+			comms_messages.Add("<b>Direct message recieved.</b> Sender ID: [message_source]. Message reads: <[message_to_add]>.")
+		if(1)
+			comms_messages.Add("<b>Communications activity detected</b> in sector ([message_source]).")
+		if(2)
+			comms_messages.Add("<b>Incoming Priority Message from [message_source]:</b> \"[message_to_add]\"")
+
+/obj/structure/shiptoship_master/ship_missioncontrol/proc/CommsPing(incoming_console as obj, x_to_comms_ping = 0, y_to_comms_ping = 0, message_to_comms_ping = null)
+	var/obj/structure/terminal/signals_console/target_console = incoming_console
+	if(x_to_comms_ping < 1 || x_to_comms_ping > GLOB.sector_map_x)
+		target_console.terminal_display_line("Error: X coordinate out of bounds. Message not sent. Pulse expended.")
+		target_console.signal_pulses -= 1
+		return 1
+	if(y_to_comms_ping < 1 || y_to_comms_ping > GLOB.sector_map_y)
+		target_console.terminal_display_line("Error: Y coordinate out of bounds. Message not sent. Pulse expended.")
+		target_console.signal_pulses -= 1
+		return 1
+	target_console.terminal_display_line("Sending comms pulse to coordinates ([x_to_comms_ping],[y_to_comms_ping])")
+	log_round_history(event = "comms_ping", log_source = sector_map_data["name"], log_target = message_to_comms_ping, log_dest_x = x_to_comms_ping, log_dest_y = y_to_comms_ping)
+	for(var/obj/structure/shiptoship_master/ship_missioncontrol/all_ship_consoles in world)
+		all_ship_consoles.CommsLog(message_type = 1, message_source = SectorConversion(x = x_to_comms_ping, y = y_to_comms_ping))
+	if(sector_map[x_to_comms_ping][y_to_comms_ping]["ship"]["id_tag"] != "none")
+		if(sector_map[x_to_comms_ping][y_to_comms_ping]["ship"]["status"] == "Player")
+			for (var/obj/structure/shiptoship_master/ship_missioncontrol/player_ship_console in world)
+				if(player_ship_console.sector_map_data["id_tag"] == sector_map[x_to_comms_ping][y_to_comms_ping]["ship"]["id_tag"])
+					player_ship_console.CommsLog(message_type = 0, message_source = sector_map_data["name"], message_to_add = message_to_comms_ping)
+					player_ship_console.talkas("New Direct Message recieved!")
+	return 1
+
 
 /obj/structure/shiptoship_master/ship_missioncontrol/proc/WriteToShipLog(shiplog_event = null, shiplog_dest_x = null, shiplog_dest_y = null)
 	var/event_to_add_ship = shiplog_event
@@ -192,21 +226,20 @@
 			else
 				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID. Tracker Lost.")
 				return 1
+	if(sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"] != "none")
+		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]) == 0)
+			if(TrackerCheck() != 0)
+				tracking_list[TrackerCheck()]["x"] = x_to_target_track
+				tracking_list[TrackerCheck()]["y"] = y_to_target_track
+				target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
+				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]
+				return 1
+			else
+				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID.")
+				return 1
 	else
-		if(sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"] != "none")
-			if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]) == 0)
-				if(TrackerCheck() != 0)
-					tracking_list[TrackerCheck()]["x"] = x_to_target_track
-					tracking_list[TrackerCheck()]["y"] = y_to_target_track
-					target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
-					tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]
-					return 1
-				else
-					target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID.")
-					return 1
-		else
-			target_console.terminal_display_line("Error: No entity to track detected. Tracker lost.")
-			return 1
+		target_console.terminal_display_line("Error: No entity to track detected. Tracker lost.")
+		return 1
 
 
 
@@ -224,6 +257,8 @@
 	while(current_x <= GLOB.sector_map_x)
 		while(current_y <= GLOB.sector_map_y)
 			if(sector_map[current_x][current_y]["ship"]["name"] == sector_map_data["name"])
+				sector_map[current_x][current_y]["ship"]["status"] = "Player"
+				sector_map_data["id_tag"] = sector_map[current_x][current_y]["ship"]["id_tag"]
 				sector_map_data["x"] = current_x
 				sector_map_data["y"] = current_y
 				to_chat(world, SPAN_INFO("Ship [sector_map_data["name"]] Initalized on the Sector Map."))

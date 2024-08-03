@@ -10,6 +10,7 @@
 	terminal_id = "_signals_control"
 	var/obj/structure/shiptoship_master/ship_missioncontrol/linked_master_console
 	var/probe_range = 3
+	var/signal_pulses = 3
 
 /obj/structure/terminal/signals_console/proc/LinkToShipMaster(master_console as obj)
 
@@ -66,6 +67,20 @@
 						if(y_to_track == null) terminal_display_line("Error: Invalid y vector.")
 					else
 						linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
+		if("COMM")
+			if(signal_pulses > 0)
+				var/commapos = findtext(string, ",")
+				if(commapos == 0)
+					terminal_display_line("Error: Missing comma separator.")
+				var/textpos = findtext(string, " ")
+				if(textpos == 0 || (textpos >= (length(string) -1)))
+					terminal_display_line("Error: No message to send found.")
+				var/x_to_comms = text2num(copytext(string, 1, commapos))
+				var/y_to_comms = text2num(copytext(string, commapos, textpos))
+				var/text_to_comms = copytext(string, textpos)
+				linked_master_console.CommsPing(src, x_to_comms_ping = x_to_comms, y_to_comms_ping = y_to_comms, message_to_comms_ping = text_to_comms)
+			if(signal_pulses == 0)
+				terminal_display_line("Error: Signal pulses depleted.")
 
 
 /obj/structure/terminal/signals_console/terminal_parse(str)

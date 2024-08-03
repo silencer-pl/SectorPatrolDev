@@ -379,6 +379,10 @@
 		if("missle_move")
 			round_history_current.Add("<b>PROJECTILE MOVEMENT AND DETONATION:</b><hr>")
 			return
+		if("comms_ping")
+			round_history_current.Add("Comms ping sent from <b>[log_source_to_add]</b> to coordinates ([x_to_move],[y_to_move]): [log_target_to_add]")
+			message_admins("Comms message sent from [log_source_to_add]: [log_target_to_add].")
+			return
 
 /obj/structure/shiptoship_master/proc/move_on_map(type_to_move = null, origin_x = 0, origin_y = 0, target_x = 0, target_y = 0) // Actually move the ship on grid. Will account for boudaries and "bump" ships away form them, at cost of losing all velocity. Different formulas are used for ships and projectiles, so make sure to pass the right type. For type "ship", pass ship vector as destination_x/y
 	var/selected_type = type_to_move

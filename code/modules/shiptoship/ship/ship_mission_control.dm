@@ -125,7 +125,6 @@
 					player_ship_console.talkas("New Direct Message recieved!")
 	return 1
 
-
 /obj/structure/shiptoship_master/ship_missioncontrol/proc/WriteToShipLog(shiplog_event = null, shiplog_dest_x = null, shiplog_dest_y = null)
 	var/event_to_add_ship = shiplog_event
 	var/shiplog_coordinate_x = shiplog_dest_x

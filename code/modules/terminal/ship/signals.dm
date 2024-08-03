@@ -12,6 +12,7 @@
 	var/probe_range = 3
 	var/signal_pulses = 3
 	var/obj/structure/ship_elements/probe_launcher/linked_probe_launcher
+	var/obj/structure/ship_elements/tracker_launcher/linked_tracker_launcher
 
 /obj/structure/terminal/signals_console/proc/LinkToShipMaster(master_console as obj)
 
@@ -20,6 +21,11 @@
 		for(var/obj/structure/ship_elements/probe_launcher/launcher_to_link in world)
 			if(launcher_to_link.ship_name == linked_master_console.sector_map_data["name"])
 				linked_probe_launcher = launcher_to_link
+				to_chat(world, SPAN_INFO("Probe Launcher for ship [linked_master_console.sector_map_data["id"]] loaded."))
+	if(!linked_tracker_launcher)
+		for(var/obj/structure/ship_elements/tracker_launcher/launcher_to_link in world)
+			if(launcher_to_link.ship_name == linked_master_console.sector_map_data["name"])
+				linked_tracker_launcher = launcher_to_link
 				to_chat(world, SPAN_INFO("Probe Launcher for ship [linked_master_console.sector_map_data["id"]] loaded."))
 	terminal_id = "[linked_master_console.sector_map_data["name"]][initial(terminal_id)]"
 	item_serial = "[uppertext(linked_master_console.sector_map_data["name"])][initial(item_serial)]"
@@ -60,10 +66,12 @@
 				else
 					if(!linked_probe_launcher)
 						terminal_display_line("Critical Error: Launcher tube not found.")
-					if(linked_probe_launcher.probe_loaded == 0)
-						terminal_display_line("Error: Probe not loaded.")
-					if(linked_probe_launcher.probe_loaded == 1)
-						linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
+					else
+						if(linked_probe_launcher.probe_loaded == 0)
+							terminal_display_line("Error: Probe not loaded.")
+						if(linked_probe_launcher.probe_loaded == 1)
+							INVOKE_ASYNC(linked_probe_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/probe_launcher/, LaunchContent))
+							linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
 		if("TRACK")
 			if(copytext(string, 1, 3) != " R")
 				var/commapos = findtext(string, ",")
@@ -77,7 +85,14 @@
 						if(x_to_track == null) terminal_display_line("Error: Invalid x vector.")
 						if(y_to_track == null) terminal_display_line("Error: Invalid y vector.")
 					else
-						linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
+						if(!linked_tracker_launcher)
+							terminal_display_line("Error: No tracker launcher found.")
+						else
+							if(linked_tracker_launcher.tracker_loaded == 0)
+								terminal_display_line("Error: Tracker not loaded.")
+							if(linked_tracker_launcher.tracker_loaded == 1)
+								INVOKE_ASYNC(linked_tracker_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/tracker_launcher, LaunchContent))
+								linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
 		if("COMM")
 			if(signal_pulses > 0)
 				var/commapos = findtext(string, ",")

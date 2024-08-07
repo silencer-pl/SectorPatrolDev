@@ -33,9 +33,11 @@
 	var/y_to_target_scan = target_console.linked_master_console.sector_map_data["y"] + probe_target_y
 	if(x_to_target_scan < 1 || x_to_target_scan > GLOB.sector_map_x)
 		target_console.terminal_display_line("Error: X coordinate outside of Twilight Boudary. Probe lost.")
+		target_console.usage_data["ping_uses_current"] += 1
 		return 1
 	if(y_to_target_scan < 1 || y_to_target_scan > GLOB.sector_map_x)
 		target_console.terminal_display_line("Error: Y coordinate outside of Twilight Boudary. Probe lost.")
+		target_console.usage_data["ping_uses_current"] += 1
 		return 1
 	target_console.terminal_display_line("Connection to probe established. Reading data...", TERMINAL_LOOKUP_SLEEP)
 	var/scan_boundary_x_min = BoundaryAdjust(x_to_target_scan - range, type = 1)
@@ -81,6 +83,7 @@
 			current_scan_pos_x += 1
 		current_scan_pos_x = scan_boundary_x_min
 		current_scan_pos_y += 1
+	target_console.usage_data["ping_uses_current"] += 1
 	return 1
 
 
@@ -107,11 +110,11 @@
 	var/obj/structure/terminal/signals_console/target_console = incoming_console
 	if(x_to_comms_ping < 1 || x_to_comms_ping > GLOB.sector_map_x)
 		target_console.terminal_display_line("Error: X coordinate out of bounds. Message not sent. Pulse expended.")
-		target_console.signal_pulses -= 1
+		target_console.usage_data["signal_pulses_current"] += 1
 		return 1
 	if(y_to_comms_ping < 1 || y_to_comms_ping > GLOB.sector_map_y)
 		target_console.terminal_display_line("Error: Y coordinate out of bounds. Message not sent. Pulse expended.")
-		target_console.signal_pulses -= 1
+		target_console.usage_data["signal_pulses_current"] += 1
 		return 1
 	target_console.terminal_display_line("Sending comms pulse to coordinates ([x_to_comms_ping],[y_to_comms_ping])")
 	log_round_history(event = "comms_ping", log_source = sector_map_data["name"], log_target = message_to_comms_ping, log_dest_x = x_to_comms_ping, log_dest_y = y_to_comms_ping)
@@ -210,9 +213,11 @@
 	var/y_to_target_track = target_console.linked_master_console.sector_map_data["y"] + track_target_y
 	if(x_to_target_track < 1 || x_to_target_track > GLOB.sector_map_x)
 		target_console.terminal_display_line("Error: X coordinate outside of Twilight Boudary. Tracker lost.")
+		target_console.usage_data["tracker_uses_current"] += 1
 		return 1
 	if(y_to_target_track < 1 || y_to_target_track > GLOB.sector_map_x)
 		target_console.terminal_display_line("Error: Y coordinate outside of Twilight Boudary. Tracker lost.")
+		target_console.usage_data["tracker_uses_current"] += 1
 		return 1
 	if(sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"] != "none")
 		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"]) == 0)
@@ -221,9 +226,11 @@
 				tracking_list[TrackerCheck()]["y"] = y_to_target_track
 				target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
 				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["ship"]["id_tag"]
+				target_console.usage_data["tracker_uses_current"] += 1
 				return 1
 			else
 				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID. Tracker Lost.")
+				target_console.usage_data["tracker_uses_current"] += 1
 				return 1
 	if(sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"] != "none")
 		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"]) == 0)
@@ -232,12 +239,15 @@
 				tracking_list[TrackerCheck()]["y"] = y_to_target_track
 				target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
 				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"]
+				target_console.usage_data["tracker_uses_current"] += 1
 				return 1
 			else
 				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID.")
+				target_console.usage_data["tracker_uses_current"] += 1
 				return 1
 	else
 		target_console.terminal_display_line("Error: No entity to track detected. Tracker lost.")
+		target_console.usage_data["tracker_uses_current"] += 1
 		return 1
 
 

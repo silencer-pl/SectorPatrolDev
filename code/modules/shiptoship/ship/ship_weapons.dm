@@ -9,6 +9,7 @@
 	icon_state = "default"
 	var/missile_type
 	var/warhead_type
+	var/element_value = 0
 
 /obj/structure/ship_elements/missile_ammo/update_icon()
 	if(missile_type)
@@ -40,44 +41,6 @@
 	icon_state = "secondary_[ammo_type]"
 	. = ..()
 
-/obj/structure/ship_elements/primer_lever/primary
-	name = "primary cannon priming lever"
-	desc = "A firm looking lever"
-	desc_lore = "The OV-PST made weapons need to \"prime\" is a different process than priming conventional weaponry and involves conversion of data and activation of special LD trackers that let the PST see the projectile, but the end effect is the same - once primed, the weapon must be fired to clear it."
-	icon = 'icons/sectorpatrol/ship/switches.dmi'
-	icon_state = "lever"
-	anchored = TRUE
-	density = FALSE
-	opacity = FALSE
-	unacidable = TRUE
-	unslashable = TRUE
-	var/obj/structure/ship_elements/primary_cannon/paired_device
-
-/obj/structure/ship_elements/primer_lever/primary/proc/animate_use()
-	icon_state = "lever_use"
-	update_icon()
-	sleep(12)
-	icon_state = "lever"
-	update_icon()
-
-/obj/structure/ship_elements/primer_lever/primary/Initialize(mapload, ...)
-	for (var/obj/structure/ship_elements/primary_cannon/cannon_to_pair in get_area(src))
-		if(cannon_to_pair != null) paired_device = cannon_to_pair
-	. = ..()
-
-/obj/structure/ship_elements/primer_lever/primary/attack_hand(mob/user)
-	if(!paired_device || paired_device.loaded_projectile["warhead"] == "none" || paired_device.loaded_projectile["missile"] == "none")
-		to_chat(usr, SPAN_WARNING("The lever does not budge."))
-		return
-	else
-		to_chat(usr, SPAN_INFO("You push the priming lever."))
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/ship_elements/primer_lever/primary/, animate_use))
-		sleep(5)
-		INVOKE_ASYNC(paired_device, TYPE_PROC_REF(/obj/structure/ship_elements/primary_cannon, animate_use))
-		sleep(20)
-		paired_device.talkas("Projectile primed. Cannon ready to fire.")
-	. = ..()
-
 /obj/structure/ship_elements/primary_cannon
 	name = "\improper PST Type-A Prototype Cannon"
 	desc = "A complex piece of heavy machinery without any clear indications how to use it, only warning labels. Complete with a tray that extends from the cannon itself."
@@ -94,9 +57,12 @@
 	unacidable = TRUE
 	var/weapon_fired = 0
 	var/list/loaded_projectile = list("missile" = "none",
+		"missile_open" = 0,
 		"warhead" = "none",
+		"warhead_open" = 0,
 		"speed" = 0,
 		"payload" = 0,
+		"factor" = 0,
 		"loaded" = 0,
 		)
 
@@ -146,6 +112,9 @@
 			return
 
 /obj/structure/ship_elements/primary_cannon/attackby(obj/item/I, mob/user)
+	if(!istype(I, /obj/item/powerloader_clamp) || !HAS_TRAIT(I, TRAIT_TOOL_MULTITOOL) || !HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
+		to_chat(usr, SPAN_WARNING("You have no idea how to use these together."))
+		return
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
 		if(!PC.linked_powerloader)
@@ -164,6 +133,7 @@
 				if(loaded_projectile["missile"] == "none")
 					to_chat(user, SPAN_NOTICE("You load \the [AmmoToInsert] into \the [src]."))
 					loaded_projectile["missile"] = AmmoToInsert.missile_type
+					loaded_projectile["speed"] = AmmoToInsert.element_value
 					qdel(AmmoToInsert)
 			else
 				if(AmmoToInsert.warhead_type != null)
@@ -173,6 +143,7 @@
 					if(loaded_projectile["warhead"] == "none")
 						to_chat(user, SPAN_NOTICE("You load \the [AmmoToInsert] into \the [src]."))
 						loaded_projectile["warhead"] = AmmoToInsert.missile_type
+						loaded_projectile["payload"] = AmmoToInsert.element_value
 						qdel(AmmoToInsert)
 			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 			PC.loaded = null
@@ -182,19 +153,138 @@
 			if(loaded_projectile["missile"] != "none")
 				var/obj/structure/ship_elements/missile_ammo/AmmoToGrab = new (src)
 				AmmoToGrab.missile_type = loaded_projectile["missile"]
+				AmmoToGrab.element_value = loaded_projectile["speed"]
 				AmmoToGrab.update_icon()
 				loaded_projectile["missile"] = "none"
+				loaded_projectile["missile_open"] = 0
+				loaded_projectile["speed"] = 0
 				PC.grab_object(user, AmmoToGrab, "big_crate", 'sound/machines/hydraulics_2.ogg')
 			else if(loaded_projectile["warhead"] != "none")
 				var/obj/structure/ship_elements/missile_ammo/AmmoToGrab = new (src)
 				AmmoToGrab.warhead_type = loaded_projectile["warhead"]
+				AmmoToGrab.element_value = loaded_projectile["payload"]
 				AmmoToGrab.update_icon()
 				loaded_projectile["warhead"] = "none"
+				loaded_projectile["warhead_open"] = 0
+				loaded_projectile["payload"] = 0
 				PC.grab_object(user, AmmoToGrab, "big_crate", 'sound/machines/hydraulics_2.ogg')
 			update_icon()
 			return
+	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
+		if(usr.a_intent == INTENT_HELP || usr.a_intent == INTENT_DISARM)
+			if(loaded_projectile["warhead"] == "none")
+				to_chat(usr, SPAN_WARNING("There is no warhead to open in this tray."))
+				return
+			if(loaded_projectile["warhead"] != "none")
+				playsound(src, 'sound/items/Screwdriver2.ogg')
+				if(loaded_projectile["warhead_open"] == 0)
+					to_chat(usr, SPAN_INFO("You open a small hatch on the warhead, exposing a connection port."))
+					loaded_projectile["warhead_open"] = 1
+					return
+				if(loaded_projectile["warhead_open"] == 1)
+					to_chat(usr, SPAN_INFO("You close the hatch on the warhead."))
+					loaded_projectile["warhead_open"] = 0
+					return
+		if(usr.a_intent == INTENT_GRAB || usr.a_intent == INTENT_HARM)
+			if(loaded_projectile["missile"] == "none")
+				to_chat(usr, SPAN_WARNING("There is no missile to open in this tray."))
+				return
+			if(loaded_projectile["missile"] != "none")
+				playsound(src, 'sound/items/Screwdriver2.ogg')
+				if(loaded_projectile["missile_open"] == 0)
+					to_chat(usr, SPAN_INFO("You open a small hatch on the missile, exposing a connection port."))
+					loaded_projectile["missile_open"] = 1
+					return
+				if(loaded_projectile["missile_open"] == 1)
+					to_chat(usr, SPAN_INFO("You close the hatch on the missile."))
+					loaded_projectile["missile_open"] = 0
+					return
+	if(HAS_TRAIT(I, TRAIT_TOOL_MULTITOOL))
+		if(usr.a_intent == INTENT_HELP || usr.a_intent == INTENT_DISARM)
+			if(loaded_projectile["warhead"] == "none")
+				to_chat(usr, SPAN_WARNING("There is no warhead in this tray."))
+				return
+			if(loaded_projectile["warhead"] != "none")
+				if(loaded_projectile["warhead_open"] == 0)
+					to_chat(usr, SPAN_WARNING("You need to open the hatch with a screwdriver first."))
+					return
+				if(loaded_projectile["warhead_open"] == 1)
+					var/value_to_adjust = tgui_input_number(usr, "Select new PAYLOAD value. Each PAYLOAD point is worth 5 SPEED points. Current balance: [loaded_projectile["factor"]].", "PAYLOAD value", loaded_projectile["payload"], timeout = 0, integer_only = 1)
+					loaded_projectile["factor"] -= (value_to_adjust - loaded_projectile["payload"])
+					loaded_projectile["payload"] = value_to_adjust
+					playsound(usr, 'sound/machines/twobeep.ogg')
+					to_chat(usr, SPAN_INFO("[value_to_adjust] set. Factor balance: [loaded_projectile["factor"]]"))
+					return
+		if(usr.a_intent == INTENT_GRAB || usr.a_intent == INTENT_HARM)
+			if(loaded_projectile["missile"] == "none")
+				to_chat(usr, SPAN_WARNING("There is no missile in this tray."))
+				return
+			if(loaded_projectile["missile"] != "none")
+				if(loaded_projectile["missile_open"] == 0)
+					to_chat(usr, SPAN_WARNING("You need to open the hatch with a screwdriver first."))
+					return
+				if(loaded_projectile["missile_open"] == 1)
+					var/value_to_adjust = tgui_input_number(usr, "Select new SPEED value. Each PAYLOAD point is worth 5 SPEED points. Current balance: [loaded_projectile["factor"]].", "SPEED value", loaded_projectile["speed"], timeout = 0, integer_only = 1)
+					if(((value_to_adjust - loaded_projectile["payload"]) / 5) >= 0)
+						loaded_projectile["factor"] -= ceil((value_to_adjust - loaded_projectile["payload"]) / 5)
+					else
+						loaded_projectile["factor"] -= floor((value_to_adjust - loaded_projectile["payload"]) / 5)
+					loaded_projectile["speed"] = value_to_adjust
+					playsound(usr, 'sound/machines/twobeep.ogg')
+					to_chat(usr, SPAN_INFO("[value_to_adjust] set. Factor balance: [loaded_projectile["factor"]]"))
+					return
+
+/obj/structure/ship_elements/primer_lever/primary
+	name = "primary cannon priming lever"
+	desc = "A firm looking lever"
+	desc_lore = "The OV-PST made weapons need to \"prime\" is a different process than priming conventional weaponry and involves conversion of data and activation of special LD trackers that let the PST see the projectile, but the end effect is the same - once primed, the weapon must be fired to clear it."
+	icon = 'icons/sectorpatrol/ship/switches.dmi'
+	icon_state = "lever"
+	anchored = TRUE
+	density = FALSE
+	opacity = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	var/obj/structure/ship_elements/primary_cannon/paired_device
+
+/obj/structure/ship_elements/primer_lever/primary/proc/animate_use()
+	icon_state = "lever_use"
+	update_icon()
+	sleep(12)
+	icon_state = "lever"
+	update_icon()
+
+/obj/structure/ship_elements/primer_lever/primary/Initialize(mapload, ...)
+	for (var/obj/structure/ship_elements/primary_cannon/cannon_to_pair in get_area(src))
+		if(cannon_to_pair != null) paired_device = cannon_to_pair
+	. = ..()
+
+/obj/structure/ship_elements/primer_lever/primary/attack_hand(mob/user)
+	if(!paired_device || paired_device.loaded_projectile["warhead"] == "none" || paired_device.loaded_projectile["missile"] == "none")
+		to_chat(usr, SPAN_WARNING("The lever does not budge."))
+		return
 	else
-		. = ..()
+		to_chat(usr, SPAN_INFO("You push the priming lever."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/ship_elements/primer_lever/primary/, animate_use))
+		if(paired_device.loaded_projectile["warhead_open"] == 1)
+			playsound(paired_device, 'sound/machines/warning-buzzer.ogg')
+			paired_device.talkas("Warning: Warhead hatch open. Priming aborted.")
+			return
+		if(paired_device.loaded_projectile["missile_open"] == 1)
+			playsound(paired_device, 'sound/machines/warning-buzzer.ogg')
+			paired_device.talkas("Warning: Missile hatch open. Priming aborted.")
+			return
+		if(paired_device.loaded_projectile["factor"] != 0 || paired_device.loaded_projectile["speed"] <= 0 || paired_device.loaded_projectile["payload"] <= 0)
+			playsound(paired_device, 'sound/machines/warning-buzzer.ogg')
+			paired_device.talkas("Warning: Missle misconfigured. Priming aborted.")
+			return
+		else
+			paired_device.loaded_projectile["loaded"] = 1
+			sleep(5)
+			INVOKE_ASYNC(paired_device, TYPE_PROC_REF(/obj/structure/ship_elements/primary_cannon, animate_use))
+			sleep(20)
+			paired_device.talkas("Projectile primed. Cannon ready to fire.")
+			return
 
 /obj/structure/ship_elements/secondary_cannon
 	name = "\improper PST Type-S Prototype Cannon"
@@ -235,6 +325,19 @@
 		icon_state = "secondary_unloaded"
 		return
 
+/obj/structure/ship_elements/secondary_cannon/proc/animate_use()
+	switch(icon_state)
+		if("secondary_unloaded")
+			update_icon()
+			sleep(5)
+			update_icon()
+			return
+		if("secondary_loaded")
+			update_icon()
+			sleep(5)
+			update_icon()
+			return
+
 /obj/structure/ship_elements/secondary_cannon/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/ship_elements/secondary_ammo))
 		to_chat(SPAN_WARNING("You have no idea how to use these two together."))
@@ -269,5 +372,43 @@
 				usr.put_in_active_hand(AmmoToGrab)
 				to_chat(usr, SPAN_INFO("You remove [AmmoToGrab] from the cannon."))
 				loaded_projectile["type"] = "none"
+				return
+
+/obj/structure/ship_elements/primer_lever/secondary
+	name = "primary cannon priming lever"
+	desc = "A firm looking lever"
+	desc_lore = "The OV-PST made weapons need to \"prime\" is a different process than priming conventional weaponry and involves conversion of data and activation of special LD trackers that let the PST see the projectile, but the end effect is the same - once primed, the weapon must be fired to clear it."
+	icon = 'icons/sectorpatrol/ship/switches.dmi'
+	icon_state = "lever"
+	anchored = TRUE
+	density = FALSE
+	opacity = FALSE
+	unacidable = TRUE
+	unslashable = TRUE
+	var/obj/structure/ship_elements/secondary_cannon/paired_device
+
+/obj/structure/ship_elements/primer_lever/secondary/proc/animate_use()
+	icon_state = "lever_use"
+	update_icon()
+	sleep(12)
+	icon_state = "lever"
+	update_icon()
+
+/obj/structure/ship_elements/primer_lever/secondary/Initialize(mapload, ...)
+	for (var/obj/structure/ship_elements/secondary_cannon/cannon_to_pair in get_area(src))
+		if(cannon_to_pair != null) paired_device = cannon_to_pair
 	. = ..()
 
+/obj/structure/ship_elements/primer_lever/secondary/attack_hand(mob/user)
+	if(!paired_device || paired_device.loaded_projectile["type"] == "none")
+		to_chat(usr, SPAN_WARNING("The lever does not budge."))
+		return
+	else
+		to_chat(usr, SPAN_INFO("You push the priming lever."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/structure/ship_elements/primer_lever/secondary/, animate_use))
+		paired_device.loaded_projectile["loaded"] = 1
+		sleep(5)
+		INVOKE_ASYNC(paired_device, TYPE_PROC_REF(/obj/structure/ship_elements/secondary_cannon, animate_use))
+		sleep(20)
+		paired_device.talkas("Projectile primed. Cannon ready to fire.")
+	. = ..()

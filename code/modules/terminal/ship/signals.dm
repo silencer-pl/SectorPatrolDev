@@ -10,7 +10,14 @@
 	terminal_id = "_signals_control"
 	var/obj/structure/shiptoship_master/ship_missioncontrol/linked_master_console
 	var/probe_range = 3
-	var/signal_pulses = 3
+	var/list/usage_data = list(
+		"ping_uses" = 3,
+		"ping_uses_current" = 0,
+		"signal_pulses" = 3,
+		"signal_pulses_current" = 0,
+		"tracker_uses" = 1,
+		"tracker_uses_current" = 0,
+		)
 	var/obj/structure/ship_elements/probe_launcher/linked_probe_launcher
 	var/obj/structure/ship_elements/tracker_launcher/linked_tracker_launcher
 
@@ -53,48 +60,54 @@
 				else
 					terminal_display_line("Error: HELP: [string] command not found. Use HELP with no arguments for a list of commands.")
 		if("PING")
-			var/commapos = findtext(string, ",")
-			if(commapos == 0)
-				terminal_display_line("Error: Missing comma separator.")
-			else
-				commapos += 1
-				var/x_to_scan = text2num(copytext(string, 1, commapos))
-				var/y_to_scan = text2num(copytext(string, commapos))
-				if(x_to_scan == null || y_to_scan == null)
-					if(x_to_scan == null) terminal_display_line("Error: Invalid x vector.")
-					if(y_to_scan == null) terminal_display_line("Error: Invalid y vector.")
-				else
-					if(!linked_probe_launcher)
-						terminal_display_line("Critical Error: Launcher tube not found.")
-					else
-						if(linked_probe_launcher.probe_loaded == 0)
-							terminal_display_line("Error: Probe not loaded.")
-						if(linked_probe_launcher.probe_loaded == 1)
-							INVOKE_ASYNC(linked_probe_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/probe_launcher/, LaunchContent))
-							linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
-		if("TRACK")
-			if(copytext(string, 1, 3) != " R")
+			if(usage_data["ping_uses_current"] < usage_data["ping_uses"])
 				var/commapos = findtext(string, ",")
 				if(commapos == 0)
 					terminal_display_line("Error: Missing comma separator.")
 				else
 					commapos += 1
-					var/x_to_track = text2num(copytext(string, 1, commapos))
-					var/y_to_track = text2num(copytext(string, commapos))
-					if(x_to_track == null || y_to_track == null)
-						if(x_to_track == null) terminal_display_line("Error: Invalid x vector.")
-						if(y_to_track == null) terminal_display_line("Error: Invalid y vector.")
+					var/x_to_scan = text2num(copytext(string, 1, commapos))
+					var/y_to_scan = text2num(copytext(string, commapos))
+					if(x_to_scan == null || y_to_scan == null)
+						if(x_to_scan == null) terminal_display_line("Error: Invalid x vector.")
+						if(y_to_scan == null) terminal_display_line("Error: Invalid y vector.")
 					else
-						if(!linked_tracker_launcher)
-							terminal_display_line("Error: No tracker launcher found.")
+						if(!linked_probe_launcher)
+							terminal_display_line("Critical Error: Launcher tube not found.")
 						else
-							if(linked_tracker_launcher.tracker_loaded == 0)
-								terminal_display_line("Error: Tracker not loaded.")
-							if(linked_tracker_launcher.tracker_loaded == 1)
-								INVOKE_ASYNC(linked_tracker_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/tracker_launcher, LaunchContent))
-								linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
+							if(linked_probe_launcher.probe_loaded == 0)
+								terminal_display_line("Error: Probe not loaded.")
+							if(linked_probe_launcher.probe_loaded == 1)
+								INVOKE_ASYNC(linked_probe_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/probe_launcher/, LaunchContent))
+								linked_master_console.ScannerPing(src, probe_target_x = x_to_scan, probe_target_y = y_to_scan, range = probe_range)
+			if(usage_data["ping_uses_current"] >= usage_data["ping_uses"])
+				terminal_display_line("Error: Out of scanner pings in this interval.")
+		if("TRACK")
+			if(usage_data["tracker_uses_current"] < usage_data["tracker_uses"])
+				if(copytext(string, 1, 3) != " R")
+					var/commapos = findtext(string, ",")
+					if(commapos == 0)
+						terminal_display_line("Error: Missing comma separator.")
+					else
+						commapos += 1
+						var/x_to_track = text2num(copytext(string, 1, commapos))
+						var/y_to_track = text2num(copytext(string, commapos))
+						if(x_to_track == null || y_to_track == null)
+							if(x_to_track == null) terminal_display_line("Error: Invalid x vector.")
+							if(y_to_track == null) terminal_display_line("Error: Invalid y vector.")
+						else
+							if(!linked_tracker_launcher)
+								terminal_display_line("Error: No tracker launcher found.")
+							else
+								if(linked_tracker_launcher.tracker_loaded == 0)
+									terminal_display_line("Error: Tracker not loaded.")
+								if(linked_tracker_launcher.tracker_loaded == 1)
+									INVOKE_ASYNC(linked_tracker_launcher, TYPE_PROC_REF(/obj/structure/ship_elements/tracker_launcher, LaunchContent))
+									linked_master_console.TrackerPing(src, track_target_x = x_to_track, track_target_y = y_to_track)
+			if(usage_data["tracker_uses_current"] >= usage_data["tracker_uses"])
+				terminal_display_line("Error: Out of tracker uses in this interval.")
 		if("COMM")
-			if(signal_pulses > 0)
+			if(usage_data["signal_pulses_current"] < usage_data["signal_pulses"])
 				var/commapos = findtext(string, ",")
 				if(commapos == 0)
 					terminal_display_line("Error: Missing comma separator.")
@@ -105,9 +118,8 @@
 				var/y_to_comms = text2num(copytext(string, commapos, textpos))
 				var/text_to_comms = copytext(string, textpos)
 				linked_master_console.CommsPing(src, x_to_comms_ping = x_to_comms, y_to_comms_ping = y_to_comms, message_to_comms_ping = text_to_comms)
-			if(signal_pulses == 0)
-				terminal_display_line("Error: Signal pulses depleted.")
-
+			if(usage_data["signal_pulses_current"] >= usage_data["signal_pulses"])
+				terminal_display_line("Error: Signal pulses depleted in this interval.")
 
 /obj/structure/terminal/signals_console/terminal_parse(str)
 	var/string_to_parse = uppertext(str)

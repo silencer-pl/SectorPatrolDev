@@ -52,13 +52,13 @@
 		target_console.terminal_display_line("Hull Integrity Readout: [sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["HP"] - (sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["hull"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["weapons"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["systems"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["engines"])], Shield: [sector_map[x_to_target_scan][y_to_target_scan]["ship"]["shield"]]")
 		PingLog(entity_type = 1, pos_x = x_to_target_scan, pos_y = y_to_target_scan ,name = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["name"], type = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["type"], target_x = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["x"], target_y = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["y"], speed = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["speed"], hp = (sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["HP"] - (sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["hull"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["weapons"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["systems"] + sector_map[x_to_target_scan][y_to_target_scan]["ship"]["damage"]["engines"])), faction = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["faction"])
 		if(sector_map[x_to_target_scan][y_to_target_scan]["ship"]["status"] == "player") target_console.terminal_display_line("Upsilon-Pythia Node detected. This is an OV-PST Test Crew vessel.")
-	if(sector_map[x_to_target_scan][y_to_target_scan]["missle"]["id_tag"] != "none")
+	if(sector_map[x_to_target_scan][y_to_target_scan]["missile"]["id_tag"] != "none")
 		target_console.terminal_display_line("Projectile leapfrog trace detected in probe sector. Querrying Pythia.", TERMINAL_LOOKUP_SLEEP)
-		target_console.terminal_display_line("Projectile ID: \"[sector_map[x_to_target_scan][y_to_target_scan]["missle"]["type"]]\" relative velocity:[sector_map[x_to_target_scan][y_to_target_scan]["missle"]["speed"]].")
-		target_console.terminal_display_line("Warhead type: [sector_map[x_to_target_scan][y_to_target_scan]["missle"]["warhead"]["type"]], Payload: [sector_map[x_to_target_scan][y_to_target_scan]["missle"]["warhead"]["payload"]].")
-		target_console.terminal_display_line("Based on readout, the projectiles target is: ([sector_map[x_to_target_scan][y_to_target_scan]["missle"]["target"]["x"]],[sector_map[x_to_target_scan][y_to_target_scan]["missle"]["target"]["y"]]])")
-		PingLog(entity_type = 2, pos_x = x_to_target_scan, pos_y = y_to_target_scan, name = sector_map[x_to_target_scan][y_to_target_scan]["missle"]["type"], type = sector_map[x_to_target_scan][y_to_target_scan]["missle"]["warhead"]["type"], hp = sector_map[x_to_target_scan][y_to_target_scan]["missle"]["warhead"]["payload"], target_x = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["x"], target_y = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["y"], speed = sector_map[x_to_target_scan][y_to_target_scan]["missle"]["speed"])
-		if(sector_map[x_to_target_scan][y_to_target_scan]["missle"]["target"]["tag"] != "none") target_console.terminal_display_line("Missle is homing onto a specific target and may change its vector.")
+		target_console.terminal_display_line("Projectile ID: \"[sector_map[x_to_target_scan][y_to_target_scan]["missile"]["type"]]\" relative velocity:[sector_map[x_to_target_scan][y_to_target_scan]["missile"]["speed"]].")
+		target_console.terminal_display_line("Warhead type: [sector_map[x_to_target_scan][y_to_target_scan]["missile"]["warhead"]["type"]], Payload: [sector_map[x_to_target_scan][y_to_target_scan]["missile"]["warhead"]["payload"]].")
+		target_console.terminal_display_line("Based on readout, the projectiles target is: ([sector_map[x_to_target_scan][y_to_target_scan]["missile"]["target"]["x"]],[sector_map[x_to_target_scan][y_to_target_scan]["missile"]["target"]["y"]]])")
+		PingLog(entity_type = 2, pos_x = x_to_target_scan, pos_y = y_to_target_scan, name = sector_map[x_to_target_scan][y_to_target_scan]["missile"]["type"], type = sector_map[x_to_target_scan][y_to_target_scan]["missile"]["warhead"]["type"], hp = sector_map[x_to_target_scan][y_to_target_scan]["missile"]["warhead"]["payload"], target_x = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["x"], target_y = sector_map[x_to_target_scan][y_to_target_scan]["ship"]["vector"]["y"], speed = sector_map[x_to_target_scan][y_to_target_scan]["missile"]["speed"])
+		if(sector_map[x_to_target_scan][y_to_target_scan]["missile"]["target"]["tag"] != "none") target_console.terminal_display_line("missile is homing onto a specific target and may change its vector.")
 	while(current_scan_pos_y <= scan_boundary_y_max)
 		while(current_scan_pos_x <= scan_boundary_x_max)
 			if((current_scan_pos_x == x_to_target_scan) && (current_scan_pos_y == y_to_target_scan))
@@ -72,11 +72,11 @@
 					target_console.terminal_display_line("Sound consistant with ship engine movement.")
 					target_console.terminal_display_line("Bearing: [ReturnBearing(sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["x"], sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["y"])], Velocity: [sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["x"] + sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["y"]]")
 					PingLog(entity_type = 3, pos_x = current_scan_pos_x, pos_y = current_scan_pos_y, type = ReturnBearing(sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["x"], sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["y"]), speed = sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["x"] + sector_map[current_scan_pos_x][current_scan_pos_y]["ship"]["vector"]["y"])
-				if(sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["id_tag"] != "none")
+				if(sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["id_tag"] != "none")
 					if(saved_len == target_console.terminal_buffer.len) target_console.terminal_display_line("Coordinate: ([current_scan_pos_x]),([current_scan_pos_y]) - CONTACT")
 					target_console.terminal_display_line("Contact. Projectile leapfrog trace detected.")
-					target_console.terminal_display_line("Bearing: [ReturnBearing((sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["target"]["x"] - current_scan_pos_x), (sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["target"]["y"] - current_scan_pos_y))], Velocity: [sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["speed"]]")
-					PingLog(entity_type = 4, pos_x = current_scan_pos_x, pos_y = current_scan_pos_y, type = ReturnBearing((sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["target"]["x"] - current_scan_pos_x), (sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["target"]["y"] - current_scan_pos_y)), speed = sector_map[current_scan_pos_x][current_scan_pos_y]["missle"]["speed"])
+					target_console.terminal_display_line("Bearing: [ReturnBearing((sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["target"]["x"] - current_scan_pos_x), (sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["target"]["y"] - current_scan_pos_y))], Velocity: [sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["speed"]]")
+					PingLog(entity_type = 4, pos_x = current_scan_pos_x, pos_y = current_scan_pos_y, type = ReturnBearing((sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["target"]["x"] - current_scan_pos_x), (sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["target"]["y"] - current_scan_pos_y)), speed = sector_map[current_scan_pos_x][current_scan_pos_y]["missile"]["speed"])
 				if(saved_len == target_console.terminal_buffer.len) target_console.terminal_display_line("Coordinate: ([current_scan_pos_x]),([current_scan_pos_y]): No contacts.")
 			current_scan_pos_x += 1
 		current_scan_pos_x = scan_boundary_x_min
@@ -140,10 +140,10 @@
 			local_round_log.Add("Engine noise related to <b>ship movement detected in Sector [SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>.")
 			if(local_round_log_moves.Find("<b>[SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>") == 0) local_round_log_moves.Add("<b>[SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>")
 			return
-		if("missle_collision")
+		if("missile_collision")
 			local_round_log.Add("Detonation detected after mulitple Projectile movement traces in Sector [SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]")
 			return
-		if("missle_move","warhead_miss","warhead_homing")
+		if("missile_move","warhead_miss","warhead_homing")
 			local_round_log.Add("Projectile leapfrog trace in Sector <b>[SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>.")
 			if(local_round_log_moves.Find("<b>[SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>") == 0) local_round_log_moves.Add("<b>[SectorConversion(shiplog_coordinate_x,shiplog_coordinate_y)]</b>")
 			return
@@ -225,13 +225,13 @@
 			else
 				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID. Tracker Lost.")
 				return 1
-	if(sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"] != "none")
-		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]) == 0)
+	if(sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"] != "none")
+		if(TrackerCheck(id = sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"]) == 0)
 			if(TrackerCheck() != 0)
 				tracking_list[TrackerCheck()]["x"] = x_to_target_track
 				tracking_list[TrackerCheck()]["y"] = y_to_target_track
 				target_console.terminal_display_line("Success. Tracker ID [TrackerCheck()] installed on ship entity at ([x_to_target_track],[y_to_target_track])")
-				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missle"]["id_tag"]
+				tracking_list[TrackerCheck()]["id_tag"] = sector_map[x_to_target_track][y_to_target_track]["missile"]["id_tag"]
 				return 1
 			else
 				target_console.terminal_display_line("Error: No free trackers. Use TRACKER R to terminate a tracker by ID.")

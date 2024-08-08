@@ -211,7 +211,7 @@
 		update_icon()
 		playsound(src, 'sound/machines/windowdoor.ogg', 25)
 		emoteas("slides out of its socket and opens a side panel.", 1)
-		sleep(5)
+		sleep(9)
 		icon_state = "damage_3"
 		update_icon()
 		return
@@ -220,7 +220,7 @@
 		update_icon()
 		playsound(src, 'sound/machines/windowdoor.ogg', 25)
 		emoteas("slides back into its socket.", 1)
-		sleep(5)
+		sleep(9)
 		icon_state = "damage_1"
 		update_icon()
 		return

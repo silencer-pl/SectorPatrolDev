@@ -1,6 +1,6 @@
 /obj/structure/ship_elements/damage_control_element
 	name = "Liquid Data synchronization coil"
-	desc = "A metal tube with complex electronics inside."
+	desc = "A device hidden in a circular slot in the hull."
 	desc_lore = "One of the cornerstones of the OV-PST based Mission Control system, these systems supposedly contain replacement packets for the ships various critical systems which somehow manage to \"centralize\" all damage done to the ship in these central points, allowing for easy damage control and repairs. Any documentation available is notoriously vague about how this process is possible and very casually skirts over the multiple laws of physics this seems to fly in the face of."
 	icon = 'icons/sectorpatrol/ship/damage_control.dmi'
 	icon_state = "damage_0"
@@ -18,6 +18,14 @@
 	var/repair_current_step
 	var/repair_damaged = 0
 	var/repair_in_use
+
+/obj/structure/ship_elements/damage_control_element/update_icon()
+	. = ..()
+	switch(icon_state)
+		if("damage_1","damage_2","damage_5")
+			desc = initial(desc)
+		if("damage_3","damage_4")
+			desc = "A long metal tube concealing a metal rig with multiple racks, with each rack storing a board or mechanical element that either needs servicing or has recently been fixed."
 
 /obj/structure/ship_elements/damage_control_element/proc/repair_generate_steps()
 

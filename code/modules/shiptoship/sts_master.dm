@@ -637,10 +637,11 @@
 		rem_entity(type = "coord", id = "ship", coord_x = x_to_destroy, coord_y = y_to_destroy)
 		return
 
-/obj/structure/shiptoship_master/proc/ProcessSplashDamage(ammount = 0, x = 0, y = 0)
+/obj/structure/shiptoship_master/proc/ProcessSplashDamage(ammount = 0, x = 0, y = 0, counter = 0)
 	var/ship_splash_damage_payload = ammount
 	var/x_to_splash_damage = x
 	var/y_to_splash_damage = y
+	var/output_counter = 0
 	if(ship_splash_damage_payload == 0||x_to_splash_damage == 0||y_to_splash_damage == 0) return
 	var/x_to_splash_damage_max = BoundaryAdjust(value = (x_to_splash_damage + (ship_splash_damage_payload - 1)), type = 2)
 	var/x_to_splash_damage_min = BoundaryAdjust(value = (x_to_splash_damage - (ship_splash_damage_payload + 1)), type = 1)
@@ -648,6 +649,7 @@
 	var/y_to_splash_damage_min = BoundaryAdjust(value = (y_to_splash_damage - (ship_splash_damage_payload + 1)), type = 1)
 	if(sector_map[x_to_splash_damage][y_to_splash_damage]["ship"]["id_tag"] != "none")
 		ProcessDamage(ammount = ship_splash_damage_payload, x = x_to_splash_damage, y = y_to_splash_damage)
+		if(counter == 1) output_counter += 1
 	var/current_x_splash = x_to_splash_damage_min
 	var/current_y_splash = y_to_splash_damage_min
 	while(current_x_splash < x_to_splash_damage_max)
@@ -656,12 +658,15 @@
 			if(damage_to_splash > 0)
 				if(sector_map[current_x_splash][current_y_splash]["ship"]["id_tag"] != "none")
 					ProcessDamage(ammount = damage_to_splash, x = current_x_splash, y = current_y_splash)
+					if(counter == 1) output_counter += 1
 				if(sector_map[current_x_splash][current_y_splash]["missile"]["id_tag"] != "none")
 					log_round_history(event = "missile_hit_splash", log_source = "[sector_map[current_x_splash][current_y_splash]["missile"]["type"]] - [sector_map[current_x_splash][current_y_splash]["missile"]["id_tag"]]")
 					rem_entity(type = "coord", id = "missile", coord_x = current_x_splash, coord_y = current_y_splash)
+					if(counter == 1) output_counter += 1
 			current_y_splash += 1
 		current_x_splash += 1
-	return 1
+	if (counter == 0) return 1
+	if (counter == 1) return output_counter
 
 
 /obj/structure/shiptoship_master/proc/ProcessDamage(ammount = 0, x = 0, y = 0)

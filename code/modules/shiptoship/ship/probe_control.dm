@@ -4,7 +4,6 @@
 	desc_lore = "EYE-7 probes are designed to interface with the OV-PST's unique battlefield overview system and provide a direct, grid-based feed of an area of operations to all ships linked to the PST's so called Mission Control system. The probes effectively provide a focusing point for the stations' unique artificial intelligence that allows it to feed precise, position-based information which gives unprecedented battlefield orientation capabilities compared to currently used technology."
 	icon = 'icons/sectorpatrol/ship/probe.dmi'
 	icon_state = "probe"
-	var/ship_id = "none"
 	flags_item = NOBLUDGEON
 
 /obj/structure/ship_elements/probe_launcher
@@ -41,13 +40,12 @@
 				return
 	return
 
-/obj/item/ship_tacker
+/obj/item/ship_tracker
 	name = "PHA-1 type tracker device"
 	desc = "A drone sized device encased in polymer glass with slightly glowing, greenish electronic parts visible inside."
 	desc_lore = "PHA-1 Trackers are EYE-7 probes that have undergone further modification and integration into the PST's systems and offer a permanent window for the Mission Control system to any entity they manage to attach themselves to. This means that while they do not feed any other information, these devices will always feed their location back to the system, allowing for live tracking."
 	icon = 'icons/sectorpatrol/ship/probe.dmi'
 	icon_state = "tracker"
-	var/ship_id = "none"
 	flags_item = NOBLUDGEON
 
 /obj/structure/ship_elements/tracker_launcher
@@ -68,10 +66,10 @@
 	tracker_loaded = 0
 
 /obj/structure/ship_elements/tracker_launcher/attackby(obj/item/W, mob/user)
-	if(!(istype(W, /obj/item/ship_tacker)))
+	if(!(istype(W, /obj/item/ship_tracker)))
 		to_chat(usr, SPAN_WARNING("You have no idea how to use these two together."))
 		return
-	if(istype(W, /obj/item/ship_tacker))
+	if(istype(W, /obj/item/ship_tracker))
 		if(tracker_loaded == 1)
 			to_chat(usr, SPAN_WARNING("A tracker is already loaded."))
 			return

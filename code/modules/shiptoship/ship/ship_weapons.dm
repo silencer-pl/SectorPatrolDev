@@ -55,6 +55,7 @@
 	bound_y = 64
 	unslashable = TRUE
 	unacidable = TRUE
+	var/ship_name = "none"
 	var/weapon_fired = 0
 	var/list/loaded_projectile = list("missile" = "none",
 		"missile_open" = 0,
@@ -110,6 +111,16 @@
 			sleep(30)
 			update_icon(loading = 1)
 			return
+
+/obj/structure/ship_elements/primary_cannon/proc/FireCannon()
+	loaded_projectile["missle_open"] = 0
+	loaded_projectile["warhead"] = "none"
+	loaded_projectile["warhead_open"] = 0
+	loaded_projectile["speed"] = 0
+	loaded_projectile["payload"] = 0
+	loaded_projectile["factor"] = 0
+	loaded_projectile["loaded"] = 0
+	animate_use()
 
 /obj/structure/ship_elements/primary_cannon/attackby(obj/item/I, mob/user)
 	if(!istype(I, /obj/item/powerloader_clamp) || !HAS_TRAIT(I, TRAIT_TOOL_MULTITOOL) || !HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER))
@@ -300,7 +311,7 @@
 	bound_y = 64
 	unslashable = TRUE
 	unacidable = TRUE
-	var/weapon_fired = 0
+	var/ship_name = "none"
 	var/list/loaded_projectile = list(
 		"type" = "none",
 		"loaded" = 0
@@ -337,6 +348,11 @@
 			sleep(5)
 			update_icon()
 			return
+
+/obj/structure/ship_elements/secondary_cannon/proc/FireCannon()
+	loaded_projectile["type"] = "none"
+	loaded_projectile["loaded"] = 0
+	animate_use()
 
 /obj/structure/ship_elements/secondary_cannon/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/ship_elements/secondary_ammo))

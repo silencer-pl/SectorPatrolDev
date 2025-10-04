@@ -8,6 +8,9 @@
 		if(!I)
 			to_chat(H, SPAN_NOTICE("You are not holding anything to equip."))
 			return
+		if(I.last_equipped_slot)
+			if(equip_to_slot_if_possible(I, I.last_equipped_slot, FALSE, FALSE, TRUE))
+				return
 		if(!H.equip_to_appropriate_slot(I, 0))
 			to_chat(H, SPAN_DANGER("You are unable to equip that."))
 
@@ -58,8 +61,6 @@
 			return has_limb("head")
 		if(WEAR_FEET)
 			return has_limb("r_foot") && has_limb("l_foot")
-		if(WEAR_SOCKS)
-			return has_limb("l_leg") && has_limb("r_leg")
 		if(WEAR_JACKET)
 			return has_limb("chest")
 		if(WEAR_BODY)
@@ -91,15 +92,15 @@
 		if(WEAR_IN_R_STORE)
 			return 1
 
-/mob/living/carbon/human/put_in_l_hand(obj/item/W)
-	var/obj/limb/O = get_limb("l_hand")
-	if(!O || !O.is_usable())
+/mob/living/carbon/human/put_in_l_hand(obj/item/moved_item)
+	var/obj/limb/check_hand = get_limb("l_hand")
+	if(!check_hand || !check_hand.is_usable())
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/put_in_r_hand(obj/item/W)
-	var/obj/limb/O = get_limb("r_hand")
-	if(!O || !O.is_usable())
+/mob/living/carbon/human/put_in_r_hand(obj/item/moved_item)
+	var/obj/limb/check_hand = get_limb("r_hand")
+	if(!check_hand || !check_hand.is_usable())
 		return FALSE
 	. = ..()
 
@@ -111,10 +112,11 @@
 	if(I == wear_suit)
 		if(s_store && !(s_store.flags_equip_slot & SLOT_SUIT_STORE))
 			drop_inv_item_on_ground(s_store)
+		if(back && (back.flags_item & SMARTGUNNER_BACKPACK_OVERRIDE)) // Technically some items don't need to be unequipped though
+			drop_inv_item_on_ground(back)
 		wear_suit = null
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
-			update_inv_socks()
 		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair()
 		if(I.flags_inv_hide & HIDEJUMPSUIT)
@@ -164,9 +166,6 @@
 	else if (I == shoes)
 		shoes = null
 		update_inv_shoes()
-	else if (I == socks)
-		socks = null
-		update_inv_socks()
 	else if (I == belt)
 		belt = null
 		update_inv_belt()
@@ -219,32 +218,45 @@
 	if(!has_limb_for_slot(slot))
 		return
 
-	if(equipping_item == l_hand)
-		if(equipping_item.flags_item & NODROP)
-			return
-		l_hand = null
-		update_inv_l_hand()
-		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/item_actions in equipping_item.actions)
-			var/datum/action/action = item_actions
-			action.remove_from(src)
+	// Already handled within the proc, usually storages that force move the item themselves
+	var/static/list/no_update = list(
+		WEAR_IN_BACK,
+		WEAR_IN_SCABBARD,
+		WEAR_IN_JACKET,
+		WEAR_IN_HELMET,
+		WEAR_IN_BELT,
+		WEAR_IN_J_STORE,
+		WEAR_IN_L_STORE,
+		WEAR_IN_R_STORE
+	)
 
-	else if(equipping_item == r_hand)
-		if(equipping_item.flags_item & NODROP)
-			return
-		r_hand = null
-		update_inv_r_hand()
-		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/item_actions in equipping_item.actions)
-			var/datum/action/action = item_actions
-			action.remove_from(src)
+	if(!(slot in no_update))
+		if(equipping_item == l_hand)
+			if(equipping_item.flags_item & NODROP)
+				return
+			l_hand = null
+			update_inv_l_hand()
+			//removes item's actions, may be readded once re-equipped to the new slot
+			for(var/item_actions in equipping_item.actions)
+				var/datum/action/action = item_actions
+				action.remove_from(src)
 
-	equipping_item.screen_loc = null
-	if(equipping_item.loc != src)
-		equipping_item.pickup(src, disable_warning)
-	equipping_item.forceMove(src)
-	equipping_item.layer = ABOVE_HUD_LAYER
-	equipping_item.plane = ABOVE_HUD_PLANE
+		else if(equipping_item == r_hand)
+			if(equipping_item.flags_item & NODROP)
+				return
+			r_hand = null
+			update_inv_r_hand()
+			//removes item's actions, may be readded once re-equipped to the new slot
+			for(var/item_actions in equipping_item.actions)
+				var/datum/action/action = item_actions
+				action.remove_from(src)
+
+		equipping_item.screen_loc = null
+		if(equipping_item.loc != src)
+			equipping_item.pickup(src, disable_warning)
+		equipping_item.forceMove(src)
+		equipping_item.layer = ABOVE_HUD_LAYER
+		equipping_item.plane = ABOVE_HUD_PLANE
 
 	switch(slot)
 		if(WEAR_BACK)
@@ -320,15 +332,10 @@
 			shoes = equipping_item
 			equipping_item.equipped(src, slot, disable_warning)
 			update_inv_shoes()
-		if(WEAR_SOCKS)
-			socks = equipping_item
-			equipping_item.equipped(src, slot, disable_warning)
-			update_inv_socks()
 		if(WEAR_JACKET)
 			wear_suit = equipping_item
 			if(wear_suit.flags_inv_hide & HIDESHOES)
 				update_inv_shoes()
-				update_inv_socks()
 			if(wear_suit.flags_inv_hide & HIDEJUMPSUIT)
 				update_inv_w_uniform()
 			if( wear_suit.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
@@ -423,6 +430,8 @@
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
+		if(WEAR_ACCESSORY)
+			return w_uniform.accessories
 		if(WEAR_BACK)
 			return back
 		if(WEAR_FACE)
@@ -447,8 +456,6 @@
 			return head
 		if(WEAR_FEET)
 			return shoes
-		if(WEAR_SOCKS)
-			return socks
 		if(WEAR_JACKET)
 			return wear_suit
 		if(WEAR_BODY)
@@ -485,8 +492,6 @@
 		return WEAR_HEAD
 	if(I == shoes)
 		return WEAR_FEET
-	if(I == socks)
-		return WEAR_SOCKS
 	if(I == wear_suit)
 		return WEAR_JACKET
 	if(I == w_uniform)

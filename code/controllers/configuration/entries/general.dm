@@ -49,7 +49,7 @@ Basics, the most important.
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host
-	config_entry_value = ""
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/CMSS13/"
 
 /datum/config_entry/string/python_path
 
@@ -155,6 +155,9 @@ Administrative related.
 
 /datum/config_entry/string/ooc_color_admin
 	config_entry_value = "#ff8000"
+
+/datum/config_entry/string/ooc_color_maint
+	config_entry_value = "#00ffff"
 
 /datum/config_entry/string/ooc_color_default
 	config_entry_value = "#b82e00"
@@ -271,7 +274,7 @@ Voting
 
 // Gamemode to auto-switch to at the start of the round
 /datum/config_entry/string/gamemode_default
-	config_entry_value = "Sector Patrol"
+	config_entry_value = "Extended"
 
 /datum/config_entry/number/rounds_until_hard_restart
 	config_entry_value = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
@@ -324,7 +327,7 @@ Master controller and performance related.
 		sync_validate = TRUE
 		var/datum/config_entry/number/ticklag/TL = config.entries_by_type[/datum/config_entry/number/ticklag]
 		if(!TL.sync_validate)
-			TL.ValidateAndSet(10 / config_entry_value)
+			TL.ValidateAndSet("[10 / config_entry_value]")
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
@@ -343,7 +346,7 @@ Master controller and performance related.
 		sync_validate = TRUE
 		var/datum/config_entry/number/fps/FPS = config.entries_by_type[/datum/config_entry/number/fps]
 		if(!FPS.sync_validate)
-			FPS.ValidateAndSet(10 / config_entry_value)
+			FPS.ValidateAndSet("[10 / config_entry_value]")
 		sync_validate = FALSE
 
 /datum/config_entry/number/tick_limit_mc_init //SSinitialization throttling
@@ -369,6 +372,12 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/string/cobalt_base_api
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+
+/datum/config_entry/string/cobalt_api_key
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/number/error_cooldown // The "cooldown" time for each occurrence of a unique error
 	config_entry_value = 600
@@ -523,6 +532,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/string/regular_adminhelp_webhook_url
 
+/datum/config_entry/string/profiler_webhook_url
+
 /datum/config_entry/string/adminhelp_webhook_pfp
 
 /datum/config_entry/string/adminhelp_webhook_name
@@ -664,3 +675,25 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/string/client_error_message
 	default = "Your version of BYOND is too old, may have issues, and is blocked from accessing this server."
+
+// GitHub API, used for anonymous bug report handling.
+/datum/config_entry/string/github_app_api
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/repo_name
+
+/datum/config_entry/string/org
+
+/datum/config_entry/keyed_list/auth_urls
+	splitter = "|"
+	key_mode = KEY_MODE_TEXT_UNALTERED
+	value_mode = VALUE_MODE_TEXT
+	protection = CONFIG_ENTRY_HIDDEN|CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/twofactor_admins_url
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/sentry_endpoint
+
+/datum/config_entry/string/sentry_dsn
+	protection = CONFIG_ENTRY_HIDDEN

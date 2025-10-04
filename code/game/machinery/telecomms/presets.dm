@@ -26,6 +26,8 @@
 /obj/structure/machinery/telecomms/relay/preset/ice_colony/attackby()
 	return
 
+GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
+
 /obj/structure/machinery/telecomms/relay/preset/tower
 	name = "TC-4T telecommunications tower"
 	icon = 'icons/obj/structures/machinery/comm_tower2.dmi'
@@ -44,10 +46,14 @@
 	freq_listening = DEPT_FREQS
 
 /obj/structure/machinery/telecomms/relay/preset/tower/Initialize()
+	GLOB.all_static_telecomms_towers += src
 	. = ..()
-
 	if(z)
 		SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "supply")
+
+/obj/structure/machinery/telecomms/relay/preset/tower/Destroy()
+	GLOB.all_static_telecomms_towers -= src
+	. = ..()
 
 // doesn't need power, instead uses health
 /obj/structure/machinery/telecomms/relay/preset/tower/inoperable(additional_flags)
@@ -81,7 +87,7 @@
 	else if(P.ammo.flags_ammo_behavior & AMMO_ANTISTRUCT)
 		update_health(P.damage*ANTISTRUCT_DMG_MULT_BARRICADES)
 
-	update_health(round(P.damage/2))
+	update_health(floor(P.damage/2))
 	return TRUE
 
 /obj/structure/machinery/telecomms/relay/preset/tower/update_health(damage = 0)
@@ -122,7 +128,7 @@
 			return
 		if(user.action_busy)
 			return
-		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
+		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
 			to_chat(user, SPAN_WARNING("You're not trained to repair [src]..."))
 			return
 		var/obj/item/tool/weldingtool/WT = I
@@ -144,7 +150,8 @@
 
 	else if(HAS_TRAIT(I, TRAIT_TOOL_MULTITOOL))
 		return
-	else return ..()
+	else
+		return ..()
 
 /obj/structure/machinery/telecomms/relay/preset/tower/attack_hand(mob/user)
 	if(isSilicon(user))
@@ -160,7 +167,7 @@
 /obj/structure/machinery/telecomms/relay/preset/tower/faction
 	name = "UPP telecommunications relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away. This one is intercepting and rebroadcasting UPP frequencies."
-	icon = 'icons/obj/structures/props/stationobjs.dmi'
+	icon = 'icons/obj/structures/props/server_equipment.dmi'
 	icon_state = "relay"
 	id = "UPP Relay"
 	hide = TRUE
@@ -186,16 +193,6 @@
 	freq_listening = list(COLONY_FREQ)
 	faction_shorthand = "colony"
 
-GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
-
-/obj/structure/machinery/telecomms/relay/preset/tower/Initialize()
-	GLOB.all_static_telecomms_towers += src
-	. = ..()
-
-/obj/structure/machinery/telecomms/relay/preset/tower/Destroy()
-	GLOB.all_static_telecomms_towers -= src
-	. = ..()
-
 /obj/structure/machinery/telecomms/relay/preset/tower/mapcomms
 	name = "TC-3T static telecommunications tower"
 	desc = "A static heavy-duty TC-3T telecommunications tower. Used to set up subspace communications lines between planetary and extra-planetary locations. Will need to have extra communication frequencies programmed into it by multitool."
@@ -211,6 +208,9 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 	/// Tower has been taken over by xenos, is not usable
 	var/corrupted = FALSE
+	/// Tower has been taken before, this gives xenos an extra resin point on capture for the first time.
+	var/captured_before = FALSE
+
 
 	/// Held image for the current overlay on the tower from xeno corruption
 	var/image/corruption_image
@@ -301,10 +301,13 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 	if((stat & NOPOWER))
 		if(on)
 			toggle_state()
-		on = 0
-		update_icon()
-	else
-		update_icon()
+			on = FALSE
+			update_icon()
+
+/obj/structure/machinery/telecomms/relay/preset/tower/mapcomms/update_state()
+	..()
+	if(inoperable())
+		handle_xeno_acquisition(get_turf(src))
 
 /// Handles xenos corrupting the tower when weeds touch the turf it is located on
 /obj/structure/machinery/telecomms/relay/preset/tower/mapcomms/proc/handle_xeno_acquisition(turf/weeded_turf)
@@ -328,12 +331,15 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 	if(SSticker.mode.is_in_endgame)
 		return
 
+	if(operable())
+		return
+
 	if(ROUND_TIME < XENO_COMM_ACQUISITION_TIME)
-		addtimer(CALLBACK(src, PROC_REF(handle_xeno_acquisition), weeded_turf), (XENO_COMM_ACQUISITION_TIME - ROUND_TIME))
+		addtimer(CALLBACK(src, PROC_REF(handle_xeno_acquisition), weeded_turf), (XENO_COMM_ACQUISITION_TIME - ROUND_TIME), TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 		return
 
 	if(!COOLDOWN_FINISHED(src, corruption_delay))
-		addtimer(CALLBACK(src, PROC_REF(handle_xeno_acquisition), weeded_turf), (COOLDOWN_TIMELEFT(src, corruption_delay)))
+		addtimer(CALLBACK(src, PROC_REF(handle_xeno_acquisition), weeded_turf), (COOLDOWN_TIMELEFT(src, corruption_delay)), TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
 		return
 
 	var/obj/effect/alien/weeds/node/pylon/cluster/parent_node = weeded_turf.weeds.parent
@@ -350,6 +356,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 	var/obj/effect/alien/resin/special/pylon/endgame/new_pylon = new(cluster_loc, linked_hive)
 	new_pylon.node.children = held_children_weeds
+
 	for(var/obj/effect/alien/weeds/weed in new_pylon.node.children)
 		weed.parent = new_pylon.node
 		weed.spread_on_semiweedable = TRUE
@@ -363,6 +370,10 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 	flick_overlay(src, corruption_image, (2 SECONDS))
 	addtimer(CALLBACK(src, PROC_REF(switch_to_idle_corruption)), (2 SECONDS))
+
+	if(!captured_before)
+		captured_before = TRUE
+		new_pylon.linked_hive.buff_points += 1
 
 	new_pylon.comms_relay_connection()
 
@@ -437,7 +448,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 	id = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
-	freq_listening = list(COMM_FREQ, ENG_FREQ, SEC_FREQ, MED_FREQ, REQ_FREQ, SENTRY_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ)
+	freq_listening = list(COMM_FREQ, ENG_FREQ, SEC_FREQ, MED_FREQ, REQ_FREQ, SENTRY_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ)
 
 	//Common and other radio frequencies for people to freely use
 /obj/structure/machinery/telecomms/receiver/preset/Initialize(mapload, ...)
@@ -449,7 +460,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 	id = "CentComm Receiver"
 	network = "tcommsat"
 	autolinkers = list("receiverCent")
-	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
+	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ, FORECON_FREQ)
 
 //Buses
 
@@ -468,7 +479,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 /obj/structure/machinery/telecomms/bus/preset_three
 	id = "Bus 3"
 	network = "tcommsat"
-	freq_listening = list(SEC_FREQ, COMM_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
+	freq_listening = list(SEC_FREQ, COMM_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
 	autolinkers = list("processor3", "security", "command", "JTAC")
 
 /obj/structure/machinery/telecomms/bus/preset_four
@@ -484,7 +495,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 /obj/structure/machinery/telecomms/bus/preset_cent
 	id = "CentComm Bus"
 	network = "tcommsat"
-	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
+	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
 	autolinkers = list("processorCent", "centcomm")
 
 //Processors
@@ -549,7 +560,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 /obj/structure/machinery/telecomms/server/presets/command
 	id = "Command Server"
-	freq_listening = list(COMM_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
+	freq_listening = list(COMM_FREQ, WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
 	autolinkers = list("command")
 
 /obj/structure/machinery/telecomms/server/presets/engineering
@@ -564,7 +575,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 /obj/structure/machinery/telecomms/server/presets/centcomm
 	id = "CentComm Server"
-	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
+	freq_listening = list(WY_WO_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, YAUT_OVR_FREQ, HC_FREQ, PVST_FREQ, SOF_FREQ, CBRN_FREQ)
 	autolinkers = list("centcomm")
 
 //Broadcasters
@@ -595,7 +606,7 @@ GLOBAL_LIST_EMPTY(all_static_telecomms_towers)
 
 /obj/structure/machinery/telecomms/allinone
 	name = "Telecommunications Mainframe"
-	icon = 'icons/obj/structures/props/stationobjs.dmi'
+	icon = 'icons/obj/structures/props/server_equipment.dmi'
 	icon_state = "comm_server"
 	desc = "A compact machine used for portable subspace telecommunications processing."
 	density = TRUE

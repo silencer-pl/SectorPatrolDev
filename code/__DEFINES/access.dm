@@ -4,7 +4,7 @@ It's best not to mess with the numbers of the regular access levels because
 most of them are tied into map-placed objects. This should be reworked in the future.*/
 //WE NEED TO REWORK THIS ONE DAY.  Access levels make me cry - Apophis
 #define ACCESS_MARINE_SENIOR 1
-#define ACCESS_MARINE_DATABASE 2
+#define ACCESS_MARINE_GENERAL 2
 #define ACCESS_MARINE_BRIG 3
 #define ACCESS_MARINE_ARMORY 4
 #define ACCESS_MARINE_CMO 5
@@ -44,6 +44,12 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_SYNTH 36
 #define ACCESS_MARINE_ASO 37
 #define ACCESS_MARINE_CHAPLAIN 38
+#define ACCESS_MARINE_FIELD_DOC 39
+
+/// Grants access to Marine record databases
+#define ACCESS_MARINE_DATABASE 40
+/// Grants administrator access to Marine record databases
+#define ACCESS_MARINE_DATABASE_ADMIN 41
 
 // AI Core Accesses
 /// Used in temporary passes
@@ -68,6 +74,9 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 ///The generic "I'm a bad guy" access
 #define ACCESS_ILLEGAL_PIRATE 120
 
+//CIA-locked covert items
+#define ACCESS_CIA 125
+
 //=================================================
 
 //Weyland Yutani access levels (200-229)
@@ -88,7 +97,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_WY_ARMORY 212
 ///Secret research or other projects with highly restricted access
 #define ACCESS_WY_SECRETS 213
-
+#define ACCESS_WY_DATABASE 214
 #define ACCESS_WY_LEADERSHIP 215
 ///Senior leadership, the highest ranks
 #define ACCESS_WY_SENIOR_LEAD 216
@@ -147,10 +156,12 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 // Yautja Access Levels
 /// Requires a visible ID chip to open
 #define ACCESS_YAUTJA_SECURE 390
+/// Elites+ only
+#define ACCESS_YAUTJA_ELITE 391
 /// Elders+ only
-#define ACCESS_YAUTJA_ELDER 391
+#define ACCESS_YAUTJA_ELDER 392
 /// Ancients only
-#define ACCESS_YAUTJA_ANCIENT 392
+#define ACCESS_YAUTJA_ANCIENT 393
 
 /// Anything in a tutorial sequence that shouldn't be accessed
 #define ACCESS_TUTORIAL_LOCKED 998
@@ -200,29 +211,3 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_LIST_CLF_BASE "CLF (Basic)"
 ///All access levels associated with CLF
 #define ACCESS_LIST_CLF_ALL "CLF (ALL)"
-
-//Sector Patrol
-//Starting Sector Patrol Stuff at 1000+ to avoid conflicts. Grouping ship/major map/faction every 100.
-// Event Tools Shorthand/Failsafe
-#define ACCESS_SP_ADMIN 1000
-// 100 - OV-PST
-// 10 - High Command/Overrides/Globals - Group A
-// 20 - Command - Group B
-// 30 - Engineering - Group C
-// 40 - Security - Group D
-// 50 - Cargo - Group E
-// 60 - Medical - Group F
-// 70 - General - Group G
-// 80 - Civilian - Group X
-// 90 - Below Civilian - Group Z
-// 0 - Admin/Category General Reserved. Not used.
-// 1 - Class 01, General or Certified.
-
-#define ACCESS_SP_OVPST_ENGINEERING 1130
-#define ACCESS_SP_OVPST_ENGINEERING_DEFAULT 1131
-
-#define ACCESS_SP_OVPST_SECURITY 1140
-#define ACCESS_SP_OVPST_SECURITY_DEFAULT 1141
-
-#define ACCESS_SP_OVPST_GENERAL 1170
-#define ACCESS_SP_OVPST_GENERAL_DEFAULT 1171 //Default Ensign Zone

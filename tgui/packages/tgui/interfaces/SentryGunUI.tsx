@@ -1,7 +1,20 @@
 import { classes } from 'common/react';
-import { useBackend, useLocalState, useSharedState } from '../backend';
-import { Box, ByondUi, Button, Flex, Icon, Input, ProgressBar, Stack, Tabs } from '../components';
-import { Window } from '../layouts';
+import { useState } from 'react';
+import { useBackend, useSharedState } from 'tgui/backend';
+import {
+  Box,
+  Button,
+  ByondUi,
+  Flex,
+  Icon,
+  Input,
+  ProgressBar,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui/components';
+import { Window } from 'tgui/layouts';
+
 import { TimedCallback } from './common/TimedCallback';
 
 type SelectedState = [string, string];
@@ -47,7 +60,7 @@ const SelectionGroup = (props: {
   const { act } = useBackend<SentryData>();
   const comparisonstr = props.selected ?? '';
   return (
-    <Flex direction="column" className="SelectionMenu" fill>
+    <Flex direction="column" className="SelectionMenu" fill={1}>
       <Flex.Item className="Title">
         <span>{props.data[0]}</span>
       </Flex.Item>
@@ -59,7 +72,8 @@ const SelectionGroup = (props: {
               onClick={() =>
                 act(props.data[0], { selection: x, index: props.sentry_index })
               }
-              className={classes([isSelected && 'Selected'])}>
+              className={classes([isSelected && 'Selected'])}
+            >
               {x}
             </Button>
           </Flex.Item>
@@ -75,7 +89,7 @@ const SelectionMenu = (props: { readonly data: SentrySpec }) => {
     return output === undefined ? undefined : output[1];
   };
   return (
-    <Flex wrap justify="center" fill>
+    <Flex wrap justify="center" fill={1}>
       {props.data.selection_menu.map((x) => (
         <Flex.Item key={x[0]} className="SelectionFlexItem">
           <SelectionGroup
@@ -90,10 +104,7 @@ const SelectionMenu = (props: { readonly data: SentrySpec }) => {
 };
 
 const getSanitisedName = (name: string) =>
-  name
-    .split(' ')
-    .slice(0, 2)
-    .join(' ');
+  name.split(' ').slice(0, 2).join(' ');
 const sanitiseArea = (name: string) =>
   name.substring(name.includes('the') ? 4 : 0).trim();
 
@@ -123,12 +134,12 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
   const { data, act } = useBackend<SentryData>();
   const isEngaged = props.data.engaged !== undefined && props.data.engaged > 1;
   const iff_info = props.data.selection_state.find(
-    (x) => x[0].localeCompare('IFF STATUS') === 0
+    (x) => x[0].localeCompare('IFF STATUS') === 0,
   )?.[1];
 
   const [_, setSelectedSentry] = useSharedState<undefined | number>(
     'selected',
-    0
+    0,
   );
 
   const isCritical = props.data.health < props.data.health_max * 0.2;
@@ -139,7 +150,8 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
       direction="column"
       className="GunFlex"
       align="stretch"
-      justify="center">
+      justify="center"
+    >
       <Flex.Item>
         <Box className="EngagedBox">
           <Flex justify="space-between">
@@ -169,47 +181,47 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
       </Flex.Item>
       <Flex.Item>
         <Box
-          className={classes([
-            'EngagedBox',
-            isCritical && 'EngagedWarningBox',
-          ])}>
+          className={classes(['EngagedBox', isCritical && 'EngagedWarningBox'])}
+        >
           <span>
             Integrity: {props.data.health} / {props.data.health_max}
           </span>
         </Box>
       </Flex.Item>
-      {props.data.rounds !== undefined && props.data.max_rounds !== undefined && (
-        <Flex.Item>
-          <Box className="EngagedBox">
-            <Flex justify="center">
-              <Flex.Item align="center">
-                <span>Rounds Remaining</span>
-              </Flex.Item>
-              <Flex.Item>
-                <Box width={1} />
-              </Flex.Item>
-              <Flex.Item align="center">
-                <Icon name="play" />
-              </Flex.Item>
-              <Flex.Item
-                align="center"
-                className={classes([
-                  'AmmoBoundingBox',
-                  props.data.max_rounds * 0.2 > props.data.rounds &&
-                    'AmmoBoundingBoxWarning',
-                ])}>
-                {round_rep && (
-                  <span>
-                    {round_rep.length < 3 && '0'}
-                    {round_rep.length < 2 && '0'}
-                    {round_rep}
-                  </span>
-                )}
-              </Flex.Item>
-            </Flex>
-          </Box>
-        </Flex.Item>
-      )}
+      {props.data.rounds !== undefined &&
+        props.data.max_rounds !== undefined && (
+          <Flex.Item>
+            <Box className="EngagedBox">
+              <Flex justify="center">
+                <Flex.Item align="center">
+                  <span>Rounds Remaining</span>
+                </Flex.Item>
+                <Flex.Item>
+                  <Box width={1} />
+                </Flex.Item>
+                <Flex.Item align="center">
+                  <Icon name="play" />
+                </Flex.Item>
+                <Flex.Item
+                  align="center"
+                  className={classes([
+                    'AmmoBoundingBox',
+                    props.data.max_rounds * 0.2 > props.data.rounds &&
+                      'AmmoBoundingBoxWarning',
+                  ])}
+                >
+                  {round_rep && (
+                    <span>
+                      {round_rep.length < 3 && '0'}
+                      {round_rep.length < 2 && '0'}
+                      {round_rep}
+                    </span>
+                  )}
+                </Flex.Item>
+              </Flex>
+            </Box>
+          </Flex.Item>
+        )}
       {props.data.engaged !== undefined && (
         <Flex.Item>
           <Box
@@ -217,7 +229,8 @@ const GunMenu = (props: { readonly data: SentrySpec }) => {
             className={classes([
               'EngagedBox',
               isEngaged && 'EngagedWarningBox',
-            ])}>
+            ])}
+          >
             {!isEngaged && <span>Not Engaged</span>}
             {isEngaged && <span>ENGAGED</span>}
           </Box>
@@ -267,10 +280,7 @@ const InputGroup = (props: {
   readonly startingValue: string;
 }) => {
   const { act } = useBackend<SentryData>();
-  const [categoryValue, setCategoryValue] = useLocalState(
-    `${props.index} ${props.category}`,
-    props.startingValue
-  );
+  const [categoryValue, setCategoryValue] = useState(props.startingValue);
   return (
     <Stack vertical className="SelectionMenu">
       <Stack.Item className="Title">
@@ -290,7 +300,8 @@ const InputGroup = (props: {
               index: props.index,
               selection: categoryValue,
             })
-          }>
+          }
+        >
           Commit
         </Button>
       </Stack.Item>
@@ -387,7 +398,7 @@ const ShowSentryCard = (props: { readonly data: SentrySpec }) => {
 
 const ShowAllSentry = (props: { readonly data: SentrySpec[] }) => {
   return (
-    <Flex align="space-between" wrap>
+    <Flex align="space-around" wrap>
       {props.data.map((x) => (
         <Flex.Item key={x.index}>
           <ShowSentryCard data={x} />
@@ -462,11 +473,22 @@ const SentryTabMenu = (props: {
 }) => {
   const { data, act } = useBackend<SentryData>();
   return (
-    <Tabs fill>
+    <Tabs>
+      <Tabs.Tab
+        selected={props.selected === undefined}
+        onClick={() => {
+          props.setSelected(undefined);
+          act('clear-camera');
+        }}
+      >
+        All
+      </Tabs.Tab>
       {props.sentrySpecs.map((x, index) => (
         <Tabs.Tab
           key={x.index}
           selected={props.selected === index}
+          textAlign="center"
+          minWidth="2%"
           onClick={() => {
             props.setSelected(index);
             if (data.camera_target) {
@@ -474,18 +496,11 @@ const SentryTabMenu = (props: {
             } else {
               act('ui-interact');
             }
-          }}>
+          }}
+        >
           {x.nickname.length === 0 ? x.index : x.nickname}
         </Tabs.Tab>
       ))}
-      <Tabs.Tab
-        selected={props.selected === undefined}
-        onClick={() => {
-          props.setSelected(undefined);
-          act('clear-camera');
-        }}>
-        All
-      </Tabs.Tab>
     </Tabs>
   );
 };
@@ -494,11 +509,13 @@ const PowerLevel = () => {
   const { data } = useBackend<SentryData>();
   return (
     <ProgressBar
+      width="100px"
       minValue={0}
       maxValue={data.electrical.max_charge}
-      value={data.electrical.charge}>
+      value={data.electrical.charge}
+    >
       {((data.electrical.charge / data.electrical.max_charge) * 100).toFixed(2)}{' '}
-      %
+      <span>%</span>
     </ProgressBar>
   );
 };
@@ -524,55 +541,57 @@ export const SentryGunUI = () => {
 
   return (
     <Window theme="crtyellow" height={700} width={700}>
-      <Window.Content className="SentryGun" scrollable>
-        <Stack vertical>
-          {data.sentry.length > 0 && (
+      <Window.Content className="SentryGun">
+        <Section fill scrollable>
+          <Stack vertical>
+            {data.sentry.length > 0 && (
+              <Stack.Item>
+                <Flex justify="space-between" align-items="center">
+                  <Flex.Item width="85%">
+                    <SentryTabMenu
+                      sentrySpecs={sentrySpecs}
+                      selected={selectedSentry}
+                      setSelected={setSelectedSentry}
+                    />
+                  </Flex.Item>
+                  <Flex.Item align="right">
+                    <PowerLevel />
+                  </Flex.Item>
+                </Flex>
+              </Stack.Item>
+            )}
             <Stack.Item>
-              <Flex justify="space-between" align-items="center">
-                <Flex.Item>
-                  <SentryTabMenu
-                    sentrySpecs={sentrySpecs}
-                    selected={selectedSentry}
-                    setSelected={setSelectedSentry}
+              {data.screen_state === 0 && (
+                <div>
+                  <TimedCallback
+                    time={1.5}
+                    callback={() => act('screen-state', { state: 1 })}
                   />
-                </Flex.Item>
-                <Flex.Item align="center">
-                  <PowerLevel />
-                </Flex.Item>
-              </Flex>
+                  <div className="TopPanelSlide" />
+                  <div className="BottomPanelSlide" />
+                </div>
+              )}
+              {data.camera_target === null && (
+                <>
+                  {!validSelection && <EmptyDisplay />}
+                  {validSelection && (
+                    <>
+                      {selectedSentry !== undefined && (
+                        <ShowSingleSentry data={sentrySpecs[selectedSentry]} />
+                      )}
+                      {selectedSentry === undefined && (
+                        <ShowAllSentry data={sentrySpecs} />
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+              {data.camera_target !== null && (
+                <SentryCamera sentry_data={sentrySpecs} />
+              )}
             </Stack.Item>
-          )}
-          <Stack.Item>
-            {data.screen_state === 0 && (
-              <div>
-                <TimedCallback
-                  time={1.5}
-                  callback={() => act('screen-state', { state: 1 })}
-                />
-                <div className="TopPanelSlide" />
-                <div className="BottomPanelSlide" />
-              </div>
-            )}
-            {data.camera_target === null && (
-              <>
-                {!validSelection && <EmptyDisplay />}
-                {validSelection && (
-                  <>
-                    {selectedSentry !== undefined && (
-                      <ShowSingleSentry data={sentrySpecs[selectedSentry]} />
-                    )}
-                    {selectedSentry === undefined && (
-                      <ShowAllSentry data={sentrySpecs} />
-                    )}
-                  </>
-                )}
-              </>
-            )}
-            {data.camera_target !== null && (
-              <SentryCamera sentry_data={sentrySpecs} />
-            )}
-          </Stack.Item>
-        </Stack>
+          </Stack>
+        </Section>
       </Window.Content>
     </Window>
   );

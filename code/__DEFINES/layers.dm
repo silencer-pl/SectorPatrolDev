@@ -11,9 +11,10 @@
 
 //#define AREA_LAYER 1
 
-#define UNDER_TURF_LAYER 1.98
+#define DISPLACEMENT_PLATE_RENDER_LAYER 1
+#define DISPLACEMENT_PLATE_RENDER_TARGET "*DISPLACEMENT_PLATE_RENDER_TARGET"
 
-#define SPACE_UNDERLAY_LAYER 1.99
+#define UNDER_TURF_LAYER 1.99
 
 #define TURF_LAYER 2
 
@@ -54,6 +55,8 @@
 #define PODDOOR_OPEN_LAYER 2.55
 /// conveyor belt
 #define CONVEYOR_LAYER 2.56
+
+#define RESIN_UNDER_STRUCTURE_LAYER 2.59
 
 #define RESIN_STRUCTURE_LAYER 2.6
 
@@ -129,6 +132,8 @@
 #define ABOVE_XENO_LAYER 4.12
 /// For facehuggers
 #define FACEHUGGER_LAYER 4.13
+/// For Signs above everything but below weather
+#define BILLBOARD_LAYER 4.13
 /// For WEATHER
 #define WEATHER_LAYER 4.14
 
@@ -217,16 +222,22 @@
 /// NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -200
 
-//Space plane, so space without a backdrop renders below the backdrop
-#define SPACE_PLANE -9
-//Space backdrop plane, for the backdrop image.
-#define SPACE_BACKDROP_PLANE -8
+#define OPEN_SPACE_PLANE_END -20
+// Do no put anything between these two, adjust more z level support as needed
+#define OPEN_SPACE_PLANE_START -9
+
+#define OPENSPACE_BACKDROP_PLANE -8
+
 /// Floor plane, self explanatory. Used for Ambient Occlusion filter
 #define FLOOR_PLANE -7
 /// Game Plane, where most of the game objects reside
 #define GAME_PLANE -6
 /// Above Game Plane. For things which are above game objects, but below screen effects.
 #define ABOVE_GAME_PLANE -5
+
+///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
+#define SEETHROUGH_PLANE -2
+
 /// Roof plane, disappearing when entering buildings
 #define ROOF_PLANE -4
 

@@ -53,6 +53,7 @@ em {font-style: normal; font-weight: bold;}
 .jtacradio {color: #702963;}
 .intelradio {color: #027D02;}
 .wyradio {color: #FE9B24;}
+.hdcradio {color: #FEE6C24;}
 .pmcradio {color: #A13852;}
 
 .clfradio {color: #6f679c}
@@ -65,6 +66,7 @@ em {font-style: normal; font-weight: bold;}
 .cryoradio {color: #4a4740;}
 .hcradio {color: #318779;}
 .pvstradio {color: #9b0612;}
+.ciaradio {color: #e6754c;}
 
 .medium { font-size: 2}
 .big { font-size: 2}
@@ -123,10 +125,12 @@ h1.alert, h2.alert {color: #000000;}
 .xeno {color: #900090; font-style: italic;}
 .xenoleader {color: #730d73; font-style: italic; font-size: 3;}
 .xenoqueen {color: #730d73; font-style: italic; font-weight: bold; font-size: 3;}
+.psy_talk {color: #a70090; font-style: italic; font-weight: bold; font-size: 3;}
+
 .newscaster {color: #800000;}
 
-.role_header {color: #db0000; text-align: center; font-weight: bold; font-size: 2; padding: 0em 1em;}
-.role_body {color: #000099; text-align: justify; padding: 0em 1em;}
+.role_header {color: #db0000 text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 2;}
+.role_body {color: #000099; text-align: center;}
 
 .round_header {color: #db0000; text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
 .round_body {color: #001427; text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
@@ -155,11 +159,5 @@ h1.alert, h2.alert {color: #000000;}
 
 .retro_translator {font-weight: bold;}
 .yautja_translator {color: #aa0000; font-weight: bold;}
-
-.chargen_header {color: #9b59b6; font-size: large; font-weight: bold; padding: 1em}
-.chargen_body {color: #cc3399; padding: 1em}
-
-.narrate_head {font-size: 3; text-align: center; color: #ffccff;padding: 0em 1em;}
-.narrate_body {font-size: 2; text-align: justify; color: #ff99ff;padding: 0em 1em;}
 
 </style>"}

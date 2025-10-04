@@ -17,9 +17,29 @@
 		/obj/item/storage/pill_bottle/peridaxon,
 		/obj/item/storage/box/pillbottles,
 	)
-	cost = 20
+	cost = 15
 	containertype = /obj/structure/closet/crate/medical
 	containername = "medical crate"
+	group = "Medical"
+
+/datum/supply_packs/medical_restock_cart
+	name = "medical restock cart"
+	contains = list(
+		/obj/structure/restock_cart/medical,
+	)
+	cost = 20
+	containertype = null
+	containername = "medical restock cart"
+	group = "Medical"
+
+/datum/supply_packs/medical_reagent_cart
+	name = "medical reagent restock cart"
+	contains = list(
+		/obj/structure/restock_cart/medical/reagent,
+	)
+	cost = 20
+	containertype = null
+	containername = "medical reagent restock cart"
 	group = "Medical"
 
 /datum/supply_packs/pillbottle
@@ -42,7 +62,7 @@
 		/obj/item/storage/box/pillbottles,
 		/obj/item/storage/box/pillbottles,
 	)
-	cost = 20
+	cost = 15
 	containertype = /obj/structure/closet/crate/medical
 	containername = "medical crate"
 	group = "Medical"
@@ -61,7 +81,7 @@
 		/obj/item/storage/firstaid/adv,
 		/obj/item/storage/firstaid/adv,
 	)
-	cost = 16
+	cost = 11
 	containertype = /obj/structure/closet/crate/medical
 	containername = "medical crate"
 	group = "Medical"
@@ -74,7 +94,7 @@
 		/obj/item/storage/box/bodybags,
 		/obj/item/storage/box/bodybags,
 	)
-	cost = 12
+	cost = 7
 	containertype = /obj/structure/closet/crate/medical
 	containername = "body bag crate"
 	group = "Medical"
@@ -86,13 +106,13 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/bodybag/cryobag,
 	)
-	cost = 20
+	cost = 15
 	containertype = /obj/structure/closet/crate/medical
 	containername = "stasis bag crate"
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "surgery crate(tray,anesthetic,surgeon gear)"
+	name = "surgery crate (tray, anesthetic, surgeon gear)"
 	contains = list(
 		/obj/item/storage/surgical_tray,
 		/obj/item/clothing/mask/breath/medical,
@@ -101,19 +121,40 @@
 		/obj/item/storage/box/masks,
 		/obj/item/storage/box/gloves,
 	)
-	cost = 30
+	cost = 25
 	containertype = /obj/structure/closet/crate/secure/surgery
 	containername = "surgery crate"
+	access = ACCESS_MARINE_MEDBAY
+	group = "Medical"
+
+/datum/supply_packs/field_doc
+	name = "field doctor crate (replacement field doctor gear)"
+	contains = list(
+		/obj/item/folded_tent/med,
+		/obj/item/clothing/accessory/storage/surg_vest/equipped,
+		/obj/item/roller/surgical,
+		/obj/item/tool/portadialysis,
+		/obj/structure/machinery/iv_drip,
+		/obj/item/reagent_container/spray/cleaner,
+		/obj/item/clothing/mask/breath/medical,
+		/obj/item/storage/box/masks,
+		/obj/item/storage/box/gloves,
+		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
+	)
+	cost = 35 //that tent is expensive, man. Only order this crate if the old tent was destroyed.
+	containertype = /obj/structure/closet/crate/secure/medical
+	containername = "field doctor's replacement personal crate"
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 
 /datum/supply_packs/upgraded_medical_kits
 	name = "upgraded medical equipment crate (x4)"
 	contains = list(
-		/obj/item/storage/box/czsp/medic_upgraded_kits,
-		/obj/item/storage/box/czsp/medic_upgraded_kits,
-		/obj/item/storage/box/czsp/medic_upgraded_kits,
-		/obj/item/storage/box/czsp/medic_upgraded_kits,
+		/obj/item/storage/box/czsp/medic_upgraded_kits/full,
+		/obj/item/storage/box/czsp/medic_upgraded_kits/full,
+		/obj/item/storage/box/czsp/medic_upgraded_kits/full,
+		/obj/item/storage/box/czsp/medic_upgraded_kits/full,
 	)
 	cost = 0
 	buyable = FALSE

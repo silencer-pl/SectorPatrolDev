@@ -40,6 +40,12 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	var/list/waiting_ids = list()
 	var/list/active_ids = list()
 
+	///Sentry faction stuff
+	var/faction_label = "USCM Only"
+	var/list/faction_group = FACTION_LIST_ARES_MARINE
+	var/list/faction_options = list("USCM Only" = FACTION_LIST_ARES_MARINE, "Wey-Yu Only" = FACTION_WY, "USCM & Wey-Yu" = FACTION_LIST_ARES_ALL, "ARES Only" = FACTION_LIST_ARES_ALONE)
+	var/list/core_sentries = list()
+
 /datum/ares_link/New()
 	admin_interface = new
 	datacore = GLOB.ares_datacore
@@ -54,22 +60,14 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 		alert.delink()
 	..()
 
-/datum/ares_link/proc/get_ares_vents()
-	var/list/security_vents = list()
-	var/datum/ares_link/link = GLOB.ares_link
-	for(var/obj/structure/pipes/vents/pump/no_boom/gas/vent in link.linked_vents)
-		if(!vent.vent_tag)
-			vent.vent_tag = "Security Vent #[link.tag_num]"
-			link.tag_num++
+/datum/ares_link/proc/change_iff(selection)
+	faction_label = selection
+	var/list/new_iff = faction_options[selection]
 
-		var/list/current_vent = list()
-		var/is_available = COOLDOWN_FINISHED(vent, vent_trigger_cooldown)
-		current_vent["vent_tag"] = vent.vent_tag
-		current_vent["ref"] = "\ref[vent]"
-		current_vent["available"] = is_available
-		security_vents += list(current_vent)
-	return security_vents
-
+	faction_group = new_iff
+	ares_apollo_talk("Security IFF systems updated to [selection]")
+	for(var/obj/structure/machinery/defenses/sentry/premade/deployable/almayer/mini/ares/sentry as anything in core_sentries)
+		sentry.sync_iff()
 
 /* BELOW ARE IN AdminAres.dm
 /datum/ares_link/tgui_interact(mob/user, datum/tgui/ui)
@@ -106,9 +104,13 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	/// Is nuke request usable or not?
 	var/nuke_available = TRUE
 
+	/// Status of the AI Core Lockdown
+	var/ai_lockdown_active = FALSE
+
 	COOLDOWN_DECLARE(ares_distress_cooldown)
 	COOLDOWN_DECLARE(ares_nuclear_cooldown)
 	COOLDOWN_DECLARE(ares_quarters_cooldown)
+	COOLDOWN_DECLARE(aicore_lockdown)
 
 // ------ ARES Logging Procs ------ //
 /proc/ares_is_active()
@@ -165,17 +167,20 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
 	datacore.records_bioscan.Add(new /datum/ares_record/bioscan(title, input))
 
-/proc/log_ares_bombardment(user_name, ob_name, coordinates)
+/proc/log_ares_bombardment(user_name, ob_name, message)
 	if(!ares_can_log())
 		return FALSE
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
-	datacore.records_bombardment.Add(new /datum/ares_record/bombardment(ob_name, "Bombardment fired at [coordinates].", user_name))
+	datacore.records_bombardment.Add(new /datum/ares_record/bombardment(ob_name, message, user_name))
 
-/proc/log_ares_announcement(title, message)
+/proc/log_ares_announcement(title, message, signature)
 	if(!ares_can_log())
 		return FALSE
+	var/final_msg = message
+	if(signature)
+		final_msg = "[signature]: - [final_msg]"
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
-	datacore.records_announcement.Add(new /datum/ares_record/announcement(title, message))
+	datacore.records_announcement.Add(new /datum/ares_record/announcement(title, final_msg))
 
 /proc/log_ares_requisition(source, details, user_name)
 	if(!ares_can_log())
@@ -183,11 +188,14 @@ GLOBAL_LIST_INIT(maintenance_categories, list(
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
 	datacore.records_asrs.Add(new /datum/ares_record/requisition_log(source, details, user_name))
 
-/proc/log_ares_security(title, details)
+/proc/log_ares_security(title, details, signature)
 	if(!ares_can_log())
 		return FALSE
+	var/final_msg = details
+	if(signature)
+		final_msg = "[signature]: - [final_msg]"
 	var/datum/ares_datacore/datacore = GLOB.ares_datacore
-	datacore.records_security.Add(new /datum/ares_record/security(title, details))
+	datacore.records_security.Add(new /datum/ares_record/security(title, final_msg))
 
 /proc/log_ares_antiair(details)
 	if(!ares_can_log())

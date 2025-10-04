@@ -34,8 +34,9 @@
 //increase or decrase accuracy, recoil, and firing delay of rifles and smgs.
 #define SKILL_FIREARMS_CIVILIAN 0  //civilian
 #define SKILL_FIREARMS_TRAINED 1   //marines (allow tactical reloads)
-#define SKILL_FIREARMS_EXPERT 2   //special training
-#define SKILL_FIREARMS_MAX 2
+#define SKILL_FIREARMS_SKILLED 2   //a few marines and more trained personnel
+#define SKILL_FIREARMS_MASTER 3   //special training
+#define SKILL_FIREARMS_MAX 3
 
 //spec_weapons skill
 //hidden. who can and can't use specialist weapons
@@ -70,10 +71,11 @@
 
 // engineer skill
 #define SKILL_ENGINEER_DEFAULT 0
-#define SKILL_ENGINEER_TRAINED 1   //barricade repair && c4 use (mini-engis, specs)
-#define SKILL_ENGINEER_ENGI 2   //plasteel barricade deconstruction, hacking&&planet engine fixing&&apc building, Telecomms fixing (Combat Engi, OT, etc.)
-#define SKILL_ENGINEER_MASTER 3   //Synths
-#define SKILL_ENGINEER_MAX 3
+#define SKILL_ENGINEER_NOVICE 1   //barricade repair && c4 use (mini-engis, specs)
+#define SKILL_ENGINEER_TRAINED 2   //plasteel barricade deconstruction, hacking&&planet engine fixing&&apc building, Telecomms fixing  (OT, etc.)
+#define SKILL_ENGINEER_ENGI 3      // Slightly faster at everything (Combat Technicians)
+#define SKILL_ENGINEER_MASTER 4   //Synths
+#define SKILL_ENGINEER_MAX 4
 
 //medical skill
 #define SKILL_MEDICAL_DEFAULT 0

@@ -64,7 +64,7 @@ All ShuttleMove procs go here
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(!shuttle_boundary)
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
-	var/depth = baseturfs.len - shuttle_boundary + 1
+	var/depth = length(baseturfs) - shuttle_boundary + 1
 	newT.CopyOnTop(src, 1, depth, TRUE)
 	return TRUE
 
@@ -76,7 +76,7 @@ All ShuttleMove procs go here
 
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(shuttle_boundary)
-		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1)
+		oldT.ScrapeAway(length(baseturfs) - shuttle_boundary + 1)
 
 	if(rotation)
 		shuttleRotate(rotation) //see shuttle_rotate.dm
@@ -212,6 +212,10 @@ All ShuttleMove procs go here
 		if(buckled)
 			shake_force *= 0.25
 		shake_camera(src, shake_force, 1)
+
+/mob/living/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
+	QDEL_NULL(observed_atom)
+	. = ..()
 
 /mob/living/lateShuttleMove(turf/oldT, list/movement_force, move_dir)
 	if(buckled)

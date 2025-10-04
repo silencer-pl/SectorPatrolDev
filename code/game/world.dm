@@ -69,7 +69,10 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	initiate_minimap_icons()
 
 	change_tick_lag(CONFIG_GET(number/ticklag))
-	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
+	// As of byond 515.1637 time2text now treats 0 like it does negative numbers so the hour is wrong
+	// We could instead use world.timezone but IMO better to not assume lummox will keep time2text in parity with it
+	GLOB.timezoneOffset = text2num(time2text(10,"hh")) * 36000
 
 	Master.Initialize(10, FALSE, TRUE)
 
@@ -84,13 +87,14 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	update_status()
 
 	//Scramble the coords obsfucator
-	GLOB.obfs_x = rand(-500, 500) //A number between -100 and 100
-	GLOB.obfs_y = rand(-500, 500) //A number between -100 and 100
+	GLOB.obfs_x = rand(-500, 500) //A number between -500 and 500
+	GLOB.obfs_y = rand(-500, 500) //A number between -500 and 500
+	GLOB.obfs_z = rand(-10, 10)   //A number between -10 and 10
 
 	// If the server's configured for local testing, get everything set up ASAP.
 	// Shamelessly stolen from the test manager's host_tests() proc
 	if(testing_locally)
-		GLOB.master_mode = "Sector Patrol"
+		GLOB.master_mode = "Extended"
 
 		// Wait for the game ticker to initialize
 		while(!SSticker.initialized)
@@ -111,7 +115,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 		GLOB.log_directory += "[replacetext(time_stamp(), ":", ".")]"
 
 	runtime_logging_ready = TRUE // Setting up logging now, so disabling early logging
-	#ifndef UNIT_TESTS
+	#if !defined(UNIT_TESTS) && !defined(AUTOWIKI)
 	world.log = file("[GLOB.log_directory]/dd.log")
 	#endif
 	backfill_runtime_log()
@@ -219,6 +223,9 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 		return json_encode(response)
 
 /world/Reboot(reason)
+	if(reason == 1 || reason == 2) // host/topic
+		return
+
 	Master.Shutdown()
 	send_reboot_sound()
 	var/server = CONFIG_GET(string/server)
@@ -266,15 +273,22 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 
 /world/proc/load_tm_message()
 	var/datum/getrev/revdata = GLOB.revdata
-	if(revdata.testmerge.len)
+	if(length(revdata.testmerge))
 		GLOB.current_tms = revdata.GetTestMergeInfo()
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including limited HTML/CSS.
 	var/s = ""
-	s += "<b>Sector Patrol ALPHA</b> - A cooperative, antagonist-free, RP focused gamemode.<br>"
-	s += "<i>In the ocean of data, amidst azure strands, she sleeps.</i> <br>"
-	s += "<a href='https://discord.gg/RjUyuAnyqU'>Part of the Neroid Sector server and community.</a>"
+
+	if(CONFIG_GET(string/servername))
+		s += "<a href=\"[CONFIG_GET(string/forumurl)]\"><b>[CONFIG_GET(string/servername)]</b></a>"
+
+	if(SSmapping?.configs)
+		var/datum/map_config/MG = SSmapping.configs[GROUND_MAP]
+		s += "<br>Map: [MG?.map_name ? "<b>[MG.map_name]</b>" : ""]"
+	if(SSticker?.mode)
+		s += "<br>Mode: <b>[SSticker.mode.name]</b>"
+		s += "<br>Round time: <b>[duration2text()]</b>"
 
 	world.status = s
 
@@ -325,9 +339,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	if(!map_load_z_cutoff)
 		return
 //	var/area/global_area = GLOB.areas_by_type[world.area] // We're guaranteed to be touching the global area, so we'll just do this
-//	var/list/to_add = block(
-//		locate(old_max + 1, 1, 1),
-//		locate(maxx, maxy, map_load_z_cutoff))
+//	var/list/to_add = block(old_max + 1, 1, 1, maxx, maxy, map_load_z_cutoff)
 //	global_area.contained_turfs += to_add
 
 /world/proc/increase_max_y(new_maxy, map_load_z_cutoff = maxz)
@@ -338,9 +350,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	if(!map_load_z_cutoff)
 		return
 //	var/area/global_area = GLOB.areas_by_type[world.area] // We're guarenteed to be touching the global area, so we'll just do this
-//	var/list/to_add = block(
-//		locate(1, old_maxy + 1, 1),
-//		locate(maxx, maxy, map_load_z_cutoff))
+//	var/list/to_add = block(1, old_maxy + 1, 1, maxx, maxy, map_load_z_cutoff)
 //	global_area.contained_turfs += to_add
 
 /world/proc/incrementMaxZ()
@@ -367,15 +377,28 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 /world/proc/HandleTestRun()
 	// Wait for the game ticker to initialize
 	Master.sleep_offline_after_initializations = FALSE
+
+#ifdef UNIT_TESTS
+	SSticker.delay_start = TRUE
+#else
 	SSticker.start_immediately = TRUE
+#endif
 	UNTIL(SSticker.initialized)
+
+	// Run unit tests on lobby as neeeded
+#ifdef UNIT_TESTS
+	RunUnitTests(TEST_STAGE_PREGAME)
+	UNTIL(!SSticker.delay_start)
+	SSticker.start_immediately = TRUE
+#endif
 
 	//trigger things to run the whole process
 	SSticker.request_start()
 	CONFIG_SET(number/round_end_countdown, 0)
+
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
-	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests))
+	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests), TEST_STAGE_GAME)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif

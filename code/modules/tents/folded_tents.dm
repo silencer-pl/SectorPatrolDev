@@ -69,8 +69,7 @@
 
 /obj/item/folded_tent/proc/get_deployment_area(turf/ref_turf)
 	RETURN_TYPE(/list/turf)
-	var/turf/block_end_turf = locate(ref_turf.x + dim_x - 1, ref_turf.y + dim_y - 1, ref_turf.z)
-	return block(ref_turf, block_end_turf)
+	return CORNER_BLOCK(ref_turf, dim_x, dim_y)
 
 /obj/item/folded_tent/attack_self(mob/living/user)
 	. = ..()
@@ -108,7 +107,7 @@
 	for(var/turf/turf in deployment_area)
 		turf_overlay += new /obj/effect/overlay/temp/tent_deployment_area/casting(turf)
 
-	user.visible_message(SPAN_INFO("[user] starts deploying [src]..."), \
+	user.visible_message(SPAN_INFO("[user] starts deploying [src]..."),
 		SPAN_WARNING("You start assembling [src]... Stand still, it might take a bit to figure it out..."))
 	if(!do_after(user, 6 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD))
 		to_chat(user, SPAN_WARNING("You were interrupted!"))
@@ -148,8 +147,14 @@
 /obj/item/folded_tent/big
 	name = "folded USCM Big Tent"
 	icon_state = "big"
-	desc = "A standard USCM Tent. This one is just a bigger, general purpose version. Unfold in a suitable location for maximum FOB vibes. Mess Tech not included. ENTRANCE TO THE SOUTH."
+	desc = "A standard USCM Tent. This one is just a bigger, general purpose version. Unfold in a suitable location for maximum FOB vibes.. ENTRANCE TO THE SOUTH."
 	template_preset = "tent_big"
+
+/obj/item/folded_tent/mess
+	name = "folded USCM Mess Tent"
+	icon_state = "mess"
+	desc = "A standard USCM Mess Tent. This one comes equipped with a kitchen and dining utilities. Unfold in a suitable location to maximize meal handouts ENTRANCE TO THE SOUTH."
+	template_preset = "tent_mess"
 
 /obj/effect/overlay/temp/tent_deployment_error
 	icon = 'icons/effects/effects.dmi'

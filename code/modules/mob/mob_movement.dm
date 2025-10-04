@@ -42,7 +42,7 @@
 	return
 
 //This gets called when you press the delete button.
-/client/verb/delete_key_pressed()
+CLIENT_VERB(delete_key_pressed)
 	set hidden = TRUE
 
 	if(!usr.pulling)
@@ -50,7 +50,7 @@
 		return
 	usr.stop_pulling()
 
-/client/verb/swap_hand()
+CLIENT_VERB(swap_hand)
 	set name = ".SwapMobHand"
 	set hidden = TRUE
 
@@ -60,13 +60,13 @@
 
 
 
-/client/verb/attack_self()
+CLIENT_VERB(attack_self)
 	set hidden = TRUE
 	if(mob)
 		mob.mode()
 	return
 
-/client/verb/drop_item()
+CLIENT_VERB(drop_item)
 	set hidden = TRUE
 	mob.drop_item_v()
 	return
@@ -80,7 +80,8 @@
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
 			step(mob.control_object,direct)
-			if(!mob.control_object) return
+			if(!mob.control_object)
+				return
 			mob.control_object.setDir(direct)
 		else
 			mob.control_object.forceMove(get_step(mob.control_object,direct))
@@ -94,6 +95,12 @@
 	var/mob/living/living_mob
 	if(isliving(mob))
 		living_mob = mob
+
+	if(ishuman(living_mob)) // Might as well just do it here than set movement delay to 0
+		var/mob/living/carbon/human/human = living_mob
+		if(HAS_TRAIT(human, TRAIT_HAULED))
+			human.handle_haul_resist()
+			return
 
 	if(world.time < next_movement)
 		return
@@ -148,6 +155,10 @@
 		return
 	if(living_mob.body_position == LYING_DOWN && !living_mob.can_crawl)
 		return
+	if(living_mob.body_position == LYING_DOWN && isxeno(mob.pulledby))
+		next_movement = world.time + 20 //Good Idea
+		to_chat(src, SPAN_NOTICE("You cannot crawl while a xeno is grabbing you."))
+		return
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
@@ -191,7 +202,7 @@
 				for(var/zone in extremities)
 					if(!(human.get_limb(zone)))
 						extremities.Remove(zone)
-				if(extremities.len < 4)
+				if(length(extremities) < 4)
 					return
 			//now crawl
 			mob.crawling = TRUE
@@ -242,6 +253,12 @@
 	if(is_mob_restrained()) //Check to see if we can do things
 		return 0
 
+	//Check to see if we slipped
+	if(prob(Process_Spaceslipping(5)))
+		to_chat(src, SPAN_NOTICE(" <B>You slipped!</B>"))
+		src.inertia_dir = src.last_move_dir
+		step(src, src.inertia_dir)
+		return 0
 	//If not then we can reset inertia and move
 	inertia_dir = 0
 	return 1
@@ -255,12 +272,12 @@
 
 		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
 			var/mob/living/carbon/human/H = src
-			if((istype(turf,/turf/open/floor)) && (src.lastarea.has_gravity == 0) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
+			if((istype(turf,/turf/open/floor)) && !(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING)))
 				continue
 
 
 		else
-			if((istype(turf,/turf/open/floor)) && (src.lastarea && src.lastarea.has_gravity == 0)) // No one else gets a chance.
+			if(istype(turf,/turf/open/floor)) // No one else gets a chance.
 				continue
 
 
@@ -295,5 +312,5 @@
 	if(stat)
 		prob_slip = 0  // Changing this to zero to make it line up with the comment.
 
-	prob_slip = round(prob_slip)
+	prob_slip = floor(prob_slip)
 	return(prob_slip)

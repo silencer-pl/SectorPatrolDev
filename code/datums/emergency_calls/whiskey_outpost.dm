@@ -19,7 +19,8 @@
 		name_of_spawn = /obj/effect/landmark/ert_spawns/distress_wo
 	var/turf/spawn_loc = override_spawn_loc ? override_spawn_loc : get_spawn_point()
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc))
+		return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
 	M.transfer_to(mob, TRUE)
@@ -50,9 +51,10 @@
 		to_chat(mob, SPAN_BOLDNOTICE("You are a Rifleman in the USCM, your squad is here to assist in the defence of [SSmapping.configs[GROUND_MAP].map_name]."))
 
 	sleep(10)
-	to_chat(mob, role_header("Your objectives are:"))
-	to_chat(mob, role_body("[objectives]"))
+	to_chat(mob, "<B>Objectives:</b> [objectives]")
+
 	GLOB.RoleAuthority.randomize_squad(mob)
+
 	mob.sec_hud_set_ID()
 	mob.hud_set_squad()
 

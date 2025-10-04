@@ -1,14 +1,14 @@
 import { range } from 'common/collections';
-import { BooleanLike } from 'common/react';
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
-import { Box, Button, Icon, Stack } from '../components';
-import { Window } from '../layouts';
+import type { BooleanLike } from 'common/react';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon, Image, Stack } from 'tgui/components';
+import { Window } from 'tgui/layouts';
 
 const ROWS = 5;
 const COLUMNS = 6;
 
-const BUTTON_DIMENSIONS = '50px';
+const BUTTON_DIMENSIONS = '64px';
 
 type GridSpotKey = string;
 
@@ -28,7 +28,8 @@ const CornerText = (props: {
         align === 'left'
           ? 'StripMenu__cornertext_left'
           : 'StripMenu__cornertext_right'
-      }>
+      }
+    >
       {children}
     </Box>
   );
@@ -150,12 +151,6 @@ const SLOTS: Record<string, Slot> = {
     image: 'inventory-shoes.png',
   },
 
-  socks: {
-    displayName: 'socks',
-    gridSpot: getGridSpotKey([3, 3]),
-    image: 'inventory-socks.png',
-  },
-
   j_store: {
     displayName: 'suit storage item',
     gridSpot: getGridSpotKey([4, 0]),
@@ -238,11 +233,11 @@ type StripMenuData = {
 const StripContent = (props: { readonly item: StripMenuItem }) => {
   if (props.item && 'name' in props.item) {
     return (
-      <Box
-        as="img"
+      <Image
+        fixBlur
         src={`data:image/jpeg;base64,${props.item.icon}`}
-        height="100%"
-        width="100%"
+        width={BUTTON_DIMENSIONS}
+        height={BUTTON_DIMENSIONS}
         className="StripMenu__contentbox"
       />
     );
@@ -265,7 +260,7 @@ const StripContent = (props: { readonly item: StripMenuItem }) => {
   return <> </>;
 };
 
-export const StripMenu = (props, context) => {
+export const StripMenu = (props) => {
   const { act, data } = useBackend<StripMenuData>();
 
   const gridSpots = new Map<GridSpotKey, string>();
@@ -276,7 +271,7 @@ export const StripMenu = (props, context) => {
   }
 
   return (
-    <Window title={`Stripping ${data.name}`} width={400} height={400}>
+    <Window title={`Stripping ${data.name}`} width={430} height={400}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map((row) => (
@@ -290,10 +285,8 @@ export const StripMenu = (props, context) => {
                     return (
                       <Stack.Item
                         key={key}
-                        style={{
-                          width: BUTTON_DIMENSIONS,
-                          height: BUTTON_DIMENSIONS,
-                        }}
+                        width={BUTTON_DIMENSIONS}
+                        height={BUTTON_DIMENSIONS}
                       />
                     );
                   }
@@ -324,7 +317,8 @@ export const StripMenu = (props, context) => {
                       style={{
                         width: BUTTON_DIMENSIONS,
                         height: BUTTON_DIMENSIONS,
-                      }}>
+                      }}
+                    >
                       <Box className="StripMenu__itembox">
                         <Button
                           onClick={() => {
@@ -345,11 +339,12 @@ export const StripMenu = (props, context) => {
                             background: item?.interacting
                               ? 'hsl(39, 73%, 30%)'
                               : undefined,
-                          }}>
+                          }}
+                        >
                           {slot.image && (
-                            <Box
-                              as="img"
+                            <Image
                               src={resolveAsset(slot.image)}
+                              fixBlur
                               className="StripMenu__itemslot"
                             />
                           )}
@@ -365,7 +360,8 @@ export const StripMenu = (props, context) => {
                               });
                             }}
                             tooltip={alternateAction.text}
-                            className="StripMenu__alternativeaction">
+                            className="StripMenu__alternativeaction"
+                          >
                             <Icon name={alternateAction.icon} />
                           </Button>
                         )}

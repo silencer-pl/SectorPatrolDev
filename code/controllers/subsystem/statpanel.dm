@@ -22,23 +22,18 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
-		var/wtime = world.time
-		var/time_displayed
-		if (SSticker.current_state >= GAME_STATE_PLAYING)
-			time_displayed = "[time2text((GLOB.ingame_time - SSticker.round_start_time)+ wtime,"hh:mm",0)]"
-		else
-			time_displayed = "[time2text(GLOB.ingame_time,"hh:mm",0)]"
 		num_fires++
+		var/datum/map_config/cached
+		if(SSmapping.next_map_configs)
+			cached = SSmapping.next_map_configs[GROUND_MAP]
 		global_data = list(
-			"Sector Patrol ALPHA",
-			"[GLOB.ingame_location]",
-			"[GLOB.ingame_date]",
-			"Local Time: [time_displayed]",
-			"---------",
+			"Map: [SSmapping.configs?[GROUND_MAP]?.map_name || "Loading..."]",
+			cached ? "Next Map: [cached?.map_name]" : null,
+			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 //   "Round Time: [ROUND_TIME]",
-//			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-//			"Round Time: [duration2text()]",
-			"[GLOB.ingame_mission_type]"
+			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
+			"Round Time: [duration2text()]",
+			"Operation Time: [worldtime2text()]",
 		)
 
 		src.currentrun = GLOB.clients.Copy()
@@ -113,7 +108,7 @@ SUBSYSTEM_DEF(statpanels)
 
 	target.stat_panel.send_message("update_stat", list(
 		"global_data" = global_data,
-		//"ping_str" = "Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)",
+		//"ping_str" = "Ping: [floor(target.lastping, 1)]ms (Average: [floor(target.avgping, 1)]ms)",
 		"other_str" = target.mob?.get_status_tab_items(),
 	))
 
@@ -202,7 +197,7 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
 	mc_data = list(
 		list("CPU:", world.cpu),
-		list("Instances:", "[num2text(world.contents.len, 10)]"),
+		list("Instances:", "[num2text(length(world.contents), 10)]"),
 		list("World Time:", "[world.time]"),
 		list("Globals:", GLOB.stat_entry(), "\ref[GLOB]"),
 		list("[config]:", config.stat_entry(), "\ref[config]"),
@@ -217,17 +212,23 @@ SUBSYSTEM_DEF(statpanels)
 
 /// Sets the current tab to the SDQL tab
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
+	if(!target)
+		return
+
 	var/list/sdql2_initial = list()
-	//sdql2_initial[length(sdql2_initial)++] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
+	sdql2_initial[++sdql2_initial.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
 	var/list/sdql2_querydata = list()
-	//for(var/datum/sdql2_query/query as anything in GLOB.sdql2_queries)
-		//sdql2_querydata = query.generate_stat()
+	for(var/datum/sdql2_query/query as anything in GLOB.sdql2_queries)
+		sdql2_querydata += query.generate_stat()
 
 	sdql2_initial += sdql2_querydata
 	target.stat_panel.send_message("update_sdql2", sdql2_initial)
 
 ///immediately update the active statpanel tab of the target client
 /datum/controller/subsystem/statpanels/proc/immediate_send_stat_data(client/target)
+	if(!target)
+		return FALSE
+
 	if(!target.stat_panel.is_ready())
 		return FALSE
 
@@ -411,15 +412,3 @@ SUBSYSTEM_DEF(statpanels)
 	else
 		client.stat_panel.send_message("remove_listedturf")
 		client.obj_window.stop_turf_tracking()
-
-/client/verb/open_statbrowser_options(current_fontsize as num|null)
-	set name = "Open Statbrowser Options"
-	set hidden = TRUE
-
-	if (!current_fontsize)
-		current_fontsize = 12
-
-	var/datum/statbrowser_options/options_panel = statbrowser_options
-	if(!options_panel)
-		options_panel = statbrowser_options = new(src, current_fontsize)
-	options_panel.tgui_interact()

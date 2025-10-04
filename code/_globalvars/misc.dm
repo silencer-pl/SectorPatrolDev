@@ -63,10 +63,6 @@ GLOBAL_LIST_INIT(nato_phonetic_alphabet, list("Alpha", "Bravo", "Charlie", "Delt
 GLOBAL_VAR_INIT(distress_cancel, FALSE)
 GLOBAL_VAR_INIT(destroy_cancel, FALSE)
 
-// Which lobby art is on display
-// This is updated by the lobby art turf when it initializes
-GLOBAL_VAR_INIT(displayed_lobby_art, -1)
-
 // Last global ID that was assigned to a mob (for round recording purposes)
 GLOBAL_VAR_INIT(last_mob_gid, 0)
 
@@ -87,7 +83,7 @@ GLOBAL_VAR_INIT(perf_flags, NO_FLAGS)
 
 GLOBAL_LIST_INIT(bitflags, list((1<<0), (1<<1), (1<<2), (1<<3), (1<<4), (1<<5), (1<<6), (1<<7), (1<<8), (1<<9), (1<<10), (1<<11), (1<<12), (1<<13), (1<<14), (1<<15), (1<<16), (1<<17), (1<<18), (1<<19), (1<<20), (1<<21), (1<<22), (1<<23)))
 
-GLOBAL_VAR_INIT(master_mode, "Sector Patrol")
+GLOBAL_VAR_INIT(master_mode, "Distress Signal")
 
 GLOBAL_VAR_INIT(timezoneOffset, 0)
 
@@ -135,3 +131,8 @@ GLOBAL_VAR(xeno_queue_candidate_count)
 GLOBAL_VAR(obfs_x)
 /// A number between -500 and 500.
 GLOBAL_VAR(obfs_y)
+/// A number between -10 and 10
+GLOBAL_VAR(obfs_z)
+
+/// List of giant lizards that are alive.
+GLOBAL_LIST_EMPTY(giant_lizards_alive)

@@ -16,7 +16,7 @@ If a fellow alien is stunned, be sure to drag them to safety.
 On help intent, click a xenomorph who is on fire to pat them out. This works on marines too!
 Frenzy increases your speed and damage, Recovery increases your health regeneration, and Warding increases the time you have until you bleed out in critical health.
 Remember that, as a Xenomorph, you can fully disable your night-vision. This helps put into perspective how hidden your position is to marines onscreen.
-You can devour burst corpses in order to transport them to the Spawn Pool or Egg Morpher easier.
+You can drag larva corpses (not embryos) onto the hive core to gain a new burrowed larva.
 The bigger you are, the more time it'll take to enter a tunnel.
 Drag yourself onto a hole in a wall as a medium-sized or smaller Xeno to pass through it.
 Claymores have directional explosions. Set them off early by slashing them from behind.
@@ -37,6 +37,8 @@ You can filter out the Xenomorphs displayed in hive status by health, allowing y
 Each xeno has their own ‘tackle counter’ on a marine. The range to successfully tackle can be anywhere from two to six tackles based on caste. If a marine gets stunned or knocked over by other means it will reset everyone's tackle counters and they may get up!
 As a Xenomorph, the list of available tunnels is sorted by their distance to the player!
 As a Xenomorph, pay attention to what a marine is wearing. If they have no helmet, aiming for the head will be significantly more damaging, if they aren't wearing gloves, then think about going for their hands.
+The M540-A Armored Recon Carrier can be crawled under as a xenomorph when destroyed.
+The M540-A Armored Recon Carrier is very vulnerable to acid damage.
 Applying acid to flares makes them burn faster.
 Melting weapons, ammo or other valuables owned by marines is a good way to debilitate them.
 The secrete acid shortcut is (by default) Shift + C.

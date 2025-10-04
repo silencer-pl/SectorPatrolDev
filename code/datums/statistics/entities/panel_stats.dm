@@ -131,11 +131,12 @@
 				damage_list += list(list("name" = "oxy", "value" = S.total_oxy))
 			if(S.total_tox)
 				damage_list += list(list("name" = "tox", "value" = S.total_tox))
+
 			death_list += list(list(
 				"mob_name" = sanitize(S.mob_name),
 				"job_name" = S.role_name,
 				"area_name" = sanitize_area(S.area_name),
-				"cause_name" = sanitize(S.cause_name),
+				"cause_name" = sanitize(strip_improper(S.cause_name)),
 				"total_kills" = S.total_kills,
 				"total_damage" = damage_list,
 				"time_of_death" = duration2text(S.time_of_death),
@@ -463,7 +464,7 @@
 		total_deaths_list += list(list("name" = S.name, "value" = S.value))
 
 	for(var/datum/entity/statistic/death/S in death_stats_list)
-		if(new_death_stats_list.len >= STATISTICS_DEATH_LIST_LEN)
+		if(length(new_death_stats_list) >= STATISTICS_DEATH_LIST_LEN)
 			break
 		var/list/damage_list = list()
 		if(S.total_brute)
@@ -496,7 +497,7 @@
 			"y" = S.y,
 			"z" = S.z
 		))
-		if(new_death_stats_list.len < STATISTICS_DEATH_LIST_LEN)
+		if(length(new_death_stats_list) < STATISTICS_DEATH_LIST_LEN)
 			new_death_stats_list += death
 
 	for(var/iteration in weapon_stats_list)

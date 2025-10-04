@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/fire()
 	if(mode)
-		time_remaining = round((started_time + CONFIG_GET(number/vote_period) - world.time)/10)
+		time_remaining = floor((started_time + CONFIG_GET(number/vote_period) - world.time)/10)
 
 		if(time_remaining < 0)
 			result()
@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(vote)
 				active_admins = TRUE
 				break
 		if(!active_admins)
-			world.Reboot("Restart vote successful.")
+			world.Reboot()
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
@@ -362,8 +362,8 @@ SUBSYSTEM_DEF(vote)
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
 		SEND_SOUND(world, sound(vote_sound, channel = SOUND_CHANNEL_VOX, volume = vote_sound_vol))
-		to_chat(world, SPAN_CENTERBOLD("<br><br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font><br><br>"))
-		time_remaining = round(vp/10)
+		to_chat(world, SPAN_CENTERBOLD("<br><br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='byond://?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font><br><br>"))
+		time_remaining = floor(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c
 			var/datum/action/innate/vote/V = give_action(C.mob, /datum/action/innate/vote)
@@ -371,7 +371,7 @@ SUBSYSTEM_DEF(vote)
 				V.set_name("Vote: [question]")
 			C.player_details.player_actions += V
 			if(send_clients_vote)
-				C.mob.vote()
+				C.vote()
 
 		RegisterSignal(SSdcs, COMSIG_GLOB_CLIENT_LOGGED_IN, PROC_REF(handle_client_joining))
 		SStgui.update_uis(src)
@@ -380,20 +380,20 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/map_vote_adjustment(current_votes, carry_over, total_votes)
 	// Get 10% of the total map votes and remove them from the pool
-	var/total_vote_adjustment = round(total_votes * CONFIG_GET(number/vote_adjustment_callback))
+	var/total_vote_adjustment = floor(total_votes * CONFIG_GET(number/vote_adjustment_callback))
 
 	// Do not remove more votes than were made for the map
 	return -(min(current_votes, total_vote_adjustment))
 
-/mob/verb/vote()
+CLIENT_VERB(vote)
 	set category = "OOC"
 	set name = "Vote"
 
-	SSvote.tgui_interact(src)
+	SSvote.tgui_interact(mob)
 
 /datum/controller/subsystem/vote/Topic(href, href_list)
 	. = ..()
-	usr.vote()
+	usr.client?.vote()
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REMOVE_VOTE_BUTTON)
@@ -414,7 +414,8 @@ SUBSYSTEM_DEF(vote)
 	qdel(src)
 
 /datum/action/innate/vote/action_activate()
-	owner.vote()
+	. = ..()
+	owner.client?.vote()
 
 /datum/action/innate/vote/proc/remove_from_client()
 	if(!owner)

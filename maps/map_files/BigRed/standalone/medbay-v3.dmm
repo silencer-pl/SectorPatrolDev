@@ -4,9 +4,7 @@
 /area/bigredv2/outside/medical)
 "ab" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/wall_thermite,
 /area/bigredv2/outside/medical)
 "ac" = (
 /obj/structure/window_frame/solaris,
@@ -19,39 +17,26 @@
 /obj/structure/machinery/door/airlock/multi_tile/almayer/medidoor/colony{
 	name = "\improper Medical Clinic"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warnwhite"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "ae" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warnwhite"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "af" = (
 /turf/closed/wall/solaris/reinforced,
 /area/bigredv2/outside/medical)
 "ag" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitepurplecorner"
-	},
+/turf/open/floor/whitepurplecorner/north,
 /area/bigredv2/outside/medical)
 "ah" = (
 /obj/item/stack/sheet/metal,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "ai" = (
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "aj" = (
 /obj/structure/window_frame/solaris,
@@ -59,36 +44,23 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ak" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "al" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreencorner/north,
 /area/bigredv2/outside/medical)
 "am" = (
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "an" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "ao" = (
 /obj/structure/machinery/chem_master,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "ap" = (
 /obj/structure/window/framed/solaris,
@@ -97,76 +69,53 @@
 "aq" = (
 /obj/structure/closet/secure_closet/CMO,
 /obj/item/device/healthanalyzer,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "ar" = (
 /obj/structure/machinery/computer/crew,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "as" = (
 /obj/structure/pipes/vents/pump,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/asteroidfloor/north,
 /area/bigredv2/outside/n)
+"at" = (
+/obj/structure/machinery/light,
+/turf/open/floor/asteroidwarning/north,
+/area/bigredv2/outside/medical)
 "aw" = (
 /obj/structure/machinery/chem_dispenser,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "ax" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "ay" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/item/trash/chips,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreencorner/west,
 /area/bigredv2/outside/medical)
 "az" = (
 /obj/structure/bed,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "aA" = (
 /obj/structure/surface/table,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "aB" = (
 /obj/structure/bed/roller,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "aC" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "aD" = (
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "aE" = (
 /obj/structure/surface/table,
@@ -175,22 +124,15 @@
 	},
 /obj/item/storage/box/beakers,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitepurplecorner"
-	},
+/turf/open/floor/whitepurplecorner/north,
 /area/bigredv2/outside/medical)
 "aF" = (
 /obj/structure/machinery/computer/med_data,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aH" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "aI" = (
 /obj/structure/bed/roller,
@@ -198,122 +140,84 @@
 	dir = 1
 	},
 /obj/item/frame/table,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "aJ" = (
 /obj/item/device/defibrillator,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "aK" = (
 /obj/structure/surface/table,
 /obj/effect/spawner/random/bomb_supply,
-/obj/item/stack/sheet/metal{
-	amount = 1
-	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "aL" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "aM" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "aN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "aO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/objective_landmark/science,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "aP" = (
 /obj/structure/pipes/vents/pump{
 	dir = 8
 	},
 /obj/structure/bed/roller,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "aR" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "aS" = (
 /obj/structure/surface/table/reinforced,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "aT" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "aU" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "aV" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
+/area/bigredv2/outside/medical)
+"aW" = (
+/obj/structure/pipes/standard/simple/hidden/green,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aX" = (
 /obj/structure/window_frame/solaris,
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "aY" = (
 /obj/item/shard,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "aZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/explosive/grenade/custom/large,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ba" = (
 /obj/structure/surface/table,
@@ -321,90 +225,61 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "bb" = (
 /obj/structure/pipes/vents/pump,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bc" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "bd" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
+/area/bigredv2/outside/medical)
+"be" = (
+/obj/item/shard,
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "bf" = (
 /obj/structure/pipes/standard/manifold/hidden/green,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "bg" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
-"bh" = (
-/turf/open/mars_cave{
-	icon_state = "mars_dirt_4"
-	},
-/area/bigredv2/outside/n)
 "bi" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "bj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/crap_item,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "bl" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bm" = (
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bn" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bo" = (
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -412,98 +287,66 @@
 	dir = 1;
 	name = "\improper Medical Clinic"
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "bp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/gloves/latex,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bq" = (
 /obj/effect/landmark/crap_item,
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "br" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "bs" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bt" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "bu" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "bv" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "bw" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/asteroidwarning/east,
 /area/bigredv2/outside/n)
 "bx" = (
 /obj/item/stack/rods,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "by" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bz" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/northeast,
 /area/bigredv2/outside/medical)
 "bA" = (
 /obj/structure/machinery/chem_dispenser,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bB" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bC" = (
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -512,65 +355,40 @@
 	icon_state = "coil2"
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bD" = (
 /obj/effect/landmark/crap_item,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "bE" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bG" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "bH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "bI" = (
 /obj/item/shard,
 /obj/item/frame/table,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
-/area/bigredv2/outside/medical)
-"bJ" = (
-/obj/structure/bed/roller,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "bK" = (
 /obj/item/stack/rods,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "bL" = (
 /obj/structure/pipes/standard/manifold/hidden/green,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "bM" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -580,61 +398,48 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "bN" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "bO" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 5
 	},
 /obj/structure/surface/table,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
-/area/bigredv2/outside/n)
+/turf/open/floor/asteroidfloor/north,
+/area/bigredv2/outside/medical)
 "bP" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
-"bQ" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidwarning"
-	},
-/area/bigredv2/outside/n)
 "bR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "bS" = (
-/obj/structure/machinery/door/airlock/almayer/medical/glass/colony{
-	name = "\improper Medical Clinic Scanner Room"
+/obj/structure/machinery/door/airlock/almayer/medical{
+	name = "\improper Medical Clinic Morgue";
+	locked = 1
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "bT" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "platingdmg1"
+/turf/open/floor/platingdmg1,
+/area/bigredv2/outside/medical)
+"bU" = (
+/obj/structure/pipes/standard/simple/hidden/green,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/medical_decals{
+	icon_state = "triagedecalbottom"
 	},
+/turf/open/floor/whitegreen/southeast,
 /area/bigredv2/outside/medical)
 "bV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -645,41 +450,29 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "bX" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen,
 /area/bigredv2/outside/medical)
 "bY" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "bZ" = (
 /obj/structure/window_frame/solaris,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ca" = (
 /obj/structure/window_frame/solaris,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cb" = (
 /obj/item/stack/rods,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "cc" = (
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -687,21 +480,15 @@
 	dir = 1;
 	name = "\improper Medical Clinic CMO's Office"
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cd" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "ce" = (
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/wall_thermite,
 /area/bigredv2/outside/medical)
 "cf" = (
 /obj/effect/decal/cleanable/blood{
@@ -711,36 +498,21 @@
 	name = "\improper Medical Clinic"
 	},
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "cg" = (
 /obj/structure/surface/table,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ch" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
-/area/bigredv2/outside/medical)
-"cj" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ck" = (
 /obj/structure/pipes/standard/simple/hidden/green,
@@ -748,32 +520,17 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "cl" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cm" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
-"cn" = (
-/obj/structure/pipes/standard/simple/hidden/green{
-	dir = 10
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidwarning"
-	},
-/area/bigredv2/outside/n)
 "co" = (
 /obj/structure/window_frame/solaris,
 /obj/item/stack/sheet/metal,
@@ -782,81 +539,52 @@
 "cp" = (
 /obj/structure/surface/table/reinforced,
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cq" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "cr" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "cs" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "ct" = (
 /obj/effect/landmark/crap_item,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cu" = (
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "cv" = (
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "cw" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/crap_item,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "cx" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "cy" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "cz" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 6
 	},
 /obj/item/shard,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "cA" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -866,9 +594,7 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "cB" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -878,20 +604,14 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "cC" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "cD" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -902,10 +622,7 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "cE" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -916,16 +633,18 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "cF" = (
 /obj/structure/machinery/cm_vending/sorted/medical/no_access,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
+/turf/open/floor/whitegreen/north,
+/area/bigredv2/outside/medical)
+"cG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/medical_decals{
+	icon_state = "triagedecalbottomleft"
 	},
+/turf/open/floor/whitegreen,
 /area/bigredv2/outside/medical)
 "cH" = (
 /obj/structure/pipes/standard/manifold/hidden/green,
@@ -933,10 +652,7 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "cI" = (
 /obj/effect/decal/cleanable/blood,
@@ -947,10 +663,7 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "cJ" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -960,10 +673,7 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "cK" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -976,10 +686,7 @@
 	icon_state = "coil2"
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "cL" = (
 /obj/structure/pipes/standard/manifold/hidden/green,
@@ -987,17 +694,13 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "cM" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "cN" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1007,38 +710,42 @@
 	amount = 1;
 	icon_state = "coil2"
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
+/turf/open/floor/platingdmg1,
+/area/bigredv2/outside/medical)
+"cO" = (
+/obj/effect/acid_hole{
+	dir = 4
 	},
+/turf/closed/wall/solaris,
+/area/bigredv2/outside/medical)
+"cP" = (
+/obj/structure/pipes/standard/simple/hidden/green{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitegreen/northwest,
 /area/bigredv2/outside/medical)
 "cQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "white"
+/obj/effect/decal/medical_decals{
+	icon_state = "triagedecalbottom"
 	},
+/turf/open/floor/whitegreen/southwest,
 /area/bigredv2/outside/medical)
 "cR" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "cS" = (
 /obj/structure/surface/table,
 /obj/item/storage/pill_bottle/tramadol,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cT" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "cU" = (
 /obj/effect/decal/cleanable/blood,
@@ -1046,55 +753,43 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen,
 /area/bigredv2/outside/medical)
 "cV" = (
 /obj/structure/pipes/standard/manifold/hidden/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "cW" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "cX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "cY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "cZ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
+/area/bigredv2/outside/medical)
+"da" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/shard,
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "db" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dc" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1102,34 +797,28 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/wygoon,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dd" = (
 /obj/item/stack/rods,
 /obj/item/shard,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
+/area/bigredv2/outside/medical)
+"de" = (
+/obj/structure/window/framed/solaris,
+/obj/structure/curtain,
+/turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "df" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "darkish"
-	},
+/turf/open/floor/darkish,
 /area/bigredv2/outside/medical)
 "dg" = (
-/turf/open/floor{
-	icon_state = "darkish"
-	},
+/turf/open/floor/darkish,
 /area/bigredv2/outside/medical)
 "dh" = (
 /obj/structure/machinery/cm_vending/sorted/medical/no_access,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "di" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1139,32 +828,24 @@
 /area/bigredv2/outside/medical)
 "dj" = (
 /obj/item/shard,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/obj/structure/bed/roller,
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "dk" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dl" = (
 /obj/structure/bed/chair,
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
-/turf/open/floor{
-	icon_state = "darkish"
-	},
+/turf/open/floor/darkish,
 /area/bigredv2/outside/medical)
 "dm" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "dn" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1175,51 +856,37 @@
 	icon_state = "coil2"
 	},
 /obj/item/ammo_casing/shell,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "do" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 9
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dp" = (
 /obj/structure/sign/safety/autodoc{
 	pixel_x = 32
 	},
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "dq" = (
 /obj/structure/sign/safety/autodoc{
 	pixel_x = -32
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "dr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "ds" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dt" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1232,72 +899,50 @@
 	name = "General Listening Channel";
 	pixel_x = 30
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "du" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "dv" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "dw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/item/stack/sheet/metal{
-	amount = 1
-	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/obj/item/stack/sheet/metal,
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dx" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen,
 /area/bigredv2/outside/medical)
 "dy" = (
 /obj/structure/bed/roller,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dz" = (
 /obj/structure/machinery/camera/autoname{
 	network = list("interrogation")
 	},
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "dA" = (
 /obj/structure/bed/roller,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "dB" = (
 /obj/structure/pipes/standard/manifold/hidden/green{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "dC" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1305,53 +950,39 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "dD" = (
 /obj/structure/surface/table,
 /obj/item/device/autopsy_scanner,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "dE" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dF" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dG" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dH" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dI" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1359,141 +990,112 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
+"dJ" = (
+/obj/structure/pipes/standard/simple/hidden/green{
+	dir = 10
+	},
+/turf/open/floor/asteroidwarning/north,
+/area/bigredv2/outside/n)
+"dK" = (
+/turf/open/floor/asteroidwarning/north,
+/area/bigredv2/outside/n)
 "dL" = (
 /obj/item/stack/sheet/metal,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dM" = (
 /obj/item/clothing/gloves/latex,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dN" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
+"dO" = (
+/turf/open/mars_cave/mars_dirt_4,
+/area/bigredv2/outside/n)
 "dP" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "dR" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "dS" = (
 /obj/structure/surface/table,
 /obj/item/reagent_container/food/snacks/sliceable/pizza/margherita,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "dT" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dU" = (
 /obj/structure/bed/chair,
 /obj/structure/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "dV" = (
 /obj/structure/machinery/medical_pod/bodyscanner,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
+/obj/effect/decal/medical_decals{
+	icon_state = "triagedecalbottomleft"
 	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "dW" = (
 /obj/structure/machinery/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 6;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/southeast,
 /area/bigredv2/outside/medical)
 "dX" = (
 /obj/item/stack/rods,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "dY" = (
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "darkish"
-	},
+/turf/open/floor/darkish,
 /area/bigredv2/outside/medical)
 "dZ" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "ea" = (
 /obj/structure/machinery/cm_vending/sorted/medical/blood,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "eb" = (
 /obj/structure/machinery/medical_pod/sleeper,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "ec" = (
 /obj/structure/closet/secure_closet/medical1,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ed" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "ee" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "ef" = (
 /obj/structure/sink{
@@ -1503,39 +1105,28 @@
 	pixel_y = 2
 	},
 /obj/item/tool/surgery/scalpel/manager,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "eg" = (
 /obj/item/device/healthanalyzer,
 /obj/structure/pipes/vents/pump,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "eh" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "wall_thermite"
-	},
+/turf/open/floor/wall_thermite,
 /area/bigredv2/outside/medical)
 "ei" = (
 /obj/structure/machinery/sleep_console,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "ej" = (
 /obj/structure/pipes/standard/manifold/hidden/green{
 	dir = 8
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "ek" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1544,9 +1135,7 @@
 /obj/structure/machinery/door/airlock/almayer/medical/glass/colony{
 	name = "\improper Medical Clinic Storage"
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "el" = (
 /obj/item/clothing/glasses/meson,
@@ -1554,26 +1143,20 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "em" = (
 /obj/item/reagent_container/pill/happy,
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "en" = (
 /obj/structure/machinery/door/airlock/almayer/medical/glass/colony{
 	name = "\improper Medical Clinic Storage"
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "eo" = (
 /obj/structure/machinery/vending/snack,
@@ -1581,46 +1164,27 @@
 	dir = 1
 	},
 /obj/structure/pipes/standard/simple/hidden/green,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ep" = (
 /obj/structure/bed/chair,
 /obj/item/ammo_casing/shell,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
-/area/bigredv2/outside/medical)
-"eq" = (
-/obj/structure/pipes/standard/simple/hidden/green,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "er" = (
 /obj/structure/bed/chair,
 /obj/item/shard,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "es" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "et" = (
 /obj/item/reagent_container/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "eu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1629,48 +1193,32 @@
 	name = "Storm Shutters";
 	pixel_y = -32
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ev" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreencorner/north,
 /area/bigredv2/outside/medical)
 "ew" = (
 /obj/structure/surface/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "ex" = (
 /obj/structure/surface/table,
 /obj/item/storage/box/masks,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "ey" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitepurplecorner"
-	},
+/turf/open/floor/whitepurplecorner/north,
 /area/bigredv2/outside/medical)
 "ez" = (
 /obj/item/device/healthanalyzer,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "eA" = (
 /obj/structure/sign/safety/medical{
@@ -1678,25 +1226,19 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/surgery/blue,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "eB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "eC" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
 /obj/item/trash/kepler,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreen/west,
 /area/bigredv2/outside/medical)
 "eD" = (
 /obj/structure/surface/table/reinforced,
@@ -1704,180 +1246,116 @@
 	phone_category = "Solaris Ridge";
 	phone_id = "Clinic Reception"
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreen,
 /area/bigredv2/outside/medical)
 "eE" = (
 /obj/structure/closet/secure_closet/medical2,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "eF" = (
 /obj/structure/closet/secure_closet/medical1,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "eG" = (
 /obj/structure/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "eH" = (
 /obj/structure/machinery/optable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/wygoon,
 /obj/item/reagent_container/food/snacks/margheritaslice,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "eI" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "eJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "eK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/surgery/bonesetter,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "eL" = (
 /obj/structure/machinery/light{
 	dir = 4
 	},
 /obj/item/shard,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "eM" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/crap_item,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "eN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/reagent_container/food/snacks/margheritaslice,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "eO" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "eP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "eQ" = (
 /obj/structure/surface/table,
 /obj/item/trash/burger,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "whitegreen"
-	},
-/area/bigredv2/outside/medical)
-"eR" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/whitegreenfull,
 /area/bigredv2/outside/medical)
 "eS" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/whitegreen/west,
 /area/bigredv2/outside/medical)
 "eT" = (
-/turf/open/floor{
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/asteroidwarning,
 /area/bigredv2/outside/c)
-"eU" = (
-/turf/open/floor{
-	icon_state = "asteroidwarning"
-	},
-/area/bigredv2/outside/medical)
 "eV" = (
 /obj/structure/pipes/standard/simple/hidden/green,
 /obj/structure/machinery/door/airlock/multi_tile/almayer/medidoor/colony{
-	name = "\improper Medical Clinic"
+	name = "\improper Medical Clinic";
+	icon_state = "door_open";
+	density = 0
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/delivery,
 /area/bigredv2/outside/medical)
 "eW" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "eX" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "eY" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/whitegreen/east,
 /area/bigredv2/outside/medical)
 "eZ" = (
 /obj/structure/pipes/standard/simple/hidden/green{
 	dir = 5
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "fa" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1886,32 +1364,23 @@
 /obj/structure/machinery/door/airlock/almayer/medical/glass/colony{
 	name = "\improper Medical Clinic Operating Theatre"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 "fb" = (
 /obj/structure/pipes/standard/manifold/hidden/green{
 	dir = 4
 	},
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "fc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "fd" = (
 /obj/item/reagent_container/pill/happy,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fe" = (
 /obj/structure/sink{
@@ -1919,37 +1388,31 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "ff" = (
 /obj/item/clothing/mask/breath/medical,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "fg" = (
 /obj/item/stack/sheet/metal,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
+/turf/open/floor/plating/panelscorched,
 /area/bigredv2/outside/medical)
 "fh" = (
 /obj/structure/surface/table/reinforced,
 /obj/item/trash/buritto,
-/turf/open/floor{
-	icon_state = "whitegreenfull"
-	},
+/turf/open/floor/white,
+/area/bigredv2/outside/medical)
+"fi" = (
+/obj/item/stack/sheet/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitegreen/north,
 /area/bigredv2/outside/medical)
 "fj" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged4"
-	},
+/turf/open/floor/damaged4/west,
 /area/bigredv2/outside/medical)
 "fk" = (
 /obj/structure/pipes/standard/simple/hidden/green{
@@ -1957,111 +1420,71 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/shell,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fl" = (
 /obj/structure/pipes/vents/pump{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fm" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/asteroidwarning,
 /area/bigredv2/outside/c)
 "fn" = (
 /obj/structure/bed,
 /obj/structure/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fo" = (
 /obj/structure/machinery/light,
 /obj/item/tool/surgery/cautery,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/whitebluefull/northeast,
 /area/bigredv2/outside/medical)
 "fp" = (
 /obj/structure/machinery/medical_pod/bodyscanner,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fq" = (
 /obj/structure/bed,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
 "fr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/white,
 /area/bigredv2/outside/medical)
 "fs" = (
 /obj/item/frame/table,
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/platingdmg1,
 /area/bigredv2/outside/medical)
-"gS" = (
-/obj/structure/machinery/light,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidwarning"
-	},
+"ft" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/whitegreencorner,
+/area/bigredv2/outside/medical)
+"fu" = (
+/turf/open/floor/asteroidwarning,
 /area/bigredv2/outside/n)
 "hn" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
-/area/bigredv2/outside/medical)
-"om" = (
-/turf/open/floor{
-	icon_state = "asteroidwarning"
-	},
-/area/bigredv2/outside/n)
-"CW" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
-/area/bigredv2/outside/medical)
+/turf/open/floor/asteroidfloor/north,
+/area/bigredv2/outside/c)
 "DL" = (
 /obj/effect/landmark/objective_landmark/science,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/platingdmg3,
 /area/bigredv2/outside/medical)
 "GP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/objective_landmark/medium,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged3"
-	},
+/turf/open/floor/damaged3/west,
 /area/bigredv2/outside/medical)
 "MK" = (
 /obj/effect/landmark/objective_landmark/science,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged5"
-	},
+/turf/open/floor/damaged5/west,
 /area/bigredv2/outside/medical)
 "Xh" = (
 /obj/structure/transmitter/colony_net{
@@ -2070,10 +1493,7 @@
 	phone_id = "Clinic Labs";
 	pixel_y = 24
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "damaged2"
-	},
+/turf/open/floor/damaged2/west,
 /area/bigredv2/outside/medical)
 
 (1,1,1) = {"
@@ -2086,7 +1506,7 @@ bx
 aU
 aa
 aa
-aa
+cO
 aa
 ah
 dH
@@ -2118,7 +1538,7 @@ eQ
 cS
 aU
 cN
-bJ
+ai
 dy
 aa
 df
@@ -2231,7 +1651,7 @@ aM
 dh
 dj
 dv
-bJ
+ai
 ab
 dU
 dZ
@@ -2302,7 +1722,7 @@ eT
 "}
 (9,1,1) = {"
 ac
-ah
+fi
 ai
 bc
 bn
@@ -2311,7 +1731,7 @@ bZ
 ch
 cq
 bW
-bY
+bU
 bT
 bT
 cw
@@ -2338,7 +1758,7 @@ cl
 ca
 ci
 cr
-dx
+cP
 cQ
 aL
 aL
@@ -2367,11 +1787,11 @@ bo
 ck
 bT
 cV
-bX
+cG
 aj
 dp
 bu
-dx
+ed
 dW
 aa
 aj
@@ -2386,7 +1806,7 @@ eT
 "}
 (12,1,1) = {"
 ad
-aL
+ft
 aM
 dE
 br
@@ -2427,7 +1847,7 @@ ci
 di
 ai
 aY
-dx
+ed
 eb
 aa
 ec
@@ -2452,7 +1872,7 @@ aT
 ct
 cE
 bc
-dj
+be
 bm
 bs
 dC
@@ -2539,7 +1959,7 @@ ai
 dk
 aT
 cs
-dx
+ed
 ax
 aQ
 aM
@@ -2578,7 +1998,7 @@ aa
 bs
 bB
 dv
-eU
+eT
 "}
 (19,1,1) = {"
 af
@@ -2638,11 +2058,11 @@ hn
 "}
 (21,1,1) = {"
 af
-om
-bh
-bh
-bh
-cn
+fu
+dO
+dO
+dO
+dJ
 cf
 cm
 bi
@@ -2654,7 +2074,7 @@ db
 dI
 aL
 an
-cj
+dQ
 ez
 eI
 az
@@ -2666,12 +2086,12 @@ hn
 "}
 (22,1,1) = {"
 af
-om
-bh
-bh
-bh
-bQ
-CW
+fu
+dO
+dO
+dO
+dK
+am
 aT
 bu
 cN
@@ -2694,19 +2114,19 @@ aa
 "}
 (23,1,1) = {"
 af
-om
-bh
-bh
-bh
-bQ
+fu
+dO
+dO
+dO
+dK
 ac
 bK
 an
 bP
 cZ
 dm
-bY
-bY
+aW
+aW
 bf
 aT
 eu
@@ -2716,21 +2136,21 @@ br
 ai
 aM
 eC
-eR
+eS
 eS
 aa
 "}
 (24,1,1) = {"
 af
-om
-bh
-bh
-bh
-bQ
+fu
+dO
+dO
+dO
+dK
 ac
 ax
 cx
-cQ
+da
 aM
 bj
 ds
@@ -2742,25 +2162,25 @@ eh
 ep
 eJ
 eX
-eq
+bY
 cd
-eq
+bY
 bY
 eV
 "}
 (25,1,1) = {"
 af
-om
-bh
-bh
-bh
-bQ
+fu
+dO
+dO
+dO
+dK
 ac
 bz
 cy
 cR
 dd
-cj
+dQ
 dt
 cx
 cU
@@ -2772,23 +2192,23 @@ GP
 ed
 aL
 aD
-aL
+dQ
 dQ
 am
 "}
 (26,1,1) = {"
 af
-om
-bh
-bh
-bh
-gS
+fu
+dO
+dO
+dO
+at
 aa
-ap
-ap
+aa
+de
 bS
-ac
 aj
+aa
 aa
 cF
 dx

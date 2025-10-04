@@ -41,7 +41,15 @@
 		var/datum/hive_status/corrupted/renegade/renegade_hive = hive
 		return renegade_hive.iff_protection_check(src, attempt_harm_mob)
 
+	if(HAS_TRAIT(attempt_harm_mob, TRAIT_HAULED))
+		return TRUE
+
 	return hive.is_ally(attempt_harm_mob)
+
+/mob/living/carbon/xenomorph/proc/claw_restrained()
+	if(legcuffed && legcuffed.stop_xeno_slash)
+		return TRUE
+	return FALSE
 
 // need this to set the data for walls/eggs/huggers when they are initialized
 /proc/set_hive_data(atom/focused_atom, hivenumber)

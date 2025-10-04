@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 	var/xeno_evo_speed = 0 // if not 0 - gives xeno an evo boost/nerf
 	var/is_in_endgame = FALSE //Set it to TRUE when we trigger DELTA alert or dropship crashes
 	/// When set and this gamemode is selected, the taskbar icon will change to the png selected here
-	var/taskbar_icon = 'icons/taskbar/gml_sectorpatrol.png'
+	var/taskbar_icon = 'icons/taskbar/gml_distress.png'
 	var/static_comms_amount = 0
 	var/obj/structure/machinery/computer/shuttle/dropship/flight/active_lz = null
 
@@ -39,6 +39,9 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 	var/corpses_to_spawn = 0
 
 	var/hardcore = FALSE
+
+	///Whether or not the fax response station has loaded.
+	var/loaded_fax_base = FALSE
 
 /datum/game_mode/New()
 	..()
@@ -75,6 +78,7 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 		spawn_static_comms()
 	if(corpses_to_spawn)
 		generate_corpses()
+	initialize_gamemode_modifiers()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MODE_PRESETUP)
 	return 1
 
@@ -101,16 +105,19 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 		SS.post_setup()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MODE_POSTSETUP)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
-
-	for(var/mob/new_player/np in GLOB.new_player_list)
-		np.new_player_panel_proc()
+	adjust_ammo_values()
 	round_time_lobby = world.time
 	log_game("Round started at [time2text(world.realtime)]")
 	log_game("Operation time at round start is [worldtime2text()]")
 	if(SSticker.mode)
-		log_game("Game mode set to [SSticker.mode]")
+		log_game("Game mode set to [SSticker.mode] on the [SSmapping.configs[GROUND_MAP].map_name] map")
 	log_game("Server IP: [world.internet_address]:[world.port]")
 	return TRUE
+
+/datum/game_mode/proc/adjust_ammo_values()
+	if(MODE_HAS_FLAG(MODE_FACTION_CLASH))
+		for(var/ammo in GLOB.ammo_list)
+			GLOB.ammo_list[ammo].setup_faction_clash_values()
 
 /datum/game_mode/proc/get_affected_zlevels()
 	if(is_in_endgame)
@@ -132,12 +139,9 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 /datum/game_mode/proc/announce_ending()
 	if(GLOB.round_statistics)
 		GLOB.round_statistics.track_round_end()
-	log_game("Interval Ended")
-	to_chat(world, narrate_head("[GLOB.end_narration_header]"))
-	to_chat(world, narrate_body("[GLOB.end_narration_body]"))
-	sleep(50)
-	to_chat(world, narrate_head("The round has concluded. Please remain in character and do not disrupt ongoing roleplay. Do note that unless you specifically want to, nothing that follows this point will be considered in-round canon, but again, do not disrupt any ongoing RP."))
-	to_chat(world, narrate_body("The server will shut down or reset soon. Thank you for playing!"))
+	log_game("Round end result: [round_finished]")
+	to_chat_spaced(world, margin_top = 2, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDHEADER("|Round Complete:[round_finished]|"))
+	to_chat_spaced(world, type = MESSAGE_TYPE_SYSTEM, html = SPAN_ROUNDBODY("Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].\nThe game-mode was: [GLOB.master_mode]!\n[CONFIG_GET(string/endofroundblurb)]"))
 
 /datum/game_mode/proc/declare_completion()
 	if(GLOB.round_statistics)
@@ -180,9 +184,9 @@ GLOBAL_VAR_INIT(cas_tracking_id_increment, 0) //this var used to assign unique t
 
 		if(M.client && M.client.player_data)
 			if(M.stat == DEAD)
-				record_playtime(M.client.player_data, JOB_OBSERVER, type)
+				record_playtime(M.client.player_data, JOB_OBSERVER, M.type)
 			else
-				record_playtime(M.client.player_data, M.job, type)
+				record_playtime(M.client.player_data, M.job, M.type)
 
 /datum/game_mode/proc/show_end_statistics(icon_state)
 	GLOB.round_statistics.update_panel_data()

@@ -156,7 +156,7 @@
 		to_chat(usr, "Error: No Surge in progress")
 		return
 
-	if(GLOB.pve_active_wave == 0)
+	if(GLOB.pve_active_wave == 1)
 		GLOB.pve_active_wave = 0
 		message_admins("Surge Stopped")
 		return

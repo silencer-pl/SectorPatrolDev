@@ -20,11 +20,10 @@
 	c - Cone - hits 3 grids in front based on dir, supports diagonals too, factor 1 also applies knockback; Wind up to animation times will always be at least 3 (so total animation time of anyhting less than 4 will be normalized to at least 4), though any unblockable attacks should come with a gratious indiator anyway.
 	p - Power - special animation, hits harder, knockbacks
 	t - Thrust - Moves mob forward, knocking hit mobs out of the way. Stops at walls and obstacles. Factor decides distance of thrust, but keep in mind that anything over 2 will take the mob out of attack range and potentially break their chain, so should be used in indnivdual cadences or at the end of one
-	f - Fast - omits windup. Good for combos. Parriable, and ideally should only appear after another indicated attack, but also viable for small rapidly attacking mobs that are meant to be one shot etc. Factor 1 should be used in last fast hits of a fast hit combo in cadences that have further attacks (so it resets the warning icon flashing properly)
+	f - Fast - omits windup. Good for combos. Ideally should only appear after another indicated attack, but also viable for small rapidly attacking mobs that are meant to be one shot etc.
 	g - Grab - If hits players immobilizes them and plays a "grab animation" depending on number subtype which includes multiple hits. Can be interrupted by incoming damage from another player controlled via the grab_durability var, sucessful interrupt breaks poise
 	*/
 	var/list/attack_cadence = list(list("5n"))
-	var/skip_warning = 0
 	var/attacking_flag = 0
 	var/attack_hit_time = 5 // Attack time animation.
 	var/attack_delay = 10 //This is a pause AFTER all the attacks in a single cadence, ie extra time between attack decisons. Individual attack loops are decided by cadence
@@ -76,9 +75,6 @@
 
 /datum/combat_ai/proc/attack_animation(mob/attacking_mob,turf/target,type,anim_time,factor) // I strongly recommend this is async invoked, just saying :P
 	if(!type || !anim_time) return
-	//icons refs
-	var/overlay_icon = 'icons/effects/combat.dmi'
-	var/overlay_icon_state
 	//Universal refs
 	var/mob/animated_mob = attacking_mob
 	var/starting_x = animated_mob.pixel_x
@@ -91,9 +87,6 @@
 	//blinking/indicator values
 	var/color_value = animated_mob.color
 	var/blink_value = color_value
-	var/matrix/M = new()
-	var/matrix/N = new()
-	var/matrix/O = new()
 	var/fade_in
 	var/fade_out
 	if(wind_up < 5)
@@ -104,61 +97,6 @@
 		fade_out = 3 // This should likely be made more dynamic later, which is why those are pulled out here.
 	var/flash = (anim_time - fade_in - fade_out)
 	if(flash < 1) flash = 1
-
-
-	M.Scale(0.01)
-	N.Scale(0.7)
-	O.Scale(2)
-	var/obj/indicator = new()
-	if(skip_warning == 0)
-		indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-		indicator.alpha = 0
-		indicator.layer = ABOVE_MOB_LAYER
-		indicator.pixel_y = 10
-		switch(type) // Attack Indicator/blining values segment. Actual animations trigger later
-			if("n")
-				blink_value = "#ffd0be"
-			if("a")
-				overlay_icon_state = "circle"
-				blink_value = "#ff8800"
-				color_value = "#ffd595"
-			if("c")
-				overlay_icon_state = "cone"
-				blink_value = "#ff8800"
-				color_value = "#ffd595"
-			if("p")
-				overlay_icon_state = "cross"
-				blink_value = "#ff1c1c"
-				color_value = "#ff8181"
-			if("g")
-				overlay_icon_state = "cross"
-				blink_value = "#8f0c54"
-				color_value = "#cf398c"
-			if("t")
-				overlay_icon_state = "arrow"
-				blink_value = "#d15106"
-				color_value = "#ff9a5f"
-			if("f")
-				overlay_icon_state = "triangle"
-				blink_value = "#1e5a0c"
-				color_value = "#2fca00"
-				skip_warning = 1
-		indicator.dir = get_dir(current_turf,target)
-		indicator.overlays += icon(icon = overlay_icon,icon_state = overlay_icon_state, dir = indicator.dir)
-		indicator.color = color_value
-		indicator.transform = M
-		animated_mob.vis_contents += indicator
-		animate(indicator,time = fade_in,alpha = 255, transform = N, pixel_y = 20)
-		var/current_tick = 0
-		while(current_tick < flash)
-			var/color_to_change
-			if(indicator.color == blink_value)
-				color_to_change = color_value
-			else
-				color_to_change = blink_value
-			animate(time = 1, color = color_to_change)
-			current_tick += 1
-		animate(time = fade_out, alpha = 0, transform = O)
 
 	switch(type) // Attack animations go here
 		if("n") // Normal attack - mob pulls back, then pushes forward. Strike counted at apex of pushing animation.
@@ -462,8 +400,6 @@
 
 	animate(animated_mob,time = 1, pixel_x = starting_x, pixel_y = starting_y, flags = ANIMATION_CONTINUE)
 	sleep(anim_time + 1)
-	animated_mob.vis_contents -= indicator
-	qdel(indicator)
 	return
 
 /datum/combat_ai/proc/damage_animation(mob/target,type)
@@ -1020,7 +956,6 @@
 							INVOKE_ASYNC(src, PROC_REF(process_grab),attacked_carbon_mob,attack_factor)
 							break
 			if("f")
-				if(attack_factor == 1) skip_warning = 0
 				for(var/mob/living/attacked_mob in attacked_turf)
 					if(istype(attacked_mob,/mob/living/carbon/))
 						var/mob/living/carbon/attacked_carbon_mob = attacked_mob
